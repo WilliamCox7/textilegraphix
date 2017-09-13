@@ -1,0 +1,63 @@
+@import '../../vars.scss';
+
+.HomeSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin-bottom: 190px;
+  h1 {
+    color: $darkgray;
+    font-size: 35px;
+    margin-bottom: 30px;
+  }
+  .icons {
+    display: flex;
+    justify-content: space-between;
+    img {
+      height: 60px;
+      margin-bottom: 15px;
+    }
+    .icon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 16px;
+      margin: 0px 10px;
+      h2 {
+        text-align: center;
+        line-height: 22px;
+      }
+    }
+  }
+  .no-mans-land {
+    height: 510px;
+    width: 100%;
+  }
+  .bottom {
+    width: 100%;
+    .prompt {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 30px;
+      h4 {
+        font-size: 34px;
+        color: $gray;
+      }
+      img {
+        height: 20px;
+        margin-left: 20px;
+      }
+    }
+    .taglines {
+      display: flex;
+      justify-content: center;
+      h3 {
+        font-size: 14px;
+        line-height: 28px;
+        margin: 0px 15px;
+      }
+    }
+  }
+}
