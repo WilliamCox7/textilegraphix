@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './Home.scss';
+import './QuoteBox.scss';
 
-class Home extends Component {
+class QuoteBox extends Component {
 
   constructor() {
     super();
@@ -12,9 +12,9 @@ class Home extends Component {
 
   render() {
     return (
-      <div className="Home">
+      <div className="QuoteBox">
         {this.state.width > 600 ? (
-          "Desktop"
+          <h1 className="empty">There is nothing to see...</h1>
         ) : (
           "Mobile"
         )}
@@ -23,4 +23,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default QuoteBox;

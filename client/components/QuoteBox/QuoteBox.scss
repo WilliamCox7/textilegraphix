@@ -1,0 +1,13 @@
+@import '../../vars.scss';
+
+.QuoteBox {
+  position: absolute;
+  right: 0;
+  top: 40px;
+  background: white;
+  box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.12);
+  .empty {
+    padding: 50px 20px;
+    color: $lightgray;
+  }
+}

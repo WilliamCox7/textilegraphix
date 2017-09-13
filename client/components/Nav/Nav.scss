@@ -1,0 +1,43 @@
+@import '../../vars.scss';
+
+.Nav {
+  .nav-container-desktop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 150px;
+    .logo {
+      height: 26px;
+    }
+    .links {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      font-size: 13px;
+      width: 50%;
+      a {
+        text-decoration: none;
+        color: $lightgray;
+      }
+      .search-bar {
+        border: none;
+        border-bottom: solid 1px $lightgray;
+        background-image: url('../../src/search.svg');
+        background-size: 18px;
+        background-repeat: no-repeat;
+        background-position: 0px;
+        padding: 5px 0px 5px 22px;
+        &:focus {
+          outline: none;
+        }
+      }
+      .quote-icon {
+        height: 26px;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
