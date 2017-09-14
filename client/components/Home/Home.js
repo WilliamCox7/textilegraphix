@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import HomeBox from '../HomeBox/HomeBox';
 import HomeSection from '../HomeSection/HomeSection';
+import OurReviews from '../OurReviews/OurReviews';
 import fingerprint from '../../src/fingerprint.svg';
 import box from '../../src/box.svg';
 import lightning from '../../src/lightning.svg';
@@ -28,6 +29,8 @@ class Home extends Component {
             <HomeSection section={section1} />
             <HomeSection section={section2} />
             <HomeSection section={section3} />
+            <OurReviews />
+            <div className="contact-header">Contact Us</div>
           </div>
         ) : (
           "Mobile"

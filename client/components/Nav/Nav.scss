@@ -1,6 +1,8 @@
 @import '../../vars.scss';
 
 .Nav {
+  max-width: 1145px;
+  margin: auto;
   .nav-container-desktop {
     display: flex;
     justify-content: space-between;
