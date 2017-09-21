@@ -1,26 +1,36 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import Summary from '../Summary/Summary';
 import './QuoteBox.scss';
 
 class QuoteBox extends Component {
-
-  constructor() {
-    super();
-    this.state = {
-      width: document.body.clientWidth
-    }
-  }
-
   render() {
+
+    var quotes = this.props.cart.products.map((product, i) => {
+      return <Summary summary={product} key={i} />;
+    });
+
     return (
       <div className="QuoteBox">
-        {this.state.width > 600 ? (
-          <h1 className="empty">There is nothing to see...</h1>
-        ) : (
-          "Mobile"
-        )}
+        {quotes}
+        <div className="totals">
+          <span>
+            <h1>Estimated Subtotal:</h1>
+            <h1>
+              ${this.props.cart.subtotal.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')}
+            </h1>
+          </span>
+        </div>
+        <a className="submit" href="/#/submit">Submit Quote</a>
       </div>
     );
   }
 }
 
-export default QuoteBox;
+const mapStateToProps = (state) => {
+  return {
+    cart: state.cart
+  }
+}
+
+export default connect(mapStateToProps)(QuoteBox);

@@ -1,4 +1,4 @@
-const SET = 'posts/SET';
+const SET = 'shop/SET';
 
 const initState = {
   products: [

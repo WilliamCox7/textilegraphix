@@ -1,0 +1,44 @@
+@import '../../vars.scss';
+
+.Summary {
+  display: flex;
+  img {
+    width: 22px;
+    height: 22px;
+    margin: 10px 30px 10px 0px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .info {
+    margin: 13px 0px 0px;
+    width: calc(100% - 52px);
+    h1 {
+      font-size: 14px;
+      color: $gray;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    .info-content {
+      .info-section {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 15px;
+        h2 {
+          height: 13px;
+          color: $darkgray;
+          font-weight: bold;
+          margin-bottom: 10px;
+        }
+        h3 {
+          color: $gray;
+          margin-bottom: 8px;
+        }
+        .column2 {
+          width: 53px;
+        }
+      }
+    }
+  }
+}
