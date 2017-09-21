@@ -6,15 +6,20 @@
   align-items: center;
   position: relative;
   margin-bottom: 190px;
+  .parallax-image {
+    width: 70% !important;
+    margin-top: 165px !important;
+  }
   h1 {
     color: $darkgray;
     font-size: 35px;
     margin-bottom: 30px;
     font-weight: bold;
+    text-align: center;
   }
   .icons {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     img {
       height: 60px;
       margin-bottom: 15px;

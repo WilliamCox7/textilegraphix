@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Parallax, Background } from 'react-parallax';
 import grayArrow from '../../src/light-gray-arrow.svg';
 import './HomeSection.scss';
 
@@ -24,12 +25,15 @@ class HomeSection extends Component {
     });
 
     return (
-      <div className="HomeSection">
+      <Parallax strength={300} className="HomeSection">
         <h1>{this.props.section.header}</h1>
         <div className="icons">
           {icons}
         </div>
         <div className="no-mans-land"></div>
+        <Background>
+          <img className="parallax-image" src={this.props.image} />
+        </Background>
         <div className="bottom">
           <div className="prompt">
             <h4>{this.props.section.prompt}</h4>
@@ -39,7 +43,7 @@ class HomeSection extends Component {
             {taglines}
           </div>
         </div>
-      </div>
+      </Parallax>
     );
   }
 }

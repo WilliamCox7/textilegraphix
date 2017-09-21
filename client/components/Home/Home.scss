@@ -10,4 +10,18 @@
     font-weight: bold;
     text-align: center;
   }
+  .react-parallax {
+    position: initial !important;
+    .react-parallax-background-children {
+      width: 100%;
+      .react-parallax-background {
+        text-align: center;
+        img {
+          width: 90%;
+          max-width: 1400px;
+          margin-top: 50px;
+        }
+      }
+    }
+  }
 }

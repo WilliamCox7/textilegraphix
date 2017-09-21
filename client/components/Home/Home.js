@@ -10,6 +10,11 @@ import drop from '../../src/drop.svg';
 import ex from '../../src/ex.svg';
 import cart from '../../src/cart.svg';
 import './Home.scss';
+import { Parallax, Background } from 'react-parallax';
+import hat from '../../src/hat.png';
+import tshirt2 from '../../src/tshirt2.png';
+import polo from '../../src/polo.png';
+import tshirt from '../../src/tshirt.png';
 
 class Home extends Component {
 
@@ -24,14 +29,17 @@ class Home extends Component {
     return (
       <div className="Home">
         {this.state.width > 600 ? (
-          <div>
+          <Parallax strength={300}>
             <HomeBox />
-            <HomeSection section={section1} />
-            <HomeSection section={section2} />
-            <HomeSection section={section3} />
+            <Background>
+              <img className="tshirt" src={tshirt} />
+            </Background>
+            <HomeSection section={section1} image={hat} />
+            <HomeSection section={section2} image={polo} />
+            <HomeSection section={section3} image={tshirt2} />
             <OurReviews />
             <div className="contact-header">Contact Us</div>
-          </div>
+          </Parallax>
         ) : (
           "Mobile"
         )}
