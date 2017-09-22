@@ -1,8 +1,6 @@
 @import '../../vars.scss';
 
 .Home {
-  max-width: 1145px;
-  margin: auto;
   .contact-header {
     color: $darkgray;
     font-size: 35px;
@@ -12,6 +10,10 @@
   }
   .react-parallax {
     position: initial !important;
+    .react-parallax-content {
+      max-width: 1145px;
+      margin: auto;
+    }
     .react-parallax-background-children {
       width: 100%;
       .react-parallax-background {
