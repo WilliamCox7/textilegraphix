@@ -11,6 +11,12 @@
     color: $lightblue;
     border-bottom: solid 1px $lightgray;
     width: 200px;
+    display: flex;
+    justify-content: space-between;
+    img {
+      width: 20px;
+      height: 20px;
+    }
     &:nth-child(6) {
       border: none;
     }
