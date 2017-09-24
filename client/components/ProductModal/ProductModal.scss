@@ -1,0 +1,182 @@
+@import '../../vars.scss';
+
+.ProductModal {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  .backdrop {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    top: 0;
+    left: 0;
+  }
+  .modal {
+    width: 800px;
+    height: 800px;
+    margin: auto;
+    margin-top: 100px;
+    background: white;
+    box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.12);
+    padding: 80px 35px 80px 100px;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    .column {
+      width: 322px;
+      padding: 10px;
+      h1 {
+        font-size: 18px;
+        margin-bottom: 5px;
+        color: $gray;
+      }
+      p {
+        margin-top: 10px;
+        color: $gray;
+        font-size: 11px;
+        line-height: 18px;
+      }
+      .colors {
+        display: flex;
+        margin-top: 10px;
+        margin-bottom: 5px;
+        .color {
+          width: 23px;
+          height: 23px;
+          margin-right: 5px;
+          margin-bottom: 5px;
+          border: solid 3px white;
+          &:hover {
+            border: solid 3px $lightblue;
+            cursor: pointer;
+          }
+        }
+      }
+      .print-type {
+        display: flex;
+        margin-bottom: 30px;
+      }
+      .radio-button {
+        font-size: 13px;
+        color: $darkgray;
+        display: flex;
+        align-items: center;
+        margin-right: 10px;
+        font-weight: bold;
+        img {
+          width: 18px;
+          margin-right: 5px;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+      h3 {
+        color: $darkgray;
+        font-size: 13px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+      h2 {
+        width: 108px;
+        height: 18.5px;
+        margin-bottom: 5px;
+        font-size: 11px;
+        color: $gray;
+      }
+      .sizes {
+        display: flex;
+        margin-bottom: 20px;
+        .quantity {
+          display: flex;
+          flex-direction: column;
+          input {
+            border-radius: 4px;
+            border: solid 1px $fadedgray;
+            width: 44px;
+            height: 14px;
+            margin-bottom: 5px;
+            color: $gray;
+            &::placeholder {
+              color: $gray;
+            }
+          }
+        }
+      }
+      .locations {
+        display: flex;
+        margin-bottom: 20px;
+        .radio-button {
+          width: 98px;
+          color: $gray;
+          margin-bottom: 6px;
+          font-weight: normal;
+        }
+        .color-count {
+          .count {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4px;
+            color: $gray;
+            font-size: 11px;
+            button {
+              border: none;
+              width: 20px;
+              height: 20px;
+              background: none;
+              color: $gray;
+              &:focus {
+                outline: none;
+              }
+              &:hover {
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+      .totals {
+        display: flex;
+        h3 {
+          width: 108px;
+        }
+      }
+      .mockup-options {
+        display: flex;
+        justify-content: space-between;
+        margin: 20px 0px;
+        button {
+          border-radius: 4px;
+          padding: 10px 14px;
+          background: $darkgray;
+          color: white;
+          font-weight: bold;
+          font-size: 13px;
+          border: none;
+        }
+      }
+      .add-quote {
+        border-radius: 4px;
+        width: 100%;
+        background: $lightblue;
+        color: white;
+        font-weight: bold;
+        font-size: 20px;
+        padding: 7px;
+        border: none;
+      }
+    }
+    .close-button {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      top: -40px;
+      right: -40px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ShopNav from '../ShopNav/ShopNav';
 import Product from '../Product/Product';
+import ProductModal from '../ProductModal/ProductModal';
 import './Shop.scss';
 
 class Shop extends Component {
@@ -44,6 +45,7 @@ class Shop extends Component {
         ) : (
           "Mobile"
         )}
+        {this.props.modal.open ? <ProductModal /> : null}
       </div>
     );
   }
@@ -51,7 +53,8 @@ class Shop extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    shop: state.shop
+    shop: state.shop,
+    modal: state.modal
   }
 }
 

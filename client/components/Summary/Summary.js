@@ -45,6 +45,8 @@ class Summary extends Component {
                   <h3>L</h3>
                   <h3>XL</h3>
                   <h3>2XL</h3>
+                  <h3>3XL</h3>
+                  <h3>4XL</h3>
                 </div>
                 <div className="column2">
                   <h2>Quantity</h2>
@@ -54,6 +56,8 @@ class Summary extends Component {
                   <h3>{format0s(this.props.summary.L)}</h3>
                   <h3>{format0s(this.props.summary.XL)}</h3>
                   <h3>{format0s(this.props.summary.XL2)}</h3>
+                  <h3>{format0s(this.props.summary.XL3)}</h3>
+                  <h3>{format0s(this.props.summary.XL4)}</h3>
                 </div>
               </div>
               <div className="info-section">
