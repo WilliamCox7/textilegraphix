@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setModal } from '../../reducers/modal';
+import { setModal, addImage } from '../../reducers/modal';
 import { setColor, toggleType, updateSize, 
   toggleLoc, dec, inc, resetProduct } from '../../reducers/product';
 import Mockup from '../Mockup/Mockup';
@@ -31,6 +31,8 @@ class ProductModal extends Component {
       input: ''
     }
     this.updateSize = this.updateSize.bind(this);
+    this.storeFile = this.storeFile.bind(this);
+    this.openLocal = this.openLocal.bind(this);
   }
 
   componentDidMount() {
@@ -64,6 +66,18 @@ class ProductModal extends Component {
     newState[size] = format0s(quantity);
     this.setState(newState);
     this.props.updateSize(size, format0s(quantity));
+  }
+
+  openLocal() {
+    document.getElementById('inputButton').click();
+  }
+
+  storeFile(e) {
+    var reader = new FileReader();
+    reader.onloadend = () => {
+      this.props.addImage(reader.result);
+    }
+    reader.readAsDataURL(e.currentTarget.files[0]);
   }
 
   render() {
@@ -197,7 +211,12 @@ class ProductModal extends Component {
           <div className="column">
             <Mockup />
             <div className="mockup-options">
-              <button>+ Upload Artwork</button>
+              <div className="upload-photo">
+                <input id="inputButton" type="file"
+                  accept="image/x-png,image/jpeg"
+                  onChange={this.storeFile} />
+                <button onClick={this.openLocal}>+ Upload Artwork</button>
+              </div>
               <button>Download Mockup</button>
             </div>
             <button className="add-quote">Add to Quote Submission</button>
@@ -225,7 +244,8 @@ const mapDispatchToProps = {
   dec: dec,
   inc: inc,
   setModal: setModal,
-  resetProduct: resetProduct
+  resetProduct: resetProduct,
+  addImage: addImage
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductModal);

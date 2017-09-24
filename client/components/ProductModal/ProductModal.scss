@@ -14,7 +14,7 @@
     left: 0;
   }
   .modal {
-    width: 800px;
+    width: 830px;
     height: 800px;
     margin: auto;
     margin-top: 100px;
@@ -25,7 +25,7 @@
     justify-content: space-between;
     position: relative;
     .column {
-      width: 322px;
+      width: 346px;
       padding: 10px;
       h1 {
         font-size: 18px;
@@ -147,6 +147,11 @@
         display: flex;
         justify-content: space-between;
         margin: 20px 0px;
+        .upload-photo {
+          input {
+            display: none;
+          }
+        }
         button {
           border-radius: 4px;
           padding: 10px 14px;
@@ -170,8 +175,8 @@
     }
     .close-button {
       position: absolute;
-      width: 30px;
-      height: 30px;
+      width: 22px;
+      height: 22px;
       top: -40px;
       right: -40px;
       &:hover {

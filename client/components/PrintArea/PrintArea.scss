@@ -1,0 +1,54 @@
+@import '../../vars.scss';
+
+.PrintArea {
+  width: 200px;
+  height: 272px;
+  background: rgba(255, 255, 255, 0.40);
+  border: solid 1px $gray;
+  position: relative;
+  .title {
+    position: absolute;
+    top: -14px;
+    font-size: 11px;
+    left: 0;
+    color: $gray;
+  }
+  .area {
+    img {
+      max-width: 100%;
+    }
+  }
+  .guides {
+    display: none;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    .guide-box {
+      width: 50%;
+      height: 50%;
+      &:nth-child(1) {
+        border-right: dashed 1px $lightgray;
+        border-bottom: dashed 1px $lightgray;
+      }
+      &:nth-child(2) {
+        border-left: dashed 1px $lightgray;
+        border-bottom: dashed 1px $lightgray;
+      }
+      &:nth-child(3) {
+        border-right: dashed 1px $lightgray;
+        border-top: dashed 1px $lightgray;
+      }
+      &:nth-child(4) {
+        border-top: dashed 1px $lightgray;
+        border-left: dashed 1px $lightgray;
+      }
+    }
+  }
+  &:hover {
+    .guides {
+      display: flex;
+    }
+  }
+}
