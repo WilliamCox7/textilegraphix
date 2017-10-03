@@ -14,9 +14,7 @@
     color: $gray;
   }
   .area {
-    img {
-      max-width: 100%;
-    }
+    position: relative;
   }
   .guides {
     display: none;
@@ -49,6 +47,12 @@
   &:hover {
     .guides {
       display: flex;
+    }
+    .Draggable {
+      border: solid 1px $lightgray;
+      .resizer {
+        display: block;
+      }
     }
   }
 }

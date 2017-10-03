@@ -71,11 +71,11 @@ class Summary extends Component {
                 </div>
                 <div className="column2">
                   <h2></h2>
-                  <h3>{this.props.summary.front}</h3>
-                  <h3>{this.props.summary.back}</h3>
-                  <h3>{this.props.summary.bottom}</h3>
-                  <h3>{this.props.summary.rightSleeve}</h3>
-                  <h3>{this.props.summary.leftSleeve}</h3>
+                  <h3>{this.props.summary.colorFront}</h3>
+                  <h3>{this.props.summary.colorBack}</h3>
+                  <h3>{this.props.summary.colorBottom}</h3>
+                  <h3>{this.props.summary.colorRightSleeve}</h3>
+                  <h3>{this.props.summary.colorLeftSleeve}</h3>
                 </div>
               </div>
             </div>

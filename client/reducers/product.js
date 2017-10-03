@@ -79,7 +79,8 @@ export default function reducer(state=initState, action) {
       editState[action.payload] = !editState[action.payload];
       return Object.assign({}, state, editState);
     case DEC:
-      var property = action.payload.split("color")[1].toLowerCase();
+      var property = action.payload.split("color")[1];
+      property = property[0].toLowerCase() + property.substring(1);
       var canToggle = editState[property];
       if (canToggle) {
         if (editState[action.payload] > 0) {
@@ -88,7 +89,8 @@ export default function reducer(state=initState, action) {
       }
       return Object.assign({}, state, editState);
     case INC:
-      var property = action.payload.split("color")[1].toLowerCase();
+      var property = action.payload.split("color")[1];
+      property = property[0].toLowerCase() + property.substring(1);
       var canToggle = editState[property];
       if (canToggle) {
         editState[action.payload] += 1;

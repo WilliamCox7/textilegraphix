@@ -160,6 +160,9 @@
           font-weight: bold;
           font-size: 13px;
           border: none;
+          &:hover {
+            cursor: pointer;
+          }
         }
       }
       .add-quote {
@@ -171,6 +174,9 @@
         font-size: 20px;
         padding: 7px;
         border: none;
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
     .close-button {

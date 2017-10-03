@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { setModal, addImage } from '../../reducers/modal';
 import { setColor, toggleType, updateSize, 
   toggleLoc, dec, inc, resetProduct } from '../../reducers/product';
+import { add } from '../../reducers/cart';
 import Mockup from '../Mockup/Mockup';
 import radioFilled from '../../src/radio-filled.svg';
 import radioEmpty from '../../src/radio-empty.svg';
@@ -33,6 +34,7 @@ class ProductModal extends Component {
     this.updateSize = this.updateSize.bind(this);
     this.storeFile = this.storeFile.bind(this);
     this.openLocal = this.openLocal.bind(this);
+    this.addToCart = this.addToCart.bind(this);
   }
 
   componentDidMount() {
@@ -78,6 +80,11 @@ class ProductModal extends Component {
       this.props.addImage(reader.result);
     }
     reader.readAsDataURL(e.currentTarget.files[0]);
+  }
+
+  addToCart() {
+    this.props.add(this.props.product);
+    this.props.setModal(false);
   }
 
   render() {
@@ -219,7 +226,7 @@ class ProductModal extends Component {
               </div>
               <button>Download Mockup</button>
             </div>
-            <button className="add-quote">Add to Quote Submission</button>
+            <button className="add-quote" onClick={this.addToCart}>Add to Quote Submission</button>
           </div>
           <img className="close-button" src={closeButton}
             onClick={() => {this.props.setModal(false); this.props.resetProduct()}} />
@@ -245,7 +252,8 @@ const mapDispatchToProps = {
   inc: inc,
   setModal: setModal,
   resetProduct: resetProduct,
-  addImage: addImage
+  addImage: addImage,
+  add: add
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductModal);
