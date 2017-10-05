@@ -11,6 +11,9 @@ import rootReducer from './rootReducer';
 import App from './App';
 import Home from './components/Home/Home';
 import Shop from './components/Shop/Shop';
+import Submit from './components/Submit/Submit';
+import Contact from './components/Contact/Contact';
+import About from './components/About/About';
 
 /* STORE - REDUX */
 let store = createStore(
@@ -28,6 +31,9 @@ ReactDOM.render (
       <Route component={App}>
         <Route path="/" component={Home} />
         <Route path="/shop" component={Shop} />
+        <Route path="/submit" component={Submit} />
+        <Route path="/about" component={About} />
+        <Route path="/contact" component={Contact} />
       </Route>
     </Router>
   </Provider>

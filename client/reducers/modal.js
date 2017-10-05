@@ -10,6 +10,7 @@ const initState = {
     { 
       id: 1, 
       src: require('../src/logo-blue.svg'),
+      name: 'test.png',
       isDragging: false, 
       isResizing: false, 
       top: 10, 
