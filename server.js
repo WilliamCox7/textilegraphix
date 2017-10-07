@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const session = require('express-session');
+const EmailSvc = require('./services/emailSvc');
 const app = module.exports = express();
 
 /* APP */
@@ -16,6 +17,11 @@ app.use(session({
   saveUninitialized: true,
   cookie: {maxAge: 1000 * 60 * 60 * 24}
 }));
+
+app.post('/sendemail', (req, res) => {
+  EmailSvc.sendEmail(req.body);
+  res.status(200).send('email sent');
+});
 
 app.listen(app.get('port'), () => {
   console.log('localhost:' + app.get('port'));
