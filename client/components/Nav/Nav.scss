@@ -26,9 +26,11 @@
       .search {
         display: flex;
         align-items: center;
+        position: relative;
         .search-button {
           height: 18px;
           margin-right: 10px;
+          color: $darkgray;
           &:hover {
             cursor: pointer;
           }

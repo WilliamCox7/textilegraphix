@@ -1,9 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { setLocation } from '../../reducers/nav';
 import Summary from '../Summary/Summary';
+import blueArrow from '../../src/blue-arrow.svg';
 import './QuoteBox.scss';
 
 class QuoteBox extends Component {
+
+  constructor() {
+    super();
+    this.setLocation = this.setLocation.bind(this);
+  }
+
+  setLocation() {
+    this.props.setLocation('submit');
+  }
+
   render() {
 
     var quotes = this.props.cart.products.map((product, i) => {
@@ -21,7 +33,9 @@ class QuoteBox extends Component {
             </h1>
           </span>
         </div>
-        <a className="submit" href="/#/submit">Submit Quote</a>
+        <a className="submit" href="/#/submit" onClick={this.setLocation}>
+          Submit Quote <img src={blueArrow} />
+        </a>
       </div>
     );
   }
@@ -33,4 +47,8 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(QuoteBox);
+const mapDispatchToProps = {
+  setLocation: setLocation
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(QuoteBox);

@@ -13,7 +13,7 @@ const initState = {
     {
       image: 'http://pngimg.com/uploads/tshirt/tshirt_PNG5448.png',
       brand: 'Long Sleeve Shirt',
-      number: 22104,
+      number: 45535,
       type: 'long sleeve shirt',
       colors: ["blue", "purple", "pink"],
       description: 'This lightweight, tubular construction, 100% ring spun combed cotton jersey is the king of t-shirts. 4.3 ounces of slim fit cool right here.'

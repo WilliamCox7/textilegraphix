@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { hashHistory } from 'react-router';
 import { setLocation } from '../../reducers/nav';
 import QuoteBox from '../QuoteBox/QuoteBox';
+import SearchResults from '../SearchResults/SearchResults';
 import logo from '../../src/logo-gray.svg';
 import quoteGray from '../../src/quote-icon-gray.svg';
 import quoteBlue from '../../src/quote-icon-blue.svg';
@@ -16,11 +17,15 @@ class Nav extends Component {
     this.state = {
       width: document.body.clientWidth,
       showQuoteBox: false,
-      searchActive: false
+      searchActive: false,
+      searchTxt: ''
     }
     this.showQuoteBox = this.showQuoteBox.bind(this);
+    this.closeQuoteBox = this.closeQuoteBox.bind(this);
     this.setLocation = this.setLocation.bind(this);
     this.setSearch = this.setSearch.bind(this);
+    this.updateSrch = this.updateSrch.bind(this);
+    this.resetSearchText = this.resetSearchText.bind(this);
   }
 
   componentDidMount() {
@@ -30,8 +35,15 @@ class Nav extends Component {
     window.addEventListener("click", (e) => {
       if (e.target.className !== 'search-bar' && e.target.className !== 'search-button') {
         this.setState({searchActive: false});
+      } 
+      if (e.target.className === 'submit') {
+        this.closeQuoteBox();
       }
     });
+  }
+
+  closeQuoteBox() {
+    this.setState({showQuoteBox: false});
   }
 
   showQuoteBox() {
@@ -46,6 +58,16 @@ class Nav extends Component {
   setSearch(e) {
     this.setState({searchActive: !this.state.searchActive});
     e.currentTarget.parentElement.children[1].children[0].focus();
+    this.closeQuoteBox();
+  }
+
+  updateSrch(e) {
+    this.setState({searchTxt: e.target.value});
+    this.closeQuoteBox();
+  }
+
+  resetSearchText() {
+    this.setState({searchTxt: ''});
   }
 
   render() {
@@ -64,11 +86,15 @@ class Nav extends Component {
               <div className="search">
                 <img onClick={this.setSearch} className="search-button" src={search} />
                 <form>
-                  <input className="search-bar" type="text" 
+                  <input className="search-bar" type="text" value={this.state.searchTxt} 
                     style={this.state.searchActive ? {
                       width: '150px'
-                  } : null} />
+                  } : null} onChange={this.updateSrch} />
                 </form>
+                {this.state.searchTxt && this.state.searchActive ? (
+                  <SearchResults searchTxt={this.state.searchTxt}
+                    resetSearchText={this.resetSearchText} />
+                ) : null}
               </div>
               {this.props.cart.products.length > 0 ? (
                 <img onClick={this.showQuoteBox} className="quote-icon" src={quoteBlue} />

@@ -25,5 +25,12 @@
   .submit {
     color: $lightblue !important;
     font-size: 22px;
+    display: flex;
+    align-items: center;
+    img {
+      height: 20px;
+      margin-left: 10px;
+      margin-top: 2px;
+    }
   }
 }

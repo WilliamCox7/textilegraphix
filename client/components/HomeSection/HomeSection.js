@@ -1,9 +1,31 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { setLocation } from '../../reducers/nav';
 import { Parallax, Background } from 'react-parallax';
 import grayArrow from '../../src/light-gray-arrow.svg';
+import blueArrow from '../../src/blue-arrow.svg';
 import './HomeSection.scss';
 
 class HomeSection extends Component { 
+
+  constructor() {
+    super();
+    this.state = {
+      link: false
+    }
+    this.setHover = this.setHover.bind(this);
+    this.setLocation = this.setLocation.bind(this);
+  }
+
+  setHover() {
+    this.setState({link: !this.state.link});
+  }
+
+  setLocation(loc) {
+    var location = loc;
+    this.props.setLocation(location);
+  }
+
   render() {
 
     var icons = this.props.section.icons.map((icon, i) => {
@@ -35,10 +57,15 @@ class HomeSection extends Component {
           <img className="parallax-image" src={this.props.image} />
         </Background>
         <div className="bottom">
-          <div className="prompt">
+          <a className="prompt" href="/#/shop" onClick={() => this.setLocation('shop')}
+            onMouseOver={this.setHover} onMouseOut={this.setHover}>
             <h4>{this.props.section.prompt}</h4>
-            <img src={grayArrow} />
-          </div>
+            {this.state.link ? (
+              <img src={blueArrow} />
+            ) : (
+              <img src={grayArrow} />
+            )}
+          </a>
           <div className="taglines">
             {taglines}
           </div>
@@ -48,4 +75,8 @@ class HomeSection extends Component {
   }
 }
 
-export default HomeSection;
+const mapDispatchToProps = {
+  setLocation: setLocation
+}
+
+export default connect(null, mapDispatchToProps)(HomeSection);
