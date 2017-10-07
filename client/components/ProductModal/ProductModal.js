@@ -45,6 +45,7 @@ class ProductModal extends Component {
         this.sizeListener(e);
       }
     });
+    this.props.setColor(this.props.product.colors[0]);
   }
 
   sizeListener(e) {
