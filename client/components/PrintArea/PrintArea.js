@@ -1,76 +1,66 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Draggable from '../Draggable/Draggable';
-import { drop, updateDragging, updateResizing } from '../../reducers/modal';
+import Draggable from 'react-draggable';
 import './PrintArea.scss';
-
-//https://codepen.io/kunihiko_sugiura/pen/KgQvKk
 
 class PrintArea extends Component {
 
   constructor() {
     super();
-    this.onDragOver = this.onDragOver.bind(this);
-    this.onDrop = this.onDrop.bind(this);
-    this.updateDragging = this.updateDragging.bind(this);
-    this.updateResizing = this.updateResizing.bind(this);
-    this.funcResizing = this.funcResizing.bind(this);
+    this.state = {
+      dragging: false,
+      mousePos: undefined,
+      width: undefined,
+      edge: undefined
+    }
+    this.startDrag = this.startDrag.bind(this);
+    this.stopDrag = this.stopDrag.bind(this);
+    this.drag = this.drag.bind(this);
   }
 
-  onDragOver(e) {
-    // console.log(e.currentTarget.clientX);
-    // console.log(e.currentTarget.clientY);
-    // var obj = JSON.parse(e.dataTransfer.getData('application/json'));
-    // var top = e.clientY - obj.y;
-    // var left = e.clientX - obj.x;
-    // console.log(top);
-    // console.log(left);
+  componentDidMount() {
+    var edge = document.getElementsByClassName("PrintArea")[0]
+               .getBoundingClientRect().right+1;
+    this.setState({edge: edge});
+  }
+
+  startDrag(e) {
+    this.setState({dragging: true, mousePos: e.clientY, width: e.target.parentElement.clientWidth});
+  }
+
+  stopDrag(e) {
+    this.setState({dragging: false, mousePos: undefined, width: undefined});
+  }
+
+  drag(e) {
+    if (this.state.dragging) {
+      var newWidth = this.state.width - (this.state.mousePos - e.clientY);
+      if (newWidth < 200 && e.target.getBoundingClientRect().right <= this.state.edge) {
+        e.target.parentElement.style.width = newWidth + 'px';
+      }
+    }
     e.preventDefault();
     return false;
-  }
-
-  onDrop(e) {
-    var obj = JSON.parse(e.dataTransfer.getData('application/json'));
-    var top = e.clientY - obj.y;
-    var left = e.clientX - obj.x;
-    this.props.drop(obj.id, top, left);
-    e.preventDefault();
-  }
-
-  updateDragging(id, isDragging){
-    this.props.updateDragging(id, isDragging);
-  }
-
-  updateResizing(id, isResizing){
-    this.props.updateResizing(id, isResizing);
-  }
-
-  funcResizing(id, clientX){
-    var node = ReactDOM.findDOMNode(this.refs["node_" + id]);
-    var images = this.props.modal.images;
-    var index = this.props.modal.images.findIndex((item) => item.id == id);
-    images[index].width =   clientX - node.offsetLeft + (16 / 2);
-    var newState = Object.assign(this.state, {images : images});
-    this.setState(newState);
   }
 
   render() {
 
     var images = this.props.modal.images.map((image, i) => {
       return (
-        <Draggable key={image.id} image={image} 
-          updateDragging={this.updateDragging} 
-          updateResizing={this.updateResizing} />
+        <Draggable key={image.id} bounds="parent" cancel="span">
+          <div>
+            <img src={image.src} draggable="false" />
+            <span className="resizer" onDragStart={this.startDrag} draggable="true"
+              onDragEnd={this.stopDrag} onDrag={this.drag}></span>
+          </div>
+        </Draggable>
       );
     });
 
     return (
-      <div className="PrintArea" onDrop={this.onDrop}
-        onDragOver={this.onDragOver}>
+      <div className="PrintArea">
         <div className="title">Print Area</div>
-        <div className="area">
-          {images}
-        </div>
+        {images}
         <div className="guides">
           <div className="guide-box"></div>
           <div className="guide-box"></div>
@@ -88,10 +78,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = {
-  drop: drop,
-  updateDragging: updateDragging,
-  updateResizing: updateResizing
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(PrintArea);
+export default connect(mapStateToProps)(PrintArea);

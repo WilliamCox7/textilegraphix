@@ -8,6 +8,7 @@ import Mockup from '../Mockup/Mockup';
 import radioFilled from '../../src/radio-filled.svg';
 import radioEmpty from '../../src/radio-empty.svg';
 import closeButton from '../../src/close-button.svg';
+import html2canvas from 'html2canvas';
 import './ProductModal.scss';
 
 function format0s(value) {
@@ -36,6 +37,7 @@ class ProductModal extends Component {
     this.openLocal = this.openLocal.bind(this);
     this.addToCart = this.addToCart.bind(this);
     this.sizeListener = this.sizeListener.bind(this);
+    this.downloadMockup = this.downloadMockup.bind(this);
   }
 
   componentDidMount() {
@@ -93,6 +95,16 @@ class ProductModal extends Component {
   addToCart() {
     this.props.add(this.props.product);
     this.props.setModal(false);
+  }
+
+  downloadMockup() {
+    var html = document.getElementsByClassName("Mockup")[0];
+    html2canvas(html).then((canvas) => {
+      var a = document.createElement('a');
+      a.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
+      a.download = 'mockup.jpg';
+      a.click();
+    });
   }
 
   render() {
@@ -232,7 +244,7 @@ class ProductModal extends Component {
                   onChange={this.storeFile} />
                 <button onClick={this.openLocal}>+ Upload Artwork</button>
               </div>
-              <button>Download Mockup</button>
+              <button onClick={this.downloadMockup}>Download Mockup</button>
             </div>
             <button className="add-quote" onClick={this.addToCart}>Add to Quote Submission</button>
           </div>
