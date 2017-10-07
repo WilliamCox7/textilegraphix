@@ -35,25 +35,32 @@ class ProductModal extends Component {
     this.storeFile = this.storeFile.bind(this);
     this.openLocal = this.openLocal.bind(this);
     this.addToCart = this.addToCart.bind(this);
+    this.sizeListener = this.sizeListener.bind(this);
   }
 
   componentDidMount() {
-    window.addEventListener("click", (e) => {
-      if (this.props.modal.open) {
-        if (e.target.nodeName !== 'INPUT') {
-          if (this.state.input && this.state[this.state.input]) {
-            this.formatSize(this.state[this.state.input], this.state.input);
-            var newState = Object.assign({}, this.state);
-            newState.input = '';
-            this.setState(newState);
-          }
-        } else {
-          var newState = Object.assign({}, this.state);
-          newState.input = e.target.name;
-          this.setState(newState);
-        }
+    window.addEventListener("click", this.sizeListener);
+    window.addEventListener("keyup", (e) => {
+      if (e.keyCode === 9) {
+        this.sizeListener(e);
       }
     });
+  }
+
+  sizeListener(e) {
+    if (this.props.modal.open) {
+      if (this.state.input && this.state[this.state.input]) {
+        this.formatSize(this.state[this.state.input], this.state.input);
+        var newState = Object.assign({}, this.state);
+        newState.input = '';
+        this.setState(newState);
+      }
+      if (e.target.nodeName === 'INPUT') {
+        var newState = Object.assign({}, this.state);
+        newState.input = e.target.name;
+        this.setState(newState);
+      }
+    }
   }
 
   updateSize(e, size) {
