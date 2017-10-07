@@ -24,7 +24,9 @@ class Footer extends Component {
       <div className="Footer">
         <div className="content">
           <div className="left">
-            <img src={logo} />
+            <a href="/#/" onClick={this.setLocation}>
+              <img src={logo} />
+            </a>
             <div className="social-media">
               <img src={facebook} />
               <img src={instagram} />
