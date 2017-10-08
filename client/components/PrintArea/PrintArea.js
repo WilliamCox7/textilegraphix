@@ -11,17 +11,23 @@ class PrintArea extends Component {
       dragging: false,
       mousePos: undefined,
       width: undefined,
-      edge: undefined
+      edge: undefined,
+      vertCenter: undefined,
+      horCenter: undefined
     }
     this.startDrag = this.startDrag.bind(this);
     this.stopDrag = this.stopDrag.bind(this);
     this.drag = this.drag.bind(this);
+    this.snap = this.snap.bind(this);
   }
 
   componentDidMount() {
-    var edge = document.getElementsByClassName("PrintArea")[0]
-               .getBoundingClientRect().right+1;
-    this.setState({edge: edge});
+    var area = document.getElementsByClassName("PrintArea")[0];
+    var areaSpecs = area.getBoundingClientRect();
+    var edge = areaSpecs.right+1;
+    var vertCenter = areaSpecs.left + (areaSpecs.width / 2);
+    var horCenter = areaSpecs.top + (areaSpecs.height / 2);
+    this.setState({edge: edge, vertCenter: vertCenter, horCenter: horCenter});
   }
 
   startDrag(e) {
@@ -30,6 +36,15 @@ class PrintArea extends Component {
 
   stopDrag(e) {
     this.setState({dragging: false, mousePos: undefined, width: undefined});
+    var guides = document.getElementsByClassName('guides')[0];
+    guides.children[0].style.borderRightColor = '#939598';
+    guides.children[1].style.borderLeftColor = '#939598';
+    guides.children[2].style.borderRightColor = '#939598';
+    guides.children[3].style.borderLeftColor = '#939598';
+    guides.children[0].style.borderBottomColor = '#939598';
+    guides.children[1].style.borderBottomColor = '#939598';
+    guides.children[2].style.borderTopColor = '#939598';
+    guides.children[3].style.borderTopColor = '#939598';
   }
 
   drag(e) {
@@ -43,11 +58,40 @@ class PrintArea extends Component {
     return false;
   }
 
+  snap(e) {
+    var guides = document.getElementsByClassName('guides')[0];
+    var imageSpecs = e.target.getBoundingClientRect();
+    var vertCenter = imageSpecs.left + (imageSpecs.width / 2);
+    var horCenter = imageSpecs.top + (imageSpecs.height / 2);
+    if (Math.abs(this.state.vertCenter - vertCenter) <= 1) {
+      guides.children[0].style.borderRightColor = '#44B1DE';
+      guides.children[1].style.borderLeftColor = '#44B1DE';
+      guides.children[2].style.borderRightColor = '#44B1DE';
+      guides.children[3].style.borderLeftColor = '#44B1DE';
+    } else {
+      guides.children[0].style.borderRightColor = '#939598';
+      guides.children[1].style.borderLeftColor = '#939598';
+      guides.children[2].style.borderRightColor = '#939598';
+      guides.children[3].style.borderLeftColor = '#939598';
+    }
+    if (Math.abs(this.state.horCenter - horCenter) <= 1) {
+      guides.children[0].style.borderBottomColor = '#44B1DE';
+      guides.children[1].style.borderBottomColor = '#44B1DE';
+      guides.children[2].style.borderTopColor = '#44B1DE';
+      guides.children[3].style.borderTopColor = '#44B1DE';
+    } else {
+      guides.children[0].style.borderBottomColor = '#939598';
+      guides.children[1].style.borderBottomColor = '#939598';
+      guides.children[2].style.borderTopColor = '#939598';
+      guides.children[3].style.borderTopColor = '#939598';
+    }
+  }
+
   render() {
 
     var images = this.props.modal.images.map((image, i) => {
       return (
-        <Draggable key={image.id} bounds="parent" cancel="span">
+        <Draggable key={i} bounds="parent" cancel="span" onDrag={this.snap}>
           <div>
             <img src={image.src} draggable="false" />
             <span className="resizer" onDragStart={this.startDrag} draggable="true"

@@ -4,13 +4,9 @@ const ADD = 'modal/ADD';
 const initState = {
   open: false,
   images: [
-    { 
-      id: 1, 
+    {
       src: require('../src/test.png'),
-      name: 'test.png',
-      top: 10, 
-      left: 10, 
-      width: 100
+      name: 'test.png'
     }
   ]
 }

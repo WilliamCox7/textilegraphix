@@ -3,7 +3,7 @@ const SET = 'shop/SET';
 const initState = {
   products: [
     {
-      image: 'http://pngimg.com/uploads/tshirt/tshirt_PNG5448.png',
+      image: require('../src/test-shirt.png'),
       brand: 'T-Shirt',
       number: 22104,
       type: 't-shirts',
@@ -11,7 +11,7 @@ const initState = {
       description: 'This lightweight, tubular construction, 100% ring spun combed cotton jersey is the king of t-shirts. 4.3 ounces of slim fit cool right here.'
     },
     {
-      image: 'http://pngimg.com/uploads/tshirt/tshirt_PNG5448.png',
+      image: require('../src/test-shirt.png'),
       brand: 'Long Sleeve Shirt',
       number: 45535,
       type: 'long sleeve shirt',
@@ -19,7 +19,7 @@ const initState = {
       description: 'This lightweight, tubular construction, 100% ring spun combed cotton jersey is the king of t-shirts. 4.3 ounces of slim fit cool right here.'
     },
     {
-      image: 'http://pngimg.com/uploads/tshirt/tshirt_PNG5448.png',
+      image: require('../src/test-shirt.png'),
       brand: 'Collared Shirt',
       number: 22104,
       type: 'collared shirt',
@@ -27,7 +27,7 @@ const initState = {
       description: 'This lightweight, tubular construction, 100% ring spun combed cotton jersey is the king of t-shirts. 4.3 ounces of slim fit cool right here.'
     },
     {
-      image: 'http://pngimg.com/uploads/tshirt/tshirt_PNG5448.png',
+      image: require('../src/test-shirt.png'),
       brand: 'T-Shirt',
       number: 22104,
       type: 't-shirts',
@@ -35,7 +35,7 @@ const initState = {
       description: 'This lightweight, tubular construction, 100% ring spun combed cotton jersey is the king of t-shirts. 4.3 ounces of slim fit cool right here.'
     },
     {
-      image: 'http://pngimg.com/uploads/tshirt/tshirt_PNG5448.png',
+      image: require('../src/test-shirt.png'),
       brand: 'T-Shirt',
       number: 22104,
       type: 't-shirts',
@@ -43,7 +43,7 @@ const initState = {
       description: 'This lightweight, tubular construction, 100% ring spun combed cotton jersey is the king of t-shirts. 4.3 ounces of slim fit cool right here.'
     },
     {
-      image: 'http://pngimg.com/uploads/tshirt/tshirt_PNG5448.png',
+      image: require('../src/test-shirt.png'),
       brand: 'Hoodies',
       number: 22104,
       type: 'hoodies',
@@ -51,7 +51,7 @@ const initState = {
       description: 'This lightweight, tubular construction, 100% ring spun combed cotton jersey is the king of t-shirts. 4.3 ounces of slim fit cool right here.'
     },
     {
-      image: 'http://pngimg.com/uploads/tshirt/tshirt_PNG5448.png',
+      image: require('../src/test-shirt.png'),
       brand: 'Other',
       number: 22104,
       type: 'other',
@@ -59,7 +59,7 @@ const initState = {
       description: 'This lightweight, tubular construction, 100% ring spun combed cotton jersey is the king of t-shirts. 4.3 ounces of slim fit cool right here.'
     },
     {
-      image: 'http://pngimg.com/uploads/tshirt/tshirt_PNG5448.png',
+      image: require('../src/test-shirt.png'),
       brand: 'Hoodies',
       number: 22104,
       type: 'hoodies',
@@ -67,7 +67,7 @@ const initState = {
       description: 'This lightweight, tubular construction, 100% ring spun combed cotton jersey is the king of t-shirts. 4.3 ounces of slim fit cool right here.'
     },
     {
-      image: 'http://pngimg.com/uploads/tshirt/tshirt_PNG5448.png',
+      image: require('../src/test-shirt.png'),
       brand: 'Originals',
       number: 22104,
       type: 'originals',
@@ -75,7 +75,7 @@ const initState = {
       description: 'This lightweight, tubular construction, 100% ring spun combed cotton jersey is the king of t-shirts. 4.3 ounces of slim fit cool right here.'
     },
     {
-      image: 'http://pngimg.com/uploads/tshirt/tshirt_PNG5448.png',
+      image: require('../src/test-shirt.png'),
       brand: 'T-Shirt',
       number: 22104,
       type: 't-shirts',
