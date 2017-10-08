@@ -5,6 +5,7 @@
   height: 272px;
   position: relative;
   .react-draggable {
+    border: solid 1px transparent;
     cursor: move;
     position: absolute;
     z-index: 1;
