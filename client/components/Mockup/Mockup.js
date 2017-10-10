@@ -9,7 +9,7 @@ class Mockup extends Component {
         <div className="view">
 
         </div>
-        <PrintArea />
+        <PrintArea edit={this.props.edit} />
       </div>
     );
   }

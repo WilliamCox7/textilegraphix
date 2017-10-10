@@ -52,6 +52,10 @@ class Submit extends Component {
       return <Summary summary={product} key={i} />;
     });
 
+    var mockups = this.props.cart.products.map((product, i) => {
+      return <Mockup image={product.image} key={i} edit={false} />;
+    });
+
     return (
       <div className="Submit">
         <div className="left-side">
@@ -117,7 +121,7 @@ class Submit extends Component {
           <h5 className="explain-text">contact you within 1 to 2 business days</h5>
         </div>
         <div className="right-side">
-          <Mockup />
+          {mockups[0]}
           <h2 className="your-order">Your Order</h2>
           {quotes}
         </div>

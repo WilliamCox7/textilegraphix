@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setModal, addImage } from '../../reducers/modal';
-import { setColor, toggleType, updateSize, 
+import { setColor, toggleType, updateSize,
   toggleLoc, dec, inc, resetProduct } from '../../reducers/product';
 import { add } from '../../reducers/cart';
 import Mockup from '../Mockup/Mockup';
@@ -237,7 +237,7 @@ class ProductModal extends Component {
               </div>
           </div>
           <div className="column">
-            <Mockup image={this.props.product.image} />
+            <Mockup image={this.props.product.image} edit={true} />
             <div className="mockup-options">
               <div className="upload-photo">
                 <input id="inputButton" type="file"
