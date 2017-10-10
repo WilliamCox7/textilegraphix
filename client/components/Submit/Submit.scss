@@ -4,8 +4,12 @@
   max-width: 1145px;
   margin: auto;
   margin-bottom: 300px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   .left-side {
     width: 50%;
     h1 {
@@ -22,6 +26,21 @@
       font-size: 40px;
       color: $darkgray;
       font-weight: bold;
+      &::-webkit-input-placeholder {
+        color: $darkgray;
+        font-weight: bold;
+        font-size: 40px;
+      }
+      &::-moz-placeholder {
+        color: $darkgray;
+        font-weight: bold;
+        font-size: 40px;
+      }
+      &:-ms-input-placeholder {
+        color: $darkgray;
+        font-weight: bold;
+        font-size: 40px;
+      }
       &::placeholder {
         color: $darkgray;
         font-weight: bold;
@@ -60,9 +79,14 @@
       margin-bottom: 20px;
     }
     .input-section {
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+      -webkit-box-pack: justify;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
       input {
         width: calc(50% - 20px);
         border: none;
@@ -70,6 +94,18 @@
         padding: 7px 0px;
         margin: 15px 0px;
         color: $darkgray;
+        &::-webkit-input-placeholder {
+          color: $gray;
+          font-size: 11px;
+        }
+        &::-moz-placeholder {
+          color: $gray;
+          font-size: 11px;
+        }
+        &:-ms-input-placeholder {
+          color: $gray;
+          font-size: 11px;
+        }
         &::placeholder {
           color: $gray;
           font-size: 11px;
@@ -79,8 +115,12 @@
         }
       }
       .shared-inputs {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        justify-content: space-between;
+        -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+                justify-content: space-between;
         width: calc(50% - 20px);
         &:nth-child(1) {
           width: calc(60% - 10px);
@@ -91,14 +131,21 @@
       }
     }
     .checkbox-section {
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
-      align-items: center;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
       font-size: 11px;
       color: $gray;
       margin: 15px 0px;
       img {
         width: 20px;
         margin-right: 10px;
+      }
+      &:hover {
+        cursor: pointer;
       }
     }
     textarea {
@@ -110,6 +157,18 @@
       border: solid 1px $lightgray;
       box-sizing: border-box;
       min-height: 130px;
+      &::-webkit-input-placeholder {
+        color: $gray;
+        font-size: 11px;
+      }
+      &::-moz-placeholder {
+        color: $gray;
+        font-size: 11px;
+      }
+      &:-ms-input-placeholder {
+        color: $gray;
+        font-size: 11px;
+      }
       &::placeholder {
         color: $gray;
         font-size: 11px;
@@ -120,9 +179,14 @@
     }
     .details {
       margin: 15px 0px;
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
+      -webkit-box-pack: justify;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
       h4 {
         width: 50%;
       }
