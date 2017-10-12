@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Draggable from 'react-draggable';
+import { removeImage } from '../../reducers/modal';
 import './PrintArea.scss';
 
 class PrintArea extends Component {
@@ -101,6 +102,9 @@ class PrintArea extends Component {
               <span className="resizer" onDragStart={this.startDrag} draggable="true"
                 onDragEnd={this.stopDrag} onDrag={this.drag}></span>
             )}
+            {!this.props.edit ? null : (
+              <span className="close" onClick={() => this.props.removeImage(image.id)}>X</span>
+            )}
           </div>
         </Draggable>
       );
@@ -129,4 +133,8 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(PrintArea);
+const mapDispatchToProps = {
+  removeImage: removeImage
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PrintArea);

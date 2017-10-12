@@ -23,6 +23,27 @@
       display: none;
       cursor: nwse-resize;
     }
+    .close {
+      width: 14px;
+      height: 14px;
+      border-radius: 50px;
+      border: solid 1px white;
+      background: rgb(255, 78, 78);
+      cursor: pointer;
+      position: absolute;
+      top: -7px;
+      left: -7px;
+      font-size: 8px;
+      font-weight: bold;
+      color: white;
+      display: none;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+    }
   }
   .title {
     position: absolute;
@@ -81,6 +102,11 @@
       border: dashed 1px $gray;
       .resizer {
         display: block;
+      }
+      .close {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
       }
     }
   }

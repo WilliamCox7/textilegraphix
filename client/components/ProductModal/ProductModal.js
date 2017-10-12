@@ -84,6 +84,7 @@ class ProductModal extends Component {
       this.props.addImage({src: reader.result, name: imgName});
     }
     reader.readAsDataURL(e.currentTarget.files[0]);
+    document.getElementById('inputButton').value = '';
   }
 
   addToCart() {
