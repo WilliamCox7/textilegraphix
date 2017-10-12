@@ -4,7 +4,14 @@ import radioEmpty from '../../src/radio-empty.svg';
 import radioFilled from '../../src/radio-filled.svg';
 import Mockup from '../Mockup/Mockup';
 import Summary from '../Summary/Summary';
+import moment from 'moment';
 import './Submit.scss';
+
+const endOfYear = [
+  'December 23rd', 'December 24th', 'December 25th', 'December 26th',
+  'December 27th', 'December 28th', 'December 29th', 'December 30th',
+  'December 31st', 'January 1st', 'January 2nd'
+]
 
 class Submit extends Component {
 
@@ -26,10 +33,33 @@ class Submit extends Component {
       state: '',
       zip: '',
       pickup: false,
-      notes: ''
+      notes: '',
+      delivery: ''
     }
     this.togglePickup = this.togglePickup.bind(this);
     this.update = this.update.bind(this);
+  }
+
+  componentDidMount() {
+    this.setDelivery();
+  }
+
+  setDelivery() {
+    var today = moment();
+    var year = today.get('year');
+    if (today.get('month') === 11) {
+      year = today.add(1, 'years').get('year');
+    }
+    var deliveryDay = moment(today).add(14, 'days');
+    var estDelDay = deliveryDay.format('MMMM Do');
+    if (JSON.stringify(endOfYear).indexOf(estDelDay) > -1) {
+      deliveryDay = moment("01-03-"+year);
+    }
+    var weekday = deliveryDay.weekday();
+    if (weekday === 0) { deliveryDay.add(1, 'days'); }
+    else if (weekday === 6) { deliveryDay.add(2, 'days'); }
+    var displayedDay = deliveryDay.format('MMMM Do');
+    this.setState({delivery: displayedDay});
   }
 
   togglePickup() {
@@ -114,7 +144,7 @@ class Submit extends Component {
             <h5>Est. Total with Taxes + Shipping</h5>
             <h5>Est. Delivery</h5>
             <h4>$0,0000.00</h4>
-            <h4>September 29</h4>
+            <h4>{this.state.delivery}</h4>
           </div>
           <div className="submit-form">Submit</div>
           <h5 className="explain-text">A member from our team will</h5>

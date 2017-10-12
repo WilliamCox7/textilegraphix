@@ -9,19 +9,21 @@ import radioFilled from '../../src/radio-filled.svg';
 import radioEmpty from '../../src/radio-empty.svg';
 import closeButton from '../../src/close-button.svg';
 import html2canvas from 'html2canvas';
+import moment from 'moment';
 import './ProductModal.scss';
 
-function format0s(value) {
-  var zeroes = new Array(4).join("0");
-  return (zeroes + value).slice(-3);
-}
+const endOfYear = [
+  'December 23rd', 'December 24th', 'December 25th', 'December 26th',
+  'December 27th', 'December 28th', 'December 29th', 'December 30th',
+  'December 31st', 'January 1st', 'January 2nd'
+]
 
 class ProductModal extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      delivery: 'September 29',
+      delivery: '',
       XS: this.props.product.XS,
       SM: this.props.product.SM,
       M: this.props.product.M,
@@ -29,55 +31,46 @@ class ProductModal extends Component {
       XL: this.props.product.XL,
       XL2: this.props.product.XL2,
       XL3: this.props.product.XL3,
-      XL4: this.props.product.XL4,
-      input: ''
+      XL4: this.props.product.XL4
     }
     this.updateSize = this.updateSize.bind(this);
     this.storeFile = this.storeFile.bind(this);
     this.openLocal = this.openLocal.bind(this);
     this.addToCart = this.addToCart.bind(this);
-    this.sizeListener = this.sizeListener.bind(this);
     this.downloadMockup = this.downloadMockup.bind(this);
+    this.setDelivery = this.setDelivery.bind(this);
   }
 
   componentDidMount() {
-    window.addEventListener("click", this.sizeListener);
-    window.addEventListener("keyup", (e) => {
-      if (e.keyCode === 9) {
-        this.sizeListener(e);
-      }
-    });
     this.props.setColor(this.props.product.colors[0]);
+    this.setDeliveryDay();
   }
 
-  sizeListener(e) {
-    if (this.props.modal.open) {
-      if (this.state.input && this.state[this.state.input]) {
-        this.formatSize(this.state[this.state.input], this.state.input);
-        var newState = Object.assign({}, this.state);
-        newState.input = '';
-        this.setState(newState);
-      }
-      if (e.target.nodeName === 'INPUT') {
-        var newState = Object.assign({}, this.state);
-        newState.input = e.target.name;
-        this.setState(newState);
-      }
+  setDelivery() {
+    var today = moment();
+    var year = today.get('year');
+    if (today.get('month') === 11) {
+      year = today.add(1, 'years').get('year');
     }
+    var deliveryDay = moment(today).add(14, 'days');
+    var estDelDay = deliveryDay.format('MMMM Do');
+    if (JSON.stringify(endOfYear).indexOf(estDelDay) > -1) {
+      deliveryDay = moment("01-03-"+year);
+    }
+    var weekday = deliveryDay.weekday();
+    if (weekday === 0) { deliveryDay.add(1, 'days'); }
+    else if (weekday === 6) { deliveryDay.add(2, 'days'); }
+    var displayedDay = deliveryDay.format('MMMM Do');
+    this.setState({delivery: displayedDay});
   }
 
   updateSize(e, size) {
-    var newState = Object.assign({}, this.state);
-    newState[size] = e.target.value;
-    this.setState(newState);
-    this.props.updateSize(size, e.target.value);
-  }
-
-  formatSize(quantity, size) {
-    var newState = Object.assign({}, this.state);
-    newState[size] = format0s(quantity);
-    this.setState(newState);
-    this.props.updateSize(size, format0s(quantity));
+    if (!isNaN(e.target.value)) {
+      var newState = Object.assign({}, this.state);
+      newState[size] = e.target.value;
+      this.setState(newState);
+      this.props.updateSize(size, e.target.value);
+    }
   }
 
   openLocal() {
@@ -156,21 +149,21 @@ class ProductModal extends Component {
               </div>
               <div className="quantity">
                 <h3>Quantity</h3>
-                <input type="text" value={this.state.XS} placeholder="000"
+                <input type="text" value={this.state.XS} placeholder="0"
                   onChange={(e) => this.updateSize(e, 'XS')} name="XS" />
-                <input type="text" value={this.state.SM} placeholder="000"
+                <input type="text" value={this.state.SM} placeholder="0"
                   onChange={(e) => this.updateSize(e, 'SM')} name="SM" />
-                <input type="text" value={this.state.M} placeholder="000"
+                <input type="text" value={this.state.M} placeholder="0"
                   onChange={(e) => this.updateSize(e, 'M')} name="M" />
-                <input type="text" value={this.state.L} placeholder="000"
+                <input type="text" value={this.state.L} placeholder="0"
                   onChange={(e) => this.updateSize(e, 'L')} name="L" />
-                <input type="text" value={this.state.XL} placeholder="000"
+                <input type="text" value={this.state.XL} placeholder="0"
                   onChange={(e) => this.updateSize(e, 'XL')} name="XL" />
-                <input type="text" value={this.state.XL2} placeholder="000"
+                <input type="text" value={this.state.XL2} placeholder="0"
                   onChange={(e) => this.updateSize(e, 'XL2')} name="XL2" />
-                <input type="text" value={this.state.XL3} placeholder="000"
+                <input type="text" value={this.state.XL3} placeholder="0"
                   onChange={(e) => this.updateSize(e, 'XL3')} name="XL3" />
-                <input type="text" value={this.state.XL4} placeholder="000"
+                <input type="text" value={this.state.XL4} placeholder="0"
                   onChange={(e) => this.updateSize(e, 'XL4')} name="XL4" />
               </div>
             </div>
