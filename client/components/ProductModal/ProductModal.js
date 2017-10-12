@@ -43,7 +43,7 @@ class ProductModal extends Component {
 
   componentDidMount() {
     this.props.setColor(this.props.product.colors[0]);
-    this.setDeliveryDay();
+    this.setDelivery();
   }
 
   setDelivery() {
