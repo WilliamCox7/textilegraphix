@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { setLocation } from '../../reducers/nav';
 import { setModal } from '../../reducers/modal';
 import { setProduct } from '../../reducers/product';
 import './SearchResults.scss';
@@ -24,7 +25,8 @@ class SearchResults extends Component {
       if (JSON.stringify(product).indexOf(this.props.searchTxt) > -1 && count < 7) {
         count++;
         results.push(
-          <div className="result" key={i} onClick={() => this.selectProduct(product)}>
+          <a href="/#/shop" className="result" key={i} onClick={() => {
+            this.selectProduct(product); this.props.setLocation('shop');}}>
             <img src={product.image} />
             <span>
               {product.brand}
@@ -32,7 +34,7 @@ class SearchResults extends Component {
             <span>
               {product.number}
             </span>
-          </div>
+          </a>
         );
       }
     });
@@ -54,7 +56,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   setModal: setModal,
-  setProduct: setProduct
+  setProduct: setProduct,
+  setLocation: setLocation
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchResults);

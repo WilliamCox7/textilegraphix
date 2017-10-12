@@ -35,7 +35,7 @@ class Nav extends Component {
     window.addEventListener("click", (e) => {
       if (e.target.className !== 'search-bar' && e.target.className !== 'search-button') {
         this.setState({searchActive: false});
-      } 
+      }
       if (e.target.className === 'submit') {
         this.closeQuoteBox();
       }
@@ -79,14 +79,14 @@ class Nav extends Component {
               <img className="logo" src={logo} />
             </a>
             <div className="links">
-              <a style={this.props.nav.location === "contact" ? {color: '#44B1DE'} : null} 
+              <a className="link" style={this.props.nav.location === "contact" ? {color: '#44B1DE'} : null}
                 href="/#/contact" onClick={this.setLocation}>CONTACT</a>
-              <a style={this.props.nav.location === "shop" ? {color: '#44B1DE'} : null} 
+              <a className="link" style={this.props.nav.location === "shop" ? {color: '#44B1DE'} : null}
                  href="/#/shop" onClick={this.setLocation}>SHOP</a>
               <div className="search">
                 <img onClick={this.setSearch} className="search-button" src={search} />
                 <form>
-                  <input className="search-bar" type="text" value={this.state.searchTxt} 
+                  <input className="search-bar" type="text" value={this.state.searchTxt}
                     style={this.state.searchActive ? {
                       width: '150px'
                   } : null} onChange={this.updateSrch} />

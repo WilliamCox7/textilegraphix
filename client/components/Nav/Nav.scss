@@ -4,28 +4,44 @@
   max-width: 1145px;
   margin: auto;
   .nav-container-desktop {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     height: 150px;
     .logo {
       height: 26px;
     }
     .links {
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      -webkit-box-pack: justify;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
       position: relative;
       font-size: 13px;
       width: 42%;
-      a {
+      .link {
         text-decoration: none;
         color: $lightgray;
         font-weight: bold;
       }
       .search {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        align-items: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
         position: relative;
         .search-button {
           height: 18px;
@@ -40,6 +56,7 @@
           border-bottom: solid 1px $lightgray;
           padding: 5px 0px;
           width: 0px;
+          -webkit-transition: width 0.5s ease;
           transition: width 0.5s ease;
           &:focus {
             outline: none;
