@@ -5,9 +5,7 @@ import { setColor, toggleType, updateSize,
   toggleLoc, dec, inc, resetProduct } from '../../reducers/product';
 import { add } from '../../reducers/cart';
 import Mockup from '../Mockup/Mockup';
-import radioFilled from '../../src/radio-filled.svg';
-import radioEmpty from '../../src/radio-empty.svg';
-import closeButton from '../../src/close-button.svg';
+import { radioFilled, radioEmpty, closeButton } from '../../assets';
 import html2canvas from 'html2canvas';
 import moment from 'moment';
 import './ProductModal.scss';

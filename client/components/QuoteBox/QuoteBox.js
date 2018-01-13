@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setLocation } from '../../reducers/nav';
 import Summary from '../Summary/Summary';
-import blueArrow from '../../src/blue-arrow.svg';
+import { blueArrow } from '../../assets';
 import './QuoteBox.scss';
 
 class QuoteBox extends Component {

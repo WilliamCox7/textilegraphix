@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import radioEmpty from '../../src/radio-empty.svg';
-import radioFilled from '../../src/radio-filled.svg';
+import { radioFilled, radioEmpty } from '../../assets';
 import Mockup from '../Mockup/Mockup';
 import Summary from '../Summary/Summary';
 import moment from 'moment';

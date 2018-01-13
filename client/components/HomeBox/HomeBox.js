@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setLocation } from '../../reducers/nav';
-import display from '../../src/home-display.png';
-import blueArrow from '../../src/blue-arrow.svg';
-import grayArrow from '../../src/gray-arrow.svg';
+import { homeDisplay, blueArrow, grayArrow } from '../../assets';
 import './HomeBox.scss';
 
 class HomeBox extends Component {
@@ -33,7 +31,7 @@ class HomeBox extends Component {
   render() {
     return (
       <div className="HomeBox">
-        <img src={display} />
+        <img src={homeDisplay} />
         <div className="links">
           <a onMouseOver={() => {this.setHover("Start");}} href="/#/shop"
             onMouseOut={() => {this.setHover("Start");}} className="link"

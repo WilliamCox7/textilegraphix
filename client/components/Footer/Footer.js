@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setLocation } from '../../reducers/nav';
-import logo from '../../src/logo-blue.svg';
-import facebook from '../../src/facebook.svg';
-import instagram from '../../src/instagram.svg';
-import copyright from '../../src/copyright.svg';
+import { logoBlue, facebook, instagram, copyright } from '../../assets';
 import './Footer.scss';
 
 class Footer extends Component {
@@ -25,7 +22,7 @@ class Footer extends Component {
         <div className="content">
           <div className="left">
             <a href="/#/" onClick={this.setLocation}>
-              <img src={logo} />
+              <img src={logoBlue} />
             </a>
             <div className="social-media">
               <img src={facebook} />

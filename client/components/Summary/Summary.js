@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import upArrow from '../../src/up-arrow.svg';
-import downArrow from '../../src/down-arrow.svg';
+import { upArrow, downArrow } from '../../assets';
 import './Summary.scss';
 
 function format0s(value) {

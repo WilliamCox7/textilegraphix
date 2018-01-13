@@ -4,10 +4,7 @@ import { hashHistory } from 'react-router';
 import { setLocation } from '../../reducers/nav';
 import QuoteBox from '../QuoteBox/QuoteBox';
 import SearchResults from '../SearchResults/SearchResults';
-import logo from '../../src/logo-gray.svg';
-import quoteGray from '../../src/quote-icon-gray.svg';
-import quoteBlue from '../../src/quote-icon-blue.svg';
-import search from '../../src/search.svg';
+import { logoGray, quoteIconBlue, quoteIconGray, search } from '../../assets';
 import './Nav.scss';
 
 class Nav extends Component {
@@ -76,7 +73,7 @@ class Nav extends Component {
         {this.state.width > 600 ? (
           <div className="nav-container-desktop">
             <a href="/#/" onClick={this.setLocation}>
-              <img className="logo" src={logo} />
+              <img className="logo" src={logoGray} />
             </a>
             <div className="links">
               <a className="link" style={this.props.nav.location === "contact" ? {color: '#44B1DE'} : null}
@@ -97,9 +94,9 @@ class Nav extends Component {
                 ) : null}
               </div>
               {this.props.cart.products.length > 0 ? (
-                <img onClick={this.showQuoteBox} className="quote-icon" src={quoteBlue} />
+                <img onClick={this.showQuoteBox} className="quote-icon" src={quoteIconBlue} />
               ) : (
-                <img onClick={this.showQuoteBox} className="quote-icon" src={quoteGray} />
+                <img onClick={this.showQuoteBox} className="quote-icon" src={quoteIconGray} />
               )}
               {this.state.showQuoteBox ? (<QuoteBox />) : null}
             </div>
