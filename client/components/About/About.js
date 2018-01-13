@@ -1,26 +1,13 @@
-import React, { Component } from 'react';
+import { Component } from '../../packages';
+import { template } from './modules';
 import './About.scss';
 
 class About extends Component {
 
-  constructor() {
-    super();
-    this.state = {
-      width: document.body.clientWidth
-    }
+  render() {
+    return template(this);
   }
 
-  render() {
-    return (
-      <div className="About">
-        {this.state.width > 600 ? (
-          "Desktop"
-        ) : (
-          "Mobile"
-        )}
-      </div>
-    );
-  }
 }
 
 export default About;
