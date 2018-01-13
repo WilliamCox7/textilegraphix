@@ -31,9 +31,7 @@
   "dependencies": {
     "axios": "^0.16.2",
     "body-parser": "^1.16.1",
-    "cors": "^2.8.1",
     "express": "^4.14.1",
-    "express-session": "^1.15.1",
     "html2canvas": "^0.5.0-beta4",
     "moment": "^2.19.1",
     "nodemailer": "^4.1.3",
