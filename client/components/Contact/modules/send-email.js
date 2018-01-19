@@ -1,4 +1,5 @@
 import { axios } from '../../../packages';
+import { handleError } from '../../_shared_modules';
 
 export function sendEmail() {
   var newState = Object.assign({}, this.state);
@@ -6,11 +7,19 @@ export function sendEmail() {
     if (this.state.email.from) {
       if (this.state.email.message) {
         axios.post('/sendemail', this.state.email).then((response) => {
-          newState.email.name = '';
-          newState.email.from = '';
-          newState.email.message = '';
-          newState.error = '';
-          this.setState(newState);
+          if (response.status === 200) {
+            newState.email.name = '';
+            newState.email.from = '';
+            newState.email.message = '';
+            newState.error = '';
+            this.setState(newState);
+          } else {
+            handleError({
+              path: '/client/components/Contact/modules/send-email',
+              response: response,
+              subject: '/sendemail endpoint came back with an error (not 200 status)'
+            });
+          }
         });
       } else {
         newState.error = 'Please include a message before sending...';

@@ -14,6 +14,11 @@ app.post('/sendemail', (req, res) => {
   res.status(200).send('');
 });
 
+app.post('/senderror', (req, res) => {
+  Emailer.sendError(req.body);
+  res.status(200).send('');
+});
+
 app.listen(app.get('port'), () => {
   console.log('localhost:' + app.get('port'));
 });

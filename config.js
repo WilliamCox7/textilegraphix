@@ -24,11 +24,20 @@ const GRAPHIX = {
 
 }
 
+const ERROR = {
+
+  email: 'willubyu7@gmail.com',
+  to: 'willubyu7@gmail.com',
+  password: 'Kmalone32'
+
+}
+
 // this determines what environment the server is running in
 const ENV = "development";
 
 module.exports = {
   api: HOST[ENV],
   port: PORT,
-  graphix: GRAPHIX[ENV]
+  graphix: GRAPHIX[ENV],
+  error: ERROR
 }
