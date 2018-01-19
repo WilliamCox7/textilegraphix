@@ -1,6 +1,6 @@
-import { startDrag } from './start-drag';
-import { stopDrag } from './stop-drag';
-import { drag } from './drag';
+import { startDragResizer } from './start-drag-resizer';
+import { stopDragResizer } from './stop-drag-resizer';
+import { dragResizer } from './drag-resizer';
 import { snap } from './snap';
 
 export function construct(PrintArea) {
@@ -14,9 +14,9 @@ export function construct(PrintArea) {
     horCenter: undefined
   }
 
-  PrintArea.startDrag = startDrag.bind(PrintArea);
-  PrintArea.stopDrag = stopDrag.bind(PrintArea);
-  PrintArea.drag = drag.bind(PrintArea);
+  PrintArea.startDragResizer = startDragResizer.bind(PrintArea);
+  PrintArea.stopDragResizer = stopDragResizer.bind(PrintArea);
+  PrintArea.dragResizer = dragResizer.bind(PrintArea);
   PrintArea.snap = snap.bind(PrintArea);
 
 }

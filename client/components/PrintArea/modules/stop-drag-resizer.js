@@ -1,4 +1,4 @@
-export function stopDrag(e) {
+export function stopDragResizer(e) {
   this.setState({dragging: false, mousePos: undefined, width: undefined});
   var guides = document.getElementsByClassName('guides')[0];
   guides.children[0].style.borderRightColor = '#939598';

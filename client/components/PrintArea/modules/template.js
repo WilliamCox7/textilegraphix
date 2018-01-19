@@ -8,8 +8,8 @@ export function template(PrintArea) {
         <div>
           <img src={image.src} draggable="false" />
           {!PrintArea.props.edit ? null : (
-            <span className="resizer" onDragStart={PrintArea.startDrag} draggable="true"
-              onDragEnd={PrintArea.stopDrag} onDrag={PrintArea.drag}></span>
+            <span className="resizer" onDragStart={PrintArea.startDragResizer} draggable="true"
+              onDragEnd={PrintArea.stopDragResizer} onDrag={PrintArea.dragResizer}></span>
           )}
           {!PrintArea.props.edit ? null : (
             <span className="close" onClick={() => PrintArea.props.removeImage(image.id)}>X</span>

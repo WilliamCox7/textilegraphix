@@ -7,7 +7,7 @@ export function template(SearchResults) {
       count++;
       results.push(
         <a href="/#/shop" className="result" key={i} onClick={() => {
-          SearchResults.selectProduct(product); SearchResults.props.setLocation('shop');}}>
+          SearchResults.selectProduct(product); SearchResults.setLocation('shop');}}>
           <img src={product.image} />
           <span>
             {product.brand}

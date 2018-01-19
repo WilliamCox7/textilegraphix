@@ -12,6 +12,7 @@ class HomeBox extends Component {
   render() {
     return template(this);
   }
+  
 }
 
 export default connect(null, mapDispatchToProps)(HomeBox);

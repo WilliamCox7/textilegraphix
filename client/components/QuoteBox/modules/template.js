@@ -18,7 +18,7 @@ export function template(QuoteBox) {
           </h1>
         </span>
       </div>
-      <a className="submit" href="/#/submit" onClick={QuoteBox.setLocation}>
+      <a className="submit" href="/#/submit" onClick={() => QuoteBox.setLocation("submit")}>
         Submit Quote <img src={blueArrow} />
       </a>
     </div>

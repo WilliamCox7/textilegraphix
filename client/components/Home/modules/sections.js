@@ -1,3 +1,5 @@
+// each section object contains the content that will later be rendered in the Home component (just dummy data)
+
 import { fingerprint, box, lightning, service, drop, ex, cart } from '../../../assets';
 
 const section1 = {

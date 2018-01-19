@@ -12,6 +12,7 @@ class Contact extends Component {
   render() {
     return template(this);
   }
+  
 }
 
 export default Contact;

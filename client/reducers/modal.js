@@ -1,3 +1,5 @@
+import { test } from '../assets';
+
 const SET = 'modal/SET';
 const ADD = 'modal/ADD';
 const REM = 'modal/REM';
@@ -7,7 +9,7 @@ const initState = {
   images: [
     {
       id: 1,
-      src: require('../src/test.png'),
+      src: test,
       name: 'test.png'
     }
   ]

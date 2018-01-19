@@ -1,14 +1,14 @@
 import { template } from './template';
 import { construct } from './construct';
 import { componentDidMount } from './component-did-mount';
-import { drag } from './drag';
+import { dragResizer } from './drag-resizer';
 import { mapDispatchToProps } from './map-dispatch-to-props';
 import { mapStateToProps } from './map-state-to-props';
 import { snap } from './snap';
-import { startDrag } from './start-drag';
-import { stopDrag } from './stop-drag';
+import { startDragResizer } from './start-drag-resizer';
+import { stopDragResizer } from './stop-drag-resizer';
 
 export {
-  template, componentDidMount, drag, mapStateToProps, mapDispatchToProps,
-  snap, startDrag, stopDrag, construct
+  template, componentDidMount, dragResizer, mapStateToProps, mapDispatchToProps,
+  snap, startDragResizer, stopDragResizer, construct
 }

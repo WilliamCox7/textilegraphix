@@ -1,3 +1,3 @@
-export function startDrag(e) {
+export function startDragResizer(e) {
   this.setState({dragging: true, mousePos: e.clientY, width: e.target.parentElement.clientWidth});
 }

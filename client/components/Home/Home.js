@@ -12,6 +12,7 @@ class Home extends Component {
   render() {
     return template(this);
   }
+  
 }
 
 export default Home;

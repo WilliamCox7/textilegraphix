@@ -7,14 +7,14 @@ export function template(Nav) {
     <div className="Nav">
       {Nav.state.width > 600 ? (
         <div className="nav-container-desktop">
-          <a href="/#/" onClick={Nav.setLocation}>
+          <a href="/#/" onClick={() => Nav.setLocation("")}>
             <img className="logo" src={logoGray} />
           </a>
           <div className="links">
             <a className="link" style={Nav.props.nav.location === "contact" ? {color: '#44B1DE'} : null}
-              href="/#/contact" onClick={Nav.setLocation}>CONTACT</a>
+              href="/#/contact" onClick={() => Nav.setLocation("contact")}>CONTACT</a>
             <a className="link" style={Nav.props.nav.location === "shop" ? {color: '#44B1DE'} : null}
-               href="/#/shop" onClick={Nav.setLocation}>SHOP</a>
+               href="/#/shop" onClick={() => Nav.setLocation("shop")}>SHOP</a>
             <div className="search">
               <img onClick={Nav.setSearch} className="search-button" src={search} />
               <form>
