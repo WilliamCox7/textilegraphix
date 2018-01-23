@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import { React, Component, connect } from '../../packages';
 import { setLocation } from '../../reducers/nav';
 import { setModal } from '../../reducers/modal';
 import { setProduct } from '../../reducers/product';

@@ -1,20 +1,7 @@
-import React, { Component } from 'react';
-import HomeBox from '../HomeBox/HomeBox';
-import HomeSection from '../HomeSection/HomeSection';
-import OurReviews from '../OurReviews/OurReviews';
-import fingerprint from '../../src/fingerprint.svg';
-import box from '../../src/box.svg';
-import lightning from '../../src/lightning.svg';
-import service from '../../src/service.svg';
-import drop from '../../src/drop.svg';
-import ex from '../../src/ex.svg';
-import cart from '../../src/cart.svg';
+import { React, Component, Parallax, Background } from '../../packages';
+import { HomeBox, HomeSection, OurReviews } from '../components';
+import { fingerprint, box, lightning, service, drop, ex, cart, hat, tshirt2, polo, tshirt } from '../../assets';
 import './Home.scss';
-import { Parallax, Background } from 'react-parallax';
-import hat from '../../src/hat.png';
-import tshirt2 from '../../src/tshirt2.png';
-import polo from '../../src/polo.png';
-import tshirt from '../../src/tshirt.png';
 
 class Home extends Component {
 

@@ -1,12 +1,9 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import { React, Component, connect, Parallax, Background } from '../../packages';
 import { setLocation } from '../../reducers/nav';
-import { Parallax, Background } from 'react-parallax';
-import grayArrow from '../../src/light-gray-arrow.svg';
-import blueArrow from '../../src/blue-arrow.svg';
+import { lightGrayArrow, blueArrow } from '../../assets';
 import './HomeSection.scss';
 
-class HomeSection extends Component { 
+class HomeSection extends Component {
 
   constructor() {
     super();
@@ -63,7 +60,7 @@ class HomeSection extends Component {
             {this.state.link ? (
               <img src={blueArrow} />
             ) : (
-              <img src={grayArrow} />
+              <img src={lightGrayArrow} />
             )}
           </a>
           <div className="taglines">

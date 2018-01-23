@@ -1,6 +1,4 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import Draggable from 'react-draggable';
+import { React, Component, connect, Draggable } from '../../packages';
 import { removeImage } from '../../reducers/modal';
 import './PrintArea.scss';
 

@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import contactHeader from '../../src/contact-header.svg';
-import axios from 'axios';
+import { React, Component, axios } from '../../packages';
+import { contactHeader } from '../../assets';
 import './Contact.scss';
 
 class Contact extends Component {
@@ -74,11 +73,11 @@ class Contact extends Component {
           </div>
           <div className="form">
             <div className="inputs">
-              <input type="text" placeholder="Your name: (required)" 
+              <input type="text" placeholder="Your name: (required)"
                 value={this.state.email.name} onChange={this.updName} />
-              <input type="text" placeholder="Your email: (required)" 
+              <input type="text" placeholder="Your email: (required)"
                 value={this.state.email.from} onChange={this.updFrom} />
-              <textarea placeholder="Your message: (required)" 
+              <textarea placeholder="Your message: (required)"
                 value={this.state.email.message} onChange={this.updMessage}></textarea>
             </div>
             <div className="info">

@@ -1,8 +1,5 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import ShopNav from '../ShopNav/ShopNav';
-import Product from '../Product/Product';
-import ProductModal from '../ProductModal/ProductModal';
+import { React, Component, connect } from '../../packages';
+import { ShopNav, Product, ProductModal } from '../components';
 import './Shop.scss';
 
 class Shop extends Component {

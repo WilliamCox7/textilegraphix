@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import PrintArea from '../PrintArea/PrintArea';
+import { React, Component } from '../../packages';
+import { PrintArea } from '../components';
 import './Mockup.scss';
 
 class Mockup extends Component {

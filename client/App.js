@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import Nav from './components/Nav/Nav';
-import Footer from './components/Footer/Footer';
+import { React, Component } from './packages';
+import { Nav, Footer } from './components/components';
 import './reset.scss';
 import './main.scss';
 

@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import radioFilled from '../../src/radio-filled.svg';
-import radioEmpty from '../../src/radio-empty.svg';
+import { React, Component } from '../../packages';
+import { radioFilled, radioEmpty } from '../../assets';
 import './ShopNav.scss';
 
 class ShopNav extends Component {
@@ -60,51 +59,51 @@ class ShopNav extends Component {
     return (
       <div className="ShopNav">
         <div onClick={() => {this.setStatus('tshirts', 'selected'); this.setFilter('t-shirts');}}
-          onMouseEnter={() => this.setStatus('tshirts', 'hovering')} 
+          onMouseEnter={() => this.setStatus('tshirts', 'hovering')}
           onMouseLeave={() => this.setStatus('tshirts', '')}>
           <h1>T-Shirts</h1>
-          <img src={this.state.tshirts === 'selected' ? (radioFilled) 
-            : (this.state.tshirts === 'hovering' ? (radioEmpty) : '//:0')} 
+          <img src={this.state.tshirts === 'selected' ? (radioFilled)
+            : (this.state.tshirts === 'hovering' ? (radioEmpty) : '//:0')}
             style={!this.state.tshirts ? {display: 'none'} : null} />
         </div>
         <div onClick={() => {this.setStatus('longsleeveshirt', 'selected'); this.setFilter('long sleeve shirt');}}
-          onMouseEnter={() => this.setStatus('longsleeveshirt', 'hovering')} 
+          onMouseEnter={() => this.setStatus('longsleeveshirt', 'hovering')}
           onMouseLeave={() => this.setStatus('longsleeveshirt', '')}>
           <h1>Long Sleeve Shirt</h1>
-          <img src={this.state.longsleeveshirt === 'selected' ? (radioFilled) 
-            : (this.state.longsleeveshirt === 'hovering' ? (radioEmpty) : '//:0')} 
+          <img src={this.state.longsleeveshirt === 'selected' ? (radioFilled)
+            : (this.state.longsleeveshirt === 'hovering' ? (radioEmpty) : '//:0')}
             style={!this.state.longsleeveshirt ? {display: 'none'} : null}  />
         </div>
         <div onClick={() => {this.setStatus('collaredshirt', 'selected'); this.setFilter('collared shirt');}}
-          onMouseEnter={() => this.setStatus('collaredshirt', 'hovering')} 
+          onMouseEnter={() => this.setStatus('collaredshirt', 'hovering')}
           onMouseLeave={() => this.setStatus('collaredshirt', '')}>
           <h1>Collared Shirt</h1>
-          <img src={this.state.collaredshirt === 'selected' ? (radioFilled) 
-            : (this.state.collaredshirt === 'hovering' ? (radioEmpty) : '//:0')} 
+          <img src={this.state.collaredshirt === 'selected' ? (radioFilled)
+            : (this.state.collaredshirt === 'hovering' ? (radioEmpty) : '//:0')}
             style={!this.state.collaredshirt ? {display: 'none'} : null}  />
         </div>
         <div onClick={() => {this.setStatus('hoodies', 'selected'); this.setFilter('hoodies');}}
-          onMouseEnter={() => this.setStatus('hoodies', 'hovering')} 
+          onMouseEnter={() => this.setStatus('hoodies', 'hovering')}
           onMouseLeave={() => this.setStatus('hoodies', '')}>
           <h1>Hoodies</h1>
-          <img src={this.state.hoodies === 'selected' ? (radioFilled) 
-            : (this.state.hoodies === 'hovering' ? (radioEmpty) : '//:0')} 
+          <img src={this.state.hoodies === 'selected' ? (radioFilled)
+            : (this.state.hoodies === 'hovering' ? (radioEmpty) : '//:0')}
             style={!this.state.hoodies ? {display: 'none'} : null}  />
         </div>
         <div onClick={() => {this.setStatus('other', 'selected'); this.setFilter('other');}}
-          onMouseEnter={() => this.setStatus('other', 'hovering')} 
+          onMouseEnter={() => this.setStatus('other', 'hovering')}
           onMouseLeave={() => this.setStatus('other', '')}>
           <h1>Other</h1>
-          <img src={this.state.other === 'selected' ? (radioFilled) 
-            : (this.state.other === 'hovering' ? (radioEmpty) : '//:0')} 
+          <img src={this.state.other === 'selected' ? (radioFilled)
+            : (this.state.other === 'hovering' ? (radioEmpty) : '//:0')}
             style={!this.state.other ? {display: 'none'} : null}  />
         </div>
         <div onClick={() => {this.setStatus('originals', 'selected'); this.setFilter('originals');}}
-          onMouseEnter={() => this.setStatus('originals', 'hovering')} 
+          onMouseEnter={() => this.setStatus('originals', 'hovering')}
           onMouseLeave={() => this.setStatus('originals', '')}>
           <h1>Originals</h1>
-          <img src={this.state.originals === 'selected' ? (radioFilled) 
-            : (this.state.originals === 'hovering' ? (radioEmpty) : '//:0')} 
+          <img src={this.state.originals === 'selected' ? (radioFilled)
+            : (this.state.originals === 'hovering' ? (radioEmpty) : '//:0')}
             style={!this.state.originals ? {display: 'none'} : null}  />
         </div>
       </div>
