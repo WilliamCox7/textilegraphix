@@ -70,16 +70,21 @@ class Submit extends Component {
 
   render() {
 
-    var files = this.props.modal.images.map((file, i) => {
-      return <h5 key={i}>{file.name}</h5>;
-    });
+    var files = [];
+    for (var index in this.props.modal.images) {
+      this.props.modal.images[index].forEach((file, i) => {
+        files.push(
+          <h5 key={i}>{file.name}</h5>
+        );
+      });
+    }
 
     var quotes = this.props.cart.products.map((product, i) => {
       return <Summary summary={product} key={i} />;
     });
 
     var mockups = this.props.cart.products.map((product, i) => {
-      return <Mockup image={product.image} key={i} edit={false} />;
+      return <Mockup product={product} key={i} edit={false} />;
     });
 
     return (
