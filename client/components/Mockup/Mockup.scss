@@ -1,11 +1,31 @@
+@import '../../vars.scss';
+
 .Mockup {
   background: #E6E7E8;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
   width: 326px;
   height: 450px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  overflow: hidden;
+  .views {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-transition: margin-left 0.3s ease;
+    transition: margin-left 0.3s ease;
+    .view {
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      width: 326px;
+      height: 398px;
+    }
+  }
 }

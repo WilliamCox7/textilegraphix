@@ -1,18 +1,24 @@
+import { test } from '../assets';
+
 const SET = 'modal/SET';
 const ADD = 'modal/ADD';
 const REM = 'modal/REM';
 
-import { test } from '../assets';
-
 const initState = {
   open: false,
-  images: [
-    {
-      id: 1,
-      src: test,
-      name: 'test.png'
-    }
-  ]
+  images: {
+    0: [
+      {
+        id: 1,
+        src: test,
+        name: 'test.png'
+      }
+    ],
+    1: [],
+    2: [],
+    3: [],
+    4: []
+  }
 }
 
 export default function reducer(state=initState, action) {
@@ -22,13 +28,13 @@ export default function reducer(state=initState, action) {
       editState.open = action.payload;
       return Object.assign({}, state, editState);
     case ADD:
-      action.payload.id = editState.images.length+1;
-      editState.images.push(action.payload);
+      action.image.id = editState.images[action.index].length+1;
+      editState.images[action.index].push(action.image);
       return Object.assign({}, state, editState);
     case REM:
-      editState.images.forEach((image, i) => {
-        if (image.id === action.payload) {
-          editState.images.splice(i, 1);
+      editState.images[action.index].forEach((image, i) => {
+        if (image.id === action.id) {
+          editState.images[action.index].splice(i, 1);
         }
       });
       return Object.assign({}, state, editState);
@@ -43,16 +49,18 @@ export function setModal(toggle) {
   }
 }
 
-export function addImage(image) {
+export function addImage(image, index) {
   return {
     type: ADD,
-    payload: image
+    image: image,
+    index: index
   }
 }
 
-export function removeImage(id) {
+export function removeImage(id, index) {
   return {
     type: REM,
-    payload: id
+    id: id,
+    index: index
   }
 }

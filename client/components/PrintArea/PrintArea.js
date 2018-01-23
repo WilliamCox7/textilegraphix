@@ -24,7 +24,7 @@ class PrintArea extends Component {
     var area = document.getElementsByClassName(
       !this.props.edit ? "PrintArea" : "PrintAreaHover")[0];
     var areaSpecs = area.getBoundingClientRect();
-    var edge = areaSpecs.right+1;
+    var edge = areaSpecs.right + 1;
     var vertCenter = areaSpecs.left + (areaSpecs.width / 2);
     var horCenter = areaSpecs.top + (areaSpecs.height / 2);
     this.setState({edge: edge, vertCenter: vertCenter, horCenter: horCenter});
@@ -50,7 +50,7 @@ class PrintArea extends Component {
   drag(e) {
     if (this.state.dragging) {
       var newWidth = this.state.width - (this.state.mousePos - e.clientY);
-      if (newWidth < 200 && e.target.getBoundingClientRect().right <= this.state.edge) {
+      if (newWidth < 200 && e.target.parentElement.getBoundingClientRect().right <= this.state.edge) {
         e.target.parentElement.style.width = newWidth + 'px';
       }
     }
@@ -90,28 +90,34 @@ class PrintArea extends Component {
   }
 
   render() {
-    var images = this.props.modal.images.map((image, i) => {
-      return (
-        <Draggable key={i} bounds="parent" onDrag={this.snap}
-          cancel={this.props.edit ? "span" : "div"}>
-          <div>
-            <img src={image.src} draggable="false" />
-            {!this.props.edit ? null : (
-              <span className="resizer" onDragStart={this.startDrag} draggable="true"
-                onDragEnd={this.stopDrag} onDrag={this.drag}></span>
-            )}
-            {!this.props.edit ? null : (
-              <span className="close" onClick={() => this.props.removeImage(image.id)}>X</span>
-            )}
-          </div>
-        </Draggable>
-      );
-    });
+
+    var images = {
+      0: [], 1: [], 2: [], 3: [], 4: []
+    };
+
+    for (var index in this.props.modal.images) {
+      this.props.modal.images[index].map((image, i) => {
+        images[index].push(
+          <Draggable key={index + image.id} bounds="parent" onDrag={this.snap} cancel={this.props.edit ? "span" : "div"}>
+            <div>
+              <img src={image.src} draggable="false" />
+              {!this.props.edit ? null : (
+                <span className="resizer" onDragStart={this.startDrag} draggable="true"
+                  onDragEnd={this.stopDrag} onDrag={this.drag}></span>
+              )}
+              {!this.props.edit ? null : (
+                <span className="close" onClick={() => this.props.removeImage(image.id)}>X</span>
+              )}
+            </div>
+          </Draggable>
+        );
+      });
+    }
 
     return (
       <div className={!this.props.edit ? "PrintArea" : "PrintAreaHover"}>
         {!this.props.edit ? null : (<div className="title">Print Area</div>)}
-        {images}
+        {images[this.props.view]}
         {!this.props.edit ? null : (
           <div className="guides">
             <div className="guide-box"></div>

@@ -16,7 +16,7 @@ const initState = {
   XL2: '',
   XL3: '',
   XL4: '',
-  front: false,
+  front: true,
   back: false,
   bottom: false,
   rightSleeve: false,
@@ -40,7 +40,7 @@ const resetState = {
   XL2: '',
   XL3: '',
   XL4: '',
-  front: false,
+  front: true,
   back: false,
   bottom: false,
   rightSleeve: false,
@@ -61,6 +61,7 @@ export default function reducer(state=initState, action) {
     case SET:
       editState.brand = action.payload.brand;
       editState.image = action.payload.image;
+      editState.images = action.payload.images;
       editState.number = action.payload.number;
       editState.type = action.payload.type;
       editState.description = action.payload.description;

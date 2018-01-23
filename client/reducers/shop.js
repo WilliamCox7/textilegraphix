@@ -1,11 +1,12 @@
 const SET = 'shop/SET';
 
-import { testShirt } from '../assets';
+import { testShirt, tshirtfront, tshirtback, tshirtleft, tshirtright } from '../assets';
 
 const initState = {
   products: [
     {
-      image: testShirt,
+      image: tshirtfront,
+      images: [tshirtfront, tshirtback, tshirtback, tshirtleft, tshirtright],
       brand: 'T-Shirt',
       number: 22104,
       type: 't-shirts',

@@ -3,6 +3,7 @@ import { Mockup } from '../components';
 import { setModal, addImage } from '../../reducers/modal';
 import { setColor, toggleType, updateSize, toggleLoc, dec, inc, resetProduct } from '../../reducers/product';
 import { add } from '../../reducers/cart';
+import { setTitles } from '../../reducers/nav';
 import { radioFilled, radioEmpty, closeButton } from '../../assets';
 import './ProductModal.scss';
 
@@ -25,7 +26,14 @@ class ProductModal extends Component {
       XL: this.props.product.XL,
       XL2: this.props.product.XL2,
       XL3: this.props.product.XL3,
-      XL4: this.props.product.XL4
+      XL4: this.props.product.XL4,
+      titles: [
+        {text: 'front', display: true},
+        {text: 'back', display: false},
+        {text: 'bottom', display: false},
+        {text: 'leftSleeve', display: false},
+        {text: 'rightSleeve', display: false}
+      ]
     }
     this.updateSize = this.updateSize.bind(this);
     this.storeFile = this.storeFile.bind(this);
@@ -33,6 +41,7 @@ class ProductModal extends Component {
     this.addToCart = this.addToCart.bind(this);
     this.downloadMockup = this.downloadMockup.bind(this);
     this.setDelivery = this.setDelivery.bind(this);
+    this.updTitles = this.updTitles.bind(this);
   }
 
   componentDidMount() {
@@ -75,7 +84,7 @@ class ProductModal extends Component {
     var reader = new FileReader();
     var imgName = e.currentTarget.files[0].name;
     reader.onloadend = () => {
-      this.props.addImage({src: reader.result, name: imgName});
+      this.props.addImage({src: reader.result, name: imgName}, this.props.nav.mockup.index);
     }
     reader.readAsDataURL(e.currentTarget.files[0]);
     document.getElementById('inputButton').value = '';
@@ -94,6 +103,25 @@ class ProductModal extends Component {
       a.download = 'mockup.jpg';
       a.click();
     });
+  }
+
+  updTitles(title) {
+    var newState = Object.assign({}, this.state);
+    var adding = true, changed;
+    newState.titles.forEach((view) => {
+      if (view.text === title) {
+        if (view.display) {
+          adding = false;
+        } else {
+          changed = view.text;
+        }
+        view.display = !view.display;
+      }
+    });
+    this.setState(newState, () => {
+      this.props.toggleLoc(title);
+      this.props.setTitles(this.state.titles, adding, changed);
+    })
   }
 
   render() {
@@ -166,24 +194,24 @@ class ProductModal extends Component {
               <div className="location">
                 <h3>Location</h3>
                 <div className="radio-button">
-                  <img src={this.props.product.front ? (radioFilled):
-                  (radioEmpty)} onClick={() => this.props.toggleLoc('front')} /> Front
+                <img src={this.props.product.front ? (radioFilled):
+                  (radioEmpty)} onClick={() => this.updTitles('front')} /> Front
                 </div>
                 <div className="radio-button">
                   <img src={this.props.product.back ? (radioFilled):
-                  (radioEmpty)} onClick={() => this.props.toggleLoc('back')} /> Back
+                  (radioEmpty)} onClick={() => this.updTitles('back')} /> Back
                 </div>
                 <div className="radio-button">
                   <img src={this.props.product.bottom ? (radioFilled):
-                  (radioEmpty)} onClick={() => this.props.toggleLoc('bottom')} /> Bottom
+                  (radioEmpty)} onClick={() => this.updTitles('bottom')} /> Bottom
                 </div>
                 <div className="radio-button">
                   <img src={this.props.product.leftSleeve ? (radioFilled):
-                  (radioEmpty)} onClick={() => this.props.toggleLoc('leftSleeve')} /> Left Sleeve
+                  (radioEmpty)} onClick={() => this.updTitles('leftSleeve')} /> Left Sleeve
                 </div>
                 <div className="radio-button">
                   <img src={this.props.product.rightSleeve ? (radioFilled):
-                  (radioEmpty)} onClick={() => this.props.toggleLoc('rightSleeve')} /> Right Sleeve
+                  (radioEmpty)} onClick={() => this.updTitles('rightSleeve')} /> Right Sleeve
                 </div>
               </div>
               <div className="color-count">
@@ -225,7 +253,7 @@ class ProductModal extends Component {
               </div>
           </div>
           <div className="column">
-            <Mockup image={this.props.product.image} edit={true} />
+            <Mockup product={this.props.product} edit={true} />
             <div className="mockup-options">
               <div className="upload-photo">
                 <input id="inputButton" type="file"
@@ -248,7 +276,8 @@ class ProductModal extends Component {
 const mapStateToProps = (state) => {
   return {
     product: state.product,
-    modal: state.modal
+    modal: state.modal,
+    nav: state.nav
   }
 }
 
@@ -262,7 +291,8 @@ const mapDispatchToProps = {
   setModal: setModal,
   resetProduct: resetProduct,
   addImage: addImage,
-  add: add
+  add: add,
+  setTitles: setTitles
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductModal);

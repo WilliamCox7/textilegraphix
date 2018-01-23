@@ -1,18 +1,40 @@
-import { React, Component } from '../../packages';
-import { PrintArea } from '../components';
+import { React, Component, connect } from '../../packages';
+import { PrintArea, MockupNav } from '../components';
 import './Mockup.scss';
 
 class Mockup extends Component {
   render() {
-    return (
-      <div className="Mockup" style={{backgroundImage: 'url('+this.props.image+')'}}>
-        <div className="view">
 
+    var circles = [];
+
+    var views = this.props.nav.mockup.views.map((view, i) => {
+      circles.push(
+        <span key={i} className={this.props.nav.mockup.index === i ? "circle active" : "circle"}></span>
+      );
+      return (
+        <div className="view" key={i} style={{backgroundImage: 'url('+this.props.product.images[view]+')'}}>
+          <PrintArea edit={this.props.edit} view={view} />
         </div>
-        <PrintArea edit={this.props.edit} />
+      );
+    });
+
+    return (
+      <div className="Mockup">
+        <MockupNav mockup={this.props.nav.mockup} circles={circles} />
+        <div className="views" id="view-container" style={{"width": this.props.nav.mockup.length * 326 + "px"}}>
+          {views}
+        </div>
       </div>
     );
+
   }
 }
 
-export default Mockup;
+const mapStateToProps = (state) => {
+  return {
+    nav: state.nav,
+    modal: state.modal
+  }
+}
+
+export default connect(mapStateToProps)(Mockup);

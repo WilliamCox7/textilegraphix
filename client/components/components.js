@@ -5,6 +5,7 @@ import Home from './Home/Home';
 import HomeBox from './HomeBox/HomeBox';
 import HomeSection from './HomeSection/HomeSection';
 import Mockup from './Mockup/Mockup';
+import MockupNav from './MockupNav/MockupNav';
 import Nav from './Nav/Nav';
 import OurReviews from './OurReviews/OurReviews';
 import PrintArea from './PrintArea/PrintArea';
@@ -18,7 +19,7 @@ import Submit from './Submit/Submit';
 import Summary from './Summary/Summary';
 
 export {
-  About, Contact, Footer, Home, HomeBox, HomeSection, Mockup,
+  About, Contact, Footer, Home, HomeBox, HomeSection, Mockup, MockupNav,
   Nav, OurReviews, PrintArea, Product, ProductModal, QuoteBox,
   SearchResults, Shop, ShopNav, Submit, Summary
 }
