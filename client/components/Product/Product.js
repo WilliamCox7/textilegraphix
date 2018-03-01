@@ -1,7 +1,6 @@
 import { React, Component, connect } from '../../packages';
-import { setModal, resetModal } from '../../reducers/modal';
-import { setProduct } from '../../reducers/product';
-import { resetMockupNav } from '../../reducers/nav';
+import { setModal } from '../../reducers/modal';
+import { setProduct, resetModal, resetMockupNav } from '../../reducers/product';
 import './Product.scss';
 
 class Product extends Component {
@@ -12,6 +11,7 @@ class Product extends Component {
   }
 
   openModal(product) {
+    product.guid = guid();
     this.props.setModal(true);
     this.props.setProduct(product);
     this.props.resetMockupNav();
@@ -42,3 +42,10 @@ const mapDispatchToProps = {
 }
 
 export default connect(null, mapDispatchToProps)(Product);
+
+function guid() {
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+  }
+  return s4() + s4() + s4() + s4();
+}

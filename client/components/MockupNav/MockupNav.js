@@ -1,5 +1,5 @@
 import { React, Component, connect } from '../../packages';
-import { updateViewIndex } from '../../reducers/nav';
+import { updateViewIndex } from '../../reducers/product';
 import { lightGrayArrow } from '../../assets';
 import './MockupNav.scss';
 
@@ -7,10 +7,13 @@ class MockupNav extends Component {
 
   constructor() {
     super();
+    // thinking about importing props and putting it into state.
+    // instead of passing in this.props.mockup, set it to state and use that to manipulate the views
     this.changeView = this.changeView.bind(this);
   }
 
   changeView(index, curIndex, length) {
+    console.log(index, curIndex, length);
     if (index >= 0 && index < length) {
       this.props.updateViewIndex(index);
       var viewContainer = document.getElementById("view-container");

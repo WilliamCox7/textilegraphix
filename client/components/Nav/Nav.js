@@ -1,6 +1,7 @@
 import { React, Component, connect, hashHistory } from '../../packages';
 import { QuoteBox, SearchResults } from '../components';
 import { setLocation } from '../../reducers/nav';
+import { setCart } from '../../reducers/cart';
 import { logoGray, quoteIconBlue, quoteIconGray, search } from '../../assets';
 import './Nav.scss';
 
@@ -26,6 +27,10 @@ class Nav extends Component {
     var location = hashHistory.getCurrentLocation().pathname;
     location = location.split("/")[1];
     this.props.setLocation(location);
+    var cart = JSON.parse(localStorage.getItem('cart'));
+    if (cart) {
+      this.props.setCart(cart.products);
+    }
     window.addEventListener("click", (e) => {
       if (e.target.className !== 'search-bar' && e.target.className !== 'search-button') {
         this.setState({searchActive: false});
@@ -114,7 +119,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-  setLocation: setLocation
+  setLocation: setLocation,
+  setCart: setCart
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Nav);

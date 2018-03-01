@@ -1,9 +1,8 @@
 import { React, Component, connect, html2canvas, moment } from '../../packages';
 import { Mockup } from '../components';
-import { setModal, addImage } from '../../reducers/modal';
-import { setColor, toggleType, updateSize, toggleLoc, dec, inc, resetProduct } from '../../reducers/product';
+import { setModal } from '../../reducers/modal';
+import { setColor, toggleType, updateSize, toggleLoc, dec, inc, resetProduct, addImage, setTitles } from '../../reducers/product';
 import { add } from '../../reducers/cart';
-import { setTitles } from '../../reducers/nav';
 import { radioFilled, radioEmpty, closeButton } from '../../assets';
 import './ProductModal.scss';
 
@@ -81,7 +80,7 @@ class ProductModal extends Component {
   }
 
   storeFile(e) {
-    var mockup = this.props.nav.mockup;
+    var mockup = this.props.product.mockup;
     var reader = new FileReader();
     var imgName = e.currentTarget.files[0].name;
     reader.onloadend = () => {
@@ -92,8 +91,12 @@ class ProductModal extends Component {
   }
 
   addToCart() {
-    this.props.add(this.props.product);
+    var product = this.props.product;
+    product.mockup = this.props.product.mockup;
+    product.mockup.index = 0;
+    this.props.add(product);
     this.props.setModal(false);
+    localStorage.setItem('cart', JSON.stringify(this.props.cart));
   }
 
   downloadMockup() {
@@ -254,7 +257,7 @@ class ProductModal extends Component {
               </div>
           </div>
           <div className="column">
-            <Mockup product={this.props.product} edit={true} />
+            <Mockup product={this.props.product} key={this.props.product.guid} edit={true} />
             <div className="mockup-options">
               <div className="upload-photo">
                 <input id="inputButton" type="file"
@@ -278,7 +281,8 @@ const mapStateToProps = (state) => {
   return {
     product: state.product,
     modal: state.modal,
-    nav: state.nav
+    nav: state.nav,
+    cart: state.cart
   }
 }
 

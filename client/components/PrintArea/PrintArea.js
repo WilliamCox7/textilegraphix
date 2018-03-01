@@ -1,5 +1,5 @@
 import { React, Component, connect, Draggable } from '../../packages';
-import { removeImage } from '../../reducers/modal';
+import { removeImage } from '../../reducers/product';
 import './PrintArea.scss';
 
 class PrintArea extends Component {
@@ -95,8 +95,8 @@ class PrintArea extends Component {
       0: [], 1: [], 2: [], 3: [], 4: []
     };
 
-    for (var index in this.props.modal.images) {
-      this.props.modal.images[index].map((image, i) => {
+    for (var index in this.props.product.uploaded) {
+      this.props.product.uploaded[index].map((image, i) => {
         image.index = index;
         images[index].push(
           <Draggable key={index + image.id} bounds="parent" onDrag={this.snap} cancel={this.props.edit ? "span" : "div"}>
@@ -136,7 +136,7 @@ class PrintArea extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    modal: state.modal
+    product: state.product
   }
 }
 

@@ -71,20 +71,13 @@ class Submit extends Component {
   render() {
 
     var files = [];
-    for (var index in this.props.modal.images) {
-      this.props.modal.images[index].forEach((file, i) => {
-        files.push(
-          <h5 key={i}>{file.name}</h5>
-        );
-      });
-    }
 
     var quotes = this.props.cart.products.map((product, i) => {
       return <Summary summary={product} key={i} />;
     });
 
     var mockups = this.props.cart.products.map((product, i) => {
-      return <Mockup product={product} key={i} edit={false} />;
+      return <Mockup product={product} key={product.guid} edit={false} />;
     });
 
     return (
@@ -163,7 +156,6 @@ class Submit extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    modal: state.modal,
     cart: state.cart
   }
 }
