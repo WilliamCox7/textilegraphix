@@ -97,16 +97,19 @@ class PrintArea extends Component {
 
     for (var index in this.props.modal.images) {
       this.props.modal.images[index].map((image, i) => {
+        image.index = index;
         images[index].push(
           <Draggable key={index + image.id} bounds="parent" onDrag={this.snap} cancel={this.props.edit ? "span" : "div"}>
             <div>
-              <img src={image.src} draggable="false" />
+              <div className="image-wrapper">
+                <img src={image.src} draggable="false" />
+              </div>
               {!this.props.edit ? null : (
                 <span className="resizer" onDragStart={this.startDrag} draggable="true"
                   onDragEnd={this.stopDrag} onDrag={this.drag}></span>
               )}
               {!this.props.edit ? null : (
-                <span className="close" onClick={() => this.props.removeImage(image.id)}>X</span>
+                <span className="close" onClick={() => this.props.removeImage(image.id, image.index)}>X</span>
               )}
             </div>
           </Draggable>

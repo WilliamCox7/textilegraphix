@@ -3,6 +3,7 @@ import { test } from '../assets';
 const SET = 'modal/SET';
 const ADD = 'modal/ADD';
 const REM = 'modal/REM';
+const RES = 'modal/RES';
 
 const initState = {
   open: false,
@@ -38,6 +39,13 @@ export default function reducer(state=initState, action) {
         }
       });
       return Object.assign({}, state, editState);
+    case RES:
+      editState.images[0] = [];
+      editState.images[1] = [];
+      editState.images[2] = [];
+      editState.images[3] = [];
+      editState.images[4] = [];
+      return Object.assign({}, state, editState);
     default: return state;
   }
 }
@@ -62,5 +70,11 @@ export function removeImage(id, index) {
     type: REM,
     id: id,
     index: index
+  }
+}
+
+export function resetModal() {
+  return {
+    type: RES
   }
 }

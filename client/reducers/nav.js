@@ -1,6 +1,7 @@
 const SET = 'nav/SET';
 const SET_TIT = 'nav/SET_TIT';
 const UPD_IND = 'nav/UPD_IND';
+const RES_MUN = 'nav/RES_MUN';
 
 const initState = {
   location: '',
@@ -52,6 +53,12 @@ export default function reducer(state=initState, action) {
     case UPD_IND:
       editState.mockup.index = action.payload;
       return Object.assign({}, state, editState);
+    case RES_MUN:
+      editState.mockup.titles = ['front'];
+      editState.mockup.views = [0];
+      editState.mockup.index = 0;
+      editState.mockup.length = 1;
+      return Object.assign({}, state, editState);
     default: return state;
   }
 }
@@ -76,5 +83,11 @@ export function updateViewIndex(index) {
   return {
     type: UPD_IND,
     payload: index
+  }
+}
+
+export function resetMockupNav() {
+  return {
+    type: RES_MUN
   }
 }

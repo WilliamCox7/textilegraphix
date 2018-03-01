@@ -1,6 +1,7 @@
 import { React, Component, connect } from '../../packages';
-import { setModal } from '../../reducers/modal';
+import { setModal, resetModal } from '../../reducers/modal';
 import { setProduct } from '../../reducers/product';
+import { resetMockupNav } from '../../reducers/nav';
 import './Product.scss';
 
 class Product extends Component {
@@ -13,6 +14,8 @@ class Product extends Component {
   openModal(product) {
     this.props.setModal(true);
     this.props.setProduct(product);
+    this.props.resetMockupNav();
+    this.props.resetModal();
   }
 
   render() {
@@ -33,7 +36,9 @@ class Product extends Component {
 
 const mapDispatchToProps = {
   setModal: setModal,
-  setProduct: setProduct
+  setProduct: setProduct,
+  resetMockupNav: resetMockupNav,
+  resetModal: resetModal
 }
 
 export default connect(null, mapDispatchToProps)(Product);

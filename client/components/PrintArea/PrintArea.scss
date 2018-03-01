@@ -8,9 +8,13 @@
     border: solid 1px transparent;
     position: absolute;
     z-index: 1;
-    img {
-      width: 100%;
-      height: auto;
+    .image-wrapper {
+      position: relative;
+      max-height: 272px;
+      img {
+        width: 100%;
+        height: auto;
+      }
     }
     .resizer {
       width: 8px;
