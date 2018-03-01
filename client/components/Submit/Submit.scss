@@ -31,12 +31,12 @@
         font-weight: bold;
         font-size: 40px;
       }
-      &::-moz-placeholder {
+      &:-ms-input-placeholder {
         color: $darkgray;
         font-weight: bold;
         font-size: 40px;
       }
-      &:-ms-input-placeholder {
+      &::-ms-input-placeholder {
         color: $darkgray;
         font-weight: bold;
         font-size: 40px;
@@ -98,11 +98,11 @@
           color: $gray;
           font-size: 11px;
         }
-        &::-moz-placeholder {
+        &:-ms-input-placeholder {
           color: $gray;
           font-size: 11px;
         }
-        &:-ms-input-placeholder {
+        &::-ms-input-placeholder {
           color: $gray;
           font-size: 11px;
         }
@@ -155,17 +155,18 @@
       color: $darkgray;
       margin: 15px 0px;
       border: solid 1px $lightgray;
-      box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+              box-sizing: border-box;
       min-height: 130px;
       &::-webkit-input-placeholder {
         color: $gray;
         font-size: 11px;
       }
-      &::-moz-placeholder {
+      &:-ms-input-placeholder {
         color: $gray;
         font-size: 11px;
       }
-      &:-ms-input-placeholder {
+      &::-ms-input-placeholder {
         color: $gray;
         font-size: 11px;
       }
@@ -207,6 +208,17 @@
   .right-side {
     margin-left: 138px;
     width: 50%;
+    .mockups-container {
+      overflow: hidden;
+      width: 326px;
+      .mockups {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-transition: margin-left 0.3s ease;
+        transition: margin-left 0.3s ease;
+      }
+    }
     .your-order {
       font-size: 22px;
       color: $darkgray;

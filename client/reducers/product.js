@@ -87,6 +87,7 @@ export default function reducer(state=initState, action) {
       editState.type = action.payload.type;
       editState.description = action.payload.description;
       editState.colors = action.payload.colors;
+      editState.guid = action.payload.guid;
       return Object.assign({}, state, editState);
     case SET_COLOR:
       editState.color = action.payload;
@@ -164,11 +165,11 @@ export default function reducer(state=initState, action) {
       editState.mockup.length = newViews.length;
       if (editState.mockup.index >= newViews.length) {
         editState.mockup.index--;
-        document.getElementById("view-container").style.marginLeft = (newViews.length - 1) * (1 - 326) + "px";
+        document.getElementById(editState.guid).style.marginLeft = (newViews.length - 1) * (1 - 326) + "px";
       }
       if (action.adding) {
         editState.mockup.index = newIndex;
-        document.getElementById("view-container").style.marginLeft = newIndex * (1 - 326) + "px";
+        document.getElementById(editState.guid).style.marginLeft = newIndex * (1 - 326) + "px";
       }
       return Object.assign({}, state, editState);
     case UPD_IND:

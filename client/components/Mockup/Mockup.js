@@ -12,15 +12,15 @@ class Mockup extends Component {
       );
       return (
         <div className="view" key={i} style={{backgroundImage: 'url('+this.props.product.images[view]+')'}}>
-          <PrintArea edit={this.props.edit} view={view} />
+          <PrintArea product={this.props.product} edit={this.props.edit} view={view} />
         </div>
       );
     });
 
     return (
       <div className="Mockup">
-        <MockupNav mockup={this.props.product.mockup} circles={circles} edit={this.props.edit} />
-        <div className="views" id="view-container" style={{"width": this.props.product.mockup.length * 326 + "px"}}>
+        <MockupNav mockup={this.props.product.mockup} guid={this.props.product.guid} circles={circles} edit={this.props.edit} />
+        <div className="views" id={this.props.product.guid} style={{"width": this.props.product.mockup.length * 326 + "px"}}>
           {views}
         </div>
       </div>
@@ -31,7 +31,8 @@ class Mockup extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    nav: state.nav
+    nav: state.nav,
+    cart: state.cart
   }
 }
 

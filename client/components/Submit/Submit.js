@@ -1,5 +1,5 @@
 import { React, Component, connect, moment } from '../../packages';
-import { Mockup, Summary } from '../components';
+import { Mockup, Summary, ProductNav } from '../components';
 import { radioEmpty, radioFilled } from '../../assets';
 import './Submit.scss';
 
@@ -145,7 +145,14 @@ class Submit extends Component {
           <h5 className="explain-text">contact you within 1 to 2 business days</h5>
         </div>
         <div className="right-side">
-          {mockups[0]}
+          <div className="mockups-container">
+            <div className="mockups" id="product-container" style={{"width": this.props.cart.products.length * 326 + "px"}}>
+              {mockups}
+            </div>
+          </div>
+          {this.props.cart.products.length > 1 ? (
+            <ProductNav length={this.props.cart.products.length} products={this.props.cart.products} />
+          ) : null}
           <h2 className="your-order">Your Order</h2>
           {quotes}
         </div>

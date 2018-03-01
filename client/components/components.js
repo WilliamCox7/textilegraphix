@@ -11,6 +11,7 @@ import OurReviews from './OurReviews/OurReviews';
 import PrintArea from './PrintArea/PrintArea';
 import Product from './Product/Product';
 import ProductModal from './ProductModal/ProductModal';
+import ProductNav from './ProductNav/ProductNav';
 import QuoteBox from './QuoteBox/QuoteBox';
 import SearchResults from './SearchResults/SearchResults';
 import Shop from './Shop/Shop';
@@ -20,6 +21,6 @@ import Summary from './Summary/Summary';
 
 export {
   About, Contact, Footer, Home, HomeBox, HomeSection, Mockup, MockupNav,
-  Nav, OurReviews, PrintArea, Product, ProductModal, QuoteBox,
+  Nav, OurReviews, PrintArea, Product, ProductModal, ProductNav, QuoteBox,
   SearchResults, Shop, ShopNav, Submit, Summary
 }

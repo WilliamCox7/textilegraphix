@@ -141,18 +141,12 @@ class PrintArea extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    product: state.product
-  }
-}
-
 const mapDispatchToProps = {
   removeImage: removeImage,
   setStyle: setStyle
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PrintArea);
+export default connect(null, mapDispatchToProps)(PrintArea);
 
 function getXandY(transform) {
   var regex = /(\(([0-9]+)*px,(\s([0-9]+))px\))/g;

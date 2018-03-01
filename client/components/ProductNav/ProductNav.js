@@ -1,10 +1,8 @@
-import { React, Component, connect } from '../../packages';
-import { updateViewIndex } from '../../reducers/product';
-import { updateCartViewIndex } from '../../reducers/cart';
+import { React, Component } from '../../packages';
 import { lightGrayArrow } from '../../assets';
-import './MockupNav.scss';
+import './ProductNav.scss';
 
-class MockupNav extends Component {
+class ProductNav extends Component {
 
   constructor() {
     super();
@@ -19,58 +17,53 @@ class MockupNav extends Component {
       var newState = Object.assign({}, this.state);
       newState.index = index;
       this.setState(newState);
-      if (this.props.edit) {
-        this.props.updateViewIndex(index);
-      } else {
-        this.props.updateCartViewIndex(index, this.props.guid);
-      }
-      var viewContainer = document.getElementById(this.props.guid);
-      var marginLeft = viewContainer.style.marginLeft;
+      var prodContainer = document.getElementById("product-container");
+      var marginLeft = prodContainer.style.marginLeft;
       var marginValue = Number(marginLeft.substring(0, marginLeft.length - 2));
       if (index < curIndex) {
         var newMargin = marginValue + 326;
-        viewContainer.style.marginLeft = newMargin + "px";
+        prodContainer.style.marginLeft = newMargin + "px";
       } else if (index > curIndex) {
         var newMargin = marginValue - 326;
-        viewContainer.style.marginLeft = newMargin + "px";
+        prodContainer.style.marginLeft = newMargin + "px";
       }
     }
   }
 
   render() {
-    var curIndex = this.props.edit ? this.props.mockup.index : this.state.index;
+    var curIndex = this.state.index;
     var prevIndex = curIndex - 1;
     var nextIndex = curIndex + 1;
-    var length = this.props.mockup.length;
+    var length = this.props.length;
+    var title;
+    if (this.props.products.length > 0) {
+      title = this.props.products[curIndex].brand + " " + this.props.products[curIndex].number;
+    }
+
 
     var circles = [];
-    this.props.mockup.views.map((view, i) => {
+    for (var i = 0; i < length; i++) {
       circles.push(
         <span key={i} className={curIndex === i ? "circle active" : "circle"}></span>
       );
-    });
+    }
 
     return(
-      <div className="MockupNav">
-        <div className="title">
-          {this.props.mockup.titles[curIndex]}
-        </div>
+      <div className="ProductNav">
         {length > 1 ? (
           <div className="circles">
             <img onClick={() => this.changeView(prevIndex, curIndex, length)} className="left-arrow" src={lightGrayArrow} />
-            {this.props.edit ? this.props.circles : circles}
+            {circles}
             <img onClick={() => this.changeView(nextIndex, curIndex, length)} src={lightGrayArrow} />
           </div>
         ) : null}
+        <div className="title">
+          {title}
+        </div>
       </div>
     );
   }
 
 }
 
-const mapDispatchToProps = {
-  updateViewIndex: updateViewIndex,
-  updateCartViewIndex: updateCartViewIndex
-}
-
-export default connect(null, mapDispatchToProps)(MockupNav);
+export default ProductNav;
