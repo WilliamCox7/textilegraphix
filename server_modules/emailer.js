@@ -42,6 +42,24 @@ module.exports = {
 
     return transporter.sendMail(options);
 
-  }
+  },
+
+  // sendOrder: (order) => {
+  //
+  //   var transporter = nodemailer.createTransport({
+  //     service: 'Gmail',
+  //     auth: {
+  //       user: config.graphix.email,
+  //       pass: config.graphix.password
+  //     }
+  //   });
+  //
+  //   var options = {
+  //     to: config.graphix.to,
+  //     subject: 'Order for ' + order.first + ' ' order.last + ' (' + order.projectName + ')',
+  //     html: order.html
+  //   }
+  //
+  // }
 
 }

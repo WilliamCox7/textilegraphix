@@ -8,10 +8,12 @@ import axios from 'axios';
 import { Parallax, Background } from 'react-parallax';
 import Draggable from 'react-draggable';
 import moment from 'moment';
-import html2canvas from 'html2canvas';
+import domtoimage from 'dom-to-image';
+import jszip from 'jszip';
+import { saveAs } from 'file-saver';
 
 export {
   React, Component, connect, Provider, combineReducers, createStore, applyMiddleware,
   compose, ReactDOM, Router, Route, hashHistory, thunk, axios, Parallax, Background,
-  Draggable, moment, html2canvas
+  Draggable, moment, domtoimage, jszip, saveAs
 }

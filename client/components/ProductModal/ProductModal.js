@@ -1,4 +1,4 @@
-import { React, Component, connect, html2canvas, moment } from '../../packages';
+import { React, Component, connect, domtoimage, moment, jszip, saveAs } from '../../packages';
 import { Mockup } from '../components';
 import { setModal } from '../../reducers/modal';
 import { setColor, toggleType, updateSize, toggleLoc, dec, inc, resetProduct, addImage, setTitles } from '../../reducers/product';
@@ -100,12 +100,23 @@ class ProductModal extends Component {
   }
 
   downloadMockup() {
-    var html = document.getElementsByClassName("Mockup")[0];
-    html2canvas(html).then((canvas) => {
-      var a = document.createElement('a');
-      a.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
-      a.download = 'mockup.jpg';
-      a.click();
+    var zip = new jszip();
+    var folderName = "mockup-" + this.props.product.number;
+    var folder = zip.folder(folderName);
+    var html = document.getElementById(this.props.product.guid);
+    var promises = [], count = 0;
+    for (var i = 0; i < html.children.length; i++) {
+      promises.push(domtoimage.toBlob(html.children[i]).then((blob) => {
+        var filename = this.props.product.mockup.titles[count] + ".png";
+        folder.file(filename, blob);
+        count++;
+      }))
+    }
+    Promise.all(promises).then(() => {
+      zip.generateAsync({type: "blob"}).then((content) => {
+        var zipName = folderName + ".zip";
+        saveAs(content, zipName);
+      });
     });
   }
 
