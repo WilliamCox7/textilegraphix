@@ -7,14 +7,17 @@ class MockupNav extends Component {
 
   constructor() {
     super();
-    // thinking about importing props and putting it into state.
-    // instead of passing in this.props.mockup, set it to state and use that to manipulate the views
+    this.state = {
+      index: 0
+    }
     this.changeView = this.changeView.bind(this);
   }
 
   changeView(index, curIndex, length) {
-    console.log(index, curIndex, length);
     if (index >= 0 && index < length) {
+      var newState = Object.assign({}, this.state);
+      newState.index = index;
+      this.setState(newState);
       this.props.updateViewIndex(index);
       var viewContainer = document.getElementById("view-container");
       var marginLeft = viewContainer.style.marginLeft;
@@ -30,10 +33,17 @@ class MockupNav extends Component {
   }
 
   render() {
-    var curIndex = this.props.mockup.index;
+    var curIndex = this.props.edit ? this.props.mockup.index : this.state.index;
     var prevIndex = curIndex - 1;
     var nextIndex = curIndex + 1;
     var length = this.props.mockup.length;
+
+    var circles = [];
+    this.props.mockup.views.map((view, i) => {
+      circles.push(
+        <span key={i} className={curIndex === i ? "circle active" : "circle"}></span>
+      );
+    });
 
     return(
       <div className="MockupNav">
@@ -43,7 +53,7 @@ class MockupNav extends Component {
         {length > 1 ? (
           <div className="circles">
             <img onClick={() => this.changeView(prevIndex, curIndex, length)} className="left-arrow" src={lightGrayArrow} />
-            {this.props.circles}
+            {this.props.edit ? this.props.circles : circles}
             <img onClick={() => this.changeView(nextIndex, curIndex, length)} src={lightGrayArrow} />
           </div>
         ) : null}

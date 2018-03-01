@@ -4,7 +4,6 @@ import './Mockup.scss';
 
 class Mockup extends Component {
   render() {
-    console.log(this.props.product);
     var circles = [];
 
     var views = this.props.product.mockup.views.map((view, i) => {
@@ -20,7 +19,7 @@ class Mockup extends Component {
 
     return (
       <div className="Mockup">
-        <MockupNav mockup={this.props.product.mockup} circles={circles} />
+        <MockupNav mockup={this.props.product.mockup} circles={circles} edit={this.props.edit} />
         <div className="views" id="view-container" style={{"width": this.props.product.mockup.length * 326 + "px"}}>
           {views}
         </div>
@@ -32,8 +31,7 @@ class Mockup extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    nav: state.nav,
-    modal: state.modal
+    nav: state.nav
   }
 }
 

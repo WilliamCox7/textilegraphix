@@ -1,5 +1,5 @@
 import { React, Component, connect, Draggable } from '../../packages';
-import { removeImage } from '../../reducers/product';
+import { removeImage, setStyle } from '../../reducers/product';
 import './PrintArea.scss';
 
 class PrintArea extends Component {
@@ -47,8 +47,11 @@ class PrintArea extends Component {
     guides.children[3].style.borderTopColor = '#939598';
   }
 
-  drag(e) {
+  drag(e, id, index) {
     if (this.state.dragging) {
+      var dragEl = e.target.parentElement;
+      var position = getXandY(dragEl.style.transform);
+      this.props.setStyle(position, dragEl.style.width, id, index);
       var newWidth = this.state.width - (this.state.mousePos - e.clientY);
       if (newWidth < 200 && e.target.parentElement.getBoundingClientRect().right <= this.state.edge) {
         e.target.parentElement.style.width = newWidth + 'px';
@@ -58,8 +61,11 @@ class PrintArea extends Component {
     return false;
   }
 
-  snap(e) {
+  snap(e, id, index) {
     if (this.props.edit) {
+      var dragEl = e.target.parentElement.parentElement;
+      var position = getXandY(dragEl.style.transform);
+      this.props.setStyle(position, dragEl.style.width, id, index);
       var guides = document.getElementsByClassName('guides')[0];
       var imageSpecs = e.target.getBoundingClientRect();
       var vertCenter = imageSpecs.left + (imageSpecs.width / 2);
@@ -99,14 +105,15 @@ class PrintArea extends Component {
       this.props.product.uploaded[index].map((image, i) => {
         image.index = index;
         images[index].push(
-          <Draggable key={index + image.id} bounds="parent" onDrag={this.snap} cancel={this.props.edit ? "span" : "div"}>
-            <div>
+          <Draggable key={index + image.id} bounds="parent" onDrag={(e) => this.snap(e, image.id, image.index)}
+            cancel={this.props.edit ? "span" : "div"} position={{x: image.position.x, y: image.position.y}}>
+            <div style={image.style}>
               <div className="image-wrapper">
                 <img src={image.src} draggable="false" />
               </div>
               {!this.props.edit ? null : (
                 <span className="resizer" onDragStart={this.startDrag} draggable="true"
-                  onDragEnd={this.stopDrag} onDrag={this.drag}></span>
+                  onDragEnd={this.stopDrag} onDrag={(e) => this.drag(e, image.id, image.index)}></span>
               )}
               {!this.props.edit ? null : (
                 <span className="close" onClick={() => this.props.removeImage(image.id, image.index)}>X</span>
@@ -141,7 +148,14 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-  removeImage: removeImage
+  removeImage: removeImage,
+  setStyle: setStyle
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PrintArea);
+
+function getXandY(transform) {
+  var regex = /(\(([0-9]+)*px,(\s([0-9]+))px\))/g;
+  var match = regex.exec(transform);
+  return {x: Number(match[2]), y: Number(match[4])}
+}

@@ -11,7 +11,8 @@ const REM_UPL = 'product/REM_UPL';
 const RES_UPL = 'product/RES_UPL';
 const SET_TIT = 'product/SET_TIT';
 const UPD_IND = 'product/UPD_IND';
-const RES_MUN = 'nav/RES_MUN';
+const RES_MUN = 'product/RES_MUN';
+const SET_STY = 'product/SET_STY';
 
 const initState = {
   XS: '',
@@ -122,6 +123,7 @@ export default function reducer(state=initState, action) {
       return Object.assign({}, state, editState);
     case ADD_UPL:
       action.image.id = editState.uploaded[action.index].length+1;
+      action.image.position = {x: 0, y: 0};
       editState.uploaded[action.index].push(action.image);
       return Object.assign({}, state, editState);
     case REM_UPL:
@@ -177,6 +179,14 @@ export default function reducer(state=initState, action) {
       editState.mockup.views = [0];
       editState.mockup.index = 0;
       editState.mockup.length = 1;
+      return Object.assign({}, state, editState);
+    case SET_STY:
+      editState.uploaded[action.index].forEach((image, i) => {
+        if (image.id === action.id) {
+          editState.uploaded[action.index][i].style = action.style;
+          editState.uploaded[action.index][i].position = action.position;
+        }
+      });
       return Object.assign({}, state, editState);
     default: return state;
   }
@@ -278,5 +288,17 @@ export function updateViewIndex(index) {
 export function resetMockupNav() {
   return {
     type: RES_MUN
+  }
+}
+
+export function setStyle(position, width, id, index) {
+  return {
+    type: SET_STY,
+    position: position,
+    style: {
+      width: width
+    },
+    id: id,
+    index: index
   }
 }
