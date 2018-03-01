@@ -30,8 +30,9 @@ class Footer extends Component {
             <img src={copyright} />
           </div>
           <div className="right">
+            <span></span>
             <a href="/#/contact" onClick={this.setLocation}>CONTACT</a>
-            <a href="/#/about" onClick={this.setLocation}>ABOUT</a>
+            {/* <a href="/#/about" onClick={this.setLocation}>ABOUT</a> */}
             <a href="/#/shop" onClick={this.setLocation}>SHOP</a>
           </div>
         </div>

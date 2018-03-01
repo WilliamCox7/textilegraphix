@@ -1,5 +1,3 @@
-import { test } from '../assets';
-
 const SET = 'modal/SET';
 const ADD = 'modal/ADD';
 const REM = 'modal/REM';
@@ -7,19 +5,7 @@ const RES = 'modal/RES';
 
 const initState = {
   open: false,
-  images: {
-    0: [
-      {
-        id: 1,
-        src: test,
-        name: 'test.png'
-      }
-    ],
-    1: [],
-    2: [],
-    3: [],
-    4: []
-  }
+  images: {}
 }
 
 export default function reducer(state=initState, action) {
