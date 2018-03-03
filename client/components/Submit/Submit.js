@@ -1,4 +1,4 @@
-import { React, Component, connect, moment } from '../../packages';
+import { React, Component, connect, moment, axios } from '../../packages';
 import { Mockup, Summary, ProductNav } from '../components';
 import { radioEmpty, radioFilled } from '../../assets';
 import './Submit.scss';
@@ -34,6 +34,7 @@ class Submit extends Component {
     }
     this.togglePickup = this.togglePickup.bind(this);
     this.update = this.update.bind(this);
+    this.sendOrder = this.sendOrder.bind(this);
   }
 
   componentDidMount() {
@@ -66,6 +67,44 @@ class Submit extends Component {
     var newState = Object.assign({}, this.state);
     newState[e.target.name] = e.target.value;
     this.setState(newState);
+  }
+
+  sendOrder() {
+    let html = `
+      <img src='www.textilegraphix.com/test.png'/>
+      <h1 style='max-width: 450px; padding: 5px; border-bottom: solid 1px #44B1DE; color: #58595B'>${this.state.projectName ? this.state.projectName : 'Your Order'}</h1>
+      <h3 style='color: #58595B; padding: 0px 5px'>Contact Information</h3>
+      <div style='padding: 0px 5px'>
+        <div style='color: #58595B; padding: 1px 0px'>${this.state.first + ' ' + this.state.last}</div>
+        <div style='color: #58595B; padding: 1px 0px'>${this.state.company ? this.state.company : ''}</div>
+        <div style='color: #58595B; padding: 1px 0px'>${this.state.phone}</div>
+        <div style='color: #58595B; padding: 1px 0px'>${this.state.email}</div>
+      </div>
+      <h3 style='color: #58595B; padding: 0px 5px'>Shipping Information</h3>
+      <div style='padding: 0px 5px'>
+        <div style='color: #58595B; padding: 1px 0px'>${this.state.companyName}</div>
+        <div style='color: #58595B; padding: 1px 0px'>${this.state.attn ? 'attn:' + this.state.attn : ''}</div>
+        <div style='color: #58595B; padding: 1px 0px'>${this.state.address1 + ' ' + this.state.address2}</div>
+        <div style='color: #58595B; padding: 1px 0px'>${this.state.city + ' ' + this.state.state + ', ' + this.state.zip}</div>
+        <p style='max-width: 450px'>${this.state.notes ? this.state.notes : ''}</p>
+        ${this.state.pickup ? '<h4 style="color: #58595B;">Pick up in Rexburg</h4>' : '<h4 style="color: #58595B;">Will be delivered by</h4>'}
+        <div style='color: #58595B; padding: 1px 0px'>${this.state.delivery}</div>
+        <div style='color: #44B1DE; padding: 1px 0px'>Total Cost: $189.99</div>
+      </div>
+    `;
+    let data = Object.assign({}, this.state);
+    data.html = html;
+    var fd = new FormData();
+    console.log(this.props.cart.products);
+    data.attachments = this.props.cart.products.forEach((product) => {
+      var filename = product.guid + '.zip';
+      console.log(product.attachment);
+      fd.append('upl', product.attachment, filename);
+    });
+    console.log(fd);
+    axios.post('/order', fd).then(() => {
+
+    });
   }
 
   render() {
@@ -140,7 +179,7 @@ class Submit extends Component {
             <h4>$0,0000.00</h4>
             <h4>{this.state.delivery}</h4>
           </div>
-          <div className="submit-form">Submit</div>
+          <div className="submit-form" onClick={this.sendOrder}>Submit</div>
           <h5 className="explain-text">A member from our team will</h5>
           <h5 className="explain-text">contact you within 1 to 2 business days</h5>
         </div>

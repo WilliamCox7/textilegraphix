@@ -44,22 +44,27 @@ module.exports = {
 
   },
 
-  // sendOrder: (order) => {
-  //
-  //   var transporter = nodemailer.createTransport({
-  //     service: 'Gmail',
-  //     auth: {
-  //       user: config.graphix.email,
-  //       pass: config.graphix.password
-  //     }
-  //   });
-  //
-  //   var options = {
-  //     to: config.graphix.to,
-  //     subject: 'Order for ' + order.first + ' ' order.last + ' (' + order.projectName + ')',
-  //     html: order.html
-  //   }
-  //
-  // }
+  sendOrder: (order) => {
+
+    console.log(order);
+
+    // var transporter = nodemailer.createTransport({
+    //   service: 'Gmail',
+    //   auth: {
+    //     user: config.graphix.email,
+    //     pass: config.graphix.password
+    //   }
+    // });
+    //
+    // var options = {
+    //   to: config.graphix.to,
+    //   subject: 'Order for ' + order.first + ' ' + order.last + ' (' + order.projectName + ')',
+    //   html: order.html,
+    //   attachments: order.attachments
+    // }
+    //
+    // return transporter.sendMail(options);
+
+  }
 
 }

@@ -20,12 +20,10 @@ class Product extends Component {
 
   render() {
     return (
-      <div className="Product">
+      <div className="Product" onClick={() => this.openModal(this.props.product)}>
         <div className="image-container">
           <img src={this.props.product.image} />
-          <button onClick={() => this.openModal(this.props.product)}>
-            Build Product
-          </button>
+          <span>Build Product</span>
         </div>
         <h1>{this.props.product.brand.toUpperCase()}</h1>
         <h1>{this.props.product.number}</h1>

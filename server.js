@@ -19,6 +19,11 @@ app.post('/senderror', (req, res) => {
   res.status(200).send('');
 });
 
+app.post('/order', (req, res) => {
+  Emailer.sendOrder(req.body);
+  res.status(200).send('');
+});
+
 app.listen(app.get('port'), () => {
   console.log('localhost:' + app.get('port'));
 });

@@ -29,13 +29,20 @@ class Nav extends Component {
     this.props.setLocation(location);
     var cart = JSON.parse(localStorage.getItem('cart'));
     if (cart) {
+      cart.products.forEach((product, i) => {
+        var blob = localStorage.getItem(product.guid);
+        if (blob) {
+          console.log(blob);//working on sending blob to server
+          cart.products[i].attachment = blob;
+        }
+      });
       this.props.setCart(cart.products);
     }
     window.addEventListener("click", (e) => {
       if (e.target.className !== 'search-bar' && e.target.className !== 'search-button') {
         this.setState({searchActive: false});
       }
-      if (e.target.className === 'submit') {
+      if (e.target.className === 'submit' || (e.target.className !== 'quote-icon' && this.state.showQuoteBox)) {
         this.closeQuoteBox();
       }
     });

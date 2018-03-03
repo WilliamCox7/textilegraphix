@@ -91,12 +91,30 @@ class ProductModal extends Component {
   }
 
   addToCart() {
-    var product = this.props.product;
-    product.mockup = this.props.product.mockup;
-    product.mockup.index = 0;
-    this.props.add(product);
-    this.props.setModal(false);
-    localStorage.setItem('cart', JSON.stringify(this.props.cart));
+    var zip = new jszip();
+    var folderName = "mockup-" + this.props.product.number;
+    var folder = zip.folder(folderName);
+    var html = document.getElementById(this.props.product.guid);
+    var promises = [], count = 0;
+    for (var i = 0; i < html.children.length; i++) {
+      promises.push(domtoimage.toBlob(html.children[i]).then((blob) => {
+        var filename = this.props.product.mockup.titles[count] + ".png";
+        folder.file(filename, blob);
+        count++;
+      }))
+    }
+    Promise.all(promises).then(() => {
+      zip.generateAsync({type: "blob"}).then((content) => {
+        var product = this.props.product;
+        product.attachment = content;
+        product.mockup = this.props.product.mockup;
+        product.mockup.index = 0;
+        this.props.add(product);
+        this.props.setModal(false);
+        localStorage.setItem('cart', JSON.stringify(this.props.cart));
+        localStorage.setItem(product.guid, content);
+      });
+    });
   }
 
   downloadMockup() {
