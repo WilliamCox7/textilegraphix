@@ -11,7 +11,8 @@ module.exports = {
 
   output: {
     path: path.join(__dirname, '/build'),
-    filename: "bundle.js"
+    filename: "bundle.js",
+    publicPath: '/'
   },
 
   module: {
@@ -32,12 +33,20 @@ module.exports = {
       {
         test: /\.(ttf|eot|woff|woff2)$/,
         loader: 'file-loader'
+      },
+      {
+        test: /\.json$/,
+        loader: 'json-loader'
       }
     ]
   },
 
+  devServer: {
+    historyApiFallback: true,
+  },
+
   resolve: {
-      extensions: ["", ".js", ".css"]
+    extensions: ["", ".js", ".css"]
   }
 
 }

@@ -1,16 +1,21 @@
-import { React, Component } from './packages';
-import { Nav, Footer } from './components/components';
+import { React, Component, BrowserRouter, Route } from './packages';
+import { Products, Home, Order, Support, Nav, Footer } from './components';
 import './reset.scss';
 import './main.scss';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Nav />
-        {this.props.children}
-        <Footer />
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <Nav />
+          <Route exact path="/" component={Home} />
+          <Route path="/products" component={Products} />
+          <Route path="/order" component={Order} />
+          <Route path="/support" component={Support} />
+          <Footer />
+        </div>
+      </BrowserRouter>
     );
   }
 }
