@@ -2,7 +2,7 @@
 
 .Nav {
   padding: 88px 20px 70px;
-  max-width: 1390px;
+  max-width: 1200px;
   margin: auto;
   .logo {
     height: 34px;
@@ -15,15 +15,15 @@
   .routes {
     margin-right: 30px;
     a {
-      margin-right: 40px;
+      margin-right: 80px;
+      font-size: 20px;
     }
   }
-  .search {
-    margin-right: 70px;
+  .fa-search {
+    margin-right: 110px;
     cursor: pointer;
-    img {
-      height: 18px;
-    }
+    font-size: 24px;
+    color: $black;
   }
   .cart {
     position: relative;

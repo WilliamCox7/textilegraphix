@@ -18,9 +18,7 @@ class Nav extends Component {
               Support
             </Link>
           </div>
-          <div className="search">
-            <img src={searchIcon} />
-          </div>
+          <i className="fas fa-search"></i>
           <Link to="order" className="cart">
             <img src={shoppingCart} />
             <span>0</span>
