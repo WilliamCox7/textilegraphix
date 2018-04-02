@@ -1,5 +1,26 @@
 @import "../../vars.scss";
 
 .Footer {
-
+  background: $blue;
+  .wrapper {
+    height: 120px;
+    max-width: 1200px;
+    padding: 36px 0px;
+    margin: auto;
+    .logo {
+      height: 100%;
+      img {
+        height: 100%;
+      }
+    }
+    .social {
+      height: 40px;
+    }
+    img {
+      margin-right: 30px;
+    }
+    p {
+      color: white;
+    }
+  }
 }

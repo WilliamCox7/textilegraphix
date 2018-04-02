@@ -14,6 +14,9 @@ import phone from './phone.svg';
 import chat from './chat.svg';
 import location from './location.svg';
 import email from './email.svg';
+import fb from './fb.svg';
+import insta from './insta.svg';
+import logoWhite from './logo-white.svg';
 
 export {
   logoTextBlack,
@@ -31,5 +34,8 @@ export {
   phone,
   chat,
   location,
-  email
+  email,
+  fb,
+  insta,
+  logoWhite
 }
