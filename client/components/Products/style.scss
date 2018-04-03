@@ -1,5 +1,15 @@
 @import "../../vars.scss";
 
 .Products {
-
+  max-width: 1200px;
+  margin: auto;
+  margin-bottom: 150px;
+  padding: 20px;
+  .products-container {
+    position: relative;
+    .products {
+      margin: auto;
+      width: 654px;
+    }
+  }
 }

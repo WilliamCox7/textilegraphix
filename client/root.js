@@ -1,7 +1,7 @@
 import { combineReducers } from './packages';
-import product from './reducers/product';
+import products from './reducers/products';
 import window from './reducers/window';
 
 export default combineReducers({
-  product, window
+  products, window
 });

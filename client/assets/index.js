@@ -20,6 +20,12 @@ import fbBlue from './fb-blue.svg';
 import instaBlue from './insta-blue.svg';
 import logoWhite from './logo-white.svg';
 import closeX from './close-x.svg';
+import tshirtback from './tshirtback.png';
+import tshirtfront from './tshirtfront.png';
+import tshirtleft from './tshirtleft.png';
+import tshirtright from './tshirtright.png';
+import radioEmpty from './radio-empty.svg';
+import radioFilled from './radio-filled.svg';
 
 export {
   logoTextBlack,
@@ -43,5 +49,11 @@ export {
   fbBlue,
   instaBlue,
   logoWhite,
-  closeX
+  closeX,
+  tshirtback,
+  tshirtfront,
+  tshirtleft,
+  tshirtright,
+  radioEmpty,
+  radioFilled
 }

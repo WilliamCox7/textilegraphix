@@ -5,6 +5,8 @@ import Order from './Order';
 import Products from './Products';
 import Support from './Support';
 import Menu from './Menu';
+import ProductNav from './ProductNav';
+import Product from './Product';
 
 export {
   Home,
@@ -13,5 +15,7 @@ export {
   Order,
   Products,
   Support,
-  Menu
+  Menu,
+  ProductNav,
+  Product
 }

@@ -1,0 +1,25 @@
+@import "../../vars.scss";
+
+.ProductNav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: 10px;
+  div {
+    padding: 15px 0px;
+    font-size: 20px;
+    color: $blue;
+    border-bottom: solid 1px $light-gray-border;
+    width: 200px;
+    img {
+      width: 20px;
+      height: 20px;
+    }
+    &:nth-child(6) {
+      border: none;
+    }
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
