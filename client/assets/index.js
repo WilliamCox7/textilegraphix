@@ -17,6 +17,7 @@ import email from './email.svg';
 import fb from './fb.svg';
 import insta from './insta.svg';
 import logoWhite from './logo-white.svg';
+import closeX from './close-x.svg';
 
 export {
   logoTextBlack,
@@ -37,5 +38,6 @@ export {
   email,
   fb,
   insta,
-  logoWhite
+  logoWhite,
+  closeX
 }

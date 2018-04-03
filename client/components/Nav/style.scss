@@ -4,8 +4,25 @@
   padding: 88px 20px 70px;
   max-width: 1200px;
   margin: auto;
+  @media(max-width: 1040px) {
+    padding: 40px;
+  }
+  .menu-button {
+    background: $blue;
+    padding: 7px 15px;
+    color: white;
+    border: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 5px;
+    border-top-left-radius: inherit;
+  }
   .logo {
     height: 34px;
+    @media(max-width: 770px) {
+      height: 22px;
+    }
   }
   a {
     color: $black;
@@ -32,10 +49,14 @@
     }
     span {
       position: absolute;
-      top: 2px;
-      right: 5px;
+      top: 0px;
+      right: 0px;
       color: white;
       font-size: 11px;
+      background: $blue;
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
     }
   }
 }

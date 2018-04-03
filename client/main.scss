@@ -50,6 +50,11 @@ textarea {
   justify-content: space-between;
 }
 
+.jc-sa {
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+}
+
 .jc-fe {
   -webkit-box-pack: end;
   -ms-flex-pack: end;

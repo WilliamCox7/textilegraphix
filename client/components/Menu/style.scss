@@ -1,0 +1,48 @@
+@import "../../vars.scss";
+
+.Menu {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: $blue;
+  .close {
+    padding: 20px;
+    background: white;
+    h1 {
+      position: absolute;
+      margin: auto;
+      width: 100px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 24px;
+      color: $blue;
+    }
+    img {
+      height: 30px;
+    }
+  }
+  .links {
+    width: 100%;
+    height: calc(100% - 110px);
+    padding: 60px 40px;
+    hr {
+      width: 100%;
+      border-color: white;
+      margin: 0;
+    }
+    a {
+      font-size: 24px;
+      color: white;
+    }
+    .social-links {
+      img {
+        height: 30px;
+        margin: 0px 10px;
+      }
+    }
+  }
+}
