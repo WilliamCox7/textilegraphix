@@ -16,6 +16,8 @@ import location from './location.svg';
 import email from './email.svg';
 import fb from './fb.svg';
 import insta from './insta.svg';
+import fbBlue from './fb-blue.svg';
+import instaBlue from './insta-blue.svg';
 import logoWhite from './logo-white.svg';
 import closeX from './close-x.svg';
 
@@ -38,6 +40,8 @@ export {
   email,
   fb,
   insta,
+  fbBlue,
+  instaBlue,
   logoWhite,
   closeX
 }

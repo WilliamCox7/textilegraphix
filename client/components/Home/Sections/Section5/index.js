@@ -1,12 +1,14 @@
 import { React, Component, Link } from '../../../../packages';
 import { phone, chat, location, email } from '../../../../assets';
+import { showAt } from '../../../modules';
+import './style.scss';
 
 class Section5 extends Component {
   render() {
     return (
       <section className="Section5">
         <div className="wrapper">
-          <div className="copy">
+          <div className="copy" style={showAt(650, this.props.w)}>
             <h1>Any questions? Reach out to us!</h1>
             <div className="seperator-line"><div className="black-circle"></div></div>
             <p>
@@ -15,7 +17,7 @@ class Section5 extends Component {
               to ask.
             </p>
           </div>
-          <div className="tiles flex jc-sb">
+          <div className="tiles flex jc-sb fw-w">
             <a className="tile flex fd-c jc-sb ai-c" href="tel:18884402515">
               <img src={phone} />
               <h1>CALL US</h1>

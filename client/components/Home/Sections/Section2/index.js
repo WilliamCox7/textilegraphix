@@ -1,5 +1,6 @@
 import { React, Component } from '../../../../packages';
 import { logoBlack } from '../../../../assets';
+import './style.scss';
 
 class Section2 extends Component {
   render() {

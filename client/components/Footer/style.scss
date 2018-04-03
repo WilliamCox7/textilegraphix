@@ -7,6 +7,10 @@
     max-width: 1200px;
     padding: 36px 0px;
     margin: auto;
+    @media(max-width: 650px) {
+      width: 100%;
+      padding: 40px;
+    }
     .logo {
       height: 100%;
       img {

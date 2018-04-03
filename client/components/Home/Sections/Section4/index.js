@@ -1,13 +1,15 @@
 import { React, Component, Link } from '../../../../packages';
 import { box, fingerprint, lightning, support, blackShirtsZoom, blackShirtsFolded } from '../../../../assets';
+import { showAt } from '../../../modules';
+import './style.scss';
 
 class Section4 extends Component {
   render() {
     return (
       <section className="Section4">
         <div className="wrapper">
-          <div className="tiles flex jc-sb">
-            <div className="tile">
+          <div className="tiles flex jc-sb fw-w">
+            <div className="tile flex fd-c ai-c">
               <img src={fingerprint} />
               <h1>Full Brand Identity</h1>
               <div className="seperator-line"><div className="black-circle"></div></div>
@@ -18,7 +20,7 @@ class Section4 extends Component {
                 with your brand!
               </p>
             </div>
-            <div className="tile">
+            <div className="tile flex fd-c ai-c">
               <img src={box} />
               <h1>Free Shipping</h1>
               <div className="seperator-line"><div className="black-circle"></div></div>
@@ -27,7 +29,7 @@ class Section4 extends Component {
                 always be on us!
               </p>
             </div>
-            <div className="tile">
+            <div className="tile flex fd-c ai-c">
               <img src={lightning} />
               <h1>Quick Turnaround</h1>
               <div className="seperator-line"><div className="black-circle"></div></div>
@@ -38,7 +40,7 @@ class Section4 extends Component {
                 that as well!
               </p>
             </div>
-            <div className="tile">
+            <div className="tile flex fd-c ai-c">
               <img src={support} />
               <h1>Superior Support</h1>
               <div className="seperator-line"><div className="black-circle"></div></div>
@@ -49,7 +51,7 @@ class Section4 extends Component {
               </p>
             </div>
           </div>
-          <div className="t-shirts flex jc-sb">
+          <div className="t-shirts flex jc-sb" style={showAt(650, this.props.w)}>
             <div>
               <img src={blackShirtsZoom} />
             </div>

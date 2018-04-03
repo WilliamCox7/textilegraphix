@@ -1,0 +1,31 @@
+@import "../../../../vars.scss";
+
+.Section2 {
+  background: $gray;
+  text-align: center;
+  margin-top: 800px;
+  width: 100%;
+  padding: 60px;
+  @media(max-width: 650px) {
+    margin-top: 0px;
+  }
+  .wrapper {
+    width: 444px;
+    margin: auto;
+    @media(max-width: 570px) {
+      width: 100%;
+    }
+    img {
+      height: 20px;
+      margin-bottom: 15px;
+    }
+    h1 {
+      font-size: 44px;
+      margin-bottom: 15px;
+    }
+    p {
+      line-height: 26px;
+      font-size: 20px;
+    }
+  }
+}

@@ -1,6 +1,7 @@
 import { React, Component, Link } from '../../../../packages';
 import { hoverDisplay, shirtModel } from '../../../../assets';
 import { showAt, hideAt } from '../../../modules';
+import './style.scss';
 
 class Section1 extends Component {
   render() {
