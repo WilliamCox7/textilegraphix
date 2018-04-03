@@ -1,4 +1,5 @@
 import { React, Component, Parallax, Background, connect } from '../../packages';
+import { Actions } from '../';
 import { Section1, Section2, Section3, Section4, Section5 } from './Sections';
 import { fbBlue, instaBlue } from '../../assets';
 import './style.scss';
@@ -15,7 +16,7 @@ class Home extends Component {
           <Section3 w={this.props.window.w} />
           <Background>
             <Section4 w={this.props.window.w} />
-            <Section5 w={this.props.window.w} />
+            <Actions w={this.props.window.w} copy={false} />
           </Background>
         </Parallax>
       ) : (
@@ -24,7 +25,7 @@ class Home extends Component {
           <Section2 />
           <Section3 w={this.props.window.w} />
           <Section4 w={this.props.window.w} />
-          <Section5 w={this.props.window.w} />
+          <Actions w={this.props.window.w} copy={false} />
           <div className="social-home flex jc-sb">
             <a href="" target="_blank">
               <img className="social" src={fbBlue} />

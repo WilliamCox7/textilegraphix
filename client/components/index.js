@@ -7,6 +7,7 @@ import Support from './Support';
 import Menu from './Menu';
 import ProductNav from './ProductNav';
 import Product from './Product';
+import Actions from './Actions';
 
 export {
   Home,
@@ -17,5 +18,6 @@ export {
   Support,
   Menu,
   ProductNav,
-  Product
+  Product,
+  Actions
 }

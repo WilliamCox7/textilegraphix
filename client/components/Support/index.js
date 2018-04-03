@@ -1,14 +1,24 @@
-import { React, Component } from '../../packages';
+import { React, Component, connect } from '../../packages';
+import { Actions } from '../';
 import './style.scss';
 
 class Support extends Component {
   render() {
     return (
       <div className="Support">
-        Support
+        <h1 className="header">
+          Support
+        </h1>
+        <Actions w={this.props.window.w} copy={true} />
       </div>
     );
   }
 }
 
-export default Support;
+const mapStateToProps = (state) => {
+  return {
+    window: state.window
+  }
+}
+
+export default connect(mapStateToProps)(Support);

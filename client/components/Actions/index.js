@@ -1,14 +1,14 @@
-import { React, Component, Link } from '../../../../packages';
-import { phone, chat, location, email } from '../../../../assets';
-import { showAt } from '../../../modules';
+import { React, Component, Link } from '../../packages';
+import { phone, chat, location, email } from '../../assets';
+import { showAt } from '../modules';
 import './style.scss';
 
-class Section5 extends Component {
+class Actions extends Component {
   render() {
     return (
-      <section className="Section5">
+      <section className="Actions">
         <div className="wrapper">
-          <div className="copy" style={showAt(650, this.props.w)}>
+          <div className="copy" style={this.props.copy ? null : showAt(650, this.props.w)}>
             <h1>Any questions? Reach out to us!</h1>
             <div className="seperator-line"><div className="black-circle"></div></div>
             <p>
@@ -47,4 +47,4 @@ class Section5 extends Component {
   }
 }
 
-export default Section5;
+export default Actions;
