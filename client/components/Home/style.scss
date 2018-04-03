@@ -7,39 +7,88 @@
   .Section1 {
     margin-top: 85px;
     width: 100%;
+    @media(max-width: 500px) {
+      margin-top: 110px;
+    }
     .wrapper {
       max-width: 1200px;
       margin: auto;
       padding: 0px 20px 70px;
+      @media(max-width: 970px) {
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+      }
+      @media(max-width: 650px) {
+        padding: 0px 40px 70px;
+      }
       .hover-box {
         padding: 90px 45px 45px 90px;
         -webkit-box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.12);
         box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.12);
+        min-width: 575px;
+        @media(max-width: 650px) {
+          padding: 0px;
+          -webkit-box-shadow: none;
+          box-shadow: none;
+          -webkit-box-pack: center;
+          -ms-flex-pack: center;
+          justify-content: center;
+          min-width: 100%;
+        }
+        .hover-display {
+          position: relative;
+          @media(max-width: 650px) {
+            width: 100%;
+          }
+          hr {
+            position: absolute;
+            width: 100%;
+            top: -50px;
+            border-color: $light-gray-border;
+          }
+          a {
+            position: absolute;
+            top: 20px;
+            right: 0;
+            background: $blue;
+            color: white;
+          }
+          img {
+            max-width: 300px;
+            @media(max-width: 500px) {
+              width: 100%;
+              max-width: none;
+            }
+          }
+        }
         .hover-box-buttons {
           margin-left: 20px;
-          a {
+        }
+        a {
+          font-size: 15px;
+          text-decoration: none;
+          margin-bottom: 5px;
+          background: none;
+          color: black;
+          border: none;
+          border-radius: 4px;
+          padding: 10px;
+          cursor: pointer;
+          i {
+            margin-left: 4px;
             font-size: 15px;
-            text-decoration: none;
-            margin-bottom: 5px;
-            background: none;
-            color: black;
-            border: none;
-            border-radius: 4px;
-            padding: 10px;
-            cursor: pointer;
-            i {
-              margin-left: 4px;
-              font-size: 15px;
-            }
-            &:hover {
-              background: $blue;
-              color: white;
-            }
+          }
+          &:hover {
+            background: $blue;
+            color: white;
           }
         }
       }
       .shirt-model {
-        height: 700px;
+        width: 100%;
+        max-width: 500px;
+        margin-left: 18px;
       }
     }
   }
