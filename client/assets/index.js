@@ -20,6 +20,7 @@ import fbBlue from './fb-blue.svg';
 import instaBlue from './insta-blue.svg';
 import logoWhite from './logo-white.svg';
 import closeX from './close-x.svg';
+import closeXWhite from './close-x-white.svg';
 import tshirtback from './tshirtback.png';
 import tshirtfront from './tshirtfront.png';
 import tshirtleft from './tshirtleft.png';
@@ -53,6 +54,7 @@ export {
   instaBlue,
   logoWhite,
   closeX,
+  closeXWhite,
   tshirtback,
   tshirtfront,
   tshirtleft,

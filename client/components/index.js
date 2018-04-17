@@ -8,6 +8,7 @@ import Menu from './Menu';
 import ProductNav from './ProductNav';
 import ProductNavMobile from './ProductNavMobile';
 import Product from './Product';
+import ProductBuilder from './ProductBuilder';
 import Actions from './Actions';
 
 export {
@@ -21,5 +22,6 @@ export {
   ProductNav,
   ProductNavMobile,
   Product,
+  ProductBuilder,
   Actions
 }

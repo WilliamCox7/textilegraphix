@@ -1,0 +1,293 @@
+import { React, Component, NumberFormat, moment } from '../../packages';
+import { closeXWhite } from '../../assets';
+import './style.scss';
+
+const endOfYear = [
+  'December 23rd', 'December 24th', 'December 25th', 'December 26th',
+  'December 27th', 'December 28th', 'December 29th', 'December 30th',
+  'December 31st', 'January 1st', 'January 2nd'
+];
+
+class ProductBuilder extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      product: props.product,
+      selectedColor: props.product.colors[0].name,
+      quantity: 1,
+      frontColors: 0,
+      backColors: 0,
+      leftSleeveColors: 0,
+      rightSleeveColors: 0,
+      foldedAndBagged: false,
+      insideTagPrinting: false,
+      hemTags: false,
+      total: 0,
+      totalPerShirt: 0,
+      delivery: ''
+    }
+    this.updateColor = this.updateColor.bind(this);
+    this.updateQuantity = this.updateQuantity.bind(this);
+    this.incrimentColor = this.incrimentColor.bind(this);
+    this.decrimentColor = this.decrimentColor.bind(this);
+    this.updateCheckBox = this.updateCheckBox.bind(this);
+  }
+
+  componentDidMount() {
+    this.calculateTotalCost(this.state);
+    this.setDelivery();
+  }
+
+  setDelivery() {
+    var today = moment();
+    var year = today.get('year');
+    if (today.get('month') === 11) {
+      year = today.add(1, 'years').get('year');
+    }
+    var deliveryDay = moment(today).add(14, 'days');
+    var estDelDay = deliveryDay.format('MMMM Do');
+    if (JSON.stringify(endOfYear).indexOf(estDelDay) > -1) {
+      deliveryDay = moment("01-03-"+year);
+    }
+    var weekday = deliveryDay.weekday();
+    if (weekday === 0) { deliveryDay.add(1, 'days'); }
+    else if (weekday === 6) { deliveryDay.add(2, 'days'); }
+    var displayedDay = deliveryDay.format('MMMM Do');
+    this.setState({delivery: displayedDay});
+  }
+
+  updateColor(color) {
+    this.setState({selectedColor: color.name}, () => {
+      this.calculateTotalCost(this.state);
+    });
+  }
+
+  updateQuantity(e) {
+    if (!isNaN(e.target.value)) {
+      this.setState({quantity: Number(e.target.value)}, () => {
+        this.calculateTotalCost(this.state);
+      });
+    }
+  }
+
+  incrimentColor(color) {
+    let prop = color + "Colors";
+    let newState = Object.assign({}, this.state);
+    newState[prop] = newState[prop] + 1;
+    this.setState(newState, () => {
+      this.calculateTotalCost(this.state);
+    });
+  }
+
+  decrimentColor(color) {
+    let prop = color + "Colors";
+    let newState = Object.assign({}, this.state);
+    newState[prop] = newState[prop] - 1;
+    if (newState[prop] < 0) {
+      newState[prop] = 0;
+    }
+    this.setState(newState, () => {
+      this.calculateTotalCost(this.state);
+    });
+  }
+
+  updateCheckBox(e) {
+    let newState = Object.assign({}, this.state);
+    newState[e.target.name] = !newState[e.target.name];
+    this.setState(newState, () => {
+      this.calculateTotalCost(this.state);
+    });
+  }
+
+  calculateTotalCost(state) {
+    let total = 0, totalPerShirt = 0;
+    const baseShirtCost = 5;
+    total += baseShirtCost * state.quantity;
+    total += state.frontColors * state.quantity;
+    total += state.backColors * state.quantity;
+    total += state.leftSleeveColors * state.quantity;
+    total += state.rightSleeveColors * state.quantity;
+    total += state.foldedAndBagged ? .4 * state.quantity : 0;
+    total += state.insideTagPrinting ? 1.15 * state.quantity : 0;
+    total += state.hemTags ? 2.25 * state.quantity : 0;
+    totalPerShirt = total === 0 ? 0 : total / state.quantity;
+    this.setState({total: total, totalPerShirt: totalPerShirt});
+  }
+
+  render() {
+
+    let colors = this.props.product.colors.map((color, i) => {
+      return (
+        <span key={i} style={{"background": color.hex}}
+          onClick={() => this.updateColor(color)}></span>
+      );
+    });
+
+    return (
+      <div className="ProductBuilder">
+        <div className="top-bar flex jc-sb ai-c">
+          <h1>{this.props.product.brand} {this.props.product.number}</h1>
+          <span><img src={closeXWhite} onClick={this.props.toggleBuilder} /></span>
+        </div>
+        <div className="builder flex">
+          <div className="left side flex fd-c ai-c jc-sb">
+            <h1>{this.props.product.description}</h1>
+            <h2>{this.state.selectedColor.toUpperCase()}</h2>
+            <div className="color-boxes flex">{colors}</div>
+            <div className="steps">
+              <div className="step">
+                <div className="step-no flex ai-c">
+                  <span className="flex ai-c jc-c">1.</span>
+                  <h1>QUANTITY & COLORS</h1>
+                </div>
+                <div className="content-wrapper flex">
+                  <span className="space"></span>
+                  <div className="content quantity-colors flex jc-sa">
+                    <div className="section">
+                      <h3 className="flex jc-c ai-c">QTY</h3>
+                      <div className="bottom-portion flex ai-c jc-c">
+                        <input value={this.state.quantity} type="text" onChange={this.updateQuantity} />
+                        <span></span>
+                      </div>
+                    </div>
+                    <div className="section">
+                      <h3 className="flex jc-c ai-c">Front Colors</h3>
+                      <div className="bottom-portion flex ai-c jc-c">
+                        <i className="fas fa-minus" onClick={() => this.decrimentColor('front')}></i>
+                        <h4>{this.state.frontColors}</h4>
+                        <i className="fas fa-plus" onClick={() => this.incrimentColor('front')}></i>
+                        <span></span>
+                      </div>
+                    </div>
+                    <div className="section">
+                      <h3 className="flex jc-c ai-c">Back Colors</h3>
+                      <div className="bottom-portion flex ai-c jc-c">
+                        <i className="fas fa-minus" onClick={() => this.decrimentColor('back')}></i>
+                        <h4>{this.state.backColors}</h4>
+                        <i className="fas fa-plus" onClick={() => this.incrimentColor('back')}></i>
+                        <span></span>
+                      </div>
+                    </div>
+                    <div className="section">
+                      <h3 className="flex jc-c ai-c">Left Sleeve Colors</h3>
+                      <div className="bottom-portion flex ai-c jc-c">
+                        <i className="fas fa-minus" onClick={() => this.decrimentColor('leftSleeve')}></i>
+                        <h4>{this.state.leftSleeveColors}</h4>
+                        <i className="fas fa-plus" onClick={() => this.incrimentColor('leftSleeve')}></i>
+                        <span></span>
+                      </div>
+                    </div>
+                    <div className="section">
+                      <h3>Right Sleeve Colors</h3>
+                      <div className="bottom-portion flex ai-c jc-c">
+                        <i className="fas fa-minus" onClick={() => this.decrimentColor('rightSleeve')}></i>
+                        <h4>{this.state.rightSleeveColors}</h4>
+                        <i className="fas fa-plus" onClick={() => this.incrimentColor('rightSleeve')}></i>
+                      </div>
+                    </div>
+                  </div>
+                  <span className="space"></span>
+                </div>
+              </div>
+              <div className="step">
+                <div className="step-no flex ai-c">
+                  <span className="flex ai-c jc-c">2.</span>
+                  <h1>ADD ONS</h1>
+                </div>
+                <div className="content-wrapper flex">
+                  <span className="space"></span>
+                  <div className="content add-ons">
+                    <div className="section flex ai-c">
+                      <div className="checkbox">
+                        <label>
+                          <input type="checkbox" checked={this.state.foldedAndBagged}
+                            name="foldedAndBagged" onClick={this.updateCheckBox} />
+                          <span></span>
+                        </label>
+                      </div>
+                      <h4>Folded and Bagged - </h4>
+                      <h1> $.40 / Shirt</h1>
+                    </div>
+                    <div className="section flex ai-c">
+                      <div className="checkbox">
+                        <label>
+                          <input type="checkbox" checked={this.state.insideTagPrinting}
+                            name="insideTagPrinting" onClick={this.updateCheckBox} />
+                          <span></span>
+                        </label>
+                      </div>
+                      <h4>Inside Tag Printing - </h4>
+                      <h1> $1.15 / Shirt</h1>
+                    </div>
+                    <div className="section flex ai-c">
+                      <div className="checkbox">
+                        <label>
+                          <input type="checkbox" checked={this.state.hemTags}
+                            name="hemTags" onClick={this.updateCheckBox} />
+                          <span></span>
+                        </label>
+                      </div>
+                      <h4>Hem Tags - </h4>
+                      <h1> $2.25 / Shirt </h1>
+                      <h5> *100pcs Minimum</h5>
+                    </div>
+                  </div>
+                  <span className="space"></span>
+                </div>
+              </div>
+            </div>
+            <div className="total">
+              <div className="total-headers flex">
+                <span className="total-header flex ai-c jc-c">TOTAL</span>
+                <div className="headers flex ai-fe">
+                  <h5>Price Per Shirt:</h5>
+                  <h5>Estimated Total:</h5>
+                </div>
+              </div>
+              <div className="content-wrapper flex">
+                <span className="space-large"></span>
+                <div className="content total-content flex">
+                  <div className="section flex fd-c ai-c jc-c">
+                    <div className="row flex">
+                      <h2>
+                        <NumberFormat value={this.state.totalPerShirt} displayType={'text'}
+                          thousandSeparator={true} prefix={'$'} decimalScale={2} />
+                      </h2>
+                      <h3 className="divider">/</h3>
+                      <h3>Shirt</h3>
+                    </div>
+                    <div className="row flex">
+                      <h5>2XL - $2.50 more.</h5>
+                      <h5>3XL - $3.50 more.</h5>
+                    </div>
+                  </div>
+                  <div className="section flex fd-c jc-c">
+                    <div className="row">
+                      <h4>
+                        <NumberFormat value={this.state.total} displayType={'text'}
+                          thousandSeparator={true} prefix={'$'} decimalScale={2} />
+                      </h4>
+                    </div>
+                    <div className="row">
+                      <h1>Estimated Delivery:</h1>
+                    </div>
+                    <div className="row">
+                      <h4>{this.state.delivery}</h4>
+                    </div>
+                  </div>
+                </div>
+                <span className="space"></span>
+              </div>
+            </div>
+          </div>
+          <div className="right side">
+
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default ProductBuilder;

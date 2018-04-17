@@ -11,6 +11,7 @@ import moment from 'moment';
 import domtoimage from 'dom-to-image';
 import jszip from 'jszip';
 import { saveAs } from 'file-saver';
+import NumberFormat from 'react-number-format';
 
 export {
   React, Component,
@@ -25,5 +26,6 @@ export {
   moment,
   domtoimage,
   jszip,
-  saveAs
+  saveAs,
+  NumberFormat
 }

@@ -4,7 +4,7 @@ import './style.scss';
 class Product extends Component {
   render() {
     return (
-      <div className="Product" onClick={() => this.openModal(this.props.product)}>
+      <div className="Product" onClick={() => this.props.setProduct(this.props.product)}>
         <div className="image-container">
           <img src={this.props.product.thumbnail} />
           <span>Build Product</span>

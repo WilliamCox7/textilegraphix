@@ -5,8 +5,10 @@
   max-width: 1200px;
   margin: auto;
   position: relative;
-  z-index: 1;
   background: white;
+  @media(max-width: 1200px) {
+    z-index: 2;
+  }
   @media(max-width: 1040px) {
     padding: 40px;
   }

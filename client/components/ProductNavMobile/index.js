@@ -8,9 +8,6 @@ class ProductNavMobile extends Component {
 
   constructor() {
     super();
-    this.state = {
-      showFilter: false
-    }
     this.setFilter = this.setFilter.bind(this);
     this.toggleFilter = this.toggleFilter.bind(this);
   }
@@ -24,22 +21,22 @@ class ProductNavMobile extends Component {
   }
 
   toggleFilter() {
-    this.setState({showFilter: !this.state.showFilter});
+    this.props.toggleShowFilter();
     this.props.toggleOverlay();
   }
 
   render() {
     return (
-      <div className="ProductNavMobile" style={this.state.showFilter ? {"background": "white"} : null}>
+      <div className="ProductNavMobile" style={this.props.showFilter ? {"background": "white"} : null}>
         <div className="nav-options flex jc-sb">
           <h1>Select a Shirt</h1>
-          {!this.state.showFilter ? (
+          {!this.props.showFilter ? (
             <h1 onClick={this.toggleFilter} className="blue-text">
               Filter <i className="fas fa-arrow-down"></i>
             </h1>
           ) : null}
         </div>
-        {this.state.showFilter ? (
+        {this.props.showFilter ? (
           <div className="nav-filters">
             <div className="filter-thumbs flex fw-w">
               <span className="flex ai-c jc-fe fd-c" onClick={() => this.setFilter('t-shirts')}
