@@ -7,7 +7,7 @@ class Actions extends Component {
   render() {
     return (
       <section className="Actions">
-        <div className="wrapper">
+        <div className="wrapper" style={this.props.copy ? {"padding": "40px 0px 0px"} : null}>
           <div className="copy" style={this.props.copy ? null : showAt(650, this.props.w)}>
             <h1>Any questions? Reach out to us!</h1>
             <div className="seperator-line"><div className="black-circle"></div></div>
