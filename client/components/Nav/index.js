@@ -25,6 +25,7 @@ class Nav extends Component {
   render() {
     return (
       <div className="Nav flex jc-sb ai-c">
+        <hr style={hideAt(650, this.props.window.w)} />
         <button onClick={this.toggleMenu} className="menu-button"
           style={hideAt(1040, this.props.window.w)}>MENU</button>
         {this.state.menu ? (

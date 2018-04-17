@@ -6,6 +6,7 @@ import Products from './Products';
 import Support from './Support';
 import Menu from './Menu';
 import ProductNav from './ProductNav';
+import ProductNavMobile from './ProductNavMobile';
 import Product from './Product';
 import Actions from './Actions';
 
@@ -18,6 +19,7 @@ export {
   Support,
   Menu,
   ProductNav,
+  ProductNavMobile,
   Product,
   Actions
 }

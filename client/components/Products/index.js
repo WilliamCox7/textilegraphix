@@ -1,5 +1,6 @@
 import { React, Component, connect } from '../../packages';
-import { ProductNav, Product } from '../';
+import { ProductNav, Product, ProductNavMobile } from '../';
+import { showAt, hideAt } from '../modules';
 import './style.scss';
 
 class Products extends Component {
@@ -7,9 +8,11 @@ class Products extends Component {
   constructor() {
     super();
     this.state = {
-      filter: ''
+      filter: '',
+      overlay: false
     }
     this.setFilter = this.setFilter.bind(this);
+    this.toggleOverlay = this.toggleOverlay.bind(this);
   }
 
   setFilter(filter) {
@@ -18,22 +21,39 @@ class Products extends Component {
     this.setState(newState);
   }
 
+  toggleOverlay() {
+    this.setState({overlay: !this.state.overlay});
+  }
+
   render() {
 
-    var products = this.props.products.products.map((product, i) => {
-      if (!this.state.filter || product.type === this.state.filter) {
-        return <Product product={product} key={i} />;
-      }
-    });
+    let products = [];
+
+    if (this.props.products) {
+      products = this.props.products.map((product, i) => {
+        if (!this.state.filter || product.type === this.state.filter) {
+          return <Product product={product} key={i} />;
+        }
+      });
+    }
 
     return (
       <div className="Products">
         <div className="products-container">
-          <ProductNav setFilter={this.setFilter} filter={this.state.filter} />
+          <div style={showAt(1200, this.props.window.w)}>
+            <ProductNav setFilter={this.setFilter} filter={this.state.filter} />
+          </div>
+          <div style={hideAt(1130, this.props.window.w)}>
+            <ProductNavMobile toggleOverlay={this.toggleOverlay}
+              setFilter={this.setFilter} filter={this.state.filter} />
+          </div>
           <div className="products flex fw-w jc-fs">
             {products}
           </div>
         </div>
+        {this.state.overlay ? (
+          <div className="gray-overlay"></div>
+        ) : null}
       </div>
     );
   }
@@ -41,7 +61,8 @@ class Products extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    products: state.products
+    products: state.products,
+    window: state.window
   }
 }
 

@@ -1,6 +1,6 @@
 import { React, Component, Link } from '../../../../packages';
 import { hoverDisplay, shirtModel } from '../../../../assets';
-import { showAt, hideAt } from '../../../modules';
+import { showAt } from '../../../modules';
 import './style.scss';
 
 class Section1 extends Component {
@@ -10,7 +10,6 @@ class Section1 extends Component {
         <div className="wrapper flex jc-sb">
           <div className="hover-box flex">
             <div className="hover-display">
-              <hr style={hideAt(650, this.props.w)} />
               <img src={hoverDisplay} />
               {this.props.w <= 650 ? (
                 <Link to="products">

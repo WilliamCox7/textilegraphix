@@ -1,15 +1,33 @@
 @import "../../vars.scss";
 
 .Products {
-  max-width: 1200px;
+  max-width: 1120px;
   margin: auto;
   margin-bottom: 150px;
-  padding: 20px;
+  position: relative;
+  min-height: calc(100vh - 440px);
   .products-container {
-    position: relative;
     .products {
       margin: auto;
       width: 654px;
+      @media(max-width: 1130px) {
+        padding-top: 30px;
+      }
+      @media(max-width: 700px) {
+        width: 100%;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        padding: 30px 20px 0px;
+      }
     }
+  }
+  .gray-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(230, 230, 230, 0.8);
   }
 }

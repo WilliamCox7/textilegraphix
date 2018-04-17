@@ -1,0 +1,67 @@
+@import "../../vars.scss";
+
+.ProductNavMobile {
+  padding: 0px 20px 20px;
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  @media(max-width: 1130px) {
+    padding: 0px 40px 20px;
+  }
+  .blue-text {
+    color: $blue;
+    i {
+      margin-left: 10px;
+    }
+  }
+  .nav-options {
+    margin-bottom: 20px;
+    .blue-text {
+      cursor: pointer;
+    }
+  }
+  .nav-filters {
+    .filter-thumbs {
+      @media(max-width: 540px) {
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+      }
+      span {
+        padding: 20px;
+        border: solid 1px #A0A0A0;
+        height: 192px;
+        width: 140px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        @media(max-width: 450px) {
+          width: 94px;
+          height: 128px;
+          padding: 7px;
+          margin-right: 0px;
+        }
+        img {
+          width: 75px;
+          @media(max-width: 450px) {
+            width: 58px;
+          }
+        }
+        h1 {
+          padding-top: 20px;
+          @media(max-width: 450px) {
+            padding-top: 8px;
+            font-size: 12px;
+            text-align: center;
+          }
+        }
+      }
+    }
+    .filter-button {
+      width: 100%;
+      text-align: center;
+      margin: 10px 0px;
+      cursor: pointer;
+    }
+  }
+}

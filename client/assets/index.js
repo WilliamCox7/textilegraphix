@@ -26,6 +26,9 @@ import tshirtleft from './tshirtleft.png';
 import tshirtright from './tshirtright.png';
 import radioEmpty from './radio-empty.svg';
 import radioFilled from './radio-filled.svg';
+import hoodieThumb from './hoodie-thumb.svg';
+import longSleeveThumb from './long-sleeve-thumb.svg';
+import tShirtThumb from './t-shirt-thumb.svg';
 
 export {
   logoTextBlack,
@@ -55,5 +58,8 @@ export {
   tshirtleft,
   tshirtright,
   radioEmpty,
-  radioFilled
+  radioFilled,
+  hoodieThumb,
+  longSleeveThumb,
+  tShirtThumb
 }

@@ -6,7 +6,7 @@ class Product extends Component {
     return (
       <div className="Product" onClick={() => this.openModal(this.props.product)}>
         <div className="image-container">
-          <img src={this.props.product.image} />
+          <img src={this.props.product.thumbnail} />
           <span>Build Product</span>
         </div>
         <h1>{this.props.product.brand.toUpperCase()}</h1>
