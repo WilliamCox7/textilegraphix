@@ -5,9 +5,9 @@
   .wrapper {
     height: 120px;
     max-width: 1200px;
-    padding: 36px 0px;
+    padding: 36px 20px;
     margin: auto;
-    @media(max-width: 650px) {
+    @media(max-width: 1200px) {
       width: 100%;
       padding: 40px;
     }
