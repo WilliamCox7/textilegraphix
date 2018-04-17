@@ -30,6 +30,8 @@ import radioFilled from './radio-filled.svg';
 import hoodieThumb from './hoodie-thumb.svg';
 import longSleeveThumb from './long-sleeve-thumb.svg';
 import tShirtThumb from './t-shirt-thumb.svg';
+import frontSideButton from './front-side-button.svg';
+import backSideButton from './back-side-button.svg';
 
 export {
   logoTextBlack,
@@ -63,5 +65,7 @@ export {
   radioFilled,
   hoodieThumb,
   longSleeveThumb,
-  tShirtThumb
+  tShirtThumb,
+  frontSideButton,
+  backSideButton
 }

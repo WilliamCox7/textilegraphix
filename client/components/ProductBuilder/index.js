@@ -1,5 +1,6 @@
-import { React, Component, NumberFormat, moment } from '../../packages';
-import { closeXWhite } from '../../assets';
+import { React, Component, NumberFormat, domtoimage, moment, jszip, saveAs } from '../../packages';
+import { closeXWhite, frontSideButton, backSideButton } from '../../assets';
+import { PrintArea } from '../';
 import './style.scss';
 
 const endOfYear = [
@@ -15,6 +16,7 @@ class ProductBuilder extends Component {
     this.state = {
       product: props.product,
       selectedColor: props.product.colors[0].name,
+      selectedHex: props.product.colors[0].hex,
       quantity: 1,
       frontColors: 0,
       backColors: 0,
@@ -25,13 +27,23 @@ class ProductBuilder extends Component {
       hemTags: false,
       total: 0,
       totalPerShirt: 0,
-      delivery: ''
+      delivery: '',
+      shownSide: 0,
+      uploaded: {
+        front: [],
+        back: []
+      }
     }
     this.updateColor = this.updateColor.bind(this);
     this.updateQuantity = this.updateQuantity.bind(this);
     this.incrimentColor = this.incrimentColor.bind(this);
     this.decrimentColor = this.decrimentColor.bind(this);
     this.updateCheckBox = this.updateCheckBox.bind(this);
+    this.toggleShownSide = this.toggleShownSide.bind(this);
+    this.downloadMockup = this.downloadMockup.bind(this);
+    this.uploadImage = this.uploadImage.bind(this);
+    this.storeFile = this.storeFile.bind(this);
+    this.removeImage = this.removeImage.bind(this);
   }
 
   componentDidMount() {
@@ -58,7 +70,7 @@ class ProductBuilder extends Component {
   }
 
   updateColor(color) {
-    this.setState({selectedColor: color.name}, () => {
+    this.setState({selectedColor: color.name, selectedHex: color.hex}, () => {
       this.calculateTotalCost(this.state);
     });
   }
@@ -113,6 +125,56 @@ class ProductBuilder extends Component {
     total += state.hemTags ? 2.25 * state.quantity : 0;
     totalPerShirt = total === 0 ? 0 : total / state.quantity;
     this.setState({total: total, totalPerShirt: totalPerShirt});
+  }
+
+  toggleShownSide(side) {
+    this.setState({shownSide: side});
+  }
+
+  downloadMockup() {
+    var zip = new jszip();
+    var folderName = "mockup-" + this.props.product.number;
+    var folder = zip.folder(folderName);
+    var front = document.getElementById("front-side");
+    var back = document.getElementById("back-side");
+    var promises = [
+      domtoimage.toBlob(front).then((blob) => {
+        folder.file("front.png", blob);
+      }),
+      domtoimage.toBlob(back).then((blob) => {
+        folder.file("back.png", blob);
+      })
+    ];
+    Promise.all(promises).then(() => {
+      zip.generateAsync({type: "blob"}).then((content) => {
+        var zipName = folderName + ".zip";
+        saveAs(content, zipName);
+      });
+    });
+  }
+
+  uploadImage(image) {
+    let side = this.state.shownSide ? 'back' : 'front';
+    let newState = Object.assign({}, this.state);
+    newState.uploaded[side].push(image);
+    this.setState(newState);
+  }
+
+  storeFile(e) {
+    var reader = new FileReader();
+    var imgName = e.currentTarget.files[0].name;
+    reader.onloadend = () => {
+      this.uploadImage({src: reader.result, name: imgName});
+    }
+    reader.readAsDataURL(e.currentTarget.files[0]);
+    document.getElementById('inputButton').value = '';
+  }
+
+  removeImage(index) {
+    let side = this.state.shownSide ? 'back' : 'front';
+    let newState = Object.assign({}, this.state);
+    newState.uploaded[side].splice(index, 1);
+    this.setState(newState);
   }
 
   render() {
@@ -282,7 +344,33 @@ class ProductBuilder extends Component {
             </div>
           </div>
           <div className="right side">
-
+            <div className="side-buttons flex fd-c">
+              <span onClick={() => this.toggleShownSide(0)}>
+                <img src={frontSideButton} />
+              </span>
+              <span onClick={() => this.toggleShownSide(1)}>
+                <img src={backSideButton} />
+              </span>
+            </div>
+            <div id="back-side" className="product-image"
+              style={this.state.shownSide ? {"zIndex": 1} : {"zIndex": 0}}>
+              <img src={this.state.product.images[this.state.selectedHex][1]} />
+              <PrintArea uploaded={this.state.uploaded.back} removeImage={this.removeImage} />
+            </div>
+            <div id="front-side" className="product-image"
+              style={this.state.shownSide ? {"zIndex": 0} : {"zIndex": 1}}>
+              <img src={this.state.product.images[this.state.selectedHex][0]} />
+              <PrintArea uploaded={this.state.uploaded.front} removeImage={this.removeImage} />
+            </div>
+            <div className="action-buttons flex jc-sb">
+              <button className="download" onClick={this.downloadMockup}>DOWNLOAD</button>
+              <button className="download" onClick={
+                () => document.getElementById('inputButton').click()
+              }>UPLOAD</button>
+              <button className="add-to-quote">ADD TO QUOTE</button>
+              <input id="inputButton" type="file" accept="image/x-png,image/jpeg"
+                onChange={this.storeFile} />
+            </div>
           </div>
         </div>
       </div>

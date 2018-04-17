@@ -10,6 +10,7 @@ import ProductNavMobile from './ProductNavMobile';
 import Product from './Product';
 import ProductBuilder from './ProductBuilder';
 import Actions from './Actions';
+import PrintArea from './PrintArea';
 
 export {
   Home,
@@ -23,5 +24,6 @@ export {
   ProductNavMobile,
   Product,
   ProductBuilder,
-  Actions
+  Actions,
+  PrintArea
 }
