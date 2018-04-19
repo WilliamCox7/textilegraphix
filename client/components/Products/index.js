@@ -1,6 +1,5 @@
-import { React, Component, connect } from '../../packages';
+import { React, Component, connect, MediaQuery } from '../../packages';
 import { ProductNav, Product, ProductNavMobile, ProductBuilder } from '../';
-import { showAt, hideAt } from '../modules';
 import './style.scss';
 
 class Products extends Component {
@@ -29,7 +28,6 @@ class Products extends Component {
   }
 
   setProduct(product) {
-    console.log(product);
     this.setState({product: product});
     this.toggleBuilder();
   }
@@ -66,18 +64,18 @@ class Products extends Component {
     return (
       <div className="Products">
         <div className="products-container">
-          <div style={showAt(1200, this.props.window.w)}>
+          <MediaQuery minWidth={1200}>
             <ProductNav setFilter={this.setFilter} filter={this.state.filter} />
-          </div>
-          <div style={hideAt(1200, this.props.window.w)}>
+          </MediaQuery>
+          <MediaQuery maxWidth={1200}>
             <ProductNavMobile toggleOverlay={this.toggleOverlay}
               setFilter={this.setFilter} filter={this.state.filter}
               showFilter={this.state.showFilter} toggleShowFilter={this.toggleShowFilter} />
-          </div>
+          </MediaQuery>
           {this.state.builder ? (
-            <div style={showAt(1200, this.props.window.w)}>
+            <MediaQuery minWidth={1200}>
               <ProductBuilder toggleBuilder={this.toggleBuilder} product={this.state.product} />
-            </div>
+            </MediaQuery>
           ) : null}
           <div className="products flex fw-w jc-fs">
             {products}
@@ -93,8 +91,7 @@ class Products extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    products: state.products,
-    window: state.window
+    products: state.products
   }
 }
 

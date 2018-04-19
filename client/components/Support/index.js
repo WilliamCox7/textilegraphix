@@ -9,7 +9,7 @@ class Support extends Component {
         <h1 className="header">
           Support
         </h1>
-        <Actions w={this.props.window.w} copy={true} />
+        <Actions showCopy />
       </div>
     );
   }

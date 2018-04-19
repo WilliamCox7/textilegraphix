@@ -12,6 +12,7 @@ import domtoimage from 'dom-to-image';
 import jszip from 'jszip';
 import { saveAs } from 'file-saver';
 import NumberFormat from 'react-number-format';
+import MediaQuery from 'react-responsive';
 
 export {
   React, Component,
@@ -27,5 +28,6 @@ export {
   domtoimage,
   jszip,
   saveAs,
-  NumberFormat
+  NumberFormat,
+  MediaQuery
 }

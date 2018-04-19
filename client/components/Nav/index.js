@@ -1,6 +1,5 @@
-import { React, Component, Link, connect } from '../../packages';
+import { React, Component, Link, MediaQuery } from '../../packages';
 import { logoTextBlack, searchIcon, shoppingCart } from '../../assets';
-import { showAt, hideAt } from '../modules';
 import { Menu } from '../';
 import './style.scss';
 
@@ -25,9 +24,12 @@ class Nav extends Component {
   render() {
     return (
       <div className="Nav flex jc-sb ai-c">
-        <hr style={hideAt(650, this.props.window.w)} />
-        <button onClick={this.toggleMenu} className="menu-button"
-          style={hideAt(1040, this.props.window.w)}>MENU</button>
+        <MediaQuery maxWidth={650}>
+          <hr />
+        </MediaQuery>
+        <MediaQuery maxWidth={1040}>
+          <button onClick={this.toggleMenu} className="menu-button">MENU</button>
+        </MediaQuery>
         {this.state.menu ? (
           <Menu toggleMenu={this.toggleMenu} />
         ) : null}
@@ -35,15 +37,17 @@ class Nav extends Component {
           <img className="logo" src={logoTextBlack} />
         </Link>
         <div className="flex ai-c">
-          <div className="routes" style={showAt(1040, this.props.window.w)}>
+          <MediaQuery className="routes" minWidth={1040}>
             <Link to="products">
               Products
             </Link>
             <Link to="support">
               Support
             </Link>
-          </div>
-          <i className="fas fa-search" style={showAt(770, this.props.window.w)}></i>
+          </MediaQuery>
+          <MediaQuery minWidth={770}>
+            <i className="fas fa-search"></i>
+          </MediaQuery>
           <Link to="order" className="cart">
             <img src={shoppingCart} />
             <span className="flex jc-c ai-c">0</span>
@@ -54,10 +58,4 @@ class Nav extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    window: state.window
-  }
-}
-
-export default connect(mapStateToProps)(Nav);
+export default Nav;

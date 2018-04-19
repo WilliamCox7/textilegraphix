@@ -1,6 +1,5 @@
-import { React, Component, Link } from '../../../../packages';
+import { React, Component, Link, MediaQuery } from '../../../../packages';
 import { box, fingerprint, lightning, support, blackShirtsZoom, blackShirtsFolded } from '../../../../assets';
-import { showAt } from '../../../modules';
 import './style.scss';
 
 class Section4 extends Component {
@@ -51,14 +50,14 @@ class Section4 extends Component {
               </p>
             </div>
           </div>
-          <div className="t-shirts flex jc-sb" style={showAt(650, this.props.w)}>
+          <MediaQuery className="t-shirts flex jc-sb" minWidth={650}>
             <div>
               <img src={blackShirtsZoom} />
             </div>
             <div>
               <img src={blackShirtsFolded} />
             </div>
-          </div>
+          </MediaQuery>
         </div>
       </section>
     );

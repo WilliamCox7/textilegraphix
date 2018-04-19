@@ -1,6 +1,5 @@
-import { React, Component, Link } from '../../../../packages';
+import { React, Component, Link, MediaQuery } from '../../../../packages';
 import { hoverDisplay, shirtModel } from '../../../../assets';
-import { showAt } from '../../../modules';
 import './style.scss';
 
 class Section1 extends Component {
@@ -11,24 +10,26 @@ class Section1 extends Component {
           <div className="hover-box flex">
             <div className="hover-display">
               <img src={hoverDisplay} />
-              {this.props.w <= 650 ? (
+              <MediaQuery maxWidth={650}>
                 <Link to="products">
                   Get Started <i className="fas fa-arrow-right"></i>
                 </Link>
-              ) : null}
+              </MediaQuery>
             </div>
-            <div className="hover-box-buttons flex fd-c" style={showAt(650, this.props.w)}>
+            <MediaQuery className="hover-box-buttons flex fd-c" minWidth={650}>
               <Link to="products">
                 Get Started <i className="fas fa-arrow-right"></i>
               </Link>
               <Link to="support">
                 Learn More <i className="fas fa-arrow-right"></i>
               </Link>
+            </MediaQuery>
+          </div>
+          <MediaQuery minWidth={970}>
+            <div>
+              <img className="shirt-model" src={shirtModel} />
             </div>
-          </div>
-          <div style={showAt(970, this.props.w)}>
-            <img className="shirt-model" src={shirtModel} />
-          </div>
+          </MediaQuery>
         </div>
       </section>
     );
