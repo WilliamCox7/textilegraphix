@@ -318,7 +318,13 @@ class ProductBuilder extends Component {
                 <div className="headers flex ai-fe">
                   <h5>
                     <MediaQuery minWidth={550}>
-                      Price Per Shirt:
+                      {(matches) => {
+                        if (matches) {
+                          return <span>Price Per Shirt:</span>;
+                        } else {
+                          return <span></span>;
+                        }
+                      }}
                     </MediaQuery>
                   </h5>
                   <h5>Estimated Total:</h5>
