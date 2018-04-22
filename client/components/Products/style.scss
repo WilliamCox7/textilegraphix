@@ -8,6 +8,9 @@
     .products-container {
       margin: 0px 40px;
       position: relative;
+      @media(max-width: 1200px) {
+        margin: auto;
+      }
       .products {
         margin: auto;
         width: 654px;

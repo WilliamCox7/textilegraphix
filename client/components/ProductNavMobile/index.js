@@ -29,7 +29,7 @@ class ProductNavMobile extends Component {
     return (
       <div className="ProductNavMobile" style={this.props.showFilter ? {"background": "white"} : null}>
         <div className="nav-options flex jc-sb">
-          <h1 className="fs-12 c-black fw-bold">Select a Shirt</h1>
+          <h1 className="fs-12 c-black fw-bold" onClick={this.toggleFilter}>Select a Shirt</h1>
           {!this.props.showFilter ? (
             <h1 onClick={this.toggleFilter} className="fs-12 c-blue fw-bold">
               Filter <i className="fas fa-arrow-down"></i>

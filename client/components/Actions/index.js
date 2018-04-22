@@ -5,7 +5,7 @@ import './style.scss';
 class Actions extends Component {
   render() {
     return (
-      <section className="Actions">
+      <section className="Actions" style={this.props.showCopy ? null : {"marginTop": "-50px"}}>
         <div className="body-wrapper" style={this.props.showCopy ? {"padding": "40px 0px 0px"} : null}>
           <MediaQuery className="copy" minWidth={this.props.showCopy ? 0 : 650}>
             <h1 className="fs-45 c-black fw-bold">Any questions? Reach out to us!</h1>

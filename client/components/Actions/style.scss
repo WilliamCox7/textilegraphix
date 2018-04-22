@@ -2,9 +2,6 @@
 
 .Actions {
   margin-top: 50px;
-  @media(max-width: 647px) {
-    margin-top: -50px;
-  }
   .body-wrapper {
     padding: 40px;
     .copy {

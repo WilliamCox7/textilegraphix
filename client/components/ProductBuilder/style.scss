@@ -49,11 +49,14 @@
     .left {
       background: #F2F2F2;
       @media(max-width: 1200px) {
-        min-height: 600px;
+        min-height: 750px;
       }
       @media(max-width: 550px) {
         padding: 20px !important;
-        min-height: 820px;
+        min-height: 1000px;
+      }
+      h1 {
+        text-align: center;
       }
       .color-boxes {
         @media(max-width: 550px) {
@@ -258,6 +261,7 @@
       padding-top: 64px;
       @media(max-width: 1200px) {
         min-height: 600px;
+        padding-top: 0px;
       }
       @media(max-width: 550px) {
         min-height: 515px;
