@@ -17,15 +17,19 @@
         height: 100%;
       }
     }
-    .social {
-      height: 40px;
+    .social-media {
+      margin: 0px 15px;
+      .social {
+        height: 40px;
+        margin: 0px 15px;
+      }
     }
-    img {
-      margin-right: 30px;
-    }
-    p {
-      color: white;
+    p.fs-25 {
       line-height: 20px;
+      @media(max-width: 755px) {
+        margin-left: 20px;
+        font-size: 16px;
+      }
     }
   }
 }

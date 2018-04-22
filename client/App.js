@@ -3,6 +3,7 @@ import { Products, Home, Order, Support, Nav, Footer } from './components';
 import { set } from './reducers/window';
 import './reset.scss';
 import './main.scss';
+import './headers.scss';
 
 class App extends Component {
 

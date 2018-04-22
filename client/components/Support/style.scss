@@ -1,18 +1,15 @@
 @import "../../vars.scss";
 
 .Support {
-  max-width: 1200px;
+  max-width: $max-width;
   margin: auto;
   margin-bottom: 150px;
   padding: 0px 20px;
   @media(max-width: 1040px) {
     padding: 0px;
   }
-  .header {
-    color: $blue;
+  h1.fs-40 {
     padding: 10px 0px;
-    font-size: 30px;
-    font-weight: bold;
     border-bottom: solid 1px $light-gray-border;
     margin: 0px 20px;
     @media(max-width: 1040px) {

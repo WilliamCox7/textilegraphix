@@ -2,29 +2,30 @@
 
 .Section4 {
   padding: 70px 0px;
-  margin-top: 330px;
-  @media(max-width: 1060px) {
-    margin-top: 400px;
+  margin-top: 385px;
+  @media(max-width: 1040px) {
+    margin-top: 525px;
     padding: 70px 40px;
   }
-  @media(max-width: 650px) {
+  @media(max-width: 755px) {
     margin-top: 0px;
   }
-  .wrapper {
-    max-width: 1200px;
-    margin: auto;
+  .body-wrapper {
     padding: 20px;
     .tiles {
-      @media(max-width: 650px) {
+      @media(max-width: 799px) {
         -webkit-box-orient: vertical;
         -webkit-box-direction: normal;
         -ms-flex-direction: column;
         flex-direction: column;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
       }
       .tile {
         text-align: center;
         padding: 20px;
-        width: 285px;
+        width: 340px;
         @media(max-width: 650px) {
           width: 100%;
         }
@@ -32,15 +33,13 @@
           height: 100px;
           margin-bottom: 15px;
         }
-        h1 {
-          font-size: 29px;
-          color: $alt-gray;
+        h1.fs-38 {
           margin: 18px 0px 20px;
+          white-space: nowrap;
         }
-        p {
+        p.fs-21 {
           margin: 25px 0px;
-          line-height: 22px;
-          color: $alt-gray;
+          line-height: 29px;
         }
       }
     }

@@ -61,7 +61,7 @@ class ProductNav extends Component {
         <div className="flex jc-sb" onClick={() => {this.setStatus('tshirts', 'selected'); this.setFilter('t-shirts');}}
           onMouseEnter={() => this.setStatus('tshirts', 'hovering')}
           onMouseLeave={() => this.setStatus('tshirts', '')}>
-          <h1>T-Shirts</h1>
+          <h1 className="fs-20 c-blue fw-bold">T-Shirts</h1>
           <img src={this.state.tshirts === 'selected' ? (radioFilled)
             : (this.state.tshirts === 'hovering' ? (radioEmpty) : '//:0')}
             style={!this.state.tshirts ? {display: 'none'} : null} />
@@ -69,7 +69,7 @@ class ProductNav extends Component {
         <div className="flex jc-sb" onClick={() => {this.setStatus('longsleeveshirt', 'selected'); this.setFilter('long sleeve shirt');}}
           onMouseEnter={() => this.setStatus('longsleeveshirt', 'hovering')}
           onMouseLeave={() => this.setStatus('longsleeveshirt', '')}>
-          <h1>Long Sleeve Shirt</h1>
+          <h1 className="fs-20 c-blue fw-bold">Long Sleeve Shirt</h1>
           <img src={this.state.longsleeveshirt === 'selected' ? (radioFilled)
             : (this.state.longsleeveshirt === 'hovering' ? (radioEmpty) : '//:0')}
             style={!this.state.longsleeveshirt ? {display: 'none'} : null}  />
@@ -77,7 +77,7 @@ class ProductNav extends Component {
         <div className="flex jc-sb" onClick={() => {this.setStatus('collaredshirt', 'selected'); this.setFilter('collared shirt');}}
           onMouseEnter={() => this.setStatus('collaredshirt', 'hovering')}
           onMouseLeave={() => this.setStatus('collaredshirt', '')}>
-          <h1>Collared Shirt</h1>
+          <h1 className="fs-20 c-blue fw-bold">Collared Shirt</h1>
           <img src={this.state.collaredshirt === 'selected' ? (radioFilled)
             : (this.state.collaredshirt === 'hovering' ? (radioEmpty) : '//:0')}
             style={!this.state.collaredshirt ? {display: 'none'} : null}  />
@@ -85,7 +85,7 @@ class ProductNav extends Component {
         <div className="flex jc-sb" onClick={() => {this.setStatus('hoodies', 'selected'); this.setFilter('hoodies');}}
           onMouseEnter={() => this.setStatus('hoodies', 'hovering')}
           onMouseLeave={() => this.setStatus('hoodies', '')}>
-          <h1>Hoodies</h1>
+          <h1 className="fs-20 c-blue fw-bold">Hoodies</h1>
           <img src={this.state.hoodies === 'selected' ? (radioFilled)
             : (this.state.hoodies === 'hovering' ? (radioEmpty) : '//:0')}
             style={!this.state.hoodies ? {display: 'none'} : null}  />
@@ -93,7 +93,7 @@ class ProductNav extends Component {
         <div className="flex jc-sb" onClick={() => {this.setStatus('other', 'selected'); this.setFilter('other');}}
           onMouseEnter={() => this.setStatus('other', 'hovering')}
           onMouseLeave={() => this.setStatus('other', '')}>
-          <h1>Other</h1>
+          <h1 className="fs-20 c-blue fw-bold">Other</h1>
           <img src={this.state.other === 'selected' ? (radioFilled)
             : (this.state.other === 'hovering' ? (radioEmpty) : '//:0')}
             style={!this.state.other ? {display: 'none'} : null}  />
@@ -101,7 +101,7 @@ class ProductNav extends Component {
         <div className="flex jc-sb" onClick={() => {this.setStatus('originals', 'selected'); this.setFilter('originals');}}
           onMouseEnter={() => this.setStatus('originals', 'hovering')}
           onMouseLeave={() => this.setStatus('originals', '')}>
-          <h1>Originals</h1>
+          <h1 className="fs-20 c-blue fw-bold">Originals</h1>
           <img src={this.state.originals === 'selected' ? (radioFilled)
             : (this.state.originals === 'hovering' ? (radioEmpty) : '//:0')}
             style={!this.state.originals ? {display: 'none'} : null}  />

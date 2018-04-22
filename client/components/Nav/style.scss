@@ -2,7 +2,7 @@
 
 .Nav {
   padding: 88px 40px 40px;
-  max-width: 1200px;
+  max-width: $max-width;
   margin: auto;
   position: relative;
   background: white;
@@ -17,10 +17,9 @@
     width: calc(100% - 80px);
     bottom: 0;
   }
-  .menu-button {
+  button.fs-12 {
     background: $blue;
     padding: 7px 15px;
-    color: white;
     border: none;
     position: absolute;
     top: 0;
@@ -37,28 +36,23 @@
       height: 20px;
     }
   }
-  a {
-    color: $black;
+  a.fs-20 {
     text-decoration: none;
-    font-weight: bold;
   }
   .routes {
     margin-right: 30px;
-    a {
+    a.fs-20 {
       margin-right: 80px;
-      font-size: 20px;
     }
   }
-  .fa-search {
+  i.fa-search {
     margin-right: 110px;
     cursor: pointer;
-    font-size: 24px;
-    color: $black;
   }
   .cart {
     position: relative;
     img {
-      height: 40px;
+      height: 50px;
       @media(max-width: 450px) {
         height: 34px;
       }

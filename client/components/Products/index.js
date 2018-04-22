@@ -63,25 +63,27 @@ class Products extends Component {
 
     return (
       <div className="Products">
-        <div className="products-container">
-          <MediaQuery minWidth={1200}>
-            <ProductNav setFilter={this.setFilter} filter={this.state.filter} />
-          </MediaQuery>
-          <MediaQuery maxWidth={1200}>
-            <ProductNavMobile toggleOverlay={this.toggleOverlay}
-              setFilter={this.setFilter} filter={this.state.filter}
-              showFilter={this.state.showFilter} toggleShowFilter={this.toggleShowFilter} />
-          </MediaQuery>
-          {this.state.builder ? (
-            <ProductBuilder toggleBuilder={this.toggleBuilder} product={this.state.product} />
-          ) : null}
-          <div className="products flex fw-w jc-fs">
-            {!this.state.builder ? products : null}
+        <div className="body-wrapper">
+          <div className="products-container">
+            <MediaQuery minWidth={1200}>
+              <ProductNav setFilter={this.setFilter} filter={this.state.filter} />
+            </MediaQuery>
+            <MediaQuery maxWidth={1200}>
+              <ProductNavMobile toggleOverlay={this.toggleOverlay}
+                setFilter={this.setFilter} filter={this.state.filter}
+                showFilter={this.state.showFilter} toggleShowFilter={this.toggleShowFilter} />
+            </MediaQuery>
+            {this.state.builder ? (
+              <ProductBuilder toggleBuilder={this.toggleBuilder} product={this.state.product} />
+            ) : null}
+            <div className="products flex fw-w jc-fs">
+              {!this.state.builder ? products : null}
+            </div>
           </div>
+          {this.state.overlay ? (
+            <div className="gray-overlay" onClick={this.closeAll}></div>
+          ) : null}
         </div>
-        {this.state.overlay ? (
-          <div className="gray-overlay" onClick={this.closeAll}></div>
-        ) : null}
       </div>
     );
   }

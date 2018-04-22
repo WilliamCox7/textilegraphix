@@ -11,15 +11,13 @@
   .close {
     padding: 20px;
     background: white;
-    h1 {
+    h1.fs-36 {
       position: absolute;
       margin: auto;
       width: 100px;
       left: 0;
       right: 0;
       text-align: center;
-      font-size: 24px;
-      color: $blue;
     }
     img {
       height: 30px;
@@ -34,13 +32,9 @@
       border-color: white;
       margin: 0;
     }
-    a {
-      font-size: 24px;
-      color: white;
-    }
     .social-links {
       img {
-        height: 30px;
+        height: 45px;
         margin: 0px 10px;
       }
     }

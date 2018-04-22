@@ -6,22 +6,22 @@ class Section1 extends Component {
   render() {
     return (
       <section className="Section1">
-        <div className="wrapper flex jc-sb">
+        <div className="body-wrapper flex jc-sb">
           <div className="hover-box flex">
             <div className="hover-display">
               <img src={hoverDisplay} />
               <MediaQuery maxWidth={650}>
-                <Link to="products">
+                <Link to="products" className="fs-15 c-white">
                   Get Started <i className="fas fa-arrow-right"></i>
                 </Link>
               </MediaQuery>
             </div>
             <MediaQuery className="hover-box-buttons flex fd-c" minWidth={650}>
-              <Link to="products">
-                Get Started <i className="fas fa-arrow-right"></i>
+              <Link to="products" className="fs-15 c-gray-1">
+                Get Started <i className="fas fa-arrow-right fs-15"></i>
               </Link>
-              <Link to="support">
-                Learn More <i className="fas fa-arrow-right"></i>
+              <Link to="support" className="fs-15 c-gray-1">
+                Learn More <i className="fas fa-arrow-right fs-15"></i>
               </Link>
             </MediaQuery>
           </div>

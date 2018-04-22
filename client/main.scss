@@ -21,10 +21,15 @@ textarea {
   position: relative;
 }
 
+.body-wrapper {
+  max-width: $max-width;
+  margin: auto;
+}
+
 .seperator-line {
   border-bottom: solid 1px $gray-border;
   position: relative;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   width: 100%;
   .black-circle {
     width: 15px;
@@ -38,6 +43,10 @@ textarea {
     bottom: 0;
     margin: auto;
   }
+}
+
+.blue-text {
+  color: $blue;
 }
 
 .flex {

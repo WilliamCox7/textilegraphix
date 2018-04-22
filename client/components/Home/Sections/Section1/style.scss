@@ -3,12 +3,10 @@
 .Section1 {
   margin-top: 85px;
   width: 100%;
-  @media(max-width: 650px) {
+  @media(max-width: 755px) {
     margin-top: 45px;
   }
-  .wrapper {
-    max-width: 1200px;
-    margin: auto;
+  .body-wrapper {
     padding: 0px 40px 70px;
     @media(max-width: 970px) {
       -webkit-box-pack: center;
@@ -37,18 +35,11 @@
         @media(max-width: 650px) {
           width: 100%;
         }
-        hr {
-          position: absolute;
-          width: 100%;
-          top: -50px;
-          border-color: $light-gray-border;
-        }
-        a {
+        a.fs-15 {
           position: absolute;
           top: 20px;
           right: 0;
           background: $blue;
-          color: white;
         }
         img {
           max-width: 300px;
@@ -61,19 +52,17 @@
       .hover-box-buttons {
         margin-left: 20px;
       }
-      a {
+      a.fs-15 {
         font-size: 15px;
         text-decoration: none;
         margin-bottom: 5px;
         background: none;
-        color: black;
         border: none;
         border-radius: 4px;
         padding: 10px;
         cursor: pointer;
         i {
           margin-left: 4px;
-          font-size: 15px;
         }
         &:hover {
           background: $blue;

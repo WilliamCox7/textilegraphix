@@ -7,7 +7,7 @@ import './style.scss';
 class Home extends Component {
   render() {
     return (
-      <MediaQuery className minWidth={650}>
+      <MediaQuery className minWidth={755}>
         {(matches) => {
           if (matches) {
             return (

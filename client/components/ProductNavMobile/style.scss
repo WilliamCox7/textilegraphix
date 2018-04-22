@@ -8,15 +8,14 @@
   @media(max-width: 1130px) {
     padding: 0px 40px 20px;
   }
-  .blue-text {
-    color: $blue;
+  h1.fs-12 {
     i {
       margin-left: 10px;
     }
   }
   .nav-options {
     margin-bottom: 20px;
-    .blue-text {
+    h1.fs-12 {
       cursor: pointer;
     }
   }
@@ -47,11 +46,10 @@
             width: 58px;
           }
         }
-        h1 {
+        h1.fs-12 {
           padding-top: 20px;
           @media(max-width: 450px) {
             padding-top: 8px;
-            font-size: 12px;
             text-align: center;
           }
         }

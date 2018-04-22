@@ -10,7 +10,7 @@ class Footer extends Component {
           <Link to="/" className="logo">
             <img src={logoWhite} />
           </Link>
-          <MediaQuery className minWidth={650}>
+          <MediaQuery className="social-media" minWidth={755}>
             <a href="" target="_blank">
               <img className="social" src={fb} />
             </a>
@@ -18,7 +18,7 @@ class Footer extends Component {
               <img className="social" src={insta} />
             </a>
           </MediaQuery>
-          <p>Copyright 2018. Textile Graphix, LLC</p>
+          <p className="fs-25 c-white">Copyright 2018. Textile Graphix, LLC</p>
         </div>
       </div>
     );

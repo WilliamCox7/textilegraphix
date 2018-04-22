@@ -1,4 +1,4 @@
-import { React, Component, connect } from '../../packages';
+import { React, Component } from '../../packages';
 import { Actions } from '../';
 import './style.scss';
 
@@ -6,7 +6,7 @@ class Support extends Component {
   render() {
     return (
       <div className="Support">
-        <h1 className="header">
+        <h1 className="fs-40 c-blue fw-bold">
           Support
         </h1>
         <Actions showCopy />
@@ -15,10 +15,4 @@ class Support extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    window: state.window
-  }
-}
-
-export default connect(mapStateToProps)(Support);
+export default Support;

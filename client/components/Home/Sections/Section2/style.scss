@@ -6,26 +6,33 @@
   margin-top: 800px;
   width: 100%;
   padding: 60px;
-  @media(max-width: 650px) {
+  @media(max-width: 1040px) {
+    margin-top: 700px;
+  }
+  @media(max-width: 755px) {
     margin-top: 0px;
   }
   .wrapper {
-    width: 444px;
+    width: 580px;
     margin: auto;
-    @media(max-width: 570px) {
+    @media(max-width: 700px) {
       width: 100%;
     }
     img {
-      height: 20px;
+      height: 27px;
       margin-bottom: 15px;
     }
-    h1 {
-      font-size: 44px;
+    h1.fs-60 {
       margin-bottom: 15px;
+      @media(max-width: 700px) {
+        font-size: 26px;
+      }
     }
-    p {
+    p.fs-30 {
       line-height: 26px;
-      font-size: 20px;
+      @media(max-width: 700px) {
+        font-size: 18px;
+      }
     }
   }
 }
