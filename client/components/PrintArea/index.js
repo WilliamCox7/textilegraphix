@@ -1,4 +1,5 @@
 import { React, Component, Draggable } from '../../packages';
+import { closeXRed, resize } from '../../assets';
 import './style.scss';
 
 class PrintArea extends Component {
@@ -24,7 +25,9 @@ class PrintArea extends Component {
   }
 
   startDrag(e) {
-    this.setState({dragging: true, mousePos: e.clientY, width: e.target.parentElement.clientWidth});
+    let clientY = e.type === 'touchstart' ? e.touches[0].clientY : e.clientY;
+    let parent = e.target.tagName === 'I' ? e.target.parentElement.parentElement : e.target.parentElement;
+    this.setState({dragging: true, mousePos: clientY, width: parent.clientWidth});
   }
 
   stopDrag(e) {
@@ -32,10 +35,12 @@ class PrintArea extends Component {
   }
 
   drag(e) {
+    let clientY = e.type === 'touchmove' ? e.touches[0].clientY : e.clientY;
+    let parent = e.target.tagName === 'I' ? e.target.parentElement.parentElement : e.target.parentElement;
     if (this.state.dragging) {
-      var newWidth = this.state.width - (this.state.mousePos - e.clientY);
-      if (newWidth < 262 && e.target.parentElement.getBoundingClientRect().right <= this.state.edge) {
-        e.target.parentElement.style.width = newWidth + 'px';
+      var newWidth = this.state.width - (this.state.mousePos - clientY);
+      if (newWidth < 254 && parent.getBoundingClientRect().right <= this.state.edge) {
+        parent.style.width = newWidth + 'px';
       }
     }
     e.preventDefault();
@@ -47,21 +52,28 @@ class PrintArea extends Component {
     let images = this.props.uploaded.map((image, i) => {
       image.index = i;
       return (
-        <Draggable key={i} bounds="parent" cancel="span">
+        <Draggable key={i} on bounds="parent" cancel=".resizer">
           <div>
-            <div className="image-wrapper">
+            <div className="image-wrapper" style={this.state.dragging ? {
+              "border": "dashed 2px #707070"
+            } : null}>
               <img src={image.src} draggable="false" />
             </div>
-            <span className="resizer" onDragStart={this.startDrag} draggable="true"
-              onDragEnd={this.stopDrag} onDrag={this.drag}></span>
-            <span className="close" onClick={() => this.props.removeImage(image.index)}>X</span>
+            <img src={resize} className="resizer" onTouchStart={this.startDrag} onDragStart={this.startDrag} draggable="true"
+              onDragEnd={this.stopDrag} onTouchEnd={this.stopDrag} onDrag={this.drag} onTouchMove={this.drag} />
+            <img src={closeXRed} className="close" onClick={() => this.props.removeImage(image.index)} style={this.state.dragging ? {
+              "display": "block"
+            } : null} />
           </div>
         </Draggable>
       );
     });
 
     return (
-      <div className="PrintArea">
+      <div className="PrintArea" style={this.state.dragging ? {
+        "background": "rgba(255, 255, 255, 0.7)",
+        "border": "solid 3px #E6E6E6"
+      } : null}>
         {images}
       </div>
     );

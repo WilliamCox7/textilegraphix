@@ -73,12 +73,10 @@ class Products extends Component {
               showFilter={this.state.showFilter} toggleShowFilter={this.toggleShowFilter} />
           </MediaQuery>
           {this.state.builder ? (
-            <MediaQuery minWidth={1200}>
-              <ProductBuilder toggleBuilder={this.toggleBuilder} product={this.state.product} />
-            </MediaQuery>
+            <ProductBuilder toggleBuilder={this.toggleBuilder} product={this.state.product} />
           ) : null}
           <div className="products flex fw-w jc-fs">
-            {products}
+            {!this.state.builder ? products : null}
           </div>
         </div>
         {this.state.overlay ? (

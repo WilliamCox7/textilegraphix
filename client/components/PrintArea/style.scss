@@ -14,14 +14,9 @@
   &:hover {
     background: rgba(255, 255, 255, 0.7);
     border: solid 3px $gray;
-    .upload-photo {
-      opacity: 1;
-    }
     .react-draggable {
       .resizer {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
+        display: block;
       }
       .close {
         display: block;
@@ -37,7 +32,7 @@
     z-index: 1;
     .image-wrapper {
       position: relative;
-      max-height: 272px;
+      max-height: 324px;
       border: dashed 2px transparent;
       cursor: move;
       img {
@@ -46,31 +41,25 @@
       }
     }
     .resizer {
-      width: 8px;
-      height: 8px;
-      background: $gray;
-      border: solid 1px $black;
+      width: 28px;
       position: absolute;
-      right: -2px;
-      bottom: -2px;
+      right: -12px;
+      bottom: -12px;
       display: none;
-      cursor: nwse-resize;
+      cursor: -webkit-grab;
+      cursor: grab;
+      &:active {
+        cursor: -webkit-grabbing;
+        cursor: grabbing;
+      }
     }
     .close {
-      width: 16px;
-      height: 16px;
-      padding: 4px 5px;
-      border-radius: 50px;
-      border: solid 1px white;
-      background: rgb(255, 78, 78);
+      width: 28px;
       cursor: pointer;
       position: absolute;
-      top: -7px;
-      left: -7px;
-      font-size: 8px;
-      font-weight: bold;
+      top: -12px;
+      left: -12px;
       display: none;
-      color: white;
     }
   }
 }

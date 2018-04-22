@@ -21,6 +21,7 @@ import instaBlue from './insta-blue.svg';
 import logoWhite from './logo-white.svg';
 import closeX from './close-x.svg';
 import closeXWhite from './close-x-white.svg';
+import closeXRed from './close-x-red.svg';
 import tshirtback from './tshirtback.png';
 import tshirtfront from './tshirtfront.png';
 import tshirtleft from './tshirtleft.png';
@@ -32,6 +33,7 @@ import longSleeveThumb from './long-sleeve-thumb.svg';
 import tShirtThumb from './t-shirt-thumb.svg';
 import frontSideButton from './front-side-button.svg';
 import backSideButton from './back-side-button.svg';
+import resize from './resize.svg';
 
 export {
   logoTextBlack,
@@ -57,6 +59,7 @@ export {
   logoWhite,
   closeX,
   closeXWhite,
+  closeXRed,
   tshirtback,
   tshirtfront,
   tshirtleft,
@@ -67,5 +70,6 @@ export {
   longSleeveThumb,
   tShirtThumb,
   frontSideButton,
-  backSideButton
+  backSideButton,
+  resize
 }

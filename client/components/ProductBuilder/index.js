@@ -1,6 +1,6 @@
-import { React, Component, NumberFormat, domtoimage, moment, jszip, saveAs } from '../../packages';
+import { React, Component, NumberFormat, domtoimage, moment, jszip, saveAs, MediaQuery } from '../../packages';
 import { closeXWhite, frontSideButton, backSideButton } from '../../assets';
-import { PrintArea } from '../';
+import { PrintArea, Footer } from '../';
 import './style.scss';
 
 const endOfYear = [
@@ -188,12 +188,15 @@ class ProductBuilder extends Component {
 
     return (
       <div className="ProductBuilder">
-        <div className="top-bar flex jc-sb ai-c">
+        <MediaQuery className="top-bar flex jc-sb ai-c" minWidth={1200}>
           <h1>{this.props.product.brand} {this.props.product.number}</h1>
           <span><img src={closeXWhite} onClick={this.props.toggleBuilder} /></span>
-        </div>
+        </MediaQuery>
         <div className="builder flex">
           <div className="left side flex fd-c ai-c jc-sb">
+            <MediaQuery maxWidth={1200}>
+              <h2>{this.props.product.brand} {this.props.product.number}</h2>
+            </MediaQuery>
             <h1>{this.props.product.description}</h1>
             <h2>{this.state.selectedColor.toUpperCase()}</h2>
             <div className="color-boxes flex">{colors}</div>
@@ -204,7 +207,9 @@ class ProductBuilder extends Component {
                   <h1>QUANTITY & COLORS</h1>
                 </div>
                 <div className="content-wrapper flex">
-                  <span className="space"></span>
+                  <MediaQuery minWidth={550}>
+                    <span className="space"></span>
+                  </MediaQuery>
                   <div className="content quantity-colors flex jc-sa">
                     <div className="section">
                       <h3 className="flex jc-c ai-c">QTY</h3>
@@ -228,10 +233,12 @@ class ProductBuilder extends Component {
                         <i className="fas fa-minus" onClick={() => this.decrimentColor('back')}></i>
                         <h4>{this.state.backColors}</h4>
                         <i className="fas fa-plus" onClick={() => this.incrimentColor('back')}></i>
-                        <span></span>
+                        <MediaQuery minWidth={550}>
+                          <span></span>
+                        </MediaQuery>
                       </div>
                     </div>
-                    <div className="section">
+                    <MediaQuery className="section" minWidth={550}>
                       <h3 className="flex jc-c ai-c">Left Sleeve Colors</h3>
                       <div className="bottom-portion flex ai-c jc-c">
                         <i className="fas fa-minus" onClick={() => this.decrimentColor('leftSleeve')}></i>
@@ -239,17 +246,19 @@ class ProductBuilder extends Component {
                         <i className="fas fa-plus" onClick={() => this.incrimentColor('leftSleeve')}></i>
                         <span></span>
                       </div>
-                    </div>
-                    <div className="section">
+                    </MediaQuery>
+                    <MediaQuery className="section" minWidth={550}>
                       <h3>Right Sleeve Colors</h3>
                       <div className="bottom-portion flex ai-c jc-c">
                         <i className="fas fa-minus" onClick={() => this.decrimentColor('rightSleeve')}></i>
                         <h4>{this.state.rightSleeveColors}</h4>
                         <i className="fas fa-plus" onClick={() => this.incrimentColor('rightSleeve')}></i>
                       </div>
-                    </div>
+                    </MediaQuery>
                   </div>
-                  <span className="space"></span>
+                  <MediaQuery minWidth={550}>
+                    <span className="space"></span>
+                  </MediaQuery>
                 </div>
               </div>
               <div className="step">
@@ -258,7 +267,9 @@ class ProductBuilder extends Component {
                   <h1>ADD ONS</h1>
                 </div>
                 <div className="content-wrapper flex">
-                  <span className="space"></span>
+                  <MediaQuery minWidth={550}>
+                    <span className="space"></span>
+                  </MediaQuery>
                   <div className="content add-ons">
                     <div className="section flex ai-c">
                       <div className="checkbox">
@@ -295,7 +306,9 @@ class ProductBuilder extends Component {
                       <h5> *100pcs Minimum</h5>
                     </div>
                   </div>
-                  <span className="space"></span>
+                  <MediaQuery minWidth={550}>
+                    <span className="space"></span>
+                  </MediaQuery>
                 </div>
               </div>
             </div>
@@ -303,14 +316,23 @@ class ProductBuilder extends Component {
               <div className="total-headers flex">
                 <span className="total-header flex ai-c jc-c">TOTAL</span>
                 <div className="headers flex ai-fe">
-                  <h5>Price Per Shirt:</h5>
+                  <h5>
+                    <MediaQuery minWidth={550}>
+                      Price Per Shirt:
+                    </MediaQuery>
+                  </h5>
                   <h5>Estimated Total:</h5>
                 </div>
               </div>
               <div className="content-wrapper flex">
-                <span className="space-large"></span>
+                <MediaQuery minWidth={550}>
+                  <span className="space-large"></span>
+                </MediaQuery>
                 <div className="content total-content flex">
                   <div className="section flex fd-c ai-c jc-c">
+                    <MediaQuery maxWidth={550}>
+                      <h1>Price Per Shirt:</h1>
+                    </MediaQuery>
                     <div className="row flex">
                       <h2>
                         <NumberFormat value={this.state.totalPerShirt} displayType={'text'}
@@ -319,10 +341,10 @@ class ProductBuilder extends Component {
                       <h3 className="divider">/</h3>
                       <h3>Shirt</h3>
                     </div>
-                    <div className="row flex">
+                    <MediaQuery className="row flex" minWidth={550}>
                       <h5>2XL - $2.50 more.</h5>
                       <h5>3XL - $3.50 more.</h5>
-                    </div>
+                    </MediaQuery>
                   </div>
                   <div className="section flex fd-c jc-c">
                     <div className="row">
@@ -339,12 +361,19 @@ class ProductBuilder extends Component {
                     </div>
                   </div>
                 </div>
-                <span className="space"></span>
+                <MediaQuery minWidth={550}>
+                  <span className="space"></span>
+                </MediaQuery>
               </div>
+              <MediaQuery maxWidth={550}>
+                <div className="action-buttons">
+                  <button className="add-to-quote">ADD TO QUOTE</button>
+                </div>
+              </MediaQuery>
             </div>
           </div>
           <div className="right side">
-            <div className="side-buttons flex fd-c">
+            <div className="side-buttons-left flex fd-c">
               <span onClick={() => this.toggleShownSide(0)}>
                 <img src={frontSideButton} />
               </span>
@@ -352,6 +381,13 @@ class ProductBuilder extends Component {
                 <img src={backSideButton} />
               </span>
             </div>
+            <MediaQuery maxWidth={550}>
+              <div className="side-buttons-right">
+                <span onClick={() => document.getElementById('inputButton').click()}>
+                  <i className="fas fa-plus-circle"></i>
+                </span>
+              </div>
+            </MediaQuery>
             <div id="back-side" className="product-image"
               style={this.state.shownSide ? {"zIndex": 1} : {"zIndex": 0}}>
               <img src={this.state.product.images[this.state.selectedHex][1]} />
@@ -362,17 +398,20 @@ class ProductBuilder extends Component {
               <img src={this.state.product.images[this.state.selectedHex][0]} />
               <PrintArea uploaded={this.state.uploaded.front} removeImage={this.removeImage} />
             </div>
-            <div className="action-buttons flex jc-sb">
+            <MediaQuery className="action-buttons flex jc-sb" minWidth={550}>
               <button className="download" onClick={this.downloadMockup}>DOWNLOAD</button>
               <button className="download" onClick={
                 () => document.getElementById('inputButton').click()
               }>UPLOAD</button>
               <button className="add-to-quote">ADD TO QUOTE</button>
-              <input id="inputButton" type="file" accept="image/x-png,image/jpeg"
-                onChange={this.storeFile} />
-            </div>
+            </MediaQuery>
+            <input id="inputButton" type="file" accept="image/x-png,image/jpeg"
+              onChange={this.storeFile} />
           </div>
         </div>
+        <MediaQuery maxWidth={1200}>
+          <Footer />
+        </MediaQuery>
       </div>
     );
   }
