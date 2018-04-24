@@ -15,6 +15,10 @@ textarea {
   font-family: 'Avenir', 'Open Sans', sans-serif;
 }
 
+button, textarea, input, select {
+  outline: none;
+}
+
 .App {
   height: 100%;
   min-height: 100vh;

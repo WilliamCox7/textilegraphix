@@ -1,5 +1,6 @@
 const ADD = 'cart/ADD';
 const UPD = 'cart/UPD';
+const REM = 'cart/REM';
 
 let orders = localStorage.getItem('orders');
 orders = JSON.parse(orders);
@@ -26,6 +27,14 @@ export default function reducer(state=initState, action) {
       });
       return Object.assign({}, state, editState);
 
+    case REM:
+      editState.orders.forEach((order, i) => {
+        if (order.guid === action.payload) {
+          editState.orders.splice(i, 1);
+        }
+      });
+      return Object.assign({}, state, editState);
+
     default: return state;
 
   }
@@ -42,5 +51,12 @@ export function updOrder(order) {
   return {
     type: UPD,
     payload: order
+  }
+}
+
+export function removeOrder(guid) {
+  return {
+    type: REM,
+    payload: guid
   }
 }
