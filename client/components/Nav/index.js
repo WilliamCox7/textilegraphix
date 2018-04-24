@@ -50,7 +50,7 @@ class Nav extends Component {
           </MediaQuery>
           <Link to="order" className="cart">
             <img src={shoppingCart} />
-            <span className="flex jc-c ai-c">{this.props.cart.products.length}</span>
+            <span className="flex jc-c ai-c">{this.props.cart.orders.length}</span>
           </Link>
         </div>
       </div>

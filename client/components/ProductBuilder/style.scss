@@ -163,7 +163,7 @@
                 position: absolute;
                 right: 0;
                 height: 100%;
-                border-left: solid 1px $gray-border;
+                border-left: solid 1px $gray-2;
               }
             }
           }
@@ -295,7 +295,7 @@
           }
         }
       }
-      .product-image {
+      .product-image-wrapper {
         text-align: center;
         position: absolute;
         margin: auto;
@@ -321,6 +321,9 @@
       }
       #inputButton {
         display: none;
+      }
+      #front-side, #back-side {
+        position: relative;
       }
     }
   }

@@ -1,7 +1,8 @@
 import { React, Component, NumberFormat, domtoimage, moment, jszip, saveAs, MediaQuery, connect } from '../../packages';
 import { closeXWhite, frontSideButton, backSideButton } from '../../assets';
+import { calculateTotalCost } from '../_modules';
 import { PrintArea, Footer } from '../';
-import { addProduct } from '../../reducers/cart';
+import { addOrder } from '../../reducers/cart';
 import './style.scss';
 
 const endOfYear = [
@@ -33,7 +34,15 @@ class ProductBuilder extends Component {
       uploaded: {
         front: [],
         back: []
-      }
+      },
+      XS: "",
+      S: "",
+      M: "",
+      L: "",
+      XL: "",
+      XL2: "",
+      XL3: "",
+      XL4: ""
     }
     this.updateColor = this.updateColor.bind(this);
     this.updateQuantity = this.updateQuantity.bind(this);
@@ -115,18 +124,8 @@ class ProductBuilder extends Component {
   }
 
   calculateTotalCost(state) {
-    let total = 0, totalPerShirt = 0;
-    const baseShirtCost = 5;
-    total += baseShirtCost * state.quantity;
-    total += state.frontColors * state.quantity;
-    total += state.backColors * state.quantity;
-    total += state.leftSleeveColors * state.quantity;
-    total += state.rightSleeveColors * state.quantity;
-    total += state.foldedAndBagged ? .4 * state.quantity : 0;
-    total += state.insideTagPrinting ? 1.15 * state.quantity : 0;
-    total += state.hemTags ? 2.25 * state.quantity : 0;
-    totalPerShirt = total === 0 ? 0 : total / state.quantity;
-    this.setState({total: total, totalPerShirt: totalPerShirt});
+    let results = calculateTotalCost(this.state);
+    this.setState({total: results.totalCost, totalPerShirt: results.costPerShirt});
   }
 
   toggleShownSide(side) {
@@ -181,19 +180,27 @@ class ProductBuilder extends Component {
 
   addProductToCart() {
     let newState = Object.assign({}, this.state);
+    newState.guid = this.createGuid();
     var front = document.getElementById("front-side");
     var back = document.getElementById("back-side");
     var promises = [
-      domtoimage.toBlob(front),
-      domtoimage.toBlob(back)
+      domtoimage.toPng(front),
+      domtoimage.toPng(back)
     ]
     Promise.all(promises).then((mockup) => {
       newState.mockup = mockup;
       this.setState(newState, () => {
-        this.props.addProduct(this.state);
+        this.props.addOrder(this.state);
         this.props.toggleBuilder();
       });
     });
+  }
+
+  createGuid() {
+    function s4() {
+      return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+    }
+    return s4() + s4();
   }
 
   render() {
@@ -413,15 +420,19 @@ class ProductBuilder extends Component {
                 </span>
               </div>
             </MediaQuery>
-            <div id="back-side" className="product-image"
+            <div className="product-image-wrapper flex jc-c"
               style={this.state.shownSide ? {"zIndex": 1} : {"zIndex": 0}}>
-              <img src={this.state.product.images[this.state.selectedHex][1]} />
-              <PrintArea uploaded={this.state.uploaded.back} removeImage={this.removeImage} />
+              <div id="back-side">
+                <img src={this.state.product.images[this.state.selectedHex][1]} />
+                <PrintArea uploaded={this.state.uploaded.back} removeImage={this.removeImage} />
+              </div>
             </div>
-            <div id="front-side" className="product-image"
+            <div className="product-image-wrapper flex jc-c"
               style={this.state.shownSide ? {"zIndex": 0} : {"zIndex": 1}}>
-              <img src={this.state.product.images[this.state.selectedHex][0]} />
-              <PrintArea uploaded={this.state.uploaded.front} removeImage={this.removeImage} />
+              <div id="front-side">
+                <img src={this.state.product.images[this.state.selectedHex][0]} />
+                <PrintArea uploaded={this.state.uploaded.front} removeImage={this.removeImage} />
+              </div>
             </div>
             <MediaQuery className="action-buttons flex jc-sb" minWidth={550}>
               <button className="download fs-18 c-white" onClick={this.downloadMockup}>DOWNLOAD</button>
@@ -443,7 +454,7 @@ class ProductBuilder extends Component {
 }
 
 const mapDispatchToProps = {
-  addProduct: addProduct
+  addOrder: addOrder
 }
 
 export default connect(null, mapDispatchToProps)(ProductBuilder);

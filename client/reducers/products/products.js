@@ -17,6 +17,7 @@ export const products = [
     },
     brand: "Next Level Apparel",
     number: 22104,
+    costOfShirt: 2,
     description: "60% combined cotton, 40% polyester",
     type: "t-shirts",
     colors: [
@@ -52,6 +53,7 @@ export const products = [
     },
     brand: "Haynes",
     number: 22104,
+    costOfShirt: 2,
     description: "60% combined cotton, 40% polyester",
     type: "hoodies",
     colors: [
@@ -87,6 +89,7 @@ export const products = [
     },
     brand: "American Eagle",
     number: 22104,
+    costOfShirt: 2,
     description: "60% combined cotton, 40% polyester",
     type: "long sleeve shirt",
     colors: [
@@ -122,6 +125,7 @@ export const products = [
     },
     brand: "American Eagle",
     number: 22104,
+    costOfShirt: 2,
     description: "60% combined cotton, 40% polyester",
     type: "t-shirts",
     colors: [
@@ -157,6 +161,7 @@ export const products = [
     },
     brand: "Next Level Apparel",
     number: 22104,
+    costOfShirt: 2,
     description: "60% combined cotton, 40% polyester",
     type: "hoodies",
     colors: [
@@ -192,6 +197,7 @@ export const products = [
     },
     brand: "Western Family",
     number: 22104,
+    costOfShirt: 2,
     description: "60% combined cotton, 40% polyester",
     type: "long sleeve shirt",
     colors: [
@@ -227,6 +233,7 @@ export const products = [
     },
     brand: "H & M",
     number: 22104,
+    costOfShirt: 2,
     description: "60% combined cotton, 40% polyester",
     type: "t-shirts",
     colors: [
@@ -262,6 +269,7 @@ export const products = [
     },
     brand: "American Eagle",
     number: 22104,
+    costOfShirt: 2,
     description: "60% combined cotton, 40% polyester",
     type: "hoodies",
     colors: [
@@ -297,6 +305,7 @@ export const products = [
     },
     brand: "American Eagle",
     number: 22104,
+    costOfShirt: 2,
     description: "60% combined cotton, 40% polyester",
     type: "long sleeve shirt",
     colors: [

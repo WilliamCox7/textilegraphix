@@ -34,6 +34,7 @@ import tShirtThumb from './t-shirt-thumb.svg';
 import frontSideButton from './front-side-button.svg';
 import backSideButton from './back-side-button.svg';
 import resize from './resize.svg';
+import garbage from './garbage.svg';
 
 export {
   logoTextBlack,
@@ -71,5 +72,6 @@ export {
   tShirtThumb,
   frontSideButton,
   backSideButton,
-  resize
+  resize,
+  garbage
 }
