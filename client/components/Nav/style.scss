@@ -1,72 +1,149 @@
 @import "../../vars.scss";
 
-.Nav {
-  padding: 88px 40px 40px;
-  max-width: $max-width;
-  margin: auto;
-  position: relative;
-  background: white;
-  @media(max-width: 1200px) {
-    z-index: 2;
-  }
-  @media(max-width: 1040px) {
-    padding: 40px;
-  }
-  hr {
-    position: absolute;
-    width: calc(100% - 80px);
-    bottom: 0;
-  }
-  button.fs-12 {
-    background: $blue;
-    padding: 7px 15px;
-    border: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    border-radius: 5px;
-    border-top-left-radius: inherit;
-  }
-  .logo {
-    height: 34px;
-    @media(max-width: 770px) {
-      height: 22px;
-    }
-    @media(max-width: 450px) {
-      height: 20px;
-    }
-  }
-  a.fs-20 {
-    text-decoration: none;
-  }
-  .routes {
-    margin-right: 30px;
-    a.fs-20 {
-      margin-right: 80px;
-    }
-  }
-  i.fa-search {
-    margin-right: 110px;
-    cursor: pointer;
-  }
-  .cart {
+.nav-wrapper {
+  .Nav {
+    padding: 88px 40px 40px;
+    max-width: $max-width;
+    margin: auto;
     position: relative;
-    img {
-      height: 50px;
+    background: white;
+    @media(max-width: 1200px) {
+      z-index: 2;
+    }
+    @media(max-width: 1040px) {
+      padding: 40px;
+    }
+    hr {
+      position: absolute;
+      width: calc(100% - 80px);
+      bottom: 0;
+    }
+    button.fs-12 {
+      background: $blue;
+      padding: 7px 15px;
+      border: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-radius: 5px;
+      border-top-left-radius: inherit;
+    }
+    .logo {
+      height: 34px;
+      @media(max-width: 770px) {
+        height: 22px;
+      }
       @media(max-width: 450px) {
-        height: 34px;
+        height: 20px;
       }
     }
-    span {
-      position: absolute;
-      top: 0px;
-      right: 0px;
-      color: white;
-      font-size: 11px;
-      background: $blue;
-      width: 17px;
-      height: 17px;
-      border-radius: 50%;
+    a.fs-20 {
+      text-decoration: none;
+    }
+    .routes {
+      margin-right: 30px;
+      a.fs-20 {
+        margin-right: 80px;
+      }
+    }
+    .search {
+      margin-right: 110px;
+      position: relative;
+      i.fa-search {
+        cursor: pointer;
+        margin-right: 10px;
+      }
+      input {
+        width: 0px;
+        padding: 3px 0px;
+        -webkit-transition: width .5s ease;
+        transition: width .5s ease;
+        border: none;
+        border-bottom: solid 1px $gray-3;
+        &::-webkit-input-placeholder {
+          color: $gray-3;
+        }
+        &:-ms-input-placeholder {
+          color: $gray-3;
+        }
+        &::-ms-input-placeholder {
+          color: $gray-3;
+        }
+        &::placeholder {
+          color: $gray-3;
+        }
+      }
+      .search-results {
+        cursor: pointer;
+        position: absolute;
+        left: -58px;
+        z-index: 2;
+        padding: 10px;
+        top: 45px;
+        background: white;
+        -webkit-box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.12);
+        box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.12);
+        .search-product {
+          height: 50px;
+          width: 275px;
+          span {
+            height: 100%;
+            margin-bottom: -14px;
+            img {
+              height: 100%;
+              margin-right: 18px;
+            }
+          }
+          &:hover {
+            h1 {
+              color: $blue;
+            }
+          }
+        }
+      }
+    }
+    .cart {
+      position: relative;
+      img {
+        height: 50px;
+        @media(max-width: 450px) {
+          height: 34px;
+        }
+      }
+      span {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        color: white;
+        font-size: 11px;
+        background: $blue;
+        width: 17px;
+        height: 17px;
+        border-radius: 50%;
+      }
+    }
+  }
+  .product-builder-positioner {
+    position: relative;
+    max-width: $max-width;
+    margin: 0px 40px;
+    @media(max-width: 1200px) {
+      margin: auto;
+    }
+    .ProductBuilder {
+      z-index: 3;
+    }
+    .gray-overlay {
+      position: fixed;
+      z-index: 2;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(230, 230, 230, 0.8);
+      @media(max-width: 1200px) {
+        z-index: 1;
+      }
     }
   }
 }
