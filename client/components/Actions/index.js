@@ -22,7 +22,7 @@ class Actions extends Component {
               <h1 className="fs-25 c-black">CALL US</h1>
               <p className="fs-18 c-black">+1 (888) 440 - 2515</p>
             </a>
-            <a className="tile flex fd-c jc-sb ai-c">
+            <a href="javascript:$zopim.livechat.window.show();" className="tile flex fd-c jc-sb ai-c">
               <img src={chat} />
               <h1 className="fs-25 c-black"></h1>
               <button>
