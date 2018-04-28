@@ -197,7 +197,7 @@ class Order extends Component {
         <div className="flex">
           <div className="left">
             <input className="project-name fs-34 c-gray-1 fw-bold" type="text" placeholder="Project Name"
-              onChange={this.updateInput} value={this.state.projectName} />
+              onChange={this.updateInput} value={this.state.projectName} name="projectName" />
             <MediaQuery maxWidth={1400}>
               <div className="mockup flex jc-c">
                 <div className="side-buttons-left flex fd-c">

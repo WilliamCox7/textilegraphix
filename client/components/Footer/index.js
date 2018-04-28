@@ -11,10 +11,10 @@ class Footer extends Component {
             <img src={logoWhite} />
           </Link>
           <MediaQuery className="social-media" minWidth={755}>
-            <a href="" target="_blank">
+            <a href="https://www.facebook.com/textilegraphix/" target="_blank">
               <img className="social" src={fb} />
             </a>
-            <a href="" target="_blank">
+            <a href="https://www.instagram.com/textilegraphix/" target="_blank">
               <img className="social" src={insta} />
             </a>
           </MediaQuery>
