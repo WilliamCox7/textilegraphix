@@ -1,6 +1,6 @@
-import { React, Component, connect, NumberFormat, MediaQuery } from '../../packages';
+import { React, Component, connect, NumberFormat, MediaQuery, axios } from '../../packages';
 import { garbage, frontSideButton, backSideButton } from '../../assets';
-import { calculateTotalCost } from '../_modules';
+import { calculateTotalCost, buildOrderHtml } from '../_modules';
 import { updOrder, removeOrder } from '../../reducers/cart';
 import './style.scss';
 
@@ -30,6 +30,7 @@ class Order extends Component {
     this.updateInput = this.updateInput.bind(this);
     this.sendOrder = this.sendOrder.bind(this);
     this.removeOrder = this.removeOrder.bind(this);
+    this.prepareAttachments = this.prepareAttachments.bind(this);
   }
 
   calculateTotalCost(order) {
@@ -88,10 +89,51 @@ class Order extends Component {
   sendOrder() {
     if (this.state.first && this.state.last && this.state.phone
       && this.state.email && this.state.email === this.state.confirm) {
-
+      axios.post('/order', {
+        to: this.state.email,
+        from: `${this.state.first} ${this.state.last}`,
+        order: buildOrderHtml(this.state, this.props.cart.orders),
+        attachments: this.prepareAttachments()
+      });
     } else {
       this.setState({error: true});
     }
+  }
+
+  prepareAttachments() {
+    let attachments = [];
+    this.props.cart.orders.forEach((order) => {
+      attachments.push({
+        filename: `${order.guid}-front.png`,
+        path: order.mockup[0]
+      });
+      attachments.push({
+        filename: `${order.guid}-back.png`,
+        path: order.mockup[1]
+      });
+      order.uploaded.front.forEach((upload, i) => {
+        var ext = upload.name.split('.').pop();
+        attachments.push({
+          filename: `${order.guid}-${i+1}-upload-front.${ext}`,
+          path: upload.src
+        });
+      });
+      order.uploaded.back.forEach((upload, i) => {
+        var ext = upload.name.split('.').pop();
+        attachments.push({
+          filename: `${order.guid}-${i+1}-upload-back.${ext}`,
+          path: upload.src
+        });
+      });
+    });
+    this.state.files.forEach((file, i) => {
+      var ext = file.name.split('.').pop();
+      attachments.push({
+        filename: `other-uploads-${i+1}-other-upload.${ext}`,
+        path: file.data
+      });
+    });
+    return attachments;
   }
 
   removeOrder(guid) {
