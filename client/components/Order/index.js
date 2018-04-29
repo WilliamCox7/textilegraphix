@@ -1,5 +1,5 @@
 import { React, Component, connect, NumberFormat, MediaQuery, axios } from '../../packages';
-import { garbage, frontSideButton, backSideButton } from '../../assets';
+import { garbage, frontSideButton, backSideButton, thumbsUp, closeXBlack } from '../../assets';
 import { calculateTotalCost, buildOrderHtml } from '../_modules';
 import { updOrder, removeOrder } from '../../reducers/cart';
 import './style.scss';
@@ -20,7 +20,8 @@ class Order extends Component {
       phone: '',
       email: '',
       confirm: '',
-      error: false
+      error: false,
+      thankyou: false
     }
     this.selectOrderMockup = this.selectOrderMockup.bind(this);
     this.toggleMockup = this.toggleMockup.bind(this);
@@ -31,6 +32,7 @@ class Order extends Component {
     this.sendOrder = this.sendOrder.bind(this);
     this.removeOrder = this.removeOrder.bind(this);
     this.prepareAttachments = this.prepareAttachments.bind(this);
+    this.toggleThankYou = this.toggleThankYou.bind(this);
   }
 
   calculateTotalCost(order) {
@@ -94,6 +96,8 @@ class Order extends Component {
         from: `${this.state.first} ${this.state.last}`,
         order: buildOrderHtml(this.state, this.props.cart.orders),
         attachments: this.prepareAttachments()
+      }).then((response) => {
+        this.toggleThankYou();
       });
     } else {
       this.setState({error: true});
@@ -148,6 +152,10 @@ class Order extends Component {
       }
     }
     this.props.removeOrder(guid);
+  }
+
+  toggleThankYou() {
+    this.setState({thankyou: !this.state.thankyou});
   }
 
   render() {
@@ -316,7 +324,7 @@ class Order extends Component {
                 </p>
                 <MediaQuery className="delivery" maxWidth={550}>
                   <h1 className="fs-20 c-gray-3">Est. Delivery</h1>
-                  <h1 className="fs-24 c-gray-1 fw-bold">{this.props.cart.orders[0].delivery}</h1>
+                  <h1 className="fs-24 c-gray-1 fw-bold">{this.props.cart.orders.length ? this.props.cart.orders[0].delivery : null}</h1>
                 </MediaQuery>
                 {this.state.error ? (
                   <h1 className="fs-16 fw-bold" style={{'color': 'red'}}>
@@ -354,6 +362,14 @@ class Order extends Component {
             </div>
           </div>
         </div>
+        {this.state.thankyou ? (
+          <div className="thank-you flex jc-c ai-c fd-c">
+            <span className="thumbs-up"><img src={thumbsUp} /></span>
+            <h1 className="fs-30 c-black fw-bold">Thanks for the Inquery!</h1>
+            <h1 className="fs-18 c-black">One of our staff members will be in contact with you shortly!</h1>
+            <span className="close" onClick={this.toggleThankYou}><img src={closeXBlack} /></span>
+          </div>
+        ) : null}
       </div>
     );
   }

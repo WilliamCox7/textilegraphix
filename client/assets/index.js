@@ -22,6 +22,7 @@ import logoWhite from './logo-white.svg';
 import closeX from './close-x.svg';
 import closeXWhite from './close-x-white.svg';
 import closeXRed from './close-x-red.svg';
+import closeXBlack from './close-x-black.svg';
 import tshirtback from './tshirtback.png';
 import tshirtfront from './tshirtfront.png';
 import tshirtleft from './tshirtleft.png';
@@ -35,6 +36,7 @@ import frontSideButton from './front-side-button.svg';
 import backSideButton from './back-side-button.svg';
 import resize from './resize.svg';
 import garbage from './garbage.svg';
+import thumbsUp from './thumbs-up.svg';
 
 export {
   logoTextBlack,
@@ -61,6 +63,7 @@ export {
   closeX,
   closeXWhite,
   closeXRed,
+  closeXBlack,
   tshirtback,
   tshirtfront,
   tshirtleft,
@@ -73,5 +76,6 @@ export {
   frontSideButton,
   backSideButton,
   resize,
-  garbage
+  garbage,
+  thumbsUp
 }

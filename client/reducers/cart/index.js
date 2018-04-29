@@ -2,12 +2,8 @@ const ADD = 'cart/ADD';
 const UPD = 'cart/UPD';
 const REM = 'cart/REM';
 
-let orders = localStorage.getItem('orders');
-orders = JSON.parse(orders);
-if (!orders) orders = [];
-
 const initState = {
-  orders: orders
+  orders: []
 };
 
 export default function reducer(state=initState, action) {
@@ -16,7 +12,6 @@ export default function reducer(state=initState, action) {
 
     case ADD:
       editState.orders.push(action.payload);
-      localStorage.setItem('orders', JSON.stringify(editState.orders));
       return Object.assign({}, state, editState);
 
     case UPD:
