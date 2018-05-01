@@ -4,7 +4,7 @@ const GRAPHIX = {
   production: {
     email: 'textilegraphix@gmail.com',
     to: 'design@textilegraphix.com',
-    password: 'xxx'
+    password: 'Dell1992'
   },
 
   development: {
