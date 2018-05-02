@@ -3,15 +3,8 @@
 .Section2 {
   background: $gray-5;
   text-align: center;
-  margin-top: 800px;
   width: 100%;
   padding: 60px;
-  @media(max-width: 1040px) {
-    margin-top: 700px;
-  }
-  @media(max-width: 755px) {
-    margin-top: 0px;
-  }
   .wrapper {
     width: 580px;
     margin: auto;
@@ -29,7 +22,7 @@
       }
     }
     p.fs-30 {
-      line-height: 26px;
+      line-height: 38px;
       @media(max-width: 700px) {
         font-size: 18px;
       }

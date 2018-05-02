@@ -5,7 +5,6 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Switch, Route, Link, withRouter } from "react-router-dom";
 import thunk from 'redux-thunk';
 import axios from 'axios';
-import { Parallax, Background } from 'react-parallax';
 import Draggable from 'react-draggable';
 import moment from 'moment';
 import domtoimage from 'dom-to-image';
@@ -22,7 +21,6 @@ export {
   BrowserRouter, Switch, Link, Route, withRouter,
   thunk,
   axios,
-  Parallax, Background,
   Draggable,
   moment,
   domtoimage,

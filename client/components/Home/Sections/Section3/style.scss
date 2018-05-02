@@ -3,22 +3,6 @@
 .Section3 {
   background: $blue;
   padding: 70px 0px;
-  margin-bottom: 2300px;
-  @media(max-width: 1400px) {
-    margin-bottom: 2800px;
-  }
-  @media(max-width: 1364px) {
-    margin-bottom: 3000px;
-  }
-  @media(max-width: 980px) {
-    margin-bottom: 3200px;
-  }
-  @media(max-width: 799px) {
-    margin-bottom: 5000px;
-  }
-  @media(max-width: 755px) {
-    margin-bottom: 0px;
-  }
   .body-wrapper {
     padding: 20px;
     @media(max-width: 980px) {
