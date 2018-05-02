@@ -16,11 +16,9 @@ const GRAPHIX = {
 }
 
 const ERROR = {
-
   email: 'willubyu7@gmail.com',
   to: 'willubyu7@gmail.com',
   password: 'DonMitch45'
-
 }
 
 // this determines what environment the server is running in

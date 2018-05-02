@@ -98,6 +98,8 @@ class Order extends Component {
         attachments: this.prepareAttachments()
       }).then((response) => {
         this.toggleThankYou();
+      }).catch((error) => {
+        axios.post('/error', {error: error});
       });
     } else {
       this.setState({error: true});

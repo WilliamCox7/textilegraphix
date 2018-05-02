@@ -1,14 +1,16 @@
-const nodemailer = require('nodemailer');
 const config = require('../config');
+const nodemailer = require('nodemailer');
 
 module.exports = (order, to, attachments) => {
 
+  var auth = {
+    user: config.graphix.email,
+    pass: config.graphix.password
+  }
+
   var transporter = nodemailer.createTransport({
     service: 'Gmail',
-    auth: {
-      user: config.graphix.email,
-      pass: config.graphix.password
-    }
+    auth: auth
   });
 
   var options = {
