@@ -9,18 +9,26 @@ class Menu extends Component {
       <div className="Menu">
         <div className="close flex jc-fe ai-c">
           <h1 className="fs-36 c-blue">MENU</h1>
-          <img onClick={this.props.toggleMenu} src={closeX} />
+          <img onClick={() => {
+            this.props.toggleMenu(); this.props.cancelBuilder();
+          }} src={closeX} />
         </div>
         <div className="links flex jc-sa fd-c ai-c">
-          <Link onClick={this.props.toggleMenu} to="/" className="fs-40 c-white">
+          <Link onClick={() => {
+            this.props.toggleMenu(); this.props.cancelBuilder();
+          }} to="/" className="fs-40 c-white">
             HOME
           </Link>
           <hr />
-          <Link onClick={this.props.toggleMenu} to="products" className="fs-40 c-white">
+          <Link onClick={() => {
+            this.props.toggleMenu(); this.props.cancelBuilder();
+          }} to="products" className="fs-40 c-white">
             PRODUCTS
           </Link>
           <hr />
-          <Link onClick={this.props.toggleMenu} to="support" className="fs-40 c-white">
+          <Link onClick={() => {
+            this.props.toggleMenu(); this.props.cancelBuilder();
+          }} to="support" className="fs-40 c-white">
             SUPPORT
           </Link>
           <hr />

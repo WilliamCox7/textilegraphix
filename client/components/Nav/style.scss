@@ -17,6 +17,8 @@
       position: absolute;
       width: calc(100% - 80px);
       bottom: 0;
+      border-width: 0.5px;
+      border-color: $gray-4;
     }
     button.fs-12 {
       background: $blue;

@@ -22,6 +22,7 @@ class Nav extends Component {
     this.toggleBuilder = this.toggleBuilder.bind(this);
     this.setProduct = this.setProduct.bind(this);
     this.closeAll = this.closeAll.bind(this);
+    this.cancelBuilder = this.cancelBuilder.bind(this);
   }
 
   componentDidMount() {
@@ -56,7 +57,16 @@ class Nav extends Component {
   }
 
   toggleOverlay() {
-    this.setState({overlay: !this.state.overlay});
+    this.setState({overlay: !this.state.overlay}, () => {
+      let className;
+      if (window.location.pathname === '/') className = 'Home';
+      else if (window.location.pathname === '/products') className = 'Products';
+      else if (window.location.pathname === '/support') className = 'Support';
+      else if (window.location.pathname === '/order') className = 'Order';
+      this.state.overlay
+        ? document.getElementsByClassName(className)[0].style.position = 'fixed'
+        : document.getElementsByClassName(className)[0].style.position = 'inherit';
+    });
   }
 
   updateSearchText(e) {
@@ -66,6 +76,17 @@ class Nav extends Component {
   toggleBuilder() {
     this.setState({builder: !this.state.builder});
     this.toggleOverlay();
+  }
+
+  cancelBuilder() {
+    this.setState({builder: false, overlay: false}, () => {
+      let className;
+      if (window.location.pathname === '/') className = 'Home';
+      else if (window.location.pathname === '/products') className = 'Products';
+      else if (window.location.pathname === '/support') className = 'Support';
+      else if (window.location.pathname === '/order') className = 'Order';
+      document.getElementsByClassName(className)[0].style.position = 'inherit';
+    });
   }
 
   closeAll() {
@@ -91,24 +112,22 @@ class Nav extends Component {
     return (
       <div className="nav-wrapper">
         <div className="Nav flex jc-sb ai-c">
-          <MediaQuery maxWidth={650}>
-            <hr />
-          </MediaQuery>
+          <hr />
           <MediaQuery maxWidth={1150}>
             <button onClick={this.toggleMenu} className="fs-12 c-white">MENU</button>
           </MediaQuery>
           {this.state.menu ? (
-            <Menu toggleMenu={this.toggleMenu} />
+            <Menu toggleMenu={this.toggleMenu} cancelBuilder={this.cancelBuilder} />
           ) : null}
-          <Link to="/">
+          <Link to="/" onClick={this.cancelBuilder}>
             <img className="logo" src={logoTextBlack} />
           </Link>
           <div className="flex ai-c">
             <MediaQuery className="routes" minWidth={1150}>
-              <Link to="products" className="fs-20 c-black fw-bold">
+              <Link to="products" onClick={this.cancelBuilder} className="fs-20 c-black fw-bold">
                 Products
               </Link>
-              <Link to="support" className="fs-20 c-black fw-bold">
+              <Link to="support" onClick={this.cancelBuilder} className="fs-20 c-black fw-bold">
                 Support
               </Link>
             </MediaQuery>
@@ -122,7 +141,7 @@ class Nav extends Component {
                 </div>
               ) : null}
             </MediaQuery>
-            <Link to="order" className="cart">
+            <Link to="order" className="cart" onClick={this.cancelBuilder}>
               <img src={shoppingCart} />
               <span className="flex jc-c ai-c">{this.props.cart.orders.length}</span>
             </Link>
