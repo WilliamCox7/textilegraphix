@@ -7,17 +7,42 @@
     <link rel="shortcut icon" href="./favicon.png">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
 
-    <!--Start of Zendesk Chat Script-->
-    <script type="text/javascript">
-    window.$zopim||(function(d,s){var z=$zopim=function(c){
-    z._.push(c)},$=z.s=
-    d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
-    _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
-    $.src='https://v2.zopim.com/?AgXZ1aeiH8cvzfGNACypY8Eo7uWeY72B';z.t=+new Date;$.
-    type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
+    <!--Start of Intercom Chat Script-->
+    <script>
+      (function() {
+        var w = window;
+        var ic = w.Intercom;
+        if (typeof ic === "function") {
+          ic('reattach_activator');
+          ic('update', intercomSettings);
+        } else {
+          var d = document;
+          var i = function() {
+            i.c(arguments)
+          };
+          i.q = [];
+          i.c = function(args) {
+            i.q.push(args)
+          };
+          w.Intercom = i;
+          function l() {
+            var s = d.createElement('script');
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = 'https://widget.intercom.io/widget/c1wl5hbi';
+            var x = d.getElementsByTagName('script')[0];
+            x.parentNode.insertBefore(s,x);
+          }
+          if (w.attachEvent) {
+            w.attachEvent('onload',l);
+          } else {
+            w.addEventListener('load', l, false);
+          }
+        }
+      })()
     </script>
-    <!--End of Zendesk Chat Script-->
-    
+    <!--End of Intercom Chat Script-->
+
   </head>
   <body>
     <div id="root"></div>

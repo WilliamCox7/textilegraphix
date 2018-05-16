@@ -5,6 +5,13 @@ import './main.scss';
 import './headers.scss';
 
 class App extends Component {
+
+  componentDidMount() {
+    window.Intercom("boot", {
+      app_id: "c1wl5hbi"
+    });
+  }
+
   render() {
     return (
       <BrowserRouter>

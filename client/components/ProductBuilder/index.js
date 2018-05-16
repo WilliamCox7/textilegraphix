@@ -1,7 +1,7 @@
 import { React, Component, NumberFormat, domtoimage, moment, jszip, saveAs, MediaQuery, connect } from '../../packages';
 import { closeXWhite, frontSideButton, backSideButton } from '../../assets';
 import { calculateTotalCost } from '../_modules';
-import { PrintArea, Footer } from '../';
+import { PrintArea, Footer, WaitIndicator } from '../';
 import { addOrder } from '../../reducers/cart';
 import './style.scss';
 
@@ -31,6 +31,8 @@ class ProductBuilder extends Component {
       totalPerShirt: 0,
       delivery: '',
       shownSide: 0,
+      showAddOns: false,
+      waiting: false,
       uploaded: {
         front: [],
         back: []
@@ -55,6 +57,8 @@ class ProductBuilder extends Component {
     this.storeFile = this.storeFile.bind(this);
     this.removeImage = this.removeImage.bind(this);
     this.addProductToCart = this.addProductToCart.bind(this);
+    this.toggleAddOns = this.toggleAddOns.bind(this);
+    this.toggleWaitIndicator = this.toggleWaitIndicator.bind(this);
   }
 
   componentDidMount() {
@@ -132,6 +136,10 @@ class ProductBuilder extends Component {
     this.setState({shownSide: side});
   }
 
+  toggleAddOns() {
+    this.setState({showAddOns: !this.state.showAddOns});
+  }
+
   downloadMockup() {
     var zip = new jszip();
     var folderName = "mockup-" + this.props.product.number;
@@ -178,7 +186,12 @@ class ProductBuilder extends Component {
     this.setState(newState);
   }
 
+  toggleWaitIndicator() {
+    this.setState({waiting: !this.state.waiting});
+  }
+
   addProductToCart() {
+    this.toggleWaitIndicator();
     let newState = Object.assign({}, this.state);
     newState.guid = this.createGuid();
     var front = document.getElementById("front-side");
@@ -192,6 +205,7 @@ class ProductBuilder extends Component {
       this.setState(newState, () => {
         this.props.addOrder(this.state);
         this.props.toggleBuilder();
+        this.toggleWaitIndicator();
       });
     });
   }
@@ -287,55 +301,64 @@ class ProductBuilder extends Component {
                   </MediaQuery>
                 </div>
               </div>
-              <div className="step">
+              <div className="step" style={this.state.showAddOns ? null : {"borderBottom": "solid 1px #D1D1D1"}}>
                 <div className="step-no flex ai-c">
                   <span className="flex ai-c jc-c fs-20 c-white">2.</span>
-                  <h1 className="fs-18 c-blue fw-bold">ADD ONS</h1>
+                  <h1 className="fs-18 c-blue fw-bold" onClick={this.toggleAddOns}>
+                    ADD ONS
+                    {this.state.showAddOns ? (
+                      <i className="fas fa-angle-down"></i>
+                    ) : (
+                      <i className="fas fa-angle-right"></i>
+                    )}
+                  </h1>
                 </div>
-                <div className="content-wrapper flex">
-                  <MediaQuery minWidth={550}>
-                    <span className="space"></span>
-                  </MediaQuery>
-                  <div className="content add-ons">
-                    <div className="section flex ai-c">
-                      <div className="checkbox">
-                        <label>
-                          <input type="checkbox" checked={this.state.foldedAndBagged}
-                            name="foldedAndBagged" onClick={this.updateCheckBox} />
-                          <span></span>
-                        </label>
+                {this.state.showAddOns ? (
+                  <div className="content-wrapper flex">
+                    <MediaQuery minWidth={550}>
+                      <span className="space"></span>
+                    </MediaQuery>
+                    <div className="content add-ons">
+                      <div className="section flex ai-c">
+                        <div className="checkbox">
+                          <label>
+                            <input type="checkbox" checked={this.state.foldedAndBagged}
+                              name="foldedAndBagged" onClick={this.updateCheckBox} />
+                            <span></span>
+                          </label>
+                        </div>
+                        <h1 className="fs-18 c-black fw-bold">Folded and Bagged - </h1>
+                        <h1 className="fs-18 c-gray-3 fw-bold"> $.40 / Shirt</h1>
                       </div>
-                      <h1 className="fs-18 c-black fw-bold">Folded and Bagged - </h1>
-                      <h1 className="fs-18 c-gray-3 fw-bold"> $.40 / Shirt</h1>
-                    </div>
-                    <div className="section flex ai-c">
-                      <div className="checkbox">
-                        <label>
-                          <input type="checkbox" checked={this.state.insideTagPrinting}
-                            name="insideTagPrinting" onClick={this.updateCheckBox} />
-                          <span></span>
-                        </label>
+                      <div className="section flex ai-c">
+                        <div className="checkbox">
+                          <label>
+                            <input type="checkbox" checked={this.state.insideTagPrinting}
+                              name="insideTagPrinting" onClick={this.updateCheckBox} />
+                            <span></span>
+                          </label>
+                        </div>
+                        <h1 className="fs-18 c-black fw-bold">Inside Tag Printing - </h1>
+                        <h1 className="fs-18 c-gray-3 fw-bold"> $1.15 / Shirt</h1>
                       </div>
-                      <h1 className="fs-18 c-black fw-bold">Inside Tag Printing - </h1>
-                      <h1 className="fs-18 c-gray-3 fw-bold"> $1.15 / Shirt</h1>
-                    </div>
-                    <div className="section flex ai-c">
-                      <div className="checkbox">
-                        <label>
-                          <input type="checkbox" checked={this.state.hemTags}
-                            name="hemTags" onClick={this.updateCheckBox} />
-                          <span></span>
-                        </label>
+                      <div className="section flex ai-c">
+                        <div className="checkbox">
+                          <label>
+                            <input type="checkbox" checked={this.state.hemTags}
+                              name="hemTags" onClick={this.updateCheckBox} />
+                            <span></span>
+                          </label>
+                        </div>
+                        <h1 className="fs-18 c-black fw-bold">Hem Tags - </h1>
+                        <h1 className="fs-18 c-gray-3 fw-bold"> $2.25 / Shirt </h1>
+                        <h1 className="fs-10 c-gray-3 fw-bold"> *100pcs Minimum</h1>
                       </div>
-                      <h1 className="fs-18 c-black fw-bold">Hem Tags - </h1>
-                      <h1 className="fs-18 c-gray-3 fw-bold"> $2.25 / Shirt </h1>
-                      <h1 className="fs-10 c-gray-3 fw-bold"> *100pcs Minimum</h1>
                     </div>
+                    <MediaQuery minWidth={550}>
+                      <span className="space"></span>
+                    </MediaQuery>
                   </div>
-                  <MediaQuery minWidth={550}>
-                    <span className="space"></span>
-                  </MediaQuery>
-                </div>
+                ) : null}
               </div>
             </div>
             <div className="total">
@@ -448,6 +471,7 @@ class ProductBuilder extends Component {
         <MediaQuery maxWidth={1200}>
           <Footer />
         </MediaQuery>
+        <WaitIndicator message="Preparing your cart..." waiting={this.state.waiting}></WaitIndicator>
       </div>
     );
   }

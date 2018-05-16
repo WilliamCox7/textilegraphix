@@ -11,6 +11,7 @@ import Product from './Product';
 import ProductBuilder from './ProductBuilder';
 import Actions from './Actions';
 import PrintArea from './PrintArea';
+import WaitIndicator from './WaitIndicator';
 
 export {
   Home,
@@ -25,5 +26,6 @@ export {
   Product,
   ProductBuilder,
   Actions,
-  PrintArea
+  PrintArea,
+  WaitIndicator
 }

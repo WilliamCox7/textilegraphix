@@ -2,6 +2,7 @@ import { React, Component, connect, NumberFormat, MediaQuery, axios } from '../.
 import { garbage, frontSideButton, backSideButton, thumbsUp, closeXBlack } from '../../assets';
 import { calculateTotalCost, buildOrderHtml } from '../_modules';
 import { updOrder, removeOrder } from '../../reducers/cart';
+import { WaitIndicator } from '../';
 import './style.scss';
 
 class Order extends Component {
@@ -21,7 +22,8 @@ class Order extends Component {
       email: '',
       confirm: '',
       error: false,
-      thankyou: false
+      thankyou: false,
+      waiting: false
     }
     this.selectOrderMockup = this.selectOrderMockup.bind(this);
     this.toggleMockup = this.toggleMockup.bind(this);
@@ -33,6 +35,7 @@ class Order extends Component {
     this.removeOrder = this.removeOrder.bind(this);
     this.prepareAttachments = this.prepareAttachments.bind(this);
     this.toggleThankYou = this.toggleThankYou.bind(this);
+    this.toggleWaitIndicator = this.toggleWaitIndicator.bind(this);
   }
 
   calculateTotalCost(order) {
@@ -89,8 +92,9 @@ class Order extends Component {
   }
 
   sendOrder() {
-    if (this.state.first && this.state.last && this.state.phone
-      && this.state.email && this.state.email === this.state.confirm) {
+    if (this.state.first && this.state.last && this.state.phone && this.state.email
+        && this.state.email.toLowerCase() === this.state.confirm.toLowerCase()) {
+      this.toggleWaitIndicator();
       axios.post('/order', {
         to: this.state.email,
         from: `${this.state.first} ${this.state.last}`,
@@ -98,6 +102,7 @@ class Order extends Component {
         attachments: this.prepareAttachments()
       }).then((response) => {
         this.toggleThankYou();
+        this.toggleWaitIndicator();
       }).catch((error) => {
         axios.post('/error', {error: error});
       });
@@ -149,6 +154,12 @@ class Order extends Component {
         if (guid !== this.props.cart.orders[index].guid) {
           this.selectOrderMockup(this.props.cart.orders[index]);
           foundUnselected = true;
+        } else if (this.props.cart.orders.length - 1 === index) {
+          this.selectOrderMockup({
+            mockup: undefined,
+            guid: undefined
+          });
+          foundUnselected = true;
         }
         index++;
       }
@@ -158,6 +169,10 @@ class Order extends Component {
 
   toggleThankYou() {
     this.setState({thankyou: !this.state.thankyou});
+  }
+
+  toggleWaitIndicator() {
+    this.setState({waiting: !this.state.waiting});
   }
 
   render() {
@@ -362,16 +377,17 @@ class Order extends Component {
                 </MediaQuery>
               </div>
             </div>
+            {this.state.thankyou ? (
+              <div className="thank-you flex jc-c ai-c fd-c">
+                <span className="thumbs-up"><img src={thumbsUp} /></span>
+                <h1 className="fs-30 c-black fw-bold">Thanks for the Inquery!</h1>
+                <h1 className="fs-18 c-black">One of our staff members will be in contact with you shortly!</h1>
+                <span className="close" onClick={this.toggleThankYou}><img src={closeXBlack} /></span>
+              </div>
+            ) : null}
           </div>
         </div>
-        {this.state.thankyou ? (
-          <div className="thank-you flex jc-c ai-c fd-c">
-            <span className="thumbs-up"><img src={thumbsUp} /></span>
-            <h1 className="fs-30 c-black fw-bold">Thanks for the Inquery!</h1>
-            <h1 className="fs-18 c-black">One of our staff members will be in contact with you shortly!</h1>
-            <span className="close" onClick={this.toggleThankYou}><img src={closeXBlack} /></span>
-          </div>
-        ) : null}
+        <WaitIndicator message="Placing your order..." waiting={this.state.waiting}></WaitIndicator>
       </div>
     );
   }

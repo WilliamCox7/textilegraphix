@@ -3,7 +3,7 @@
 .ProductBuilder {
   position: absolute;
   width: 100%;
-  top: 0;
+  top: -14px;
   left: 0;
   z-index: 1;
   height: 755px;
@@ -86,6 +86,10 @@
             }
             h1.fs-18 {
               margin-left: 10px;
+              cursor: pointer;
+              i {
+                margin-left: 6px;
+              }
             }
           }
         }
