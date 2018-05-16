@@ -1,7 +1,5 @@
 import logoTextBlack from './logo-text-black.svg';
 import shoppingCart from './shopping-cart.svg';
-import shirtModel from './shirt-model.png';
-import hoverDisplay from './hover-display.png';
 import logoBlack from './logo-black.svg';
 import graphixWheel from './graphix-wheel.png';
 import box from './box.svg';
@@ -37,45 +35,24 @@ import backSideButton from './back-side-button.svg';
 import resize from './resize.svg';
 import garbage from './garbage.svg';
 import thumbsUp from './thumbs-up.svg';
+import letUs from './let-us.png';
+import articles from './articles.png';
+import logosDesktop from './logos-desktop.png';
+import logosMobile from './logos-mobile.png';
+import shirtIconWhite from './shirt-icon-white.svg';
+import editWhite from './edit-white.svg';
+import clipboard from './clipboard.svg';
 
 export {
-  logoTextBlack,
-  shoppingCart,
-  shirtModel,
-  hoverDisplay,
-  logoBlack,
-  graphixWheel,
-  box,
-  fingerprint,
-  lightning,
-  support,
-  blackShirtsZoom,
-  blackShirtsFolded,
-  phone,
-  chat,
-  location,
-  email,
-  fbWhite,
-  instaWhite,
-  fbBlue,
-  instaBlue,
-  logoWhite,
-  closeX,
-  closeXWhite,
-  closeXRed,
-  closeXBlack,
-  tshirtback,
-  tshirtfront,
-  tshirtleft,
-  tshirtright,
-  radioEmpty,
-  radioFilled,
-  hoodieThumb,
-  longSleeveThumb,
-  tShirtThumb,
-  frontSideButton,
-  backSideButton,
-  resize,
-  garbage,
-  thumbsUp
+  logoTextBlack, shoppingCart, logoBlack, graphixWheel,
+  box, fingerprint, lightning, support,
+  blackShirtsZoom, blackShirtsFolded, phone, chat,
+  location, email, fbWhite, instaWhite,
+  fbBlue, instaBlue, logoWhite, closeX,
+  closeXWhite, closeXRed, closeXBlack, tshirtback,
+  tshirtfront, tshirtleft, tshirtright, radioEmpty,
+  radioFilled, hoodieThumb, longSleeveThumb, tShirtThumb,
+  frontSideButton, backSideButton, resize, garbage,
+  thumbsUp, letUs, articles, logosDesktop,
+  logosMobile, shirtIconWhite, editWhite, clipboard
 }

@@ -46,6 +46,7 @@
     "react-redux": "^4.4.6",
     "react-responsive": "^4.1.0",
     "react-router-dom": "^4.2.2",
+    "react-vimeo": "^2.0.0",
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0"
   }

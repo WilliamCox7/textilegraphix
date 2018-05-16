@@ -12,6 +12,7 @@ import jszip from 'jszip';
 import { saveAs } from 'file-saver';
 import NumberFormat from 'react-number-format';
 import MediaQuery from 'react-responsive';
+import Vimeo from 'react-vimeo';
 
 export {
   React, Component,
@@ -27,5 +28,6 @@ export {
   jszip,
   saveAs,
   NumberFormat,
-  MediaQuery
+  MediaQuery,
+  Vimeo
 }
