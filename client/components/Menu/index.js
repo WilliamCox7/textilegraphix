@@ -1,4 +1,5 @@
 import { React, Component, Link } from '../../packages';
+import { SocialMedia } from '../';
 import { closeX, fb, insta } from '../../assets';
 import './style.scss';
 
@@ -23,14 +24,7 @@ class Menu extends Component {
             SUPPORT
           </Link>
           <hr />
-          <div className="social-links flex jc-c">
-            <a href="https://www.facebook.com/textilegraphix/" target="_blank">
-              <img src={fb} />
-            </a>
-            <a href="https://www.instagram.com/textilegraphix/" target="_blank">
-              <img src={insta} />
-            </a>
-          </div>
+          <SocialMedia color="white" />
         </div>
       </div>
     );

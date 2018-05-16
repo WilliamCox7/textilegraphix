@@ -14,8 +14,8 @@ import phone from './phone.svg';
 import chat from './chat.svg';
 import location from './location.svg';
 import email from './email.svg';
-import fb from './fb.svg';
-import insta from './insta.svg';
+import fbWhite from './fb-white.svg';
+import instaWhite from './insta-white.svg';
 import fbBlue from './fb-blue.svg';
 import instaBlue from './insta-blue.svg';
 import logoWhite from './logo-white.svg';
@@ -55,8 +55,8 @@ export {
   chat,
   location,
   email,
-  fb,
-  insta,
+  fbWhite,
+  instaWhite,
   fbBlue,
   instaBlue,
   logoWhite,

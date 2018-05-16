@@ -12,6 +12,7 @@ import ProductBuilder from './ProductBuilder';
 import Actions from './Actions';
 import PrintArea from './PrintArea';
 import WaitIndicator from './WaitIndicator';
+import SocialMedia from './SocialMedia';
 
 export {
   Home,
@@ -27,5 +28,6 @@ export {
   ProductBuilder,
   Actions,
   PrintArea,
-  WaitIndicator
+  WaitIndicator,
+  SocialMedia
 }

@@ -1,4 +1,5 @@
 import { React, Component, Link, MediaQuery } from '../../packages';
+import { SocialMedia } from '../';
 import { logoWhite, fb, insta } from '../../assets';
 import './style.scss';
 
@@ -10,13 +11,8 @@ class Footer extends Component {
           <Link to="/" className="logo">
             <img src={logoWhite} />
           </Link>
-          <MediaQuery className="social-media" minWidth={755}>
-            <a href="https://www.facebook.com/textilegraphix/" target="_blank">
-              <img className="social" src={fb} />
-            </a>
-            <a href="https://www.instagram.com/textilegraphix/" target="_blank">
-              <img className="social" src={insta} />
-            </a>
+          <MediaQuery minWidth={755}>
+            <SocialMedia color="white" />
           </MediaQuery>
           <p className="fs-25 c-white">Copyright 2018. Textile Graphix, LLC</p>
         </div>
