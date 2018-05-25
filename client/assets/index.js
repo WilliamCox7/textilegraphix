@@ -29,6 +29,7 @@ import radioEmpty from './radio-empty.svg';
 import radioFilled from './radio-filled.svg';
 import hoodieThumb from './hoodie-thumb.svg';
 import longSleeveThumb from './long-sleeve-thumb.svg';
+import sweaterThumb from './sweater-thumb.svg';
 import tShirtThumb from './t-shirt-thumb.svg';
 import frontSideButton from './front-side-button.svg';
 import backSideButton from './back-side-button.svg';
@@ -54,5 +55,6 @@ export {
   radioFilled, hoodieThumb, longSleeveThumb, tShirtThumb,
   frontSideButton, backSideButton, resize, garbage,
   thumbsUp, letUs, articles, logosDesktop,
-  logosMobile, shirtIconWhite, editWhite, clipboard
+  logosMobile, shirtIconWhite, editWhite, clipboard,
+  sweaterThumb
 }

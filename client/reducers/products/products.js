@@ -17,7 +17,7 @@ export const products = [
     },
     brand: "Next Level Apparel",
     number: 22104,
-    costOfShirt: 2,
+    costOfShirt: 3,
     description: "60% combined cotton, 40% polyester",
     type: "t-shirts",
     colors: [
@@ -33,7 +33,8 @@ export const products = [
         hex: "#512334",
         name: "Maroon"
       }
-    ]
+    ],
+    ranking: 1
   },
   {
     thumbnail: "https://cdnp.sanmar.com/medias/sys_master/images/images/hb2/hd6/9933063127070/1104-IrishGreen-5-8000IrishGreenFlatFront2.jpg",
@@ -69,7 +70,8 @@ export const products = [
         hex: "#512334",
         name: "Maroon"
       }
-    ]
+    ],
+    ranking: 3
   },
   {
     thumbnail: "https://cdnp.sanmar.com/medias/sys_master/images/images/h12/hb4/9933072203806/1104-Maroon-5-8000MaroonFlatFront2.jpg",
@@ -105,7 +107,8 @@ export const products = [
         hex: "#512334",
         name: "Maroon"
       }
-    ]
+    ],
+    ranking: 9
   },
   {
     thumbnail: "https://cdnp.sanmar.com/medias/sys_master/images/images/hd2/hda/9933055459358/1104-Daisy-5-8000DaisyFlatFront2.jpg",
@@ -141,7 +144,8 @@ export const products = [
         hex: "#512334",
         name: "Maroon"
       }
-    ]
+    ],
+    ranking: 2
   },
   {
     thumbnail: "https://cdnp.sanmar.com/medias/sys_master/images/images/hb2/hd6/9933063127070/1104-IrishGreen-5-8000IrishGreenFlatFront2.jpg",
@@ -177,7 +181,8 @@ export const products = [
         hex: "#512334",
         name: "Maroon"
       }
-    ]
+    ],
+    ranking: 2
   },
   {
     thumbnail: "https://cdnp.sanmar.com/medias/sys_master/images/images/h12/hb4/9933072203806/1104-Maroon-5-8000MaroonFlatFront2.jpg",
@@ -213,7 +218,8 @@ export const products = [
         hex: "#512334",
         name: "Maroon"
       }
-    ]
+    ],
+    ranking: 5
   },
   {
     thumbnail: "https://cdnp.sanmar.com/medias/sys_master/images/images/hd2/hda/9933055459358/1104-Daisy-5-8000DaisyFlatFront2.jpg",
@@ -249,7 +255,8 @@ export const products = [
         hex: "#512334",
         name: "Maroon"
       }
-    ]
+    ],
+    ranking: 1
   },
   {
     thumbnail: "https://cdnp.sanmar.com/medias/sys_master/images/images/hb2/hd6/9933063127070/1104-IrishGreen-5-8000IrishGreenFlatFront2.jpg",
@@ -271,7 +278,7 @@ export const products = [
     number: 22104,
     costOfShirt: 2,
     description: "60% combined cotton, 40% polyester",
-    type: "hoodies",
+    type: "sweaters",
     colors: [
       {
         hex: "#FCCC50",
@@ -285,7 +292,8 @@ export const products = [
         hex: "#512334",
         name: "Maroon"
       }
-    ]
+    ],
+    ranking: 8
   },
   {
     thumbnail: "https://cdnp.sanmar.com/medias/sys_master/images/images/h12/hb4/9933072203806/1104-Maroon-5-8000MaroonFlatFront2.jpg",
@@ -321,6 +329,7 @@ export const products = [
         hex: "#512334",
         name: "Maroon"
       }
-    ]
+    ],
+    ranking: 3
   }
 ];

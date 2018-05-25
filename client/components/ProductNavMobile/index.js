@@ -1,5 +1,5 @@
 import { React, Component } from '../../packages';
-import { radioFilled, radioEmpty, hoodieThumb, longSleeveThumb, tShirtThumb } from '../../assets';
+import { radioFilled, radioEmpty, hoodieThumb, longSleeveThumb, tShirtThumb, sweaterThumb } from '../../assets';
 import './style.scss';
 
 const active = {"background": "#47545d", "border": "none"};
@@ -53,6 +53,11 @@ class ProductNavMobile extends Component {
                 style={this.props.filter === 'hoodies' ? active : null}>
                 <img src={hoodieThumb} />
                 <h1 className="fs-12 c-blue fw-bold">Hoodies</h1>
+              </span>
+              <span className="flex ai-c jc-fe fd-c" onClick={() => this.setFilter('sweaters')}
+                style={this.props.filter === 'sweaters' ? active : null}>
+                <img src={sweaterThumb} />
+                <h1 className="fs-12 c-blue fw-bold">Sweaters</h1>
               </span>
             </div>
             <div className="filter-button" onClick={this.toggleFilter}>

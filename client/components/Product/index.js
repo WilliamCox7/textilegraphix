@@ -1,4 +1,4 @@
-import { React, Component } from '../../packages';
+import { React, Component, NumberFormat } from '../../packages';
 import './style.scss';
 
 class Product extends Component {
@@ -9,6 +9,9 @@ class Product extends Component {
           <img src={this.props.product.thumbnail} />
           <h1 className="fs-11 c-white">Build Product</h1>
         </div>
+        <h1 className="fs-16 fw-bold c-black">
+          <NumberFormat value={this.props.costPerShirt} displayType={'text'}
+            thousandSeparator={true} prefix={'$'} decimalScale={2} />/Shirt</h1>
         <h1 className="fs-11 c-gray-1">{this.props.product.brand.toUpperCase()}</h1>
         <h1 className="fs-11 c-gray-1">{this.props.product.number}</h1>
       </div>

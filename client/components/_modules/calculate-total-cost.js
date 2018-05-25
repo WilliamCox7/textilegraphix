@@ -1,8 +1,8 @@
-export default function calculateTotalCost(order) {
+export default function calculateTotalCost(order, shirtCostOverride) {
 
   // variable declaration
-  let costOfShirt = order.product.costOfShirt;
-  let numShirts = order.quantity;
+  let costOfShirt = shirtCostOverride !== undefined ? shirtCostOverride : order.product.costOfShirt;
+  let numShirts = order.quantity || 1;
   let numLocations = 0;
   let curLoc = 1;
   let shippingRate = .3;
@@ -13,8 +13,7 @@ export default function calculateTotalCost(order) {
   // initialize from order
   if (order.frontColors > 0) { setNumColors(curLoc, order.frontColors, numColors); numLocations++; curLoc++; }
   if (order.backColors > 0) { setNumColors(curLoc, order.backColors, numColors); numLocations++; curLoc++; }
-  if (order.leftSleeveColors > 0) { setNumColors(curLoc, order.leftSleeveColors, numColors); numLocations++; curLoc++; }
-  if (order.rightSleeveColors > 0) { setNumColors(curLoc, order.rightSleeveColors, numColors); numLocations++; curLoc++; }
+  if (order.sleeveColors > 0) { setNumColors(curLoc, order.sleeveColors, numColors); numLocations++; curLoc++; }
 
   // determine markup
   if (costOfShirt < 0.01) markup = 0;
@@ -79,7 +78,7 @@ export default function calculateTotalCost(order) {
   }
   let regCost = parseFloat(costOfShirt + setCost + markup) * (numShirts - numShirtsXL);
   let shippingCost = parseFloat(shippingRate) * numShirts;
-  
+
   return {
     totalCost: (regCost + XL2Cost + XL3Cost + XL4Cost + shippingCost).toFixed(2),
     costPerShirt: (parseFloat(costOfShirt + setCost + markup + shippingRate)).toFixed(2),

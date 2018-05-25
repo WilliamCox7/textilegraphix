@@ -22,8 +22,7 @@ class ProductBuilder extends Component {
       quantity: 1,
       frontColors: 0,
       backColors: 0,
-      leftSleeveColors: 0,
-      rightSleeveColors: 0,
+      sleeveColors: 0,
       foldedAndBagged: false,
       insideTagPrinting: false,
       hemTags: false,
@@ -64,6 +63,8 @@ class ProductBuilder extends Component {
   componentDidMount() {
     this.calculateTotalCost(this.state);
     this.setDelivery();
+    let initState = Object.assign({}, this.state, this.props.productBuilderInit);
+    this.setState(initState);
   }
 
   setDelivery() {
@@ -279,20 +280,12 @@ class ProductBuilder extends Component {
                       </div>
                     </div>
                     <MediaQuery className="section" minWidth={550}>
-                      <h1 className="flex jc-c ai-c fs-12 c-black fw-bold">Left Sleeve Colors</h1>
+                      <h1 className="flex jc-c ai-c fs-12 c-black fw-bold">Sleeve Colors</h1>
                       <div className="bottom-portion flex ai-c jc-c">
-                        <i className="fas fa-minus fs-12 c-blue" onClick={() => this.decrimentColor('leftSleeve')}></i>
-                        <h1 className="fs-24 c-black fw-bold">{this.state.leftSleeveColors}</h1>
-                        <i className="fas fa-plus fs-12 c-blue" onClick={() => this.incrimentColor('leftSleeve')}></i>
+                        <i className="fas fa-minus fs-12 c-blue" onClick={() => this.decrimentColor('sleeve')}></i>
+                        <h1 className="fs-24 c-black fw-bold">{this.state.sleeveColors}</h1>
+                        <i className="fas fa-plus fs-12 c-blue" onClick={() => this.incrimentColor('sleeve')}></i>
                         <span></span>
-                      </div>
-                    </MediaQuery>
-                    <MediaQuery className="section" minWidth={550}>
-                      <h1 className="fs-12 c-black fw-bold">Right Sleeve Colors</h1>
-                      <div className="bottom-portion flex ai-c jc-c">
-                        <i className="fas fa-minus fs-12 c-blue" onClick={() => this.decrimentColor('rightSleeve')}></i>
-                        <h1 className="fs-24 c-black fw-bold">{this.state.rightSleeveColors}</h1>
-                        <i className="fas fa-plus fs-12 c-blue" onClick={() => this.incrimentColor('rightSleeve')}></i>
                       </div>
                     </MediaQuery>
                   </div>

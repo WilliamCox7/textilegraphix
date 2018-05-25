@@ -11,9 +11,61 @@
       @media(max-width: 1200px) {
         margin: auto;
       }
+      .under-nav-options {
+        margin: 10px 0px;
+        .dp-rectangle {
+          background: $blue;
+          padding: 10px;
+        }
+        .space-right {
+          margin-right: 10px;
+        }
+        .opt-cell {
+          position: relative;
+          input {
+            width: 120px;
+            border: none;
+            border-bottom: solid 1px $gray-3;
+            color: $black;
+            text-align: center;
+            font-size: 34px;
+            font-weight: bold;
+          }
+          .bottom-portion {
+            height: 42px;
+            position: relative;
+            h1.fs-24 {
+              margin: 0px 8px;
+            }
+            i.fs-20 {
+              cursor: pointer;
+            }
+          }
+          h1.fs-30.c-blue {
+            cursor: pointer;
+          }
+          .sort-box {
+            position: absolute;
+            padding: 15px;
+            left: -8px;
+            width: 170px;
+            height: 110px;
+            background: white;
+            border-radius: 5px;
+            z-index: 1;
+            border: solid 1px $blue;
+            span {
+              margin-bottom: 5px;
+              cursor: pointer;
+            }
+          }
+        }
+      }
       .products {
-        margin: auto;
-        width: 654px;
+        margin-top: 42px;
+        .products-wrapper {
+          width: 875px;
+        }
         @media(max-width: 1130px) {
           padding-top: 30px;
         }
