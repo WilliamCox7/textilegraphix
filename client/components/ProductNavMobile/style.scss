@@ -5,6 +5,7 @@
   position: absolute;
   z-index: 1;
   width: 100%;
+  top: -42px;
   @media(max-width: 1200px) {
     padding: 0px 40px 20px;
   }
@@ -20,49 +21,112 @@
       cursor: pointer;
     }
   }
-  .nav-filters {
-    .filter-thumbs {
-      @media(max-width: 540px) {
-        -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-        justify-content: space-between;
-      }
-      span {
-        padding: 20px;
-        border: solid 1px #A0A0A0;
-        height: 155px;
-        width: 115px;
-        margin-right: 10px;
-        margin-bottom: 10px;
-        cursor: pointer;
-        @media(max-width: 450px) {
-          width: 70px;
-          height: 100px;
-          padding: 7px;
-          margin-right: 0px;
+  .nav-filters-wrapper {
+    max-width: 500px;
+    margin: auto;
+    .nav-filters {
+      .filter-thumbs {
+        @media(max-width: 540px) {
+          -webkit-box-pack: justify;
+          -ms-flex-pack: justify;
+          justify-content: space-between;
         }
-        img {
-          width: 60px;
+        span {
+          padding: 20px;
+          border: solid 1px #A0A0A0;
+          height: 155px;
+          width: 115px;
+          margin-right: 10px;
+          margin-bottom: 10px;
+          cursor: pointer;
           @media(max-width: 450px) {
-            width: 40px;
+            width: 70px;
+            height: 100px;
+            padding: 7px;
+            margin-right: 0px;
+          }
+          img {
+            width: 60px;
+            @media(max-width: 450px) {
+              width: 40px;
+            }
+          }
+          h1.fs-12 {
+            padding-top: 8px;
+            line-height: 14px;
+            @media(max-width: 450px) {
+              padding-top: 0px;
+              text-align: center;
+              font-size: 8px;
+            }
           }
         }
-        h1.fs-12 {
-          padding-top: 8px;
-          line-height: 14px;
-          @media(max-width: 450px) {
-            padding-top: 0px;
+      }
+      .under-nav-options {
+        max-width: 490px;
+        .row-1 {
+          margin-bottom: 10px;
+          .dp-rectangle {
+            padding: 15px 30px;
+            @media(max-width: 545px) {
+              padding: 15px;
+              font-size: 10px;
+            }
+          }
+          .opt-cell {
+            h1 {
+              @media(max-width: 545px) {
+                font-size: 17px;
+              }
+            }
+            input {
+              @media(max-width: 545px) {
+                font-size: 24px;
+              }
+            }
+          }
+        }
+        .color-cell {
+          min-width: 135px;
+        }
+        .bottom-portion {
+          h1.fs-24 {
+            @media(max-width: 545px) {
+              font-size: 19px;
+            }
+          }
+        }
+        hr {
+          border-color: $gray-5;
+          border-width: 0.5px;
+        }
+        h1.fs-14.c-black.fw-bold {
+          @media(max-width: 545px) {
+            font-size: 12px;
+          }
+        }
+        .sort-row {
+          margin-top: 10px;
+          span {
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 5px;
+            border: solid 1px $blue;
+            min-width: 100px;
             text-align: center;
-            font-size: 8px;
+            @media(max-width: 545px) {
+              font-size: 8px;
+              min-width: 70px;
+            }
           }
         }
       }
-    }
-    .filter-button {
-      width: 100%;
-      text-align: center;
-      margin: 10px 0px;
-      cursor: pointer;
+      .filter-button {
+        width: 100%;
+        text-align: center;
+        margin: 10px 0px;
+        cursor: pointer;
+      }
     }
   }
 }

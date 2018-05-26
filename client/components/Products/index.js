@@ -177,7 +177,7 @@ class Products extends Component {
       <div className="Products">
         <div className="body-wrapper">
           <div className="products-container">
-            <MediaQuery minWidth={1200}>
+            <MediaQuery minWidth={1230}>
               <div className="under-nav-options flex jc-sb ai-c">
                 <div className="fs-13 c-white dp-rectangle">DISPLAYED PRICES</div>
                 <div className="opt-cell flex ai-c">
@@ -221,20 +221,21 @@ class Products extends Component {
                 </div>
               </div>
             </MediaQuery>
-            <MediaQuery minWidth={1200}>
+            <MediaQuery minWidth={1230}>
               <ProductNav setFilter={this.setFilter} filter={this.state.filter} />
             </MediaQuery>
-            <MediaQuery maxWidth={1200}>
-              <ProductNavMobile toggleOverlay={this.toggleOverlay}
-                setFilter={this.setFilter} filter={this.state.filter}
-                showFilter={this.state.showFilter} toggleShowFilter={this.toggleShowFilter} />
+            <MediaQuery maxWidth={1230}>
+              <ProductNavMobile toggleOverlay={this.toggleOverlay} productBuilderInit={this.state.productBuilderInit}
+                setFilter={this.setFilter} filter={this.state.filter} updateQuantity={this.updateQuantity} setSort={this.setSort}
+                showFilter={this.state.showFilter} toggleShowFilter={this.toggleShowFilter} sort={this.state.sort}
+                decrimentColor={this.decrimentColor} incrimentColor={this.incrimentColor} />
             </MediaQuery>
             {this.state.builder ? (
               <ProductBuilder productBuilderInit={this.state.productBuilderInit}
                 toggleBuilder={this.toggleBuilder} product={this.state.product} />
             ) : null}
             <div className="products flex jc-fe">
-              <div className="products-wrapper flex fw-w jc-fe">
+              <div className="products-wrapper flex fw-w">
                 {!this.state.builder ? products : null}
               </div>
             </div>

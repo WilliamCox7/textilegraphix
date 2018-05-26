@@ -31,6 +31,10 @@ import hoodieThumb from './hoodie-thumb.svg';
 import longSleeveThumb from './long-sleeve-thumb.svg';
 import sweaterThumb from './sweater-thumb.svg';
 import tShirtThumb from './t-shirt-thumb.svg';
+import hoodieThumbWhite from './hoodie-thumb-white.svg';
+import longSleeveThumbWhite from './long-sleeve-thumb-white.svg';
+import sweaterThumbWhite from './sweater-thumb-white.svg';
+import tShirtThumbWhite from './t-shirt-thumb-white.svg';
 import frontSideButton from './front-side-button.svg';
 import backSideButton from './back-side-button.svg';
 import resize from './resize.svg';
@@ -56,5 +60,6 @@ export {
   frontSideButton, backSideButton, resize, garbage,
   thumbsUp, letUs, articles, logosDesktop,
   logosMobile, shirtIconWhite, editWhite, clipboard,
-  sweaterThumb
+  sweaterThumb, longSleeveThumbWhite, tShirtThumbWhite, hoodieThumbWhite,
+  sweaterThumbWhite
 }
