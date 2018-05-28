@@ -1,6 +1,6 @@
 import { React, Component, connect, MediaQuery } from '../../packages';
-import { ProductNav, Product, ProductNavMobile, ProductBuilder } from '../';
-import { calculateTotalCost } from '../_modules';
+import { ProductNav, Product, ProductNavMobile, ProductBuilder } from '../../components';
+import { calculateTotalCost } from '../../modules';
 import './style.scss';
 
 class Products extends Component {

@@ -1,5 +1,5 @@
 import { React, Component, MediaQuery } from '../../packages';
-import { Actions } from '../';
+import { Actions } from '../../components';
 import './style.scss';
 
 class Support extends Component {

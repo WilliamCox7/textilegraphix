@@ -1,5 +1,6 @@
-import { React, Component } from '../../../../packages';
-import { logoBlack } from '../../../../assets';
+import { React, Component } from '../../../packages';
+import { getAsset } from '../../../modules';
+import { SeparatorLine } from '../../';
 import './style.scss';
 
 class Section2 extends Component {
@@ -7,9 +8,9 @@ class Section2 extends Component {
     return (
       <section className="Section2">
         <div className="wrapper">
-          <img src={logoBlack} />
+          <img src={getAsset('logo-black')} />
           <h1 className="fs-60 c-black">Our Bread and Butter</h1>
-          <div className="seperator-line"><div className="black-circle"></div></div>
+          <SeparatorLine />
           <p className="fs-30 c-black">
             We are the pros and have perfected the
             process so that you get a perfect product

@@ -1,7 +1,6 @@
 import { React, Component, MediaQuery } from '../../packages';
-import { Actions, SocialMedia } from '../';
-import { Section1, Section2, Section3, Section4, Section5 } from './Sections';
-import { fbBlue, instaBlue } from '../../assets';
+import { Actions, SocialMedia } from '../../components';
+import { Section1, Section2, Section3, Section4, Section5 } from '../../components/Sections';
 import './style.scss';
 
 class Home extends Component {

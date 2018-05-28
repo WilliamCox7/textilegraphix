@@ -1,6 +1,5 @@
 import { React, Component, NumberFormat, domtoimage, moment, jszip, saveAs, MediaQuery, connect } from '../../packages';
-import { closeXWhite, frontSideButton, backSideButton } from '../../assets';
-import { calculateTotalCost } from '../_modules';
+import { getAsset, calculateTotalCost } from '../../modules';
 import { PrintArea, Footer, WaitIndicator } from '../';
 import { addOrder } from '../../reducers/cart';
 import './style.scss';
@@ -231,7 +230,7 @@ class ProductBuilder extends Component {
       <div className="ProductBuilder">
         <MediaQuery className="top-bar flex jc-sb ai-c" minWidth={1200}>
           <h1 className="fs-24 c-white fw-bold">{this.props.product.brand} {this.props.product.number}</h1>
-          <span><img src={closeXWhite} onClick={this.props.toggleBuilder} /></span>
+          <span><img src={getAsset('close-x-white')} onClick={this.props.toggleBuilder} /></span>
         </MediaQuery>
         <div className="builder flex">
           <div className="left side flex fd-c ai-c jc-sb">
@@ -423,10 +422,10 @@ class ProductBuilder extends Component {
           <div className="right side">
             <div className="side-buttons-left flex fd-c">
               <span onClick={() => this.toggleShownSide(0)}>
-                <img src={frontSideButton} />
+                <img src={getAsset('front-side-button')} />
               </span>
               <span onClick={() => this.toggleShownSide(1)}>
-                <img src={backSideButton} />
+                <img src={getAsset('back-side-button')} />
               </span>
             </div>
             <MediaQuery maxWidth={550}>

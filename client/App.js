@@ -1,5 +1,6 @@
 import { React, Component, BrowserRouter, Route } from './packages';
-import { Products, Home, Order, Support, Nav, Footer } from './components';
+import { Nav, Footer } from './components';
+import { Home, Products, Order, Support } from './pages';
 import './reset.scss';
 import './main.scss';
 import './headers.scss';

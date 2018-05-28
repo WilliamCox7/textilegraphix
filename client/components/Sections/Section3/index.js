@@ -1,5 +1,5 @@
-import { React, Component, Link, MediaQuery } from '../../../../packages';
-import { graphixWheel } from '../../../../assets';
+import { React, Component, Link, MediaQuery } from '../../../packages';
+import { getAsset } from '../../../modules';
 import './style.scss';
 
 class Section3 extends Component {
@@ -8,7 +8,7 @@ class Section3 extends Component {
       <section className="Section3">
         <div className="body-wrapper flex jc-sb">
           <MediaQuery minWidth={980}>
-            <img src={graphixWheel} />
+            <img src={getAsset('graphix-wheel', 'png')} />
           </MediaQuery>
           <div className="copy">
             <h1 className="fs-60 c-white">Screen Printing</h1>

@@ -11,22 +11,6 @@
     @media(max-width: 700px) {
       padding: 10px 40px;
     }
-    .copy {
-      width: 645px;
-      margin: auto;
-      text-align: center;
-      @media(max-width: 800px) {
-        width: 100%;
-        padding: 0px 40px;
-      }
-      h1.fs-45 {
-        margin-bottom: 20px;
-      }
-      p.fs-30 {
-        line-height: 38px;
-        margin-bottom: 80px;
-      }
-    }
     .tiles {
       @media(max-width: 1270px) {
         width: 100%;

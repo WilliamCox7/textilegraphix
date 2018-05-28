@@ -1,7 +1,6 @@
 import { React, Component, Link, MediaQuery, connect } from '../../packages';
-import { logoTextBlack, searchIcon, shoppingCart } from '../../assets';
-import { ProductBuilder } from '../';
-import { Menu } from '../';
+import { getAsset } from '../../modules';
+import { ProductBuilder, Menu } from '../';
 import './style.scss';
 
 class Nav extends Component {
@@ -120,7 +119,7 @@ class Nav extends Component {
             <Menu toggleMenu={this.toggleMenu} cancelBuilder={this.cancelBuilder} />
           ) : null}
           <Link to="/" onClick={this.cancelBuilder}>
-            <img className="logo" src={logoTextBlack} />
+            <img className="logo" src={getAsset('logo-text-black')} />
           </Link>
           <div className="flex ai-c">
             <MediaQuery className="routes" minWidth={1150}>
@@ -142,7 +141,7 @@ class Nav extends Component {
               ) : null}
             </MediaQuery>
             <Link to="order" className="cart" onClick={this.cancelBuilder}>
-              <img src={shoppingCart} />
+              <img src={getAsset('shopping-cart')} />
               <span className="flex jc-c ai-c">{this.props.cart.orders.length}</span>
             </Link>
           </div>

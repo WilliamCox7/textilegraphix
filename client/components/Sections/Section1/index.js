@@ -1,5 +1,5 @@
-import { React, Component, Link, MediaQuery, Vimeo } from '../../../../packages';
-import { letUs, articles, logosDesktop, logosMobile, shirtIconWhite, editWhite, clipboard } from '../../../../assets';
+import { React, Component, Link, MediaQuery, Vimeo } from '../../../packages';
+import { getAsset } from '../../../modules';
 import './style.scss';
 
 class Section1 extends Component {
@@ -13,21 +13,21 @@ class Section1 extends Component {
             <div className="hover-display">
               <div className="image-sections">
                 <div className="image-section">
-                  <img src={letUs} />
+                  <img src={getAsset('let-us', 'png')} />
                 </div>
                 <hr />
                 <div className="image-section">
-                  <img src={articles} />
+                  <img src={getAsset('articles', 'png')} />
                 </div>
                 <hr />
                 <MediaQuery minWidth={650}>
                   <div className="image-section">
-                    <img src={logosDesktop} />
+                    <img src={getAsset('logos-desktop', 'png')} />
                   </div>
                 </MediaQuery>
                 <MediaQuery maxWidth={650}>
                   <div className="image-section">
-                    <img src={logosMobile} />
+                    <img src={getAsset('logos-mobile', 'png')} />
                   </div>
                 </MediaQuery>
               </div>
@@ -55,21 +55,22 @@ class Section1 extends Component {
             <div className="steps-container flex jc-sb">
               <div className="step flex fd-c jc-c ai-c">
                 <h1 className="fs-28 c-white">Step 1</h1>
-                <img src={shirtIconWhite} />
+                <img src={getAsset('shirt-icon-white')} />
                 <h1 className="fs-10 c-white">SELECT PRODUCT</h1>
               </div>
               <div className="step flex fd-c jc-c ai-c">
                 <h1 className="fs-28 c-white">Step 2</h1>
-                <img src={editWhite} />
+                <img src={getAsset('edit-white')} />
                 <h1 className="fs-10 c-white">CUSTOMIZE ORDER</h1>
               </div>
               <div className="step flex fd-c jc-c ai-c">
                 <h1 className="fs-28 c-white">Step 3</h1>
-                <img src={clipboard} />
+                <img src={getAsset('clipboard')} />
                 <h1 className="fs-10 c-white">SUBMIT AND LET US DO THE REST</h1>
               </div>
             </div>
           </MediaQuery>
+
         </div>
       </section>
     );

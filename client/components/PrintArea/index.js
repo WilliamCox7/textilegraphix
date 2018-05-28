@@ -1,5 +1,5 @@
 import { React, Component, Draggable } from '../../packages';
-import { closeXRed, resize } from '../../assets';
+import { getAsset } from '../../modules';
 import './style.scss';
 
 class PrintArea extends Component {
@@ -59,9 +59,9 @@ class PrintArea extends Component {
             } : null}>
               <img src={image.src} draggable="false" />
             </div>
-            <img src={resize} className="resizer" onTouchStart={this.startDrag} onDragStart={this.startDrag} draggable="true"
+            <img src={getAsset('resize')} className="resizer" onTouchStart={this.startDrag} onDragStart={this.startDrag} draggable="true"
               onDragEnd={this.stopDrag} onTouchEnd={this.stopDrag} onDrag={this.drag} onTouchMove={this.drag} />
-            <img src={closeXRed} className="close" onClick={() => this.props.removeImage(image.index)} style={this.state.dragging ? {
+            <img src={getAsset('close-x-red')} className="close" onClick={() => this.props.removeImage(image.index)} style={this.state.dragging ? {
               "display": "block"
             } : null} />
           </div>

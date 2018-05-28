@@ -1,5 +1,5 @@
 import { React, Component } from '../../packages';
-import { logoBlack } from '../../assets';
+import { getAsset } from '../../modules';
 import './style.scss';
 
 class WaitIndicator extends Component {
@@ -13,7 +13,7 @@ class WaitIndicator extends Component {
                 <svg className="circular" viewBox="25 25 50 50">
                   <circle className="path" cx="50" cy="50" r="20" fill="none" strokeWidth="2" strokeMiterlimit="10"/>
                 </svg>
-                <img src={logoBlack} />
+                <img src={getAsset('logo-black')} />
               </div>
               <h1 className="fs-22 fw-bold">{this.props.message}</h1>
             </div>

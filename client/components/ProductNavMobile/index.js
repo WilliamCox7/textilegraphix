@@ -1,5 +1,5 @@
 import { React, Component } from '../../packages';
-import { radioFilled, radioEmpty, hoodieThumb, longSleeveThumb, tShirtThumb, sweaterThumb, hoodieThumbWhite, longSleeveThumbWhite, tShirtThumbWhite, sweaterThumbWhite } from '../../assets';
+import { getAsset } from '../../modules';
 import './style.scss';
 
 const active = {"background": "#44B1DE", "border": "none"};
@@ -41,22 +41,22 @@ class ProductNavMobile extends Component {
               <div className="filter-thumbs flex fw-w">
                 <span className="flex ai-c jc-fe fd-c" onClick={() => this.setFilter('t-shirts')}
                   style={this.props.filter === 't-shirts' ? active : null}>
-                  <img src={this.props.filter === 't-shirts' ? tShirtThumbWhite : tShirtThumb} />
+                  <img src={getAsset(this.props.filter === 't-shirts' ? 't-shirt-thumb-white' : 't-shirt-thumb')} />
                   <h1 className="fs-12 c-blue fw-bold" style={this.props.filter === 't-shirts' ? {"color": "white"} : null}>T-Shirts</h1>
                 </span>
                 <span className="flex ai-c jc-fe fd-c" onClick={() => this.setFilter('long sleeve shirt')}
                   style={this.props.filter === 'long sleeve shirt' ? active : null}>
-                  <img src={this.props.filter === 'long sleeve shirt' ? longSleeveThumbWhite : longSleeveThumb} />
+                  <img src={getAsset(this.props.filter === 'long sleeve shirt' ? 'long-sleeve-thumb-white' : 'long-sleeve-thumb')} />
                   <h1 className="fs-12 c-blue fw-bold" style={this.props.filter === 'long sleeve shirt' ? {"color": "white"} : null}>Long Sleeves</h1>
                 </span>
                 <span className="flex ai-c jc-fe fd-c" onClick={() => this.setFilter('hoodies')}
                   style={this.props.filter === 'hoodies' ? active : null}>
-                  <img src={this.props.filter === 'hoodies' ? hoodieThumbWhite : hoodieThumb} />
+                  <img src={getAsset(this.props.filter === 'hoodies' ? 'hoodie-thumb-white' : 'hoodie-thumb')} />
                   <h1 className="fs-12 c-blue fw-bold" style={this.props.filter === 'hoodies' ? {"color": "white"} : null}>Hoodies</h1>
                 </span>
                 <span className="flex ai-c jc-fe fd-c" onClick={() => this.setFilter('sweaters')}
                   style={this.props.filter === 'sweaters' ? active : null}>
-                  <img src={this.props.filter === 'sweaters' ? sweaterThumbWhite : sweaterThumb} />
+                  <img src={getAsset(this.props.filter === 'sweaters' ? 'sweater-thumb-white' : 'sweater-thumb')} />
                   <h1 className="fs-12 c-blue fw-bold" style={this.props.filter === 'sweaters' ? {"color": "white"} : null}>Sweaters</h1>
                 </span>
               </div>

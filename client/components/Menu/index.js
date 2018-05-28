@@ -1,6 +1,6 @@
 import { React, Component, Link } from '../../packages';
 import { SocialMedia } from '../';
-import { closeX, fb, insta } from '../../assets';
+import { getAsset } from '../../modules';
 import './style.scss';
 
 class Menu extends Component {
@@ -11,7 +11,7 @@ class Menu extends Component {
           <h1 className="fs-36 c-blue">MENU</h1>
           <img onClick={() => {
             this.props.toggleMenu(); this.props.cancelBuilder();
-          }} src={closeX} />
+          }} src={getAsset('close-x')} />
         </div>
         <div className="links flex jc-sa fd-c ai-c">
           <Link onClick={() => {

@@ -30,25 +30,6 @@ button, textarea, input, select {
   margin: auto;
 }
 
-.seperator-line {
-  border-bottom: solid 1px $gray-2;
-  position: relative;
-  margin-bottom: 20px;
-  width: 100%;
-  .black-circle {
-    width: 15px;
-    height: 15px;
-    position: absolute;
-    background: $black;
-    border-radius: 50%;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-  }
-}
-
 .blue-text {
   color: $blue;
 }

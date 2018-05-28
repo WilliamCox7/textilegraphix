@@ -1,8 +1,7 @@
 import { React, Component, connect, NumberFormat, MediaQuery, axios } from '../../packages';
-import { garbage, frontSideButton, backSideButton, thumbsUp, closeXBlack } from '../../assets';
-import { calculateTotalCost, buildOrderHtml } from '../_modules';
+import { calculateTotalCost, buildOrderHtml, getAsset } from '../../modules';
 import { updOrder, removeOrder } from '../../reducers/cart';
-import { WaitIndicator } from '../';
+import { WaitIndicator } from '../../components';
 import './style.scss';
 
 class Order extends Component {
@@ -248,7 +247,7 @@ class Order extends Component {
             </div>
           </div>
           <span className="garbage" onClick={() => this.removeOrder(order.guid)}>
-            <img src={garbage} />
+            <img src={getAsset('garbage')} />
           </span>
         </div>
       );
@@ -269,10 +268,10 @@ class Order extends Component {
               <div className="mockup flex jc-c">
                 <div className="side-buttons-left flex fd-c">
                   <span onClick={() => this.toggleMockup(0)}>
-                    <img src={frontSideButton} />
+                    <img src={getAsset('front-side-button')} />
                   </span>
                   <span onClick={() => this.toggleMockup(1)}>
-                    <img src={backSideButton} />
+                    <img src={getAsset('back-side-button')} />
                   </span>
                 </div>
                 {this.state.mockup ? (
@@ -302,10 +301,10 @@ class Order extends Component {
               <div className="mockup flex jc-c">
                 <div className="side-buttons-left flex fd-c">
                   <span onClick={() => this.toggleMockup(0)}>
-                    <img src={frontSideButton} />
+                    <img src={getAsset('front-side-button')} />
                   </span>
                   <span onClick={() => this.toggleMockup(1)}>
-                    <img src={backSideButton} />
+                    <img src={getAsset('back-side-button')} />
                   </span>
                 </div>
                 {this.state.mockup ? (
@@ -379,10 +378,10 @@ class Order extends Component {
             </div>
             {this.state.thankyou ? (
               <div className="thank-you flex jc-c ai-c fd-c">
-                <span className="thumbs-up"><img src={thumbsUp} /></span>
+                <span className="thumbs-up"><img src={getAsset('thumbs-up')} /></span>
                 <h1 className="fs-30 c-black fw-bold">Thanks for the Inquery!</h1>
                 <h1 className="fs-18 c-black">One of our staff members will be in contact with you shortly!</h1>
-                <span className="close" onClick={this.toggleThankYou}><img src={closeXBlack} /></span>
+                <span className="close" onClick={this.toggleThankYou}><img src={getAsset('close-x-black')} /></span>
               </div>
             ) : null}
           </div>

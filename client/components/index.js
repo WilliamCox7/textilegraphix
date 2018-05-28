@@ -1,9 +1,5 @@
-import Home from './Home';
 import Footer from './Footer';
 import Nav from './Nav';
-import Order from './Order';
-import Products from './Products';
-import Support from './Support';
 import Menu from './Menu';
 import ProductNav from './ProductNav';
 import ProductNavMobile from './ProductNavMobile';
@@ -13,14 +9,11 @@ import Actions from './Actions';
 import PrintArea from './PrintArea';
 import WaitIndicator from './WaitIndicator';
 import SocialMedia from './SocialMedia';
+import SeparatorLine from './SeparatorLine';
 
 export {
-  Home,
   Footer,
   Nav,
-  Order,
-  Products,
-  Support,
   Menu,
   ProductNav,
   ProductNavMobile,
@@ -29,5 +22,6 @@ export {
   Actions,
   PrintArea,
   WaitIndicator,
-  SocialMedia
+  SocialMedia,
+  SeparatorLine
 }

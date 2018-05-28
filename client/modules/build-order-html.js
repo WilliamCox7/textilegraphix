@@ -1,4 +1,4 @@
-import { React } from '../../packages';
+import { React } from '../packages';
 
 export default function buildOrderHtml(form, products) {
 
