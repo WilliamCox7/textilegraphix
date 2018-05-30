@@ -1,0 +1,87 @@
+@import "../../../../vars.scss";
+
+.LeftSide {
+  padding: 90px 45px 90px 90px;
+  -webkit-box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.12);
+  min-width: 575px;
+  @media(max-width: 700px) {
+    padding: 0px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    min-width: 100%;
+  }
+  .hover-display {
+    position: relative;
+    @media(max-width: 700px) {
+      width: 100%;
+    }
+    a.fs-15 {
+      position: absolute;
+      top: 20px;
+      right: 0;
+      background: $blue;
+    }
+    .image-sections {
+      .image-section {
+        img {
+          max-width: 260px;
+          @media(max-width: 520px) {
+            max-width: none;
+          }
+        }
+        &:nth-child(1) {
+          img {
+            @media(max-width: 520px) {
+              width: 150px;
+            }
+            @media(max-width: 390px) {
+              width: 50%;
+            }
+          }
+        }
+        &:nth-child(n+2) {
+          @media(max-width: 520px) {
+            text-align: center;
+          }
+          img {
+            @media(max-width: 390px) {
+              width: 100%;
+            }
+          }
+        }
+      }
+      hr {
+        border-color: $gray-4;
+        border-width: 0.5px;
+        margin: 30px 0px;
+      }
+    }
+  }
+  .hover-box-buttons {
+    margin-left: 45px;
+  }
+  a.fs-15 {
+    font-size: 15px;
+    text-decoration: none;
+    margin-bottom: 5px;
+    background: none;
+    border: none;
+    border-radius: 4px;
+    padding: 16px;
+    cursor: pointer;
+    @media(max-width: 520px) {
+      padding: 10px;
+    }
+    i {
+      margin-left: 4px;
+    }
+    &:hover {
+      background: $blue;
+      color: white;
+    }
+  }
+}

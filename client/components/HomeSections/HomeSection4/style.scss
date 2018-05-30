@@ -1,6 +1,6 @@
 @import "../../../vars.scss";
 
-.Section4 {
+.HomeSection4 {
   padding: 70px 0px;
   @media(max-width: 1040px) {
     padding: 40px;
@@ -19,26 +19,6 @@
         -webkit-box-align: center;
         -ms-flex-align: center;
         align-items: center;
-      }
-      .tile {
-        text-align: center;
-        padding: 20px;
-        width: 340px;
-        @media(max-width: 650px) {
-          width: 100%;
-        }
-        img {
-          height: 100px;
-          margin-bottom: 15px;
-        }
-        h1.fs-38 {
-          margin: 18px 0px 20px;
-          white-space: nowrap;
-        }
-        p.fs-21 {
-          margin: 25px 0px;
-          line-height: 29px;
-        }
       }
     }
     .t-shirts {

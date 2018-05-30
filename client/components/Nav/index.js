@@ -112,12 +112,16 @@ class Nav extends Component {
       <div className="nav-wrapper">
         <div className="Nav flex jc-sb ai-c">
           <hr />
+
+          {/* Mobile Menu */}
           <MediaQuery maxWidth={1150}>
             <button onClick={this.toggleMenu} className="fs-12 c-white">MENU</button>
           </MediaQuery>
           {this.state.menu ? (
             <Menu toggleMenu={this.toggleMenu} cancelBuilder={this.cancelBuilder} />
           ) : null}
+
+          {/* Desktop Menu */}
           <Link to="/" onClick={this.cancelBuilder}>
             <img className="logo" src={getAsset('logo-text-black')} />
           </Link>

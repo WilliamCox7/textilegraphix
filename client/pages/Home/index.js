@@ -1,16 +1,16 @@
 import { React, Component, MediaQuery } from '../../packages';
 import { Actions, SocialMedia } from '../../components';
-import { Section1, Section2, Section3, Section4, Section5 } from '../../components/Sections';
+import { HomeSection1, HomeSection2, HomeSection3, HomeSection4, HomeSection5 } from '../../components/HomeSections';
 import './style.scss';
 
 class Home extends Component {
   render() {
     return (
       <div className="Home">
-        <Section1 />
-        <Section2 />
-        <Section3 />
-        <Section4 />
+        <HomeSection1 />
+        <HomeSection2 />
+        <HomeSection3 />
+        <HomeSection4 />
         <Actions />
         <MediaQuery maxWidth={755}>
           <SocialMedia color="blue" />

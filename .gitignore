@@ -3,3 +3,4 @@ config
 build/*
 !build/index.html
 .DS_Store
+status.txt

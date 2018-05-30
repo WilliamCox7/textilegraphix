@@ -3,10 +3,10 @@ import { getAsset } from '../../../modules';
 import { SeparatorLine } from '../../';
 import './style.scss';
 
-class Section2 extends Component {
+class HomeSection2 extends Component {
   render() {
     return (
-      <section className="Section2">
+      <section className="HomeSection2">
         <div className="wrapper">
           <img src={getAsset('logo-black')} />
           <h1 className="fs-60 c-black">Our Bread and Butter</h1>
@@ -22,4 +22,4 @@ class Section2 extends Component {
   }
 }
 
-export default Section2;
+export default HomeSection2;

@@ -2,10 +2,10 @@ import { React, Component, Link, MediaQuery } from '../../../packages';
 import { getAsset } from '../../../modules';
 import './style.scss';
 
-class Section3 extends Component {
+class HomeSection3 extends Component {
   render() {
     return (
-      <section className="Section3">
+      <section className="HomeSection3">
         <div className="body-wrapper flex jc-sb">
           <MediaQuery minWidth={980}>
             <img src={getAsset('graphix-wheel', 'png')} />
@@ -47,4 +47,4 @@ class Section3 extends Component {
   }
 }
 
-export default Section3;
+export default HomeSection3;
