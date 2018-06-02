@@ -1,6 +1,6 @@
 import { React, Component, NumberFormat, domtoimage, moment, jszip, saveAs, MediaQuery, connect } from '../../packages';
 import { getAsset, calculateTotalCost } from '../../modules';
-import { PrintArea, Footer, WaitIndicator } from '../';
+import { PrintArea, Footer, WaitIndicator, HelpHover } from '../';
 import { addOrder } from '../../reducers/cart';
 import './style.scss';
 
@@ -31,6 +31,7 @@ class ProductBuilder extends Component {
       shownSide: 0,
       showAddOns: false,
       waiting: false,
+      showHelp: false,
       uploaded: {
         front: [],
         back: []
@@ -57,6 +58,10 @@ class ProductBuilder extends Component {
     this.addProductToCart = this.addProductToCart.bind(this);
     this.toggleAddOns = this.toggleAddOns.bind(this);
     this.toggleWaitIndicator = this.toggleWaitIndicator.bind(this);
+    this.showHelp = this.showHelp.bind(this);
+    this.fadeHelp = this.fadeHelp.bind(this);
+    this.cancelHelpTimer = this.cancelHelpTimer.bind(this);
+    this.toggleHelp = this.toggleHelp.bind(this);
   }
 
   componentDidMount() {
@@ -64,6 +69,10 @@ class ProductBuilder extends Component {
     this.setDelivery();
     let initState = Object.assign({}, this.state, this.props.productBuilderInit);
     this.setState(initState);
+  }
+
+  componentWillUnmount() {
+    this.cancelHelpTimer();
   }
 
   setDelivery() {
@@ -190,6 +199,42 @@ class ProductBuilder extends Component {
     this.setState({waiting: !this.state.waiting});
   }
 
+  toggleHelp() {
+    this.setState({showHelp: !this.state.showHelp});
+  }
+
+  showHelp() {
+    this.cancelHelpTimer();
+    this.setState({showHelp: true});
+  }
+
+  fadeHelp() {
+    let self = this;
+    let helpHover = document.getElementById('help-hover');
+    self.opacityTimer = setTimeout(() => {
+      helpHover.style.opacity = 0;
+    }, 500);
+    self.showHelpTimer = setTimeout(() => {
+      helpHover.style.opacity = 1;
+      self.setState({showHelp: false});
+    }, 1500);
+  }
+
+  cancelHelpTimer() {
+    let helpHover = document.getElementById('help-hover');
+    if (this.opacityTimer) {
+      clearTimeout(this.opacityTimer);
+      this.opacityTimer = null;
+    }
+    if (this.showHelpTimer) {
+      clearTimeout(this.showHelpTimer);
+      this.showHelpTimer = null;
+    }
+    if (helpHover) {
+      helpHover.style.opacity = 1;
+    }
+  }
+
   addProductToCart() {
     this.toggleWaitIndicator();
     let newState = Object.assign({}, this.state);
@@ -230,7 +275,17 @@ class ProductBuilder extends Component {
       <div className="ProductBuilder">
         <MediaQuery className="top-bar flex jc-sb ai-c" minWidth={1200}>
           <h1 className="fs-24 c-white fw-bold">{this.props.product.brand} {this.props.product.number}</h1>
-          <span><img src={getAsset('close-x-white')} onClick={this.props.toggleBuilder} /></span>
+          <span className="close-button"><img src={getAsset('close-x-white')} onClick={this.props.toggleBuilder} /></span>
+          <div className="right-buttons flex">
+            <button className="help-button flex" onMouseEnter={this.showHelp} onMouseLeave={this.fadeHelp}>
+              <h1 className="fs-15 fw-bold c-white">HELP</h1>
+              <span className="fs-15 fw-bold c-blue">?</span>
+            </button>
+            <button className="fs-15 fw-bold c-white add-button" onClick={this.addProductToCart}>ADD TO QUOTE</button>
+            {this.state.showHelp ? (
+              <HelpHover fadeHelp={this.fadeHelp} cancelHelpTimer={this.cancelHelpTimer} />
+            ) : null}
+          </div>
         </MediaQuery>
         <div className="builder flex">
           <div className="left side flex fd-c ai-c jc-sb">
@@ -413,8 +468,15 @@ class ProductBuilder extends Component {
                 </MediaQuery>
               </div>
               <MediaQuery maxWidth={550}>
-                <div className="action-buttons">
+                <div className="action-buttons flex jc-sb">
+                  <button className="help-button flex" onClick={this.toggleHelp}>
+                    <h1 className="fs-15 fw-bold c-white">HELP</h1>
+                    <span className="fs-15 fw-bold c-blue">?</span>
+                  </button>
                   <button className="add-to-quote" onClick={this.addProductToCart}>ADD TO QUOTE</button>
+                  {this.state.showHelp ? (
+                    <HelpHover top />
+                  ) : null}
                 </div>
               </MediaQuery>
             </div>

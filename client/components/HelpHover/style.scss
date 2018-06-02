@@ -1,0 +1,43 @@
+@import "../../vars.scss";
+
+.HelpHover {
+  position: absolute;
+  background: white;
+  -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  z-index: 2;
+  top: 55px;
+  right: 0;
+  width: 238px;
+  -webkit-transition: opacity 1s ease;
+  transition: opacity 1s ease;
+  .help-header {
+    background: $blue;
+    height: 40px;
+    span {
+      background: white;
+      border-radius: 50px;
+      width: 18px;
+      height: 18px;
+      margin-left: 6px;
+    }
+  }
+  .mid-section {
+    padding: 20px;
+    text-align: left;
+    hr {
+      border-color: $gray-5;
+      border-width: 0.5px;
+    }
+    .mid-section-1 {
+      button {
+        background: white;
+        border: solid 1px $green;
+        padding: 6px 10px;
+      }
+    }
+    .mid-section-2 {
+      line-height: 16px;
+    }
+  }
+}

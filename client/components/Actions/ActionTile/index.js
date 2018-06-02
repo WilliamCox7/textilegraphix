@@ -5,7 +5,7 @@ import './style.scss';
 class ActionTile extends Component {
   render() {
     return (
-      <a className="ActionTile flex fd-c jc-sb ai-c" href={this.props.href} target={this.props.target}>
+      <a className="ActionTile flex fd-c jc-sb ai-c" href={this.props.href} target={this.props.target} onClick={() => this.props.click ? Intercom('show') : null}>
         <img src={getAsset(this.props.asset)} />
         <h1 className="fs-25 c-black">{this.props.h}</h1>
         {this.props.p ? (

@@ -10,6 +10,7 @@ import PrintArea from './PrintArea';
 import WaitIndicator from './WaitIndicator';
 import SocialMedia from './SocialMedia';
 import SeparatorLine from './SeparatorLine';
+import HelpHover from './HelpHover';
 
 export {
   Footer,
@@ -23,5 +24,6 @@ export {
   PrintArea,
   WaitIndicator,
   SocialMedia,
-  SeparatorLine
+  SeparatorLine,
+  HelpHover
 }
