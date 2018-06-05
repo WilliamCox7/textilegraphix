@@ -36,10 +36,9 @@ export default function buildOrderHtml(form, products) {
         ${product.backColors ? '<p style="margin: 5px 0px">Back Colors: ' + product.backColors + '</p>' : ''}
         ${product.leftSleeveColors ? '<p style="margin: 5px 0px">Left Sleeve Colors: ' + product.leftSleeveColors + '</p>' : ''}
         ${product.rightSleeveColors ? '<p style="margin: 5px 0px">Right Sleeve Colors: ' + product.rightSleeveColors + '</p>' : ''}
-        ${product.foldedAndBagged || product.insideTagPrinting || product.hemTags ? '<h3>Add Ons:</h3>' : ''}
+        ${product.foldedAndBagged || product.insideTagPrinting ? '<h3>Add Ons:</h3>' : ''}
         ${product.foldedAndBagged ? '<p style="margin: 5px 0px">Folded and Bagged</p>' : ''}
         ${product.insideTagPrinting ? '<p style="margin: 5px 0px">Inside Tag Printing</p>' : ''}
-        ${product.hemTags ? '<p style="margin: 5px 0px">Hem Tags</p>' : ''}
         <h2>Total: $${product.total}</h2>
         <br />
       </div>

@@ -1,0 +1,68 @@
+@import "../../vars.scss";
+
+.SizingForm {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  padding-bottom: 7px;
+  position: relative;
+  &::-webkit-scrollbar {
+    -webkit-appearance: none;
+    height: 7px;
+  }
+  &::-webkit-scrollbar-thumb {
+    width: 3px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+  }
+  .scroll-area {
+    .size {
+      input.fs-18 {
+        border: none;
+        border-bottom: solid 1px $gray-5;
+        margin-bottom: 10px;
+        padding: 4px 0px;
+        width: 50px;
+        text-align: center;
+        &::-webkit-input-placeholder {
+          color: $black;
+        }
+        &:-ms-input-placeholder {
+          color: $black;
+        }
+        &::-ms-input-placeholder {
+          color: $black;
+        }
+        &::placeholder {
+          color: $black;
+        }
+        @media(max-width: 550px) {
+          font-size: 12px;
+          width: 42px;
+        }
+      }
+      h1.fs-18 {
+        text-align: center;
+        width: 50px;
+        margin: auto;
+        @media(max-width: 550px) {
+          font-size: 12px;
+          width: 28px;
+        }
+      }
+      h1.fs-8 {
+        margin-top: 7px;
+        @media(max-width: 550px) {
+          font-size: 6px;
+        }
+      }
+    }
+  }
+  .shadow {
+    -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+    min-width: 1px;
+    position: absolute;
+    height: 100%;
+  }
+}

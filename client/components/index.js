@@ -11,6 +11,7 @@ import WaitIndicator from './WaitIndicator';
 import SocialMedia from './SocialMedia';
 import SeparatorLine from './SeparatorLine';
 import HelpHover from './HelpHover';
+import SizingForm from './SizingForm';
 
 export {
   Footer,
@@ -25,5 +26,6 @@ export {
   WaitIndicator,
   SocialMedia,
   SeparatorLine,
-  HelpHover
+  HelpHover,
+  SizingForm
 }

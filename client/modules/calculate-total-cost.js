@@ -66,15 +66,15 @@ export default function calculateTotalCost(order, shirtCostOverride) {
   let numShirtsXL = 0, XL2Cost = 0, XL3Cost = 0, XL4Cost = 0;
   if (order.XL2) {
     numShirtsXL += order.XL2;
-    XL2Cost = parseFloat(costOfShirt + setCost + markup + 1.75) * (order.XL2);
+    XL2Cost = parseFloat(costOfShirt + setCost + markup + 2.50) * (order.XL2);
   }
   if (order.XL3) {
     numShirtsXL += order.XL3;
-    XL3Cost = parseFloat(costOfShirt + setCost + markup + 3.00) * (order.XL3);
+    XL3Cost = parseFloat(costOfShirt + setCost + markup + 3.50) * (order.XL3);
   }
   if (order.XL4) {
     numShirtsXL += order.XL4;
-    XL4Cost = parseFloat(costOfShirt + setCost + markup + 3.50) * (order.XL4);
+    XL4Cost = parseFloat(costOfShirt + setCost + markup + 4) * (order.XL4);
   }
   let regCost = parseFloat(costOfShirt + setCost + markup) * (numShirts - numShirtsXL);
   let shippingCost = parseFloat(shippingRate) * numShirts;

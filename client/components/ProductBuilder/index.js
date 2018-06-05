@@ -1,6 +1,6 @@
 import { React, Component, NumberFormat, domtoimage, moment, jszip, saveAs, MediaQuery, connect } from '../../packages';
 import { getAsset, calculateTotalCost } from '../../modules';
-import { PrintArea, Footer, WaitIndicator, HelpHover } from '../';
+import { PrintArea, Footer, WaitIndicator, HelpHover, SizingForm } from '../';
 import { addOrder } from '../../reducers/cart';
 import './style.scss';
 
@@ -24,12 +24,11 @@ class ProductBuilder extends Component {
       sleeveColors: 0,
       foldedAndBagged: false,
       insideTagPrinting: false,
-      hemTags: false,
       total: 0,
       totalPerShirt: 0,
       delivery: '',
       shownSide: 0,
-      showAddOns: false,
+      showAddOns: true,
       waiting: false,
       showHelp: false,
       uploaded: {
@@ -62,6 +61,7 @@ class ProductBuilder extends Component {
     this.fadeHelp = this.fadeHelp.bind(this);
     this.cancelHelpTimer = this.cancelHelpTimer.bind(this);
     this.toggleHelp = this.toggleHelp.bind(this);
+    this.updSizing = this.updSizing.bind(this);
   }
 
   componentDidMount() {
@@ -262,6 +262,25 @@ class ProductBuilder extends Component {
     return s4() + s4();
   }
 
+  updSizing(e, order) {
+    if (!isNaN(e.target.value)) {
+      let newState = Object.assign({}, this.state);
+      newState[e.target.name] = Number(e.target.value);
+      newState.quantity = 0;
+      if (newState.XS) newState.quantity += newState.XS;
+      if (newState.S) newState.quantity += newState.S;
+      if (newState.M) newState.quantity += newState.M;
+      if (newState.L) newState.quantity += newState.L;
+      if (newState.XL) newState.quantity += newState.XL;
+      if (newState.XL2) newState.quantity += newState.XL2;
+      if (newState.XL3) newState.quantity += newState.XL3;
+      if (newState.XL4) newState.quantity += newState.XL4;
+      this.setState(newState, () => {
+        this.calculateTotalCost(this.state);
+      })
+    }
+  }
+
   render() {
 
     let colors = this.props.product.colors.map((color, i) => {
@@ -339,7 +358,6 @@ class ProductBuilder extends Component {
                         <i className="fas fa-minus fs-12 c-blue" onClick={() => this.decrimentColor('sleeve')}></i>
                         <h1 className="fs-24 c-black fw-bold">{this.state.sleeveColors}</h1>
                         <i className="fas fa-plus fs-12 c-blue" onClick={() => this.incrimentColor('sleeve')}></i>
-                        <span></span>
                       </div>
                     </MediaQuery>
                   </div>
@@ -388,79 +406,49 @@ class ProductBuilder extends Component {
                         <h1 className="fs-18 c-black fw-bold">Inside Tag Printing - </h1>
                         <h1 className="fs-18 c-gray-3 fw-bold"> $1.15 / Shirt</h1>
                       </div>
-                      <div className="section flex ai-c">
-                        <div className="checkbox">
-                          <label>
-                            <input type="checkbox" checked={this.state.hemTags}
-                              name="hemTags" onClick={this.updateCheckBox} />
-                            <span></span>
-                          </label>
-                        </div>
-                        <h1 className="fs-18 c-black fw-bold">Hem Tags - </h1>
-                        <h1 className="fs-18 c-gray-3 fw-bold"> $2.25 / Shirt </h1>
-                        <h1 className="fs-10 c-gray-3 fw-bold"> *100pcs Minimum</h1>
-                      </div>
                     </div>
                     <MediaQuery minWidth={550}>
                       <span className="space"></span>
                     </MediaQuery>
                   </div>
                 ) : null}
+                <div className="step-no flex ai-c">
+                  <span className="flex ai-c jc-c fs-20 c-white">3.</span>
+                  <h1 className="fs-18 c-blue fw-bold">
+                    SIZING
+                  </h1>
+                </div>
+                <div className="content-wrapper flex">
+                  <MediaQuery minWidth={550}>
+                    <span className="space"></span>
+                  </MediaQuery>
+                  <div className="content sizing-wrapper flex">
+                    <SizingForm order={this.state} updSizing={this.updSizing} optionalText={true} />
+                    <div className="total-box flex jc-c ai-c fd-c">
+                      <h1 className="fs-22 c-white">{this.state.quantity}</h1>
+                      <h1 className="fs-16 c-white">TOTAL</h1>
+                    </div>
+                  </div>
+                  <MediaQuery minWidth={550}>
+                    <span className="space"></span>
+                  </MediaQuery>
+                </div>
               </div>
             </div>
             <div className="total">
               <div className="total-headers flex">
                 <span className="total-header flex ai-c jc-c fs-20 c-white fw-bold">TOTAL</span>
-                <div className="headers flex ai-fe">
-                  <h1 className="fs-12 c-gray-3 fw-bold">
-                    <MediaQuery minWidth={550}>
-                      {(matches) => {
-                        if (matches) {
-                          return <span>Price Per Shirt:</span>;
-                        } else {
-                          return <span></span>;
-                        }
-                      }}
-                    </MediaQuery>
-                  </h1>
-                  <h1 className="fs-12 c-gray-3 fw-bold">Estimated Total:</h1>
-                </div>
+                <h1 className="fs-12 c-gray-3 fw-bold">To see pricing, please enter your zipcode.</h1>
               </div>
               <div className="content-wrapper flex">
                 <MediaQuery minWidth={550}>
                   <span className="space-large"></span>
                 </MediaQuery>
-                <div className="content total-content flex">
-                  <div className="section flex fd-c ai-c jc-c">
-                    <MediaQuery maxWidth={550}>
-                      <h1 className="fs-12 c-gray-3 fw-bold">Price Per Shirt:</h1>
-                    </MediaQuery>
-                    <div className="row flex">
-                      <h1 className="fs-26 c-black fw-bold">
-                        <NumberFormat value={this.state.totalPerShirt} displayType={'text'}
-                          thousandSeparator={true} prefix={'$'} decimalScale={2} />
-                      </h1>
-                      <h1 className="fs-26 c-gray-3 fw-bold divider">/</h1>
-                      <h1 className="fs-26 c-gray-3 fw-bold">Shirt</h1>
-                    </div>
-                    <MediaQuery className="row flex" minWidth={550}>
-                      <h1 className="fs-8 c-gray-3 fw-bold">2XL - $2.50 more.</h1>
-                      <h1 className="fs-8 c-gray-3 fw-bold">3XL - $3.50 more.</h1>
-                    </MediaQuery>
-                  </div>
-                  <div className="section flex fd-c jc-c">
-                    <div className="row">
-                      <h1 className="fs-20 c-black fw-bold">
-                        <NumberFormat value={this.state.total} displayType={'text'}
-                          thousandSeparator={true} prefix={'$'} decimalScale={2} />
-                      </h1>
-                    </div>
-                    <div className="row">
-                      <h1 className="fs-12 c-gray-3 fw-bold">Estimated Delivery:</h1>
-                    </div>
-                    <div className="row">
-                      <h1 className="fs-20 c-black fw-bold">{this.state.delivery}</h1>
-                    </div>
+                <div className="content total-content flex fd-c jc-c ai-c">
+                  <h1 className="fs-16 fw-bold">WHERE WILL THIS BE SHIPPED?</h1>
+                  <div className="ship-buttons flex jc-c">
+                    <button className="zip-button fs-10 c-blue">ZIP CODE</button>
+                    <button className="ok-button fs-10 c-white">OK</button>
                   </div>
                 </div>
                 <MediaQuery minWidth={550}>
