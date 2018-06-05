@@ -83,6 +83,12 @@ input[type=number]::-webkit-outer-spin-button {
   align-items: center;
 }
 
+.ai-fs {
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+}
+
 .ai-fe {
   -webkit-box-align: end;
   -ms-flex-align: end;

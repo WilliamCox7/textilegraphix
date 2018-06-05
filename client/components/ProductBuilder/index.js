@@ -31,6 +31,7 @@ class ProductBuilder extends Component {
       showAddOns: true,
       waiting: false,
       showHelp: false,
+      zip: '',
       uploaded: {
         front: [],
         back: []
@@ -62,12 +63,15 @@ class ProductBuilder extends Component {
     this.cancelHelpTimer = this.cancelHelpTimer.bind(this);
     this.toggleHelp = this.toggleHelp.bind(this);
     this.updSizing = this.updSizing.bind(this);
+    this.setDelivery = this.setDelivery.bind(this);
+    this.setZip = this.setZip.bind(this);
   }
 
   componentDidMount() {
     this.calculateTotalCost(this.state);
     this.setDelivery();
     let initState = Object.assign({}, this.state, this.props.productBuilderInit);
+    initState.delivery = this.setDelivery();
     this.setState(initState);
   }
 
@@ -90,7 +94,7 @@ class ProductBuilder extends Component {
     if (weekday === 0) { deliveryDay.add(1, 'days'); }
     else if (weekday === 6) { deliveryDay.add(2, 'days'); }
     var displayedDay = deliveryDay.format('MMMM Do');
-    this.setState({delivery: displayedDay});
+    return displayedDay;
   }
 
   updateColor(color) {
@@ -281,11 +285,17 @@ class ProductBuilder extends Component {
     }
   }
 
+  setZip() {
+    this.setState({zip: '12111'});
+  }
+
   render() {
 
     let colors = this.props.product.colors.map((color, i) => {
+      let style = {"background": color.hex};
+      if (color.hex === this.state.selectedHex) style.border = "solid 1px black";
       return (
-        <span key={i} style={{"background": color.hex}}
+        <span key={i} style={style}
           onClick={() => this.updateColor(color)}></span>
       );
     });
@@ -438,32 +448,71 @@ class ProductBuilder extends Component {
             <div className="total">
               <div className="total-headers flex">
                 <span className="total-header flex ai-c jc-c fs-20 c-white fw-bold">TOTAL</span>
-                <h1 className="fs-12 c-gray-3 fw-bold">To see pricing, please enter your zipcode.</h1>
+                {this.state.zip ? null : (
+                  <h1 className="fs-12 c-gray-3 fw-bold zip-copy">To see pricing, please enter your zipcode.</h1>
+                )}
               </div>
               <div className="content-wrapper flex">
                 <MediaQuery minWidth={550}>
                   <span className="space-large"></span>
                 </MediaQuery>
-                <div className="content total-content flex fd-c jc-c ai-c">
-                  <h1 className="fs-16 fw-bold">WHERE WILL THIS BE SHIPPED?</h1>
-                  <div className="ship-buttons flex jc-c">
-                    <button className="zip-button fs-10 c-blue">ZIP CODE</button>
-                    <button className="ok-button fs-10 c-white">OK</button>
+                {this.state.zip ? (
+                  <div className="content total-content flex jc-sb">
+                    <div className="section flex fd-c jc-c ai-fs">
+                      <h1 className="fs-12 c-gray-3 fw-bold pps-header">Price Per Shirt:</h1>
+                      <div className="row flex">
+                        <h1 className="fs-26 c-black fw-bold">
+                          <NumberFormat value={this.state.totalPerShirt} displayType={'text'}
+                            thousandSeparator={true} prefix={'$'} decimalScale={2} />
+                        </h1>
+                        <h1 className="fs-26 c-gray-3 fw-bold divider">/</h1>
+                        <h1 className="fs-26 c-gray-3 fw-bold">Shirt</h1>
+                      </div>
+                      <MediaQuery className="row flex" minWidth={550}>
+                        <h1 className="fs-8 c-gray-3 fw-bold">2XL - $2.50 more.</h1>
+                        <h1 className="fs-8 c-gray-3 fw-bold">3XL - $3.50 more.</h1>
+                      </MediaQuery>
+                    </div>
+                    <div className="section flex fd-c jc-c ai-fs">
+                      <div className="row">
+                        <h1 className="fs-12 c-gray-3 fw-bold">Estimated Total:</h1>
+                      </div>
+                      <div className="row">
+                        <h1 className="fs-20 c-black fw-bold">
+                          <NumberFormat value={this.state.total} displayType={'text'}
+                            thousandSeparator={true} prefix={'$'} decimalScale={2} />
+                        </h1>
+                      </div>
+                      <div className="row">
+                        <h1 className="fs-12 c-gray-3 fw-bold">Estimated Delivery:</h1>
+                      </div>
+                      <div className="row">
+                        <h1 className="fs-20 c-black fw-bold">{this.state.delivery}</h1>
+                      </div>
+                    </div>
                   </div>
-                </div>
+                ) : (
+                  <div className="content total-content flex fd-c jc-c ai-c">
+                    <h1 className="fs-16 fw-bold">WHERE WILL THIS BE SHIPPED?</h1>
+                    <div className="ship-buttons flex jc-c">
+                      <button className="zip-button fs-10 c-blue">ZIP CODE</button>
+                      <button className="ok-button fs-10 c-white" onClick={this.setZip}>OK</button>
+                    </div>
+                  </div>
+                )}
                 <MediaQuery minWidth={550}>
                   <span className="space"></span>
                 </MediaQuery>
               </div>
-              <MediaQuery maxWidth={550}>
+              <MediaQuery maxWidth={1200}>
                 <div className="action-buttons flex jc-sb">
-                  <button className="help-button flex" onClick={this.toggleHelp}>
+                  <button className="help-button flex" onClick={this.toggleHelp} onMouseEnter={this.showHelp} onMouseLeave={this.fadeHelp}>
                     <h1 className="fs-15 fw-bold c-white">HELP</h1>
                     <span className="fs-15 fw-bold c-blue">?</span>
                   </button>
                   <button className="add-to-quote" onClick={this.addProductToCart}>ADD TO QUOTE</button>
                   {this.state.showHelp ? (
-                    <HelpHover top />
+                    <HelpHover top fadeHelp={this.fadeHelp} cancelHelpTimer={this.cancelHelpTimer} />
                   ) : null}
                 </div>
               </MediaQuery>
@@ -471,20 +520,25 @@ class ProductBuilder extends Component {
           </div>
           <div className="right side">
             <div className="side-buttons-left flex fd-c">
-              <span onClick={() => this.toggleShownSide(0)}>
+              <span onClick={() => this.toggleShownSide(0)} className="flex fd-c ai-c jc-c">
                 <img src={getAsset('front-side-button')} />
+                <h1 className="fs-10">FRONT</h1>
               </span>
-              <span onClick={() => this.toggleShownSide(1)}>
+              <span onClick={() => this.toggleShownSide(1)} className="flex fd-c ai-c jc-c">
                 <img src={getAsset('back-side-button')} />
+                <h1 className="fs-10">BACK</h1>
               </span>
             </div>
-            <MediaQuery maxWidth={550}>
-              <div className="side-buttons-right">
-                <span onClick={() => document.getElementById('inputButton').click()}>
-                  <i className="fas fa-plus-circle"></i>
-                </span>
-              </div>
-            </MediaQuery>
+            <div className="side-buttons-right">
+              <span onClick={() => document.getElementById('inputButton').click()} className="flex fd-c ai-c jc-c">
+                <i className="fas fa-plus-circle"></i>
+                <h1 className="fs-10">ADD LOGO</h1>
+              </span>
+              <span onClick={this.downloadMockup} className="flex fd-c ai-c jc-c">
+                <img src={getAsset('download-button')} />
+                <h1 className="fs-10">DOWNLOAD</h1>
+              </span>
+            </div>
             <div className="product-image-wrapper flex jc-c"
               style={this.state.shownSide ? {"zIndex": 1} : {"zIndex": 0}}>
               <div id="back-side">
@@ -499,13 +553,6 @@ class ProductBuilder extends Component {
                 <PrintArea uploaded={this.state.uploaded.front} removeImage={this.removeImage} />
               </div>
             </div>
-            <MediaQuery className="action-buttons flex jc-sb" minWidth={550}>
-              <button className="download fs-18 c-white" onClick={this.downloadMockup}>DOWNLOAD</button>
-              <button className="download fs-18 c-white" onClick={
-                () => document.getElementById('inputButton').click()
-              }>UPLOAD</button>
-              <button className="add-to-quote fs-18 c-white" onClick={this.addProductToCart}>ADD TO QUOTE</button>
-            </MediaQuery>
             <input id="inputButton" type="file" accept="image/x-png,image/jpeg"
               onChange={this.storeFile} />
           </div>

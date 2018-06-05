@@ -78,21 +78,26 @@
     .left {
       background: #F2F2F2;
       @media(max-width: 1200px) {
-        min-height: 825px;
+        min-height: 1000px;
       }
       @media(max-width: 550px) {
         padding: 20px !important;
-        min-height: 1000px;
       }
       h1 {
         text-align: center;
       }
       h1.fs-20.c-gray-1 {
+        @media(max-width: 1200px) {
+          margin: 20px 0px;
+        }
         @media(max-width: 550px) {
           font-size: 16px;
         }
       }
       .color-boxes {
+        @media(max-width: 1200px) {
+          margin: 20px 0px;
+        }
         @media(max-width: 550px) {
           margin-bottom: 20px;
         }
@@ -137,7 +142,21 @@
             width: 100px;
             height: 42px;
           }
-          h1.fs-12 {
+          .headers {
+            width: calc(100% - 140px);
+            @media(max-width: 550px) {
+              width: calc(100% - 70px);
+            }
+            h1.fs-12 {
+              width: 50%;
+              padding: 5px 10px;
+              @media(max-width: 550px) {
+                padding: 5px 0px;
+                width: calc(50% - 25px);
+              }
+            }
+          }
+          h1.zip-copy {
             padding: 20px 10px;
             height: 20px;
             @media(max-width: 550px) {
@@ -147,7 +166,7 @@
         }
       }
       .content-wrapper {
-        @media(max-width: 550px) {
+        @media(max-width: 1200px) {
           margin-bottom: 40px;
         }
         .space {
@@ -284,7 +303,10 @@
           }
         }
         .total-content {
-          padding: 15px 0px 18px;
+          padding: 15px 20px 18px;
+          @media(max-width: 365px) {
+            padding: 10px;
+          }
           h1.fs-16 {
             margin-bottom: 10px;
           }
@@ -301,6 +323,21 @@
           .ok-button {
             background: $green;
             border: solid 1px $green;
+          }
+          .section {
+            padding: 0px 10px;
+            .pps-header {
+              margin-bottom: 10px;
+            }
+            .row {
+              margin-top: 5px;
+              .divider {
+                margin: 0px 6px;
+              }
+              h1.fs-8 {
+                margin: 0px 5px;
+              }
+            }
           }
         }
       }
@@ -345,38 +382,58 @@
       position: relative;
       padding-top: 64px;
       @media(max-width: 1200px) {
-        min-height: 600px;
-        padding-top: 0px;
-      }
-      @media(max-width: 550px) {
         min-height: 515px;
+        padding-top: 0px;
       }
       .side-buttons-left {
         position: absolute;
         top: 0;
-        left: 0;
+        left: 20px;
         z-index: 2;
+        @media(max-width: 550px) {
+          left: 0;
+        }
         span {
           cursor: pointer;
           width: 110px;
           padding: 20px 20px 0px;
-          @media(max-width: 550px) {
-            width: 90px;
+          img {
+            height: 60px;
+            margin-bottom: 10px;
+            @media(max-width: 550px) {
+              height: 40px;
+            }
           }
         }
       }
       .side-buttons-right {
         position: absolute;
         top: 0;
-        right: 0;
+        right: 20px;
         z-index: 2;
-        padding-top: 16px;
+        @media(max-width: 550px) {
+          right: 0;
+        }
         span {
           cursor: pointer;
-          width: 40px;
+          width: 100px;
+          text-align: center;
           padding: 20px 20px 0px;
           i {
-            font-size: 40px;
+            font-size: 60px;
+            width: 100px;
+            margin-bottom: 10px;
+            color: $blue;
+            @media(max-width: 550px) {
+              font-size: 40px;
+            }
+          }
+          img {
+            height: 60px;
+            margin-bottom: 10px;
+            @media(max-width: 550px) {
+              height: 40px;
+            }
           }
         }
       }
