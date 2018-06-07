@@ -2,6 +2,8 @@ import { React, Component } from '../../packages';
 import { getAsset } from '../../modules';
 import './style.scss';
 
+import * as method from './methods';
+
 const active = {"background": "#44B1DE", "border": "none"};
 
 class ProductNavMobile extends Component {
@@ -10,18 +12,6 @@ class ProductNavMobile extends Component {
     super();
     this.setFilter = this.setFilter.bind(this);
     this.toggleFilter = this.toggleFilter.bind(this);
-  }
-
-  setFilter(filter) {
-    if (this.props.filter === filter) {
-      filter = '';
-    }
-    this.props.setFilter(filter);
-  }
-
-  toggleFilter() {
-    this.props.toggleShowFilter();
-    this.props.toggleOverlay();
   }
 
   render() {
@@ -113,5 +103,8 @@ class ProductNavMobile extends Component {
     );
   }
 }
+
+ProductNavMobile.prototype.setFilter = method.setFilter;
+ProductNavMobile.prototype.toggleFilter = method.toggleFilter;
 
 export default ProductNavMobile;

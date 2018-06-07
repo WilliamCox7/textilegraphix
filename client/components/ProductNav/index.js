@@ -2,6 +2,8 @@ import { React, Component } from '../../packages';
 import { getAsset } from '../../modules';
 import './style.scss';
 
+import * as method from './methods';
+
 class ProductNav extends Component {
 
   constructor() {
@@ -14,43 +16,6 @@ class ProductNav extends Component {
     }
     this.setFilter = this.setFilter.bind(this);
     this.setStatus = this.setStatus.bind(this);
-  }
-
-  setFilter(filter) {
-    if (this.props.filter === filter) {
-      filter = '';
-    }
-    this.props.setFilter(filter);
-  }
-
-  setStatus(filter, status) {
-    var newState = Object.assign({}, this.state);
-    if (status === 'hovering') {
-      if (newState[filter] !== 'selected') {
-        for (var prop in newState) {
-          if (newState[prop] !== 'selected') {
-            if (prop === filter) {
-              newState[prop] = status;
-            } else {
-              newState[prop] = '';
-            }
-          }
-        }
-      }
-    } else if (status === 'selected') {
-      for (var prop in newState) {
-        if (newState[prop] === 'selected') {
-          newState[prop] = '';
-        } else if (prop === filter) {
-          newState[prop] = status;
-        }
-      }
-    } else {
-      if (newState[filter] !== 'selected') {
-        newState[filter] = status;
-      }
-    }
-    this.setState(newState);
   }
 
   render() {
@@ -104,5 +69,8 @@ class ProductNav extends Component {
     );
   }
 }
+
+ProductNav.prototype.setFilter = method.setFilter;
+ProductNav.prototype.setStatus = method.setStatus;
 
 export default ProductNav;

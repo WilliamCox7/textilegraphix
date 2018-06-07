@@ -1,14 +1,10 @@
-import { React, Component, NumberFormat, domtoimage, moment, jszip, saveAs, MediaQuery, connect } from '../../packages';
+import { React, Component, NumberFormat, MediaQuery, connect } from '../../packages';
 import { getAsset, calculateTotalCost } from '../../modules';
 import { PrintArea, Footer, WaitIndicator, HelpHover, SizingForm } from '../';
 import { addOrder } from '../../reducers/cart';
 import './style.scss';
 
-const endOfYear = [
-  'December 23rd', 'December 24th', 'December 25th', 'December 26th',
-  'December 27th', 'December 28th', 'December 29th', 'December 30th',
-  'December 31st', 'January 1st', 'January 2nd'
-];
+import * as method from './methods';
 
 class ProductBuilder extends Component {
 
@@ -28,9 +24,9 @@ class ProductBuilder extends Component {
       totalPerShirt: 0,
       delivery: '',
       shownSide: 0,
-      showAddOns: true,
+      addOns: true,
       waiting: false,
-      showHelp: false,
+      help: false,
       zip: '',
       uploaded: {
         front: [],
@@ -56,19 +52,18 @@ class ProductBuilder extends Component {
     this.storeFile = this.storeFile.bind(this);
     this.removeImage = this.removeImage.bind(this);
     this.addProductToCart = this.addProductToCart.bind(this);
-    this.toggleAddOns = this.toggleAddOns.bind(this);
-    this.toggleWaitIndicator = this.toggleWaitIndicator.bind(this);
-    this.showHelp = this.showHelp.bind(this);
     this.fadeHelp = this.fadeHelp.bind(this);
     this.cancelHelpTimer = this.cancelHelpTimer.bind(this);
-    this.toggleHelp = this.toggleHelp.bind(this);
+    this.showHelp = this.showHelp.bind(this);
     this.updSizing = this.updSizing.bind(this);
     this.setDelivery = this.setDelivery.bind(this);
     this.setZip = this.setZip.bind(this);
+    this.toggle = this.toggle.bind(this);
+    this.calculateCost = this.calculateCost.bind(this);
   }
 
   componentDidMount() {
-    this.calculateTotalCost(this.state);
+    this.calculateCost(this.state);
     this.setDelivery();
     let initState = Object.assign({}, this.state, this.props.productBuilderInit);
     initState.delivery = this.setDelivery();
@@ -77,216 +72,6 @@ class ProductBuilder extends Component {
 
   componentWillUnmount() {
     this.cancelHelpTimer();
-  }
-
-  setDelivery() {
-    var today = moment();
-    var year = today.get('year');
-    if (today.get('month') === 11) {
-      year = today.add(1, 'years').get('year');
-    }
-    var deliveryDay = moment(today).add(14, 'days');
-    var estDelDay = deliveryDay.format('MMMM Do');
-    if (JSON.stringify(endOfYear).indexOf(estDelDay) > -1) {
-      deliveryDay = moment("01-03-"+year);
-    }
-    var weekday = deliveryDay.weekday();
-    if (weekday === 0) { deliveryDay.add(1, 'days'); }
-    else if (weekday === 6) { deliveryDay.add(2, 'days'); }
-    var displayedDay = deliveryDay.format('MMMM Do');
-    return displayedDay;
-  }
-
-  updateColor(color) {
-    this.setState({selectedColor: color.name, selectedHex: color.hex}, () => {
-      this.calculateTotalCost(this.state);
-    });
-  }
-
-  updateQuantity(e) {
-    if (!isNaN(e.target.value)) {
-      this.setState({quantity: Number(e.target.value)}, () => {
-        this.calculateTotalCost(this.state);
-      });
-    }
-  }
-
-  incrimentColor(color) {
-    let prop = color + "Colors";
-    let newState = Object.assign({}, this.state);
-    newState[prop] = newState[prop] + 1;
-    this.setState(newState, () => {
-      this.calculateTotalCost(this.state);
-    });
-  }
-
-  decrimentColor(color) {
-    let prop = color + "Colors";
-    let newState = Object.assign({}, this.state);
-    newState[prop] = newState[prop] - 1;
-    if (newState[prop] < 0) {
-      newState[prop] = 0;
-    }
-    this.setState(newState, () => {
-      this.calculateTotalCost(this.state);
-    });
-  }
-
-  updateCheckBox(e) {
-    let newState = Object.assign({}, this.state);
-    newState[e.target.name] = !newState[e.target.name];
-    this.setState(newState, () => {
-      this.calculateTotalCost(this.state);
-    });
-  }
-
-  calculateTotalCost(state) {
-    let results = calculateTotalCost(this.state);
-    this.setState({total: results.totalCost, totalPerShirt: results.costPerShirt});
-  }
-
-  toggleShownSide(side) {
-    this.setState({shownSide: side});
-  }
-
-  toggleAddOns() {
-    this.setState({showAddOns: !this.state.showAddOns});
-  }
-
-  downloadMockup() {
-    var zip = new jszip();
-    var folderName = "mockup-" + this.props.product.number;
-    var folder = zip.folder(folderName);
-    var front = document.getElementById("front-side");
-    var back = document.getElementById("back-side");
-    var promises = [
-      domtoimage.toBlob(front).then((blob) => {
-        folder.file("front.png", blob);
-      }),
-      domtoimage.toBlob(back).then((blob) => {
-        folder.file("back.png", blob);
-      })
-    ];
-    Promise.all(promises).then(() => {
-      zip.generateAsync({type: "blob"}).then((content) => {
-        var zipName = folderName + ".zip";
-        saveAs(content, zipName);
-      });
-    });
-  }
-
-  uploadImage(image) {
-    let side = this.state.shownSide ? 'back' : 'front';
-    let newState = Object.assign({}, this.state);
-    newState.uploaded[side].push(image);
-    this.setState(newState);
-  }
-
-  storeFile(e) {
-    var reader = new FileReader();
-    var imgName = e.currentTarget.files[0].name;
-    reader.onloadend = () => {
-      this.uploadImage({src: reader.result, name: imgName});
-    }
-    reader.readAsDataURL(e.currentTarget.files[0]);
-    document.getElementById('inputButton').value = '';
-  }
-
-  removeImage(index) {
-    let side = this.state.shownSide ? 'back' : 'front';
-    let newState = Object.assign({}, this.state);
-    newState.uploaded[side].splice(index, 1);
-    this.setState(newState);
-  }
-
-  toggleWaitIndicator() {
-    this.setState({waiting: !this.state.waiting});
-  }
-
-  toggleHelp() {
-    this.setState({showHelp: !this.state.showHelp});
-  }
-
-  showHelp() {
-    this.cancelHelpTimer();
-    this.setState({showHelp: true});
-  }
-
-  fadeHelp() {
-    let self = this;
-    let helpHover = document.getElementById('help-hover');
-    self.opacityTimer = setTimeout(() => {
-      helpHover.style.opacity = 0;
-    }, 500);
-    self.showHelpTimer = setTimeout(() => {
-      helpHover.style.opacity = 1;
-      self.setState({showHelp: false});
-    }, 1500);
-  }
-
-  cancelHelpTimer() {
-    let helpHover = document.getElementById('help-hover');
-    if (this.opacityTimer) {
-      clearTimeout(this.opacityTimer);
-      this.opacityTimer = null;
-    }
-    if (this.showHelpTimer) {
-      clearTimeout(this.showHelpTimer);
-      this.showHelpTimer = null;
-    }
-    if (helpHover) {
-      helpHover.style.opacity = 1;
-    }
-  }
-
-  addProductToCart() {
-    this.toggleWaitIndicator();
-    let newState = Object.assign({}, this.state);
-    newState.guid = this.createGuid();
-    var front = document.getElementById("front-side");
-    var back = document.getElementById("back-side");
-    var promises = [
-      domtoimage.toPng(front),
-      domtoimage.toPng(back)
-    ]
-    Promise.all(promises).then((mockup) => {
-      newState.mockup = mockup;
-      this.setState(newState, () => {
-        this.props.addOrder(this.state);
-        this.props.toggleBuilder();
-        this.toggleWaitIndicator();
-      });
-    });
-  }
-
-  createGuid() {
-    function s4() {
-      return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
-    }
-    return s4() + s4();
-  }
-
-  updSizing(e, order) {
-    if (!isNaN(e.target.value)) {
-      let newState = Object.assign({}, this.state);
-      newState[e.target.name] = Number(e.target.value);
-      newState.quantity = 0;
-      if (newState.XS) newState.quantity += newState.XS;
-      if (newState.S) newState.quantity += newState.S;
-      if (newState.M) newState.quantity += newState.M;
-      if (newState.L) newState.quantity += newState.L;
-      if (newState.XL) newState.quantity += newState.XL;
-      if (newState.XL2) newState.quantity += newState.XL2;
-      if (newState.XL3) newState.quantity += newState.XL3;
-      if (newState.XL4) newState.quantity += newState.XL4;
-      this.setState(newState, () => {
-        this.calculateTotalCost(this.state);
-      })
-    }
-  }
-
-  setZip() {
-    this.setState({zip: '12111'});
   }
 
   render() {
@@ -311,7 +96,7 @@ class ProductBuilder extends Component {
               <span className="fs-15 fw-bold c-blue">?</span>
             </button>
             <button className="fs-15 fw-bold c-white add-button" onClick={this.addProductToCart}>ADD TO QUOTE</button>
-            {this.state.showHelp ? (
+            {this.state.help ? (
               <HelpHover fadeHelp={this.fadeHelp} cancelHelpTimer={this.cancelHelpTimer} />
             ) : null}
           </div>
@@ -376,19 +161,19 @@ class ProductBuilder extends Component {
                   </MediaQuery>
                 </div>
               </div>
-              <div className="step" style={this.state.showAddOns ? null : {"borderBottom": "solid 1px #D1D1D1"}}>
+              <div className="step" style={this.state.addOns ? null : {"borderBottom": "solid 1px #D1D1D1"}}>
                 <div className="step-no flex ai-c">
                   <span className="flex ai-c jc-c fs-20 c-white">2.</span>
-                  <h1 className="fs-18 c-blue fw-bold" onClick={this.toggleAddOns}>
+                  <h1 className="fs-18 c-blue fw-bold" onClick={() => this.toggle('addOns')}>
                     ADD ONS
-                    {this.state.showAddOns ? (
+                    {this.state.addOns ? (
                       <i className="fas fa-angle-down"></i>
                     ) : (
                       <i className="fas fa-angle-right"></i>
                     )}
                   </h1>
                 </div>
-                {this.state.showAddOns ? (
+                {this.state.addOns ? (
                   <div className="content-wrapper flex">
                     <MediaQuery minWidth={550}>
                       <span className="space"></span>
@@ -506,12 +291,12 @@ class ProductBuilder extends Component {
               </div>
               <MediaQuery maxWidth={1200}>
                 <div className="action-buttons flex jc-sb">
-                  <button className="help-button flex" onClick={this.toggleHelp} onMouseEnter={this.showHelp} onMouseLeave={this.fadeHelp}>
+                  <button className="help-button flex" onClick={() => toggle('help')} onMouseEnter={this.showHelp} onMouseLeave={this.fadeHelp}>
                     <h1 className="fs-15 fw-bold c-white">HELP</h1>
                     <span className="fs-15 fw-bold c-blue">?</span>
                   </button>
                   <button className="add-to-quote" onClick={this.addProductToCart}>ADD TO QUOTE</button>
-                  {this.state.showHelp ? (
+                  {this.state.help ? (
                     <HelpHover top fadeHelp={this.fadeHelp} cancelHelpTimer={this.cancelHelpTimer} />
                   ) : null}
                 </div>
@@ -560,11 +345,31 @@ class ProductBuilder extends Component {
         <MediaQuery maxWidth={1200}>
           <Footer />
         </MediaQuery>
-        <WaitIndicator message="Preparing your cart..." waiting={this.state.waiting}></WaitIndicator>
+        <WaitIndicator message="Preparing your cart..." waiting={this.state.waiting} />
       </div>
     );
   }
 }
+
+ProductBuilder.prototype.updateColor = method.updateColor;
+ProductBuilder.prototype.updateQuantity = method.updateQuantity;
+ProductBuilder.prototype.incrimentColor = method.incrimentColor;
+ProductBuilder.prototype.decrimentColor = method.decrimentColor;
+ProductBuilder.prototype.updateCheckBox = method.updateCheckBox;
+ProductBuilder.prototype.toggleShownSide = method.toggleShownSide;
+ProductBuilder.prototype.downloadMockup = method.downloadMockup;
+ProductBuilder.prototype.uploadImage = method.uploadImage;
+ProductBuilder.prototype.storeFile = method.storeFile;
+ProductBuilder.prototype.removeImage = method.removeImage;
+ProductBuilder.prototype.addProductToCart = method.addProductToCart;
+ProductBuilder.prototype.fadeHelp = method.fadeHelp;
+ProductBuilder.prototype.cancelHelpTimer = method.cancelHelpTimer;
+ProductBuilder.prototype.showHelp = method.showHelp;
+ProductBuilder.prototype.updSizing = method.updSizing;
+ProductBuilder.prototype.setDelivery = method.setDelivery;
+ProductBuilder.prototype.setZip = method.setZip;
+ProductBuilder.prototype.toggle = method.toggle;
+ProductBuilder.prototype.calculateCost = method.calculateCost;
 
 const mapDispatchToProps = {
   addOrder: addOrder

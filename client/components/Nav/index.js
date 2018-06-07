@@ -3,6 +3,9 @@ import { getAsset } from '../../modules';
 import { ProductBuilder, Menu } from '../';
 import './style.scss';
 
+import * as method from './methods';
+import SearchResult from './SearchResult';
+
 class Nav extends Component {
 
   constructor() {
@@ -20,8 +23,8 @@ class Nav extends Component {
     this.updateSearchText = this.updateSearchText.bind(this);
     this.toggleBuilder = this.toggleBuilder.bind(this);
     this.setProduct = this.setProduct.bind(this);
-    this.closeAll = this.closeAll.bind(this);
     this.cancelBuilder = this.cancelBuilder.bind(this);
+    this.toggleOverlay = this.toggleOverlay.bind(this);
   }
 
   componentDidMount() {
@@ -34,76 +37,11 @@ class Nav extends Component {
     });
   }
 
-  setProduct(product) {
-    this.setState({product: product});
-    this.toggleBuilder();
-  }
-
-  toggleMenu() {
-    this.setState({menu: !this.state.menu}, () => {
-      this.state.menu
-        ? document.body.style.position = 'fixed'
-        : document.body.style.position = 'inherit';
-    });
-  }
-
-  toggleSearchInput() {
-    this.setState({searchActive: !this.state.searchActive}, () => {
-      if (this.state.searchActive) {
-        document.getElementsByClassName('search-input')[0].focus();
-      }
-    });
-  }
-
-  toggleOverlay() {
-    this.setState({overlay: !this.state.overlay}, () => {
-      let className;
-      if (window.location.pathname === '/') className = 'Home';
-      else if (window.location.pathname === '/products') className = 'Products';
-      else if (window.location.pathname === '/support') className = 'Support';
-      else if (window.location.pathname === '/order') className = 'Order';
-      this.state.overlay
-        ? document.getElementsByClassName(className)[0].style.position = 'fixed'
-        : document.getElementsByClassName(className)[0].style.position = 'inherit';
-    });
-  }
-
-  updateSearchText(e) {
-    this.setState({searchText: e.target.value});
-  }
-
-  toggleBuilder() {
-    this.setState({builder: !this.state.builder});
-    this.toggleOverlay();
-  }
-
-  cancelBuilder() {
-    this.setState({builder: false, overlay: false}, () => {
-      let className;
-      if (window.location.pathname === '/') className = 'Home';
-      else if (window.location.pathname === '/products') className = 'Products';
-      else if (window.location.pathname === '/support') className = 'Support';
-      else if (window.location.pathname === '/order') className = 'Order';
-      document.getElementsByClassName(className)[0].style.position = 'inherit';
-    });
-  }
-
-  closeAll() {
-    this.setState({overlay: false, builder: false});
-  }
-
   render() {
 
     let searchResults = this.props.products.reduce((filtered, product, i) => {
       if (JSON.stringify(product).toLowerCase().indexOf(this.state.searchText.toLowerCase()) > -1 && i < 10 && this.state.searchText) {
-        filtered.push(
-          <div onClick={() => this.setProduct(product)} key={i} className="search-product flex ai-c">
-            <span>
-              <img src={product.thumbnail} />
-            </span>
-            <h1 className="fs-18 c-gray-1">{product.brand} {product.number}</h1>
-          </div>
-        );
+        filtered.push(<SearchResult product={product} setProduct={this.setProduct} key={i} />);
       }
       return filtered;
     }, []);
@@ -155,13 +93,21 @@ class Nav extends Component {
             <ProductBuilder toggleBuilder={this.toggleBuilder} product={this.state.product} />
           ) : null}
           {this.state.overlay ? (
-            <div className="gray-overlay" onClick={this.closeAll}></div>
+            <div className="gray-overlay" onClick={this.cancelBuilder}></div>
           ) : null}
         </div>
       </div>
     );
   }
 }
+
+Nav.prototype.toggleMenu = method.toggleMenu;
+Nav.prototype.toggleSearchInput = method.toggleSearchInput;
+Nav.prototype.updateSearchText = method.updateSearchText;
+Nav.prototype.toggleBuilder = method.toggleBuilder;
+Nav.prototype.setProduct = method.setProduct;
+Nav.prototype.cancelBuilder = method.cancelBuilder;
+Nav.prototype.toggleOverlay = method.toggleOverlay;
 
 const mapStateToProps = (state) => {
   return {

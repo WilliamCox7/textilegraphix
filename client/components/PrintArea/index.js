@@ -2,6 +2,8 @@ import { React, Component, Draggable } from '../../packages';
 import { getAsset } from '../../modules';
 import './style.scss';
 
+import * as method from './methods';
+
 class PrintArea extends Component {
 
   constructor() {
@@ -22,29 +24,6 @@ class PrintArea extends Component {
     var areaSpecs = area.getBoundingClientRect();
     var edge = areaSpecs.right + 1;
     this.setState({edge: edge});
-  }
-
-  startDrag(e) {
-    let clientY = e.type === 'touchstart' ? e.touches[0].clientY : e.clientY;
-    let parent = e.target.tagName === 'I' ? e.target.parentElement.parentElement : e.target.parentElement;
-    this.setState({dragging: true, mousePos: clientY, width: parent.clientWidth});
-  }
-
-  stopDrag(e) {
-    this.setState({dragging: false, mousePos: undefined, width: undefined});
-  }
-
-  drag(e) {
-    let clientY = e.type === 'touchmove' ? e.touches[0].clientY : e.clientY;
-    let parent = e.target.tagName === 'I' ? e.target.parentElement.parentElement : e.target.parentElement;
-    if (this.state.dragging) {
-      var newWidth = this.state.width - (this.state.mousePos - clientY);
-      if (newWidth < 254 && parent.getBoundingClientRect().right <= this.state.edge) {
-        parent.style.width = newWidth + 'px';
-      }
-    }
-    e.preventDefault();
-    return false;
   }
 
   render() {
@@ -79,5 +58,9 @@ class PrintArea extends Component {
     );
   }
 }
+
+PrintArea.prototype.startDrag = method.startDrag;
+PrintArea.prototype.stopDrag = method.stopDrag;
+PrintArea.prototype.drag = method.drag;
 
 export default PrintArea;
