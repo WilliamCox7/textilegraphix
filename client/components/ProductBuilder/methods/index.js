@@ -15,7 +15,6 @@ import showHelp from './show-help';
 import updSizing from './upd-sizing';
 import setDelivery from './set-delivery';
 import setZip from './set-zip';
-import toggle from './toggle';
 import calculateCost from './calculate-cost';
 
 export {

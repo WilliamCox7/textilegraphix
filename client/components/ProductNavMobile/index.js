@@ -1,5 +1,5 @@
 import { React, Component } from '../../packages';
-import { getAsset } from '../../modules';
+import { getAsset, setFilter } from '../../modules';
 import './style.scss';
 
 import * as method from './methods';
@@ -104,7 +104,7 @@ class ProductNavMobile extends Component {
   }
 }
 
-ProductNavMobile.prototype.setFilter = method.setFilter;
+ProductNavMobile.prototype.setFilter = setFilter;
 ProductNavMobile.prototype.toggleFilter = method.toggleFilter;
 
 export default ProductNavMobile;

@@ -1,5 +1,5 @@
 import { React, Component } from '../../packages';
-import { getAsset } from '../../modules';
+import { getAsset, setFilter } from '../../modules';
 import './style.scss';
 
 import * as method from './methods';
@@ -70,7 +70,7 @@ class ProductNav extends Component {
   }
 }
 
-ProductNav.prototype.setFilter = method.setFilter;
+ProductNav.prototype.setFilter = setFilter;
 ProductNav.prototype.setStatus = method.setStatus;
 
 export default ProductNav;

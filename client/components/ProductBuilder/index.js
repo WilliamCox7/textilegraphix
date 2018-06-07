@@ -1,5 +1,5 @@
 import { React, Component, NumberFormat, MediaQuery, connect } from '../../packages';
-import { getAsset, calculateTotalCost } from '../../modules';
+import { getAsset, calculateTotalCost, toggle } from '../../modules';
 import { PrintArea, Footer, WaitIndicator, HelpHover, SizingForm } from '../';
 import { addOrder } from '../../reducers/cart';
 import './style.scss';
@@ -368,7 +368,7 @@ ProductBuilder.prototype.showHelp = method.showHelp;
 ProductBuilder.prototype.updSizing = method.updSizing;
 ProductBuilder.prototype.setDelivery = method.setDelivery;
 ProductBuilder.prototype.setZip = method.setZip;
-ProductBuilder.prototype.toggle = method.toggle;
+ProductBuilder.prototype.toggle = toggle;
 ProductBuilder.prototype.calculateCost = method.calculateCost;
 
 const mapDispatchToProps = {
