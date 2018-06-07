@@ -1,4 +1,4 @@
 export default function toggleFilter() {
-  this.props.toggleShowFilter();
-  this.props.toggleOverlay();
+  this.props.toggle('showFilter');
+  this.props.toggle('overlay');
 }

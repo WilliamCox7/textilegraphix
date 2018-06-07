@@ -1,8 +1,10 @@
-import { React, Component, connect, NumberFormat, MediaQuery, axios } from '../../packages';
-import { calculateTotalCost, buildOrderHtml, getAsset } from '../../modules';
+import { React, Component, connect, NumberFormat, MediaQuery } from '../../packages';
+import { getAsset, toggle } from '../../modules';
 import { updOrder, removeOrder } from '../../reducers/cart';
 import { WaitIndicator } from '../../components';
 import './style.scss';
+
+import * as method from './methods';
 
 class Order extends Component {
 
@@ -27,151 +29,13 @@ class Order extends Component {
     this.selectOrderMockup = this.selectOrderMockup.bind(this);
     this.toggleMockup = this.toggleMockup.bind(this);
     this.updOrder = this.updOrder.bind(this);
-    this.calculateTotalCost = this.calculateTotalCost.bind(this);
+    this.calculateCost = this.calculateCost.bind(this);
     this.storeFile = this.storeFile.bind(this);
     this.updateInput = this.updateInput.bind(this);
     this.sendOrder = this.sendOrder.bind(this);
     this.removeOrder = this.removeOrder.bind(this);
     this.prepareAttachments = this.prepareAttachments.bind(this);
-    this.toggleThankYou = this.toggleThankYou.bind(this);
-    this.toggleWaitIndicator = this.toggleWaitIndicator.bind(this);
-  }
-
-  calculateTotalCost(order) {
-    let results = calculateTotalCost(order);
-    let updOrder = Object.assign({}, order);
-    updOrder.total = results.totalCost;
-    this.props.updOrder(updOrder);
-  }
-
-  selectOrderMockup(order) {
-    let newState = Object.assign({}, this.state);
-    newState.mockup = order.mockup;
-    newState.guid = order.guid;
-    this.setState(newState);
-  }
-
-  toggleMockup(index) {
-    this.setState({mockupIndex: index});
-  }
-
-  updOrder(e, order) {
-    if (!isNaN(e.target.value)) {
-      let updOrder = Object.assign({}, order);
-      updOrder[e.target.name] = Number(e.target.value);
-      updOrder.quantity = 0;
-      if (updOrder.XS) updOrder.quantity += updOrder.XS;
-      if (updOrder.S) updOrder.quantity += updOrder.S;
-      if (updOrder.M) updOrder.quantity += updOrder.M;
-      if (updOrder.L) updOrder.quantity += updOrder.L;
-      if (updOrder.XL) updOrder.quantity += updOrder.XL;
-      if (updOrder.XL2) updOrder.quantity += updOrder.XL2;
-      if (updOrder.XL3) updOrder.quantity += updOrder.XL3;
-      if (updOrder.XL4) updOrder.quantity += updOrder.XL4;
-      this.calculateTotalCost(updOrder);
-    }
-  }
-
-  storeFile(e) {
-    let newState = Object.assign({}, this.state);
-    var reader = new FileReader();
-    var fileName = e.currentTarget.files[0].name;
-    reader.onloadend = () => {
-      newState.files.push({data: reader.result, name: fileName});
-      this.setState(newState);
-    }
-    reader.readAsDataURL(e.currentTarget.files[0]);
-    document.getElementById('uploadButton').value = '';
-  }
-
-  updateInput(e) {
-    let newState = Object.assign({}, this.state);
-    newState[e.target.name] = e.target.value;
-    this.setState(newState);
-  }
-
-  sendOrder() {
-    if (this.state.first && this.state.last && this.state.phone && this.state.email
-        && this.state.email.toLowerCase() === this.state.confirm.toLowerCase()) {
-      this.toggleWaitIndicator();
-      axios.post('/order', {
-        to: this.state.email,
-        from: `${this.state.first} ${this.state.last}`,
-        order: buildOrderHtml(this.state, this.props.cart.orders),
-        attachments: this.prepareAttachments()
-      }).then((response) => {
-        this.toggleThankYou();
-        this.toggleWaitIndicator();
-      }).catch((error) => {
-        axios.post('/error', {error: error});
-      });
-    } else {
-      this.setState({error: true});
-    }
-  }
-
-  prepareAttachments() {
-    let attachments = [];
-    this.props.cart.orders.forEach((order) => {
-      attachments.push({
-        filename: `${order.guid}-front.png`,
-        path: order.mockup[0]
-      });
-      attachments.push({
-        filename: `${order.guid}-back.png`,
-        path: order.mockup[1]
-      });
-      order.uploaded.front.forEach((upload, i) => {
-        var ext = upload.name.split('.').pop();
-        attachments.push({
-          filename: `${order.guid}-${i+1}-upload-front.${ext}`,
-          path: upload.src
-        });
-      });
-      order.uploaded.back.forEach((upload, i) => {
-        var ext = upload.name.split('.').pop();
-        attachments.push({
-          filename: `${order.guid}-${i+1}-upload-back.${ext}`,
-          path: upload.src
-        });
-      });
-    });
-    this.state.files.forEach((file, i) => {
-      var ext = file.name.split('.').pop();
-      attachments.push({
-        filename: `other-uploads-${i+1}-other-upload.${ext}`,
-        path: file.data
-      });
-    });
-    return attachments;
-  }
-
-  removeOrder(guid) {
-    let foundUnselected = false, index = 0;
-    if (guid === this.state.guid) {
-      while (!foundUnselected) {
-        if (guid !== this.props.cart.orders[index].guid) {
-          this.selectOrderMockup(this.props.cart.orders[index]);
-          foundUnselected = true;
-        } else if (this.props.cart.orders.length - 1 === index) {
-          this.selectOrderMockup({
-            mockup: undefined,
-            guid: undefined
-          });
-          foundUnselected = true;
-        }
-        index++;
-      }
-    }
-    this.props.removeOrder(guid);
-  }
-
-  toggleThankYou() {
-    this.setState({thankyou: !this.state.thankyou});
-  }
-
-  toggleWaitIndicator() {
-    this.setState({waiting: !this.state.waiting});
+    this.toggle = this.toggle.bind(this);
   }
 
   render() {
@@ -381,16 +245,27 @@ class Order extends Component {
                 <span className="thumbs-up"><img src={getAsset('thumbs-up')} /></span>
                 <h1 className="fs-30 c-black fw-bold">Thanks for the Inquery!</h1>
                 <h1 className="fs-18 c-black">One of our staff members will be in contact with you shortly!</h1>
-                <span className="close" onClick={this.toggleThankYou}><img src={getAsset('close-x-black')} /></span>
+                <span className="close" onClick={() => this.toggle('thankyou')}><img src={getAsset('close-x-black')} /></span>
               </div>
             ) : null}
           </div>
         </div>
-        <WaitIndicator message="Placing your order..." waiting={this.state.waiting}></WaitIndicator>
+        <WaitIndicator message="Placing your order..." waiting={this.state.waiting} />
       </div>
     );
   }
 }
+
+Order.prototype.selectOrderMockup = method.selectOrderMockup;
+Order.prototype.toggleMockup = method.toggleMockup;
+Order.prototype.updOrder = method.updOrder;
+Order.prototype.calculateCost = method.calculateCost;
+Order.prototype.storeFile = method.storeFile;
+Order.prototype.updateInput = method.updateInput;
+Order.prototype.sendOrder = method.sendOrder;
+Order.prototype.removeOrder = method.removeOrder;
+Order.prototype.prepareAttachments = method.prepareAttachments;
+Order.prototype.toggle = toggle;
 
 const mapStateToProps = (state) => {
   return {

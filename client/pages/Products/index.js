@@ -1,7 +1,9 @@
 import { React, Component, connect, MediaQuery } from '../../packages';
 import { ProductNav, Product, ProductNavMobile, ProductBuilder } from '../../components';
-import { calculateTotalCost } from '../../modules';
+import { calculateTotalCost, toggle } from '../../modules';
 import './style.scss';
+
+import * as method from './methods';
 
 class Products extends Component {
 
@@ -25,11 +27,9 @@ class Products extends Component {
       }
     }
     this.setFilter = this.setFilter.bind(this);
-    this.toggleOverlay = this.toggleOverlay.bind(this);
     this.toggleBuilder = this.toggleBuilder.bind(this);
     this.setProduct = this.setProduct.bind(this);
     this.closeAll = this.closeAll.bind(this);
-    this.toggleShowFilter = this.toggleShowFilter.bind(this);
     this.incrimentColor = this.incrimentColor.bind(this);
     this.decrimentColor = this.decrimentColor.bind(this);
     this.updateQuantity = this.updateQuantity.bind(this);
@@ -40,113 +40,7 @@ class Products extends Component {
     this.sortBestSeller = this.sortBestSeller.bind(this);
     this.sortDefault = this.sortDefault.bind(this);
     this.setSort = this.setSort.bind(this);
-    this.toggleSort = this.toggleSort.bind(this);
-  }
-
-  setFilter(filter) {
-    var newState = Object.assign({}, this.state);
-    newState.filter = filter;
-    this.setState(newState);
-  }
-
-  setProduct(product) {
-    this.updateCost(product);
-    this.setState({product: product});
-    this.toggleBuilder();
-  }
-
-  toggleOverlay() {
-    this.setState({overlay: !this.state.overlay});
-  }
-
-  toggleBuilder() {
-    this.setState({builder: !this.state.builder});
-    this.toggleOverlay();
-  }
-
-  toggleShowFilter() {
-    this.setState({showFilter: !this.state.showFilter});
-  }
-
-  closeAll() {
-    this.setState({overlay: false, builder: false, showFilter: false});
-  }
-
-  updateQuantity(e) {
-    if (!isNaN(e.target.value)) {
-      let newState = Object.assign({}, this.state);
-      newState.productBuilderInit.quantity = Number(e.target.value);
-      this.setState(newState);
-    }
-  }
-
-  incrimentColor(color) {
-    let prop = color + "Colors";
-    let newState = Object.assign({}, this.state);
-    if (newState.productBuilderInit[prop] + 1 < 5) {
-      newState.productBuilderInit[prop] = newState.productBuilderInit[prop] + 1;
-    }
-    this.setState(newState);
-  }
-
-  decrimentColor(color) {
-    let prop = color + "Colors";
-    let newState = Object.assign({}, this.state);
-    newState.productBuilderInit[prop] = newState.productBuilderInit[prop] - 1;
-    if (newState[prop] < 0) {
-      newState[prop] = 0;
-    }
-    this.setState(newState);
-  }
-
-  updateCost(product) {
-    let newState = Object.assign({}, this.state);
-    let results = calculateTotalCost(this.state.productBuilderInit, product.costOfShirt);
-    newState.productBuilderInit.total = results.totalCost;
-    newState.productBuilderInit.totalPerShirt = results.costPerShirt;
-    this.setState(newState);
-  }
-
-  sortLowestPrice(a, b) {
-    if (a.costPerShirt < b.costPerShirt) return -1;
-    else if (b.costPerShirt < a.costPerShirt) return 1;
-    return 0;
-  }
-
-  sortHighestPrice(a, b) {
-    if (a.costPerShirt > b.costPerShirt) return -1;
-    else if (b.costPerShirt > a.costPerShirt) return 1;
-    return 0;
-  }
-
-  sortAtoZ(a, b) {
-    if (a.brand < b.brand) return -1;
-    else if (b.brand < a.brand) return 1;
-    return 0;
-  }
-
-  sortBestSeller(a, b) {
-    if (a.ranking > b.ranking) return -1;
-    else if (b.ranking > a.ranking) return 1;
-    return 0;
-  }
-
-  sortDefault(a, b) {
-    if (a.type > b.type) return -1;
-    else if (b.type > a.type) return 1;
-    return 0;
-  }
-
-  setSort(sort) {
-    let updSort;
-    if (this.state.sort === sort) updSort = '';
-    else updSort = sort;
-    this.setState({ sort: updSort });
-    this.toggleSort();
-  }
-
-  toggleSort() {
-    this.setState({ showSort: !this.state.showSort });
+    this.toggle = this.toggle.bind(this);
   }
 
   render() {
@@ -209,7 +103,7 @@ class Products extends Component {
                   </div>
                 </div>
                 <div className="opt-cell">
-                  <h1 className="fs-30 c-blue" onClick={this.toggleSort}>SORT BY <i className="fas fa-arrow-down"></i></h1>
+                  <h1 className="fs-30 c-blue" onClick={() => this.toggle('showSort')}>SORT BY <i className="fas fa-arrow-down"></i></h1>
                   {this.state.showSort ? (
                     <div className="sort-box flex fd-c">
                       <span className="fs-16 c-blue" onClick={() => this.setSort('low')}>Lowest Price</span>
@@ -225,9 +119,9 @@ class Products extends Component {
               <ProductNav setFilter={this.setFilter} filter={this.state.filter} />
             </MediaQuery>
             <MediaQuery maxWidth={1230}>
-              <ProductNavMobile toggleOverlay={this.toggleOverlay} productBuilderInit={this.state.productBuilderInit}
+              <ProductNavMobile toggle={this.toggle} productBuilderInit={this.state.productBuilderInit}
                 setFilter={this.setFilter} filter={this.state.filter} updateQuantity={this.updateQuantity} setSort={this.setSort}
-                showFilter={this.state.showFilter} toggleShowFilter={this.toggleShowFilter} sort={this.state.sort}
+                showFilter={this.state.showFilter} sort={this.state.sort}
                 decrimentColor={this.decrimentColor} incrimentColor={this.incrimentColor} />
             </MediaQuery>
             {this.state.builder ? (
@@ -248,6 +142,22 @@ class Products extends Component {
     );
   }
 }
+
+Products.prototype.setFilter = method.setFilter;
+Products.prototype.toggleBuilder = method.toggleBuilder;
+Products.prototype.setProduct = method.setProduct;
+Products.prototype.closeAll = method.closeAll;
+Products.prototype.incrimentColor = method.incrimentColor;
+Products.prototype.decrimentColor = method.decrimentColor;
+Products.prototype.updateQuantity = method.updateQuantity;
+Products.prototype.updateCost = method.updateCost;
+Products.prototype.sortLowestPrice = method.sortLowestPrice;
+Products.prototype.sortHighestPrice = method.sortHighestPrice;
+Products.prototype.sortAtoZ = method.sortAtoZ;
+Products.prototype.sortBestSeller = method.sortBestSeller;
+Products.prototype.sortDefault = method.sortDefault;
+Products.prototype.setSort = method.setSort;
+Products.prototype.toggle = toggle;
 
 const mapStateToProps = (state) => {
   return {
