@@ -1,4 +1,4 @@
-import { calculateTotalCost } from '../../../modules';
+import calculateTotalCost from './calculate-total-cost';
 
 export default function updateCost(product) {
   let newState = Object.assign({}, this.state);

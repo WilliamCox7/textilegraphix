@@ -1,6 +1,6 @@
 import { React, Component, connect, MediaQuery } from '../../packages';
 import { ProductNav, Product, ProductNavMobile, ProductBuilder } from '../../components';
-import { calculateTotalCost, toggle } from '../../modules';
+import { calculateTotalCost, toggle, updateCost } from '../../modules';
 import './style.scss';
 
 import * as method from './methods';
@@ -150,7 +150,7 @@ Products.prototype.closeAll = method.closeAll;
 Products.prototype.incrimentColor = method.incrimentColor;
 Products.prototype.decrimentColor = method.decrimentColor;
 Products.prototype.updateQuantity = method.updateQuantity;
-Products.prototype.updateCost = method.updateCost;
+Products.prototype.updateCost = updateCost;
 Products.prototype.sortLowestPrice = method.sortLowestPrice;
 Products.prototype.sortHighestPrice = method.sortHighestPrice;
 Products.prototype.sortAtoZ = method.sortAtoZ;

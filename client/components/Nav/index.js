@@ -1,5 +1,5 @@
 import { React, Component, Link, MediaQuery, connect } from '../../packages';
-import { getAsset } from '../../modules';
+import { getAsset, updateCost } from '../../modules';
 import { ProductBuilder, Menu } from '../';
 import './style.scss';
 
@@ -16,7 +16,15 @@ class Nav extends Component {
       searchText: '',
       overlay: false,
       builder: false,
-      product: undefined
+      product: undefined,
+      productBuilderInit: {
+        frontColors: 0,
+        backColors: 0,
+        sleeveColors: 0,
+        total: 0,
+        totalPerShirt: 0,
+        quantity: 1
+      }
     }
     this.toggleMenu = this.toggleMenu.bind(this);
     this.toggleSearchInput = this.toggleSearchInput.bind(this);
@@ -25,6 +33,7 @@ class Nav extends Component {
     this.setProduct = this.setProduct.bind(this);
     this.cancelBuilder = this.cancelBuilder.bind(this);
     this.toggleOverlay = this.toggleOverlay.bind(this);
+    this.updateCost = this.updateCost.bind(this);
   }
 
   componentDidMount() {
@@ -90,7 +99,8 @@ class Nav extends Component {
         </div>
         <div className="product-builder-positioner">
           {this.state.builder ? (
-            <ProductBuilder toggleBuilder={this.toggleBuilder} product={this.state.product} />
+            <ProductBuilder toggleBuilder={this.toggleBuilder} product={this.state.product}
+              productBuilderInit={this.state.productBuilderInit} />
           ) : null}
           {this.state.overlay ? (
             <div className="gray-overlay" onClick={this.cancelBuilder}></div>
@@ -108,6 +118,7 @@ Nav.prototype.toggleBuilder = method.toggleBuilder;
 Nav.prototype.setProduct = method.setProduct;
 Nav.prototype.cancelBuilder = method.cancelBuilder;
 Nav.prototype.toggleOverlay = method.toggleOverlay;
+Nav.prototype.updateCost = updateCost;
 
 const mapStateToProps = (state) => {
   return {
