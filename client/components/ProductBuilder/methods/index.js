@@ -22,5 +22,5 @@ export {
   updateCheckBox, toggleShownSide, downloadMockup, uploadImage,
   storeFile, removeImage, addProductToCart, fadeHelp,
   cancelHelpTimer, showHelp, updSizing, setDelivery,
-  setZip, toggle, calculateCost
+  setZip, calculateCost
 }
