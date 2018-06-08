@@ -1,7 +1,7 @@
 import { React, Component, connect, NumberFormat, MediaQuery } from '../../packages';
 import { getAsset, toggle } from '../../modules';
 import { updOrder, removeOrder } from '../../reducers/cart';
-import { WaitIndicator } from '../../components';
+import { WaitIndicator, SizingForm } from '../../components';
 import './style.scss';
 
 import * as method from './methods';
@@ -36,6 +36,7 @@ class Order extends Component {
     this.removeOrder = this.removeOrder.bind(this);
     this.prepareAttachments = this.prepareAttachments.bind(this);
     this.toggle = this.toggle.bind(this);
+    this.buildCardSubHeader = this.buildCardSubHeader.bind(this);
   }
 
   render() {
@@ -43,6 +44,7 @@ class Order extends Component {
     let orderTotal = 0;
 
     let orders = this.props.cart.orders.map((order, i) => {
+      let locationText = this.buildCardSubHeader(order);
       orderTotal += Number(order.total);
       return (
         <div key={i} className="order flex ai-c jc-sb">
@@ -50,10 +52,13 @@ class Order extends Component {
             "color": "#44B1DE"
           } : null}></i>
           <div className="sizes-card" onClick={() => this.selectOrderMockup(order)}>
-            <h1 className="fs-18 c-gray-1 fw-bold">{order.product.brand} {order.product.number}</h1>
-            <h1 className="fs-18 c-gray-2">{order.selectedColor}</h1>
+            <div className="flex card-header">
+              <h1 className="fs-18 c-gray-1 fw-bold">{order.product.brand} {order.product.number}</h1>
+              <span>-</span><h1 className="fs-18 c-gray-2">{order.selectedColor}</h1>
+            </div>
+            <h1 className="fs-16 c-gray-1">{locationText}</h1>
             <div className="sizes-price flex">
-              <div className="sizes flex">
+              {/* <div className="sizes flex">
                 <div className="size">
                   <input type="text" name="XS" onChange={(e) => this.updOrder(e, order)}
                     value={order.XS} className="fs-18 c-gray-1" placeholder="0" />
@@ -94,7 +99,8 @@ class Order extends Component {
                      value={order.XL4} className="fs-18 c-gray-1" placeholder="0" />
                   <h1 className="fs-18 c-gray-3">4XL</h1>
                 </div>
-              </div>
+              </div> */}
+              <SizingForm order={order} updSizing={this.updOrder} />
               <div className="total">
                 <h1 className="fs-18 c-gray-1">{order.quantity}</h1>
                 <h1 className="fs-18 c-gray-3">TOTAL</h1>
@@ -265,6 +271,7 @@ Order.prototype.updateInput = method.updateInput;
 Order.prototype.sendOrder = method.sendOrder;
 Order.prototype.removeOrder = method.removeOrder;
 Order.prototype.prepareAttachments = method.prepareAttachments;
+Order.prototype.buildCardSubHeader = method.buildCardSubHeader;
 Order.prototype.toggle = toggle;
 
 const mapStateToProps = (state) => {

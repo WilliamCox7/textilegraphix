@@ -94,7 +94,12 @@
           @media(max-width: 800px) {
             min-width: initial;
           }
-          h1.fs-18.c-gray-1, h1.fs-18.c-gray-2 {
+          .card-header {
+            span {
+              margin: 0px 6px;
+            }
+          }
+          h1.fs-18.c-gray-1, h1.fs-18.c-gray-2, h1.fs-16.c-gray-1 {
             margin-bottom: 10px;
             @media(max-width: 550px) {
               font-size: 14px;

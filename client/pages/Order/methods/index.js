@@ -7,9 +7,10 @@ import storeFile from './store-file';
 import toggleMockup from './toggle-mockup';
 import updOrder from './upd-order';
 import updateInput from './update-input';
+import buildCardSubHeader from './build-card-sub-header';
 
 export {
   calculateCost, prepareAttachments, removeOrder, selectOrderMockup,
   sendOrder, storeFile, toggleMockup, updOrder,
-  updateInput
+  updateInput, buildCardSubHeader
 }
