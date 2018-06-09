@@ -363,7 +363,7 @@ class Order extends Component {
                 </div>
               </MediaQuery>
             ) : null}
-            {this.state.paymentModal || true ? (
+            {this.state.paymentModal ? (
               <Processor total={orderTotal} exempt={this.state.taxExempt} orders={cartOrders}
                 first={this.state.contact.first} last={this.state.contact.last} />
             ) : null}
