@@ -1,3 +1,3 @@
 export default function closeAll() {
-  this.setState({overlay: false, builder: false, showFilter: false});
+  this.setState({overlay: false, showFilter: false});
 }

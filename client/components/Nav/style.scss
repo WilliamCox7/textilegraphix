@@ -108,27 +108,4 @@
       }
     }
   }
-  .product-builder-positioner {
-    position: relative;
-    max-width: 1320px;
-    margin: auto;
-    @media(max-width: 1200px) {
-      margin: auto;
-    }
-    .ProductBuilder {
-      z-index: 3;
-    }
-    .gray-overlay {
-      position: fixed;
-      z-index: 2;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(230, 230, 230, 0.8);
-      @media(max-width: 1200px) {
-        z-index: 1;
-      }
-    }
-  }
 }

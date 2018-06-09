@@ -5,6 +5,7 @@
   overflow-y: hidden;
   padding-bottom: 7px;
   position: relative;
+  width: 328px;
   &::-webkit-scrollbar {
     -webkit-appearance: none;
     height: 7px;
@@ -17,12 +18,15 @@
   }
   .scroll-area {
     .size {
+      width: 48px;
+      @media(max-width: 585px) {
+        width: 38px;
+      }
       input.fs-18 {
         border: none;
         border-bottom: solid 1px $gray-5;
-        margin-bottom: 10px;
-        padding: 4px 0px;
-        width: 50px;
+        margin-bottom: 5px;
+        width: 100%;
         text-align: center;
         &::-webkit-input-placeholder {
           color: $black;
@@ -36,23 +40,22 @@
         &::placeholder {
           color: $black;
         }
-        @media(max-width: 550px) {
+        @media(max-width: 585px) {
           font-size: 12px;
-          width: 42px;
         }
       }
       h1.fs-18 {
         text-align: center;
-        width: 50px;
+        width: 100%;
         margin: auto;
-        @media(max-width: 550px) {
+        @media(max-width: 585px) {
           font-size: 12px;
           width: 28px;
         }
       }
       h1.fs-8 {
         margin-top: 7px;
-        @media(max-width: 550px) {
+        @media(max-width: 585px) {
           font-size: 6px;
         }
       }

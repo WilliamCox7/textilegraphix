@@ -1,6 +1,7 @@
 import { React, Component, Link, MediaQuery, connect } from '../../packages';
-import { getAsset, updateCost } from '../../modules';
-import { ProductBuilder, Menu } from '../';
+import { getAsset, updateCost, setProduct } from '../../modules';
+import { Menu } from '../';
+import { initBuilder, closeBuilder } from '../../reducers/builder';
 import './style.scss';
 
 import * as method from './methods';
@@ -14,9 +15,6 @@ class Nav extends Component {
       menu: false,
       searchActive: false,
       searchText: '',
-      overlay: false,
-      builder: false,
-      product: undefined,
       productBuilderInit: {
         frontColors: 0,
         backColors: 0,
@@ -29,10 +27,7 @@ class Nav extends Component {
     this.toggleMenu = this.toggleMenu.bind(this);
     this.toggleSearchInput = this.toggleSearchInput.bind(this);
     this.updateSearchText = this.updateSearchText.bind(this);
-    this.toggleBuilder = this.toggleBuilder.bind(this);
     this.setProduct = this.setProduct.bind(this);
-    this.cancelBuilder = this.cancelBuilder.bind(this);
-    this.toggleOverlay = this.toggleOverlay.bind(this);
     this.updateCost = this.updateCost.bind(this);
   }
 
@@ -65,19 +60,19 @@ class Nav extends Component {
             <button onClick={this.toggleMenu} className="fs-12 c-white">MENU</button>
           </MediaQuery>
           {this.state.menu ? (
-            <Menu toggleMenu={this.toggleMenu} cancelBuilder={this.cancelBuilder} />
+            <Menu toggleMenu={this.toggleMenu} closeBuilder={this.props.closeBuilder} />
           ) : null}
 
           {/* Desktop Menu */}
-          <Link to="/" onClick={this.cancelBuilder}>
+          <Link to="/" onClick={this.props.closeBuilder}>
             <img className="logo" src={getAsset('logo-text-black')} />
           </Link>
           <div className="flex ai-c">
             <MediaQuery className="routes" minWidth={1150}>
-              <Link to="products" onClick={this.cancelBuilder} className="fs-20 c-black fw-bold">
+              <Link to="products" onClick={this.props.closeBuilder} className="fs-20 c-black fw-bold">
                 Products
               </Link>
-              <Link to="support" onClick={this.cancelBuilder} className="fs-20 c-black fw-bold">
+              <Link to="support" onClick={this.props.closeBuilder} className="fs-20 c-black fw-bold">
                 Support
               </Link>
             </MediaQuery>
@@ -91,20 +86,11 @@ class Nav extends Component {
                 </div>
               ) : null}
             </MediaQuery>
-            <Link to="order" className="cart" onClick={this.cancelBuilder}>
+            <Link to="order" className="cart" onClick={this.props.closeBuilder}>
               <img src={getAsset('shopping-cart')} />
               <span className="flex jc-c ai-c">{this.props.cart.orders.length}</span>
             </Link>
           </div>
-        </div>
-        <div className="product-builder-positioner">
-          {this.state.builder ? (
-            <ProductBuilder toggleBuilder={this.toggleBuilder} product={this.state.product}
-              productBuilderInit={this.state.productBuilderInit} />
-          ) : null}
-          {this.state.overlay ? (
-            <div className="gray-overlay" onClick={this.cancelBuilder}></div>
-          ) : null}
         </div>
       </div>
     );
@@ -114,10 +100,7 @@ class Nav extends Component {
 Nav.prototype.toggleMenu = method.toggleMenu;
 Nav.prototype.toggleSearchInput = method.toggleSearchInput;
 Nav.prototype.updateSearchText = method.updateSearchText;
-Nav.prototype.toggleBuilder = method.toggleBuilder;
-Nav.prototype.setProduct = method.setProduct;
-Nav.prototype.cancelBuilder = method.cancelBuilder;
-Nav.prototype.toggleOverlay = method.toggleOverlay;
+Nav.prototype.setProduct = setProduct;
 Nav.prototype.updateCost = updateCost;
 
 const mapStateToProps = (state) => {
@@ -127,4 +110,9 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Nav);
+const mapDispatchToProps = {
+  initBuilder: initBuilder,
+  closeBuilder: closeBuilder
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Nav);

@@ -17,6 +17,7 @@ class PrintArea extends Component {
     this.startDrag = this.startDrag.bind(this);
     this.stopDrag = this.stopDrag.bind(this);
     this.drag = this.drag.bind(this);
+    this.onStopMove = this.onStopMove.bind(this);
   }
 
   componentDidMount() {
@@ -29,17 +30,19 @@ class PrintArea extends Component {
   render() {
 
     let images = this.props.uploaded.map((image, i) => {
-      image.index = i;
+      let position = image.position ? image.position : {x: 0, y: 0};
       return (
-        <Draggable key={i} on bounds="parent" cancel=".resizer">
-          <div>
+        <Draggable key={i} on bounds="parent" cancel=".resizer" defaultPosition={position}
+          onStop={(e) => this.onStopMove(e, image.index, this.props.side)}>
+          <div style={{"width": image.width}}>
             <div className="image-wrapper" style={this.state.dragging ? {
               "border": "dashed 2px #707070"
             } : null}>
               <img src={image.src} draggable="false" />
             </div>
             <img src={getAsset('resize')} className="resizer" onTouchStart={this.startDrag} onDragStart={this.startDrag} draggable="true"
-              onDragEnd={this.stopDrag} onTouchEnd={this.stopDrag} onDrag={this.drag} onTouchMove={this.drag} />
+              onDragEnd={(e) => this.stopDrag(e, image.index, this.props.side)} onTouchEnd={(e) => this.stopDrag(e, image.index, this.props.side)}
+              onDrag={this.drag} onTouchMove={this.drag} />
             <img src={getAsset('close-x-red')} className="close" onClick={() => this.props.removeImage(image.index)} style={this.state.dragging ? {
               "display": "block"
             } : null} />
@@ -62,5 +65,6 @@ class PrintArea extends Component {
 PrintArea.prototype.startDrag = method.startDrag;
 PrintArea.prototype.stopDrag = method.stopDrag;
 PrintArea.prototype.drag = method.drag;
+PrintArea.prototype.onStopMove = method.onStopMove;
 
 export default PrintArea;

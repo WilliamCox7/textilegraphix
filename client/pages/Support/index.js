@@ -5,7 +5,7 @@ import './style.scss';
 class Support extends Component {
   render() {
     return (
-      <div className="Support">
+      <div className="Support" id="current-page">
         <MediaQuery minWidth={650}>
           <h1 className="fs-40 c-blue fw-bold">
             Support

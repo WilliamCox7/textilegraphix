@@ -10,24 +10,24 @@ class Menu extends Component {
         <div className="close flex jc-fe ai-c">
           <h1 className="fs-36 c-blue">MENU</h1>
           <img onClick={() => {
-            this.props.toggleMenu(); this.props.cancelBuilder();
+            this.props.toggleMenu(); this.props.closeBuilder();
           }} src={getAsset('close-x')} />
         </div>
         <div className="links flex jc-sa fd-c ai-c">
           <Link onClick={() => {
-            this.props.toggleMenu(); this.props.cancelBuilder();
+            this.props.toggleMenu(); this.props.closeBuilder();
           }} to="/" className="fs-40 c-white">
             HOME
           </Link>
           <hr />
           <Link onClick={() => {
-            this.props.toggleMenu(); this.props.cancelBuilder();
+            this.props.toggleMenu(); this.props.closeBuilder();
           }} to="products" className="fs-40 c-white">
             PRODUCTS
           </Link>
           <hr />
           <Link onClick={() => {
-            this.props.toggleMenu(); this.props.cancelBuilder();
+            this.props.toggleMenu(); this.props.closeBuilder();
           }} to="support" className="fs-40 c-white">
             SUPPORT
           </Link>

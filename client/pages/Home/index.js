@@ -6,7 +6,7 @@ import './style.scss';
 class Home extends Component {
   render() {
     return (
-      <div className="Home">
+      <div className="Home" id="current-page">
         <HomeSection1 />
         <HomeSection2 />
         <HomeSection3 />

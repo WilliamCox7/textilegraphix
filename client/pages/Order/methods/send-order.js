@@ -1,8 +1,8 @@
-import { axios, buildOrderHtml } from '../../../packages';
+import { axios } from '../../../packages';
+import { buildOrderHtml } from '../../../modules';
 
 export default function sendOrder() {
-  if (this.state.first && this.state.last && this.state.phone && this.state.email
-      && this.state.email.toLowerCase() === this.state.confirm.toLowerCase()) {
+  if (valid(this.state)) {
     this.toggle('waiting');
     axios.post('/order', {
       to: this.state.email,
@@ -18,4 +18,11 @@ export default function sendOrder() {
   } else {
     this.setState({error: true});
   }
+}
+
+function valid(form) {
+  return (
+    form.first && form.last && form.phone && form.email && form.projectName &&
+    form.email.toLowerCase() === form.confirm.toLowerCase()
+  );
 }

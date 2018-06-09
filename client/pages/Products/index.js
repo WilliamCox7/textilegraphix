@@ -1,6 +1,7 @@
 import { React, Component, connect, MediaQuery } from '../../packages';
-import { ProductNav, Product, ProductNavMobile, ProductBuilder } from '../../components';
-import { calculateTotalCost, toggle, updateCost } from '../../modules';
+import { ProductNav, Product, ProductNavMobile } from '../../components';
+import { calculateTotalCost, toggle, updateCost, setProduct } from '../../modules';
+import { initBuilder } from '../../reducers/builder';
 import './style.scss';
 
 import * as method from './methods';
@@ -13,8 +14,6 @@ class Products extends Component {
       filter: '',
       showFilter: false,
       overlay: false,
-      builder: false,
-      product: undefined,
       sort: '',
       showSort: false,
       productBuilderInit: {
@@ -27,7 +26,6 @@ class Products extends Component {
       }
     }
     this.setFilter = this.setFilter.bind(this);
-    this.toggleBuilder = this.toggleBuilder.bind(this);
     this.setProduct = this.setProduct.bind(this);
     this.closeAll = this.closeAll.bind(this);
     this.incrimentColor = this.incrimentColor.bind(this);
@@ -68,7 +66,7 @@ class Products extends Component {
     }
 
     return (
-      <div className="Products">
+      <div className="Products" id="current-page">
         <div className="body-wrapper">
           <div className="products-container">
             <MediaQuery minWidth={1230}>
@@ -124,13 +122,9 @@ class Products extends Component {
                 showFilter={this.state.showFilter} sort={this.state.sort}
                 decrimentColor={this.decrimentColor} incrimentColor={this.incrimentColor} />
             </MediaQuery>
-            {this.state.builder ? (
-              <ProductBuilder productBuilderInit={this.state.productBuilderInit}
-                toggleBuilder={this.toggleBuilder} product={this.state.product} />
-            ) : null}
             <div className="products flex jc-fe">
               <div className="products-wrapper flex fw-w">
-                {!this.state.builder ? products : null}
+                {products}
               </div>
             </div>
           </div>
@@ -144,8 +138,7 @@ class Products extends Component {
 }
 
 Products.prototype.setFilter = method.setFilter;
-Products.prototype.toggleBuilder = method.toggleBuilder;
-Products.prototype.setProduct = method.setProduct;
+Products.prototype.setProduct = setProduct;
 Products.prototype.closeAll = method.closeAll;
 Products.prototype.incrimentColor = method.incrimentColor;
 Products.prototype.decrimentColor = method.decrimentColor;
@@ -165,4 +158,8 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Products);
+const mapDispatchToProps = {
+  initBuilder: initBuilder
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Products);

@@ -25,6 +25,7 @@ export default function reducer(state=initState, action) {
           editState.orders[i] = action.payload;
         }
       });
+      localStorage.setItem('orders', JSON.stringify(editState.orders));
       return Object.assign({}, state, editState);
 
     case REM:

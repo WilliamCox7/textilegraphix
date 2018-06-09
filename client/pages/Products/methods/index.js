@@ -1,6 +1,4 @@
 import setFilter from './set-filter';
-import toggleBuilder from './toggle-builder';
-import setProduct from './set-product';
 import closeAll from './close-all';
 import incrimentColor from './incriment-color';
 import decrimentColor from './decriment-color';
@@ -13,8 +11,7 @@ import sortDefault from './sort-default';
 import setSort from './set-sort';
 
 export {
-  setFilter, toggleBuilder, setProduct, closeAll,
-  incrimentColor, decrimentColor, updateQuantity, sortLowestPrice,
-  sortHighestPrice, sortAtoZ, sortBestSeller, sortDefault,
-  setSort
+  setFilter, closeAll, incrimentColor, decrimentColor,
+  updateQuantity, sortLowestPrice, sortHighestPrice, sortAtoZ,
+  sortBestSeller, sortDefault, setSort
 }

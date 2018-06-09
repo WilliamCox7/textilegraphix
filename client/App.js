@@ -1,5 +1,5 @@
-import { React, Component, BrowserRouter, Route } from './packages';
-import { Nav, Footer } from './components';
+import { React, Component, BrowserRouter, Route, connect } from './packages';
+import { Nav, Footer, ProductBuilder } from './components';
 import { Home, Products, Order, Support } from './pages';
 import './reset.scss';
 import './main.scss';
@@ -22,11 +22,17 @@ class App extends Component {
           <Route path="/products" component={Products} />
           <Route path="/order" component={Order} />
           <Route path="/support" component={Support} />
-          <Footer />
+          {this.props.builder.show ? <ProductBuilder /> : <Footer />}
         </div>
       </BrowserRouter>
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    builder: state.builder
+  }
+}
+
+export default connect(mapStateToProps)(App);

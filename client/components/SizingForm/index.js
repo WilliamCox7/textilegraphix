@@ -4,12 +4,15 @@ import './style.scss';
 class SizingForm extends Component {
 
   componentDidMount() {
-    let leftShadow = document.getElementById('left-shadow');
-    let rightShadow = document.getElementById('right-shadow');
-    let sizingForm = document.getElementById('sizing-form');
+    let id = 'sizing-form-' + this.props.id;
+    let sizingForm = document.getElementById(id);
+    let leftShadow = sizingForm.querySelector('#left-shadow');
+    let rightShadow = sizingForm.querySelector('#right-shadow');
     leftShadow.style.display = "none";
+    leftShadow.style.right = (sizingForm.clientWidth - sizingForm.scrollLeft) + "px";
     rightShadow.style.left = sizingForm.clientWidth + "px";
-    document.getElementById('sizing-form').addEventListener('scroll', (e) => {
+    sizingForm.scrollLeft = 54;
+    document.getElementById(id).addEventListener('scroll', (e) => {
       if (e.target.scrollLeft > 0) {
         leftShadow.style.display = "block";
         leftShadow.style.right = (e.target.clientWidth - e.target.scrollLeft) + "px";
@@ -27,7 +30,7 @@ class SizingForm extends Component {
 
   render() {
     return (
-      <div className="SizingForm flex" id="sizing-form">
+      <div className="SizingForm flex" id={"sizing-form-" + this.props.id}>
         <div id="left-shadow" className="shadow"></div>
         <div className="scroll-area flex">
           <div className="size">
@@ -77,6 +80,14 @@ class SizingForm extends Component {
             <h1 className="fs-18 c-gray-3">4XL</h1>
             {this.props.optionalText ? (
               <h1 className="fs-8 c-gray-3">$4 Extra</h1>
+            ) : null}
+          </div>
+          <div className="size">
+            <input type="text" name="XL5" onChange={this.props.updSizing}
+               value={this.props.order.XL5} className="fs-18 c-black" placeholder="0" />
+            <h1 className="fs-18 c-gray-3">5XL</h1>
+            {this.props.optionalText ? (
+              <h1 className="fs-8 c-gray-3">$5 Extra</h1>
             ) : null}
           </div>
         </div>

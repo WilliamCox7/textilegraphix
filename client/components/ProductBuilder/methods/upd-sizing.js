@@ -11,6 +11,7 @@ export default function updSizing(e, order) {
     if (newState.XL2) newState.quantity += newState.XL2;
     if (newState.XL3) newState.quantity += newState.XL3;
     if (newState.XL4) newState.quantity += newState.XL4;
+    if (newState.XL5) newState.quantity += newState.XL5;
     this.setState(newState, () => {
       this.calculateCost(this.state);
     })

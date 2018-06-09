@@ -9,6 +9,7 @@ import uploadImage from './upload-image';
 import storeFile from './store-file';
 import removeImage from './remove-image';
 import addProductToCart from './add-product-to-cart';
+import updateOrderInCart from './update-order-in-cart';
 import fadeHelp from './fade-help';
 import cancelHelpTimer from './cancel-help-timer';
 import showHelp from './show-help';
@@ -16,11 +17,12 @@ import updSizing from './upd-sizing';
 import setDelivery from './set-delivery';
 import setZip from './set-zip';
 import calculateCost from './calculate-cost';
+import saveEdits from './save-edits';
 
 export {
   updateColor, updateQuantity, incrimentColor, decrimentColor,
   updateCheckBox, toggleShownSide, downloadMockup, uploadImage,
   storeFile, removeImage, addProductToCart, fadeHelp,
   cancelHelpTimer, showHelp, updSizing, setDelivery,
-  setZip, calculateCost
+  setZip, calculateCost, saveEdits, updateOrderInCart
 }

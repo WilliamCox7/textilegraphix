@@ -1,7 +1,8 @@
 import { React, Component, connect, NumberFormat, MediaQuery } from '../../packages';
-import { getAsset, toggle } from '../../modules';
+import { getAsset, toggle, setProduct } from '../../modules';
 import { updOrder, removeOrder } from '../../reducers/cart';
 import { WaitIndicator, SizingForm } from '../../components';
+import { initBuilder } from '../../reducers/builder';
 import './style.scss';
 
 import * as method from './methods';
@@ -24,7 +25,10 @@ class Order extends Component {
       confirm: '',
       error: false,
       thankyou: false,
-      waiting: false
+      waiting: false,
+      builder: false,
+      overlay: false,
+      editOrder: undefined
     }
     this.selectOrderMockup = this.selectOrderMockup.bind(this);
     this.toggleMockup = this.toggleMockup.bind(this);
@@ -37,6 +41,7 @@ class Order extends Component {
     this.prepareAttachments = this.prepareAttachments.bind(this);
     this.toggle = this.toggle.bind(this);
     this.buildCardSubHeader = this.buildCardSubHeader.bind(this);
+    this.setProduct = this.setProduct.bind(this);
   }
 
   render() {
@@ -47,7 +52,7 @@ class Order extends Component {
       let locationText = this.buildCardSubHeader(order);
       orderTotal += Number(order.total);
       return (
-        <div key={i} className="order flex ai-c jc-sb">
+        <div key={i} className="order flex ai-c jc-sa">
           <i className="fas fa-arrow-right" style={this.state.guid === order.guid ? {
             "color": "#44B1DE"
           } : null}></i>
@@ -58,67 +63,57 @@ class Order extends Component {
             </div>
             <h1 className="fs-16 c-gray-1">{locationText}</h1>
             <div className="sizes-price flex">
-              {/* <div className="sizes flex">
-                <div className="size">
-                  <input type="text" name="XS" onChange={(e) => this.updOrder(e, order)}
-                    value={order.XS} className="fs-18 c-gray-1" placeholder="0" />
-                  <h1 className="fs-18 c-gray-3">XS</h1>
-                </div>
-                <div className="size">
-                  <input type="text" name="S" onChange={(e) => this.updOrder(e, order)}
-                     value={order.S} className="fs-18 c-gray-1" placeholder="0" />
-                  <h1 className="fs-18 c-gray-3">S</h1>
-                </div>
-                <div className="size">
-                  <input type="text" name="M" onChange={(e) => this.updOrder(e, order)}
-                     value={order.M} className="fs-18 c-gray-1" placeholder="0" />
-                  <h1 className="fs-18 c-gray-3">M</h1>
-                </div>
-                <div className="size">
-                  <input type="text" name="L" onChange={(e) => this.updOrder(e, order)}
-                     value={order.L} className="fs-18 c-gray-1" placeholder="0" />
-                  <h1 className="fs-18 c-gray-3">L</h1>
-                </div>
-                <div className="size">
-                  <input type="text" name="XL" onChange={(e) => this.updOrder(e, order)}
-                     value={order.XL} className="fs-18 c-gray-1" placeholder="0" />
-                  <h1 className="fs-18 c-gray-3">XL</h1>
-                </div>
-                <div className="size">
-                  <input type="text" name="XL2" onChange={(e) => this.updOrder(e, order)}
-                     value={order.XL2} className="fs-18 c-gray-1" placeholder="0" />
-                  <h1 className="fs-18 c-gray-3">2XL</h1>
-                </div>
-                <div className="size">
-                  <input type="text" name="XL3" onChange={(e) => this.updOrder(e, order)}
-                     value={order.XL3} className="fs-18 c-gray-1" placeholder="0" />
-                  <h1 className="fs-18 c-gray-3">3XL</h1>
-                </div>
-                <div className="size">
-                  <input type="text" name="XL4" onChange={(e) => this.updOrder(e, order)}
-                     value={order.XL4} className="fs-18 c-gray-1" placeholder="0" />
-                  <h1 className="fs-18 c-gray-3">4XL</h1>
-                </div>
-              </div> */}
-              <SizingForm order={order} updSizing={this.updOrder} />
+              <SizingForm order={order} updSizing={this.updOrder} id={i} />
               <div className="total">
                 <h1 className="fs-18 c-gray-1">{order.quantity}</h1>
-                <h1 className="fs-18 c-gray-3">TOTAL</h1>
+                <h1 className="fs-14 c-gray-3">TOTAL</h1>
               </div>
               <MediaQuery minWidth={800}>
                 <div className="price">
-                  <h1 className="fs-16 c-blue">Total Price:</h1>
-                  <h1 className="fs-24 c-gray-1">
+                  <h1 className="fs-16 c-white">Cost Per Item:</h1>
+                  <h1 className="fs-22 c-white fw-bold">
+                    <NumberFormat value={order.totalPerShirt} displayType={'text'}
+                      thousandSeparator={true} prefix={'$'} decimalScale={2} suffix={' ea'} />
+                  </h1>
+                  <h1 className="fs-16 c-white">Total Cost:</h1>
+                  <h1 className="fs-22 c-white fw-bold">
                     <NumberFormat value={order.total} displayType={'text'}
                       thousandSeparator={true} prefix={'$'} decimalScale={2} />
                   </h1>
                 </div>
               </MediaQuery>
             </div>
+            <MediaQuery maxWidth={800}>
+              <div className="price-mobile flex jc-sb">
+                <div className="section flex jc-sb ai-c">
+                  <h1 className="fs-16 c-white">Price / Shirt:</h1>
+                  <h1 className="fs-16 c-white fw-bold">
+                    <NumberFormat value={order.totalPerShirt} displayType={'text'}
+                      thousandSeparator={true} prefix={'$'} decimalScale={2} suffix={' ea'} />
+                  </h1>
+                </div>
+                <div className="section flex jc-sb ai-c">
+                  <MediaQuery minWidth={395}>
+                    <h1 className="fs-16 c-white">Total Cost:</h1>
+                  </MediaQuery>
+                  <h1 className="fs-16 c-white fw-bold">
+                    <NumberFormat value={order.total} displayType={'text'}
+                      thousandSeparator={true} prefix={'$'} decimalScale={2} />
+                  </h1>
+                </div>
+              </div>
+            </MediaQuery>
           </div>
-          <span className="garbage" onClick={() => this.removeOrder(order.guid)}>
-            <img src={getAsset('garbage')} />
-          </span>
+          <div className="card-actions flex fd-c">
+            <span className="action-icon flex fd-c ai-c" onClick={() => this.removeOrder(order.guid)}>
+              <img src={getAsset('garbage')} />
+              <h1 className="fs-12 c-red">DELETE</h1>
+            </span>
+            <span className="action-icon flex fd-c ai-c" onClick={() => this.setProduct(order, true)}>
+              <img src={getAsset('edit-blue')} />
+              <h1 className="fs-12 c-blue">EDIT</h1>
+            </span>
+          </div>
         </div>
       );
     });
@@ -128,11 +123,11 @@ class Order extends Component {
     });
 
     return (
-      <div className="Order">
+      <div className="Order" id="current-page">
         <h1 className="fs-30 c-blue fw-bold">Quote Submission Form</h1>
         <div className="flex">
           <div className="left">
-            <input className="project-name fs-34 c-gray-1 fw-bold" type="text" placeholder="Project Name"
+            <input className="project-name fs-34 c-gray-1 fw-bold" type="text" placeholder="*Project Name"
               onChange={this.updateInput} value={this.state.projectName} name="projectName" />
             <MediaQuery maxWidth={1400}>
               <div className="mockup flex jc-c">
@@ -152,7 +147,7 @@ class Order extends Component {
             <div className="orders-in-cart">
               {orders}
             </div>
-            <MediaQuery minWidth={550}>
+            <MediaQuery minWidth={650}>
               <div className="uploaded-files">
                 <h1 className="fs-17 c-gray-1 fw-bold">Uploaded Files</h1>
                 <h1 className="fs-14 c-gray-3">We recommend AI or PSD files, sized to print or 300DPI.</h1>
@@ -208,7 +203,7 @@ class Order extends Component {
                 <p className="fs-16 c-blue">
                   *Prices are subject to change depending on order details.
                 </p>
-                <MediaQuery className="delivery" maxWidth={550}>
+                <MediaQuery className="delivery" maxWidth={650}>
                   <h1 className="fs-20 c-gray-3">Est. Delivery</h1>
                   <h1 className="fs-24 c-gray-1 fw-bold">{this.props.cart.orders.length ? this.props.cart.orders[0].delivery : null}</h1>
                 </MediaQuery>
@@ -222,7 +217,7 @@ class Order extends Component {
                 <a className="fs-57 c-blue fw-bold" onClick={this.sendOrder}>
                   Submit <i className="fas fa-arrow-right"></i>
                 </a>
-                <MediaQuery maxWidth={550}>
+                <MediaQuery maxWidth={650}>
                   {(matches) => {
                     if (matches) {
                       return (
@@ -273,6 +268,7 @@ Order.prototype.removeOrder = method.removeOrder;
 Order.prototype.prepareAttachments = method.prepareAttachments;
 Order.prototype.buildCardSubHeader = method.buildCardSubHeader;
 Order.prototype.toggle = toggle;
+Order.prototype.setProduct = setProduct;
 
 const mapStateToProps = (state) => {
   return {
@@ -282,7 +278,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   updOrder: updOrder,
-  removeOrder: removeOrder
+  removeOrder: removeOrder,
+  initBuilder: initBuilder
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Order);

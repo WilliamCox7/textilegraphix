@@ -31,6 +31,7 @@ export default function buildOrderHtml(form, products) {
         ${product.XL2 ? '<p style="margin: 5px 0px">XL2: ' + product.XL2 + '</p>' : ''}
         ${product.XL3 ? '<p style="margin: 5px 0px">XL3: ' + product.XL3 + '</p>' : ''}
         ${product.XL4 ? '<p style="margin: 5px 0px">XL4: ' + product.XL4 + '</p>' : ''}
+        ${product.XL5 ? '<p style="margin: 5px 0px">XL5: ' + product.XL5 + '</p>' : ''}
         <h3>Shirt Color: ${product.selectedColor}</h3>
         ${product.frontColors ? '<p style="margin: 5px 0px">Front Colors: ' + product.frontColors + '</p>' : ''}
         ${product.backColors ? '<p style="margin: 5px 0px">Back Colors: ' + product.backColors + '</p>' : ''}

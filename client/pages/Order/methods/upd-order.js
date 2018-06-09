@@ -11,6 +11,7 @@ export default function updOrder(e, order) {
     if (updOrder.XL2) updOrder.quantity += updOrder.XL2;
     if (updOrder.XL3) updOrder.quantity += updOrder.XL3;
     if (updOrder.XL4) updOrder.quantity += updOrder.XL4;
+    if (updOrder.XL5) updOrder.quantity += updOrder.XL5;
     this.calculateCost(updOrder);
   }
 }
