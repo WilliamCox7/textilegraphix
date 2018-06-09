@@ -1,6 +1,6 @@
 import { React, Component, connect, NumberFormat, MediaQuery } from '../../packages';
 import { getAsset, toggle, setProduct } from '../../modules';
-import { updOrder, removeOrder } from '../../reducers/cart';
+import { updOrder, removeOrder, clearCart } from '../../reducers/cart';
 import { WaitIndicator, SizingForm, Processor } from '../../components';
 import { initBuilder } from '../../reducers/builder';
 import './style.scss';
@@ -365,7 +365,7 @@ class Order extends Component {
             ) : null}
             {this.state.paymentModal ? (
               <Processor total={orderTotal} exempt={this.state.taxExempt} orders={cartOrders}
-                first={this.state.contact.first} last={this.state.contact.last} />
+                first={this.state.contact.first} last={this.state.contact.last} toggle={this.toggle} />
             ) : null}
             <MediaQuery maxWidth={650}>
               <div className="gray-background"></div>
@@ -401,7 +401,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   updOrder: updOrder,
   removeOrder: removeOrder,
-  initBuilder: initBuilder
+  initBuilder: initBuilder,
+  clearCart: clearCart
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Order);

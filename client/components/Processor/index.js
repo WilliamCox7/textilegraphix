@@ -41,7 +41,7 @@ class Processor extends Component {
     return (
       <div className="Processor">
         <div className="processor-wrapper">
-          <div className="close"><img src={getAsset('close-x-blue')} /></div>
+          <div className="close"><img src={getAsset('close-x-blue')} onClick={() => this.props.toggle('paymentModal')} /></div>
           <div className="message fs-26 c-green">Order Succesfully Submitted!</div>
           <div className="flex">
             <div className="side left">
@@ -73,7 +73,7 @@ class Processor extends Component {
           </div>
           <img className="logo" src={getAsset('logo-gray')} />
         </div>
-        <div className="gray-overlay"></div>
+        <div className="gray-overlay" onClick={() => this.props.toggle('paymentModal')}></div>
       </div>
     );
   }
