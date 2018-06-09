@@ -16,19 +16,39 @@ class Order extends Component {
       guid: props.cart.orders.length > 0 ? props.cart.orders[0].guid : undefined,
       mockupIndex: 0,
       files: [],
-      projectName: '',
-      first: '',
-      last: '',
-      company: '',
-      phone: '',
-      email: '',
-      confirm: '',
+      contact: {
+        first: '',
+        last: '',
+        company: '',
+        phone: '',
+        email: '',
+        confirm: '',
+        projectName: ''
+      },
+      billing: {
+        first: '',
+        last: '',
+        address: '',
+        city: '',
+        state: '',
+        zip: ''
+      },
+      shipping: {
+        first: '',
+        last: '',
+        address: '',
+        city: '',
+        state: '',
+        zip: '',
+        sameAsBilling: false
+      },
       error: false,
-      thankyou: false,
+      submitted: false,
       waiting: false,
       builder: false,
       overlay: false,
-      editOrder: undefined
+      editOrder: undefined,
+      taxExempt: false
     }
     this.selectOrderMockup = this.selectOrderMockup.bind(this);
     this.toggleMockup = this.toggleMockup.bind(this);
@@ -36,6 +56,7 @@ class Order extends Component {
     this.calculateCost = this.calculateCost.bind(this);
     this.storeFile = this.storeFile.bind(this);
     this.updateInput = this.updateInput.bind(this);
+    this.updateCheckbox = this.updateCheckbox.bind(this);
     this.sendOrder = this.sendOrder.bind(this);
     this.removeOrder = this.removeOrder.bind(this);
     this.prepareAttachments = this.prepareAttachments.bind(this);
@@ -128,7 +149,7 @@ class Order extends Component {
         <div className="flex">
           <div className="left">
             <input className="project-name fs-34 c-gray-1 fw-bold" type="text" placeholder="*Project Name"
-              onChange={this.updateInput} value={this.state.projectName} name="projectName" />
+              onChange={(e) => this.updateInput(e, 'contact')} value={this.state.projectName} name="projectName" />
             <MediaQuery maxWidth={1400}>
               <div className="mockup flex jc-c">
                 <div className="side-buttons-left flex fd-c">
@@ -179,76 +200,160 @@ class Order extends Component {
             </div>
           </MediaQuery>
         </div>
-        <div className="bottom-section flex">
+        <div className="bottom-section flex fw-w jc-sb">
           <div className="order-form">
-            <h1 className="fs-28 c-gray-1 fw-bold">Contact Information</h1>
+            <h1 className="fs-24 c-gray-1 fw-bold">Contact Information</h1>
             <div className="form flex fw-w jc-sb">
-              <input type="text" name="first" placeholder="*First" onChange={this.updateInput} />
-              <input type="text" name="last" placeholder="*Last" onChange={this.updateInput} />
-              <input type="text" name="company" placeholder="Company" onChange={this.updateInput} />
-              <input type="text" name="phone" placeholder="*Phone" onChange={this.updateInput} />
-              <input type="text" name="email" placeholder="*Email" onChange={this.updateInput} />
-              <input type="text" name="confirm" placeholder="*Confirm Email" onChange={this.updateInput} />
+              <input type="text" name="first" placeholder="*First" onChange={(e) => this.updateInput(e, 'contact')} />
+              <input type="text" name="last" placeholder="*Last" onChange={(e) => this.updateInput(e, 'contact')} />
+              <input type="text" name="company" placeholder="Company" onChange={(e) => this.updateInput(e, 'contact')} />
+              <input type="text" name="phone" placeholder="*Phone" onChange={(e) => this.updateInput(e, 'contact')} />
+              <input type="text" name="email" placeholder="*Email" onChange={(e) => this.updateInput(e, 'contact')} />
+              <input type="text" name="confirm" placeholder="*Confirm Email" onChange={(e) => this.updateInput(e, 'contact')} />
+            </div>
+          </div>
+          <div className="order-form">
+            <h1 className="fs-24 c-gray-1 fw-bold">Billing Information</h1>
+            <div className="form flex fw-w jc-sb">
+              <input type="text" name="first" value={this.state.billing.first} placeholder="*First" onChange={(e) => this.updateInput(e, 'billing')} />
+              <input type="text" name="last" value={this.state.billing.last} placeholder="*Last" onChange={(e) => this.updateInput(e, 'billing')} />
+              <input type="text" name="address" value={this.state.billing.address} placeholder="*Address" onChange={(e) => this.updateInput(e, 'billing')} />
+              <input type="text" name="city" value={this.state.billing.city} placeholder="*City" onChange={(e) => this.updateInput(e, 'billing')} />
+              <MediaQuery minWidth={650}>
+                <input type="text" name="state" value={this.state.billing.state} placeholder="*State" onChange={(e) => this.updateInput(e, 'billing')} />
+              </MediaQuery>
+              <MediaQuery minWidth={650}>
+                <input type="text" name="zip" value={this.state.billing.zip} placeholder="*Zip Code" onChange={(e) => this.updateInput(e, 'billing')} />
+              </MediaQuery>
+              <MediaQuery maxWidth={650}>
+                <div className="mult-input flex jc-sb">
+                  <input type="text" name="state" value={this.state.billing.state} placeholder="*State" onChange={(e) => this.updateInput(e, 'billing')} />
+                  <input type="text" name="zip" value={this.state.billing.zip} placeholder="*Zip Code" onChange={(e) => this.updateInput(e, 'billing')} />
+                </div>
+              </MediaQuery>
+            </div>
+          </div>
+          <div className="order-form">
+            <MediaQuery minWidth={650}>
+              <div className="shipping-header flex jc-sb">
+                <h1 className="fs-24 c-gray-1 fw-bold">Shipping Information</h1>
+                <div className="checkbox flex jc-sb">
+                  <label>
+                    <input type="checkbox" checked={this.state.shipping.sameAsBilling}
+                      name="sameAsBilling" onClick={(e) => this.updateCheckbox(e, 'shipping')} />
+                    <span></span>
+                  </label>
+                  <h1 className="fs-16 c-black">SAME AS BILLING</h1>
+                </div>
+              </div>
+            </MediaQuery>
+            <MediaQuery maxWidth={650}>
+              <div>
+                <h1 className="fs-24 c-gray-1 fw-bold">Shipping Information</h1>
+                <div className="checkbox flex jc-sb">
+                  <label>
+                    <input type="checkbox" checked={this.state.shipping.sameAsBilling}
+                      name="sameAsBilling" onClick={(e) => this.updateCheckbox(e, 'shipping')} />
+                    <span></span>
+                  </label>
+                  <h1 className="fs-16 c-black">SAME AS BILLING</h1>
+                </div>
+              </div>
+            </MediaQuery>
+            <div className="form flex fw-w jc-sb">
+              <input type="text" name="first" value={this.state.shipping.first} placeholder="*First" onChange={(e) => this.updateInput(e, 'shipping')} />
+              <input type="text" name="last" value={this.state.shipping.last} placeholder="*Last" onChange={(e) => this.updateInput(e, 'shipping')} />
+              <input type="text" name="address" value={this.state.shipping.address} placeholder="Address" onChange={(e) => this.updateInput(e, 'shipping')} />
+              <input type="text" name="city" value={this.state.shipping.city} placeholder="*City" onChange={(e) => this.updateInput(e, 'shipping')} />
+              <MediaQuery minWidth={650}>
+                <input type="text" name="state" value={this.state.shipping.state} placeholder="*State" onChange={(e) => this.updateInput(e, 'shipping')} />
+              </MediaQuery>
+              <MediaQuery minWidth={650}>
+                <input type="text" name="zip" value={this.state.shipping.zip} placeholder="*Zip Code" onChange={(e) => this.updateInput(e, 'shipping')} />
+              </MediaQuery>
+              <MediaQuery maxWidth={650}>
+                <div className="mult-input flex jc-sb">
+                  <input type="text" name="state" value={this.state.shipping.state} placeholder="*State" onChange={(e) => this.updateInput(e, 'shipping')} />
+                  <input type="text" name="zip" value={this.state.shipping.zip} placeholder="*Zip Code" onChange={(e) => this.updateInput(e, 'shipping')} />
+                </div>
+              </MediaQuery>
             </div>
           </div>
           <div className="order-details">
-            <h1 className="fs-28 c-gray-1 fw-bold">Total + Estimated Delivery</h1>
-            <div className="details-wrapper flex jc-sb">
-              <div className="details-side-left">
-                <h1 className="fs-20 c-gray-3">Est. Total + Shipping</h1>
-                <h1 className="fs-20 c-gray-1 fw-bold">
+            {this.state.submitted ? (
+              <h1 className="fs-24 c-green fw-bold">Order Successfully Submitted!</h1>
+            ) : null}
+            {this.state.error && !this.state.submitted ? (
+              <h1 className="fs-24 c-red fw-bold">* Please fill in all required fields</h1>
+            ) : null}
+            <MediaQuery maxWidth={650}>
+              <h1 className="fs-24 c-black-2 fw-bold">Total + Free Shipping</h1>
+            </MediaQuery>
+            <div className="total-price-box flex jc-sb">
+              <div className="total-price">
+                <MediaQuery minWidth={650}>
+                  <h1 className="fs-20 c-gray-3">Total + Free Shipping</h1>
+                </MediaQuery>
+                <h1 className="fs-56 fw-bold c-black-2 flex">
                   <NumberFormat value={orderTotal} displayType={'text'}
                     thousandSeparator={true} prefix={'$'} decimalScale={2} />
+                  <MediaQuery maxWidth={650} minWidth={360}>
+                    <p className="fs-16 c-gray-3">+ Tax</p>
+                  </MediaQuery>
                 </h1>
-                <p className="fs-16 c-blue">
-                  *Prices are subject to change depending on order details.
-                </p>
-                <MediaQuery className="delivery" maxWidth={650}>
-                  <h1 className="fs-20 c-gray-3">Est. Delivery</h1>
-                  <h1 className="fs-24 c-gray-1 fw-bold">{this.props.cart.orders.length ? this.props.cart.orders[0].delivery : null}</h1>
-                </MediaQuery>
-                {this.state.error ? (
-                  <h1 className="fs-16 fw-bold" style={{'color': 'red'}}>
-                    *Please fill in all required fields
-                  </h1>
-                ) : null}
+                <div className="checkbox flex jc-sb">
+                  <label>
+                    <input type="checkbox" checked={this.state.taxExempt}
+                      name="taxExempt" onClick={this.updateCheckbox} />
+                    <span></span>
+                  </label>
+                  <h1 className="fs-16 c-black">Check Box If Tax Exempt</h1>
+                </div>
               </div>
-              <div className="details-side-right">
-                <a className="fs-57 c-blue fw-bold" onClick={this.sendOrder}>
-                  Submit <i className="fas fa-arrow-right"></i>
-                </a>
-                <MediaQuery maxWidth={650}>
-                  {(matches) => {
-                    if (matches) {
-                      return (
-                        <p className="fs-16 c-gray-3">
-                          By submitting you are giving our account
-                          managers permission to contact you about
-                          the order details. Payment is not due until
-                          you and one of our representatives agree to
-                          produce the order. A member from our team
-                          will contact you within 1 to 2 business days.
-                        </p>
-                      );
-                    } else {
-                      return (
-                        <p className="fs-16 c-gray-3">
-                          A member from our team will contact you within 1 to 2 business days
-                        </p>
-                      );
-                    }
-                  }}
-                </MediaQuery>
+              <MediaQuery minWidth={650}>
+                <div className="total-price-buttons flex fd-c jc-sb">
+                  <button className="fs-28 c-white flex ai-c" onClick={() => this.sendOrder('buy-now')}>
+                    BUY NOW <img src={getAsset('buy-now')} />
+                  </button>
+                  <button className="fs-20 c-blue flex ai-c" onClick={() => this.sendOrder('bill-later')}>
+                    BILL ME LATER <img src={getAsset('bill-me-later')} />
+                  </button>
+                </div>
+              </MediaQuery>
+            </div>
+            <MediaQuery maxWidth={650}>
+              <div className="total-price-buttons-mobile flex jc-sb">
+                <button className="fs-28 c-white flex ai-c" onClick={() => this.sendOrder('buy-now')}>
+                  BUY NOW <img src={getAsset('buy-now')} />
+                </button>
+                <button className="fs-20 c-blue flex ai-c" onClick={() => this.sendOrder('bill-later')}>
+                  BILL ME LATER <img src={getAsset('bill-me-later')} />
+                </button>
+              </div>
+            </MediaQuery>
+            <div className="descriptions flex">
+              <div className="desc-section">
+                <h1 className="fs-12 c-gray-3">*BILL ME LATER</h1>
+                <p className="fs-12 c-gray-3">
+                  This option is only availible for orders over the amount
+                  of $500, upon submiting our account specialists will
+                  discuss payment options.
+                </p>
+              </div>
+              <div className="desc-section">
+                <h1 className="fs-12 c-gray-3">*BUY NOW</h1>
+                <p className="fs-12 c-gray-3">
+                  Upon submitting, your card will be authorized but will
+                  not be charged until the order has been shipped.
+                </p>
               </div>
             </div>
-            {this.state.thankyou ? (
-              <div className="thank-you flex jc-c ai-c fd-c">
-                <span className="thumbs-up"><img src={getAsset('thumbs-up')} /></span>
-                <h1 className="fs-30 c-black fw-bold">Thanks for the Inquery!</h1>
-                <h1 className="fs-18 c-black">One of our staff members will be in contact with you shortly!</h1>
-                <span className="close" onClick={() => this.toggle('thankyou')}><img src={getAsset('close-x-black')} /></span>
-              </div>
+            {this.state.submitted ? (
+              <div></div>
             ) : null}
+            <MediaQuery maxWidth={650}>
+              <div className="gray-background"></div>
+            </MediaQuery>
           </div>
         </div>
         <WaitIndicator message="Placing your order..." waiting={this.state.waiting} />
@@ -263,6 +368,7 @@ Order.prototype.updOrder = method.updOrder;
 Order.prototype.calculateCost = method.calculateCost;
 Order.prototype.storeFile = method.storeFile;
 Order.prototype.updateInput = method.updateInput;
+Order.prototype.updateCheckbox = method.updateCheckbox;
 Order.prototype.sendOrder = method.sendOrder;
 Order.prototype.removeOrder = method.removeOrder;
 Order.prototype.prepareAttachments = method.prepareAttachments;

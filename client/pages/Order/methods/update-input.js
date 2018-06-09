@@ -1,5 +1,5 @@
-export default function updateInput(e) {
+export default function updateInput(e, form) {
   let newState = Object.assign({}, this.state);
-  newState[e.target.name] = e.target.value;
+  newState[form][e.target.name] = e.target.value;
   this.setState(newState);
 }
