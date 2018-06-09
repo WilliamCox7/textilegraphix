@@ -48,7 +48,9 @@ class Order extends Component {
       builder: false,
       overlay: false,
       editOrder: undefined,
-      taxExempt: false
+      taxExempt: false,
+      thankYou: false,
+      paymentModal: false
     }
     this.selectOrderMockup = this.selectOrderMockup.bind(this);
     this.toggleMockup = this.toggleMockup.bind(this);
@@ -281,10 +283,12 @@ class Order extends Component {
           </div>
           <div className="order-details">
             {this.state.submitted ? (
-              <h1 className="fs-24 c-green fw-bold">Order Successfully Submitted!</h1>
+              <MediaQuery minWidth={650}>
+                <h1 className="fs-24 c-green fw-bold">Order Successfully Submitted!</h1>
+              </MediaQuery>
             ) : null}
             {this.state.error && !this.state.submitted ? (
-              <h1 className="fs-24 c-red fw-bold">* Please fill in all required fields</h1>
+              <h1 className="fs-24 c-red fw-bold">{this.state.error}</h1>
             ) : null}
             <MediaQuery maxWidth={650}>
               <h1 className="fs-24 c-black-2 fw-bold">Total + Free Shipping</h1>
@@ -312,10 +316,10 @@ class Order extends Component {
               </div>
               <MediaQuery minWidth={650}>
                 <div className="total-price-buttons flex fd-c jc-sb">
-                  <button className="fs-28 c-white flex ai-c" onClick={() => this.sendOrder('buy-now')}>
+                  <button className="fs-28 c-white flex ai-c" onClick={() => this.sendOrder('buy-now', orderTotal)}>
                     BUY NOW <img src={getAsset('buy-now')} />
                   </button>
-                  <button className="fs-20 c-blue flex ai-c" onClick={() => this.sendOrder('bill-later')}>
+                  <button className="fs-20 c-blue flex ai-c" onClick={() => this.sendOrder('bill-later', orderTotal)}>
                     BILL ME LATER <img src={getAsset('bill-me-later')} />
                   </button>
                 </div>
@@ -323,10 +327,10 @@ class Order extends Component {
             </div>
             <MediaQuery maxWidth={650}>
               <div className="total-price-buttons-mobile flex jc-sb">
-                <button className="fs-28 c-white flex ai-c" onClick={() => this.sendOrder('buy-now')}>
+                <button className="fs-28 c-white flex ai-c" onClick={() => this.sendOrder('buy-now', orderTotal)}>
                   BUY NOW <img src={getAsset('buy-now')} />
                 </button>
-                <button className="fs-20 c-blue flex ai-c" onClick={() => this.sendOrder('bill-later')}>
+                <button className="fs-20 c-blue flex ai-c" onClick={() => this.sendOrder('bill-later', orderTotal)}>
                   BILL ME LATER <img src={getAsset('bill-me-later')} />
                 </button>
               </div>
@@ -348,8 +352,18 @@ class Order extends Component {
                 </p>
               </div>
             </div>
-            {this.state.submitted ? (
-              <div></div>
+            {this.state.thankYou ? (
+              <MediaQuery maxWidth={650}>
+                <div className="thank-you flex jc-c ai-c fd-c">
+                  <span className="thumbs-up"><img src={getAsset('thumbs-up')} /></span>
+                  <h1 className="fs-30 c-black fw-bold">Thanks for the Inquery!</h1>
+                  <h1 className="fs-18 c-black">One of our staff members will be in contact with you shortly!</h1>
+                  <span className="close" onClick={() => this.toggle('thankYou')}><img src={getAsset('close-x-black')} /></span>
+                </div>
+              </MediaQuery>
+            ) : null}
+            {this.state.paymentModal ? (
+              <div>PAYMENT MODAL</div>
             ) : null}
             <MediaQuery maxWidth={650}>
               <div className="gray-background"></div>

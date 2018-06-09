@@ -1,23 +1,34 @@
 import { axios } from '../../../packages';
 import { buildOrderHtml } from '../../../modules';
 
-export default function sendOrder(orderType) {
+export default function sendOrder(orderType, orderTotal) {
   if (valid(this.state)) {
-    this.toggle('waiting');
-    axios.post('/order', {
-      to: this.state.email,
-      from: `${this.state.first} ${this.state.last}`,
-      order: buildOrderHtml(this.state, this.props.cart.orders, orderType),
-      attachments: this.prepareAttachments()
-    }).then((response) => {
-      this.toggleThankYou();
-      this.toggle('waiting');
-    }).catch((error) => {
-      axios.post('/error', {error: error});
-    });
+    if (orderTotal > 500 && orderType === 'bill-later') {
+      this.setState({error: 'Order must be over $500 to select this option'});
+    } else {
+      send(this, orderType);
+    }
   } else {
-    this.setState({error: true});
+    this.setState({error: '* Please fill in all required fields'});
   }
+}
+
+function send(self, orderType) {
+  self.toggle('waiting');
+  axios.post('/order', {
+    to: self.state.contact.email,
+    from: `${self.state.contact.first} ${self.state.contact.last}`,
+    order: buildOrderHtml(self.state, self.props.cart.orders, orderType),
+    attachments: self.prepareAttachments()
+  }).then((response) => {
+    orderType === 'bill-later'
+    ? self.toggle('thankYou')
+    : self.toggle('paymentModal');
+    self.toggle('waiting');
+    self.toggle('submitted');
+  }).catch((error) => {
+    axios.post('/error', {error: error});
+  });
 }
 
 function valid(form) {

@@ -4,11 +4,11 @@ export default function buildOrderHtml(form, products) {
 
   let html = `
     <div>
-      <h1>${form.projectName ? form.projectName : "Project Details"}</h1>
-      <p style="margin: 5px 0px">${form.first} ${form.last}</p>
-      <p style="margin: 5px 0px">${form.email}</p>
-      <p style="margin: 5px 0px">${form.phone}</p>
-      <p style="margin: 5px 0px">${form.company}</p>
+      <h1>${form.contact.projectName ? form.contact.projectName : "Project Details"}</h1>
+      <p style="margin: 5px 0px">${form.contact.first} ${form.contact.last}</p>
+      <p style="margin: 5px 0px">${form.contact.email}</p>
+      <p style="margin: 5px 0px">${form.contact.phone}</p>
+      <p style="margin: 5px 0px">${form.contact.company}</p>
       <br />
     </div>
   `;
