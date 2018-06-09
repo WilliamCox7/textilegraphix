@@ -11,7 +11,7 @@ class Menu extends Component {
           <h1 className="fs-36 c-blue">MENU</h1>
           <img onClick={() => {
             this.props.toggleMenu(); this.props.closeBuilder();
-          }} src={getAsset('close-x')} />
+          }} src={getAsset('close-x-black')} />
         </div>
         <div className="links flex jc-sa fd-c ai-c">
           <Link onClick={() => {

@@ -1,0 +1,60 @@
+@import "../../../vars.scss";
+
+.CreditCard {
+  position: absolute;
+  z-index: 3;
+  margin-top: 30px;
+  margin-left: -50px;
+  width: 524px;
+  height: 326px;
+  background: $blue;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.16);
+  padding: 20px 20px 20px 30px;
+  .visa {
+    float: right;
+    height: 40px;
+  }
+  h1.fs-30.c-white {
+    margin-bottom: 55px;
+    margin-top: 16px;
+  }
+  .card-input {
+    width: 324px;
+  }
+  .expiration {
+    input[type="text"]:nth-child(1) {
+      width: 150px;
+    }
+    input[type="text"]:nth-child(2) {
+      width: 100px;
+    }
+  }
+  .ccv {
+    margin-left: 40px;
+    input[type="text"] {
+      width: 90px;
+    }
+  }
+  input[type="text"] {
+    background: rgba(255, 255, 255, 0.19);
+    border: none;
+    text-align: center;
+    margin: 10px 0px 20px;
+    margin-right: 2px;
+    height: 40px;
+    &::-webkit-input-placeholder {
+      color: $blue;
+    }
+    &:-ms-input-placeholder {
+      color: $blue;
+    }
+    &::-ms-input-placeholder {
+      color: $blue;
+    }
+    &::placeholder {
+      color: $blue;
+    }
+  }
+}

@@ -12,6 +12,7 @@ import SocialMedia from './SocialMedia';
 import SeparatorLine from './SeparatorLine';
 import HelpHover from './HelpHover';
 import SizingForm from './SizingForm';
+import Processor from './Processor';
 
 export {
   Footer,
@@ -27,5 +28,6 @@ export {
   SocialMedia,
   SeparatorLine,
   HelpHover,
-  SizingForm
+  SizingForm,
+  Processor
 }

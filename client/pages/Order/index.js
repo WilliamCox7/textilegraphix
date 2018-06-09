@@ -1,7 +1,7 @@
 import { React, Component, connect, NumberFormat, MediaQuery } from '../../packages';
 import { getAsset, toggle, setProduct } from '../../modules';
 import { updOrder, removeOrder } from '../../reducers/cart';
-import { WaitIndicator, SizingForm } from '../../components';
+import { WaitIndicator, SizingForm, Processor } from '../../components';
 import { initBuilder } from '../../reducers/builder';
 import './style.scss';
 
@@ -70,6 +70,7 @@ class Order extends Component {
   render() {
 
     let orderTotal = 0;
+    let cartOrders = this.props.cart.orders;
 
     let orders = this.props.cart.orders.map((order, i) => {
       let locationText = this.buildCardSubHeader(order);
@@ -362,8 +363,9 @@ class Order extends Component {
                 </div>
               </MediaQuery>
             ) : null}
-            {this.state.paymentModal ? (
-              <div>PAYMENT MODAL</div>
+            {this.state.paymentModal || true ? (
+              <Processor total={orderTotal} exempt={this.state.taxExempt} orders={cartOrders}
+                first={this.state.contact.first} last={this.state.contact.last} />
             ) : null}
             <MediaQuery maxWidth={650}>
               <div className="gray-background"></div>
