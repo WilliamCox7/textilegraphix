@@ -1,6 +1,6 @@
 @import "../../../vars.scss";
 
-.ActionTile {
+#ActionTile {
   text-decoration: none;
   border: solid 1px $gray-4;
   border-radius: 5px;
@@ -9,10 +9,10 @@
   min-height: 210px;
   margin-bottom: 40px;
   cursor: pointer;
-  img {
+  .tile-asset {
     height: 80px;
   }
-  button {
+  .tile-button {
     padding: 10px 20px;
     border: solid 1px $black;
     border-radius: 5px;

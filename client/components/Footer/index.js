@@ -6,10 +6,10 @@ import './style.scss';
 class Footer extends Component {
   render() {
     return (
-      <div className="Footer">
+      <div id="Footer">
         <div className="wrapper flex ai-fe">
-          <Link to="/" className="logo">
-            <img src={getAsset('logo-white')} />
+          <Link to="/" id="footer-logo">
+            <img id="logo-img" src={getAsset('logo-white')} />
           </Link>
           <MediaQuery minWidth={755}>
             <SocialMedia color="white" />

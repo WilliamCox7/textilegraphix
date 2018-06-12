@@ -1,4 +1,4 @@
-import { React, Component, NumberFormat } from '../../packages';
+import { React, Component, NumberFormat, MediaQuery } from '../../packages';
 import { getAsset } from '../../modules';
 import './style.scss';
 
@@ -42,18 +42,23 @@ class Processor extends Component {
       <div className="Processor">
         <div className="processor-wrapper">
           <div className="close"><img src={getAsset('close-x-blue')} onClick={() => this.props.toggle('paymentModal')} /></div>
-          <div className="message fs-26 c-green">Order Succesfully Submitted!</div>
+          <MediaQuery minWidth={1200}>
+            <div className="message fs-26 c-green">Order Succesfully Submitted!</div>
+          </MediaQuery>
           <div className="flex">
             <div className="side left">
-              <h1 className="fs-30 c-black-2">TOTAL</h1>
-              <h1 className="fs-36 c-blue fw-bold">
+              <h1 className="left-heading fs-30 c-black-2">TOTAL</h1>
+              <h1 className="left-heading fs-36 c-blue fw-bold">
                 <NumberFormat value={total + tax} displayType={'text'}
                   thousandSeparator={true} prefix={'$'} decimalScale={2} />
               </h1>
-              <h1 className="fs-30 c-black-2">DETAILS</h1>
+              <h1 className="left-heading fs-30 c-black-2">DETAILS</h1>
               <div className="detail-container">
                 {details}
               </div>
+              <MediaQuery maxWidth={1200}>
+                <div className="message fs-26 c-green">Order Succesfully Submitted!</div>
+              </MediaQuery>
               <hr />
               <div className="tax-amount flex">
                 <h1 className="fs-18 c-black-2">TAX</h1>
@@ -63,15 +68,27 @@ class Processor extends Component {
                 </h1>
               </div>
               <div className="pay-now flex jc-fe">
+                <MediaQuery maxWidth={1200}>
+                  <span></span>
+                </MediaQuery>
                 <button className="fs-24 c-blue fw-bold">PAY NOW</button>
-                <img src={getAsset('auth', 'png')} />
+                <span className="auth-image">
+                  <img src={getAsset('auth', 'png')} />
+                </span>
               </div>
+              <MediaQuery maxWidth={1200}>
+                <CreditCard first={this.props.first} last={this.props.last} update={this.update} form={this.state} />
+              </MediaQuery>
             </div>
-            <div className="side right">
-              <CreditCard first={this.props.first} last={this.props.last} update={this.update} form={this.state} />
-            </div>
+            <MediaQuery minWidth={1200}>
+              <div className="side right">
+                <CreditCard first={this.props.first} last={this.props.last} update={this.update} form={this.state} />
+              </div>
+            </MediaQuery>
           </div>
-          <img className="logo" src={getAsset('logo-gray')} />
+          <MediaQuery minWidth={1200}>
+            <img className="logo" src={getAsset('logo-gray')} />
+          </MediaQuery>
         </div>
         <div className="gray-overlay" onClick={() => this.props.toggle('paymentModal')}></div>
       </div>

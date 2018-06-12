@@ -148,7 +148,7 @@ class Order extends Component {
 
     return (
       <div className="Order" id="current-page">
-        <h1 className="fs-30 c-blue fw-bold">Quote Submission Form</h1>
+        <h1 className="h1-fs-30 fs-30 c-blue fw-bold">Quote Submission Form</h1>
         <div className="flex">
           <div className="left">
             <input className="project-name fs-34 c-gray-1 fw-bold" type="text" placeholder="*Project Name"
@@ -357,7 +357,7 @@ class Order extends Component {
               <MediaQuery maxWidth={650}>
                 <div className="thank-you flex jc-c ai-c fd-c">
                   <span className="thumbs-up"><img src={getAsset('thumbs-up')} /></span>
-                  <h1 className="fs-30 c-black fw-bold">Thanks for the Inquery!</h1>
+                  <h1 className="h1-fs-30 fs-30 c-black fw-bold">Thanks for the Inquery!</h1>
                   <h1 className="fs-18 c-black">One of our staff members will be in contact with you shortly!</h1>
                   <span className="close" onClick={() => this.toggle('thankYou')}><img src={getAsset('close-x-black')} /></span>
                 </div>

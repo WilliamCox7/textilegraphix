@@ -12,29 +12,62 @@
   -webkit-box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.16);
   box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.16);
   padding: 20px 20px 20px 30px;
+  @media(max-width: 1200px) {
+    margin: auto;
+    left: 0;
+    padding: 15px 15px 15px 20px;
+  }
+  @media(max-width: 580px) {
+    width: 350px;
+    height: 200px;
+  }
   .visa {
     float: right;
     height: 40px;
+    @media(max-width: 580px) {
+      height: 20px;
+    }
   }
   h1.fs-30.c-white {
     margin-bottom: 55px;
     margin-top: 16px;
+    @media(max-width: 580px) {
+      font-size: 18px;
+      margin: 10px 0px 28px;
+    }
+  }
+  h1.fs-18 {
+    @media(max-width: 580px) {
+      font-size: 10px;
+    }
   }
   .card-input {
     width: 324px;
+    @media(max-width: 580px) {
+      margin-bottom: 10px !important;
+    }
   }
   .expiration {
     input[type="text"]:nth-child(1) {
       width: 150px;
+      @media(max-width: 580px) {
+        width: 100px;
+      }
     }
     input[type="text"]:nth-child(2) {
       width: 100px;
+      @media(max-width: 580px) {
+        width: 70px;
+      }
     }
   }
   .ccv {
     margin-left: 40px;
     input[type="text"] {
       width: 90px;
+      @media(max-width: 580px) {
+        width: 50px;
+      }
     }
   }
   input[type="text"] {
@@ -44,17 +77,34 @@
     margin: 10px 0px 20px;
     margin-right: 2px;
     height: 40px;
+    @media(max-width: 580px) {
+      font-size: 15px;
+      height: 30px;
+      width: 215px;
+    }
     &::-webkit-input-placeholder {
       color: $blue;
+      @media(max-width: 580px) {
+        font-size: 15px;
+      }
     }
     &:-ms-input-placeholder {
       color: $blue;
+      @media(max-width: 580px) {
+        font-size: 15px;
+      }
     }
     &::-ms-input-placeholder {
       color: $blue;
+      @media(max-width: 580px) {
+        font-size: 15px;
+      }
     }
     &::placeholder {
       color: $blue;
+      @media(max-width: 580px) {
+        font-size: 15px;
+      }
     }
   }
 }

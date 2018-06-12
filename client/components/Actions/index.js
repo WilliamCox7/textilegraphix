@@ -7,7 +7,7 @@ import ActionTile from './ActionTile';
 class Actions extends Component {
   render() {
     return (
-      <section className="Actions" style={this.props.showCopy ? null : {"marginTop": "-50px"}}>
+      <section id="Actions" style={this.props.showCopy ? null : {"marginTop": "-50px"}}>
         <div className="body-wrapper" style={this.props.showCopy ? {"padding": "40px 0px 0px"} : null}>
 
           <MediaQuery minWidth={this.props.showCopy ? 0 : 650}>

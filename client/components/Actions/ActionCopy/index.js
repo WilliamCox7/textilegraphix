@@ -5,7 +5,7 @@ import './style.scss';
 class ActionCopy extends Component {
   render() {
     return (
-      <div className="ActionCopy">
+      <div id="ActionCopy">
         <h1 id="h1-1" className="fs-45 c-black fw-bold">
           Any questions? Reach out to us!
         </h1>

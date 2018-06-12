@@ -1,6 +1,6 @@
 @import "../../vars.scss";
 
-.Footer {
+#Footer {
   background: $blue;
   .wrapper {
     height: 120px;
@@ -11,7 +11,7 @@
       width: 100%;
       padding: 40px;
     }
-    .logo {
+    #footer-logo {
       height: 100%;
       img {
         height: 100%;
