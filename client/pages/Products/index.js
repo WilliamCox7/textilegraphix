@@ -45,17 +45,17 @@ class Products extends Component {
 
     let products = [];
 
-    if (this.props.products) {
-      this.props.products.forEach((product) => {
+    if (this.props.products.products.length) {
+      this.props.products.products.forEach((product) => {
         let results = calculateTotalCost(this.state.productBuilderInit, product.costOfShirt);
         product.costPerShirt = results.costPerShirt;
       });
-      if (this.state.sort === 'low') this.props.products.sort(this.sortLowestPrice);
-      else if (this.state.sort === 'high') this.props.products.sort(this.sortHighestPrice);
-      else if (this.state.sort === 'atoz') this.props.products.sort(this.sortAtoZ);
-      else if (this.state.sort === 'best') this.props.products.sort(this.sortBestSeller);
-      else this.props.products.sort(this.sortDefault);
-      products = this.props.products.map((product, i) => {
+      if (this.state.sort === 'low') this.props.products.products.sort(this.sortLowestPrice);
+      else if (this.state.sort === 'high') this.props.products.products.sort(this.sortHighestPrice);
+      else if (this.state.sort === 'atoz') this.props.products.products.sort(this.sortAtoZ);
+      else if (this.state.sort === 'best') this.props.products.products.sort(this.sortBestSeller);
+      else this.props.products.products.sort(this.sortDefault);
+      products = this.props.products.products.map((product, i) => {
         if (!this.state.filter || product.type === this.state.filter) {
           return (
             <Product product={product} costPerShirt={product.costPerShirt}

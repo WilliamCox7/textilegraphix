@@ -1,5 +1,5 @@
-import { React, Component, BrowserRouter, Route, connect } from './packages';
-import { Nav, Footer, ProductBuilder } from './components';
+import { React, Component, BrowserRouter, Route, connect, axios } from './packages';
+import { Nav, Footer, ProductBuilder, HandleProducts } from './components';
 import { Home, Products, Order, Support } from './pages';
 import './reset.scss';
 import './main.scss';
@@ -17,6 +17,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
+          <HandleProducts />
           <Nav />
           <Route exact path="/" component={Home} />
           <Route path="/products" component={Products} />

@@ -1,8 +1,12 @@
 const SET = 'products/SET';
 
-import { products } from './products';
+// test products
+// import { products } from './products';
+// const initState = products;
 
-const initState = products;
+const initState = {
+  products: []
+};
 
 export default function reducer(state=initState, action) {
   let editState = Object.assign({}, state);

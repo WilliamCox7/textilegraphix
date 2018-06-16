@@ -13,6 +13,7 @@ import SeparatorLine from './SeparatorLine';
 import HelpHover from './HelpHover';
 import SizingForm from './SizingForm';
 import Processor from './Processor';
+import HandleProducts from './HandleProducts';
 
 export {
   Footer,
@@ -29,5 +30,6 @@ export {
   SeparatorLine,
   HelpHover,
   SizingForm,
-  Processor
+  Processor,
+  HandleProducts
 }

@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const OrderSvc = require('./server_services/Order');
 const ErrorSvc = require('./server_services/Error');
+const ProductSvc = require('./server_services/Product');
 
 const app = module.exports = express();
 
@@ -12,6 +13,7 @@ app.use(express.static(__dirname + '/build'));
 
 app.post('/order', OrderSvc.processOrder);
 app.post('/error', ErrorSvc.sendError);
+app.get('/products/ssaw', ProductSvc.getProducts);
 
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, './build/index.html'));

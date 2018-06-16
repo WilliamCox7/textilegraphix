@@ -43,12 +43,15 @@ class Nav extends Component {
 
   render() {
 
-    let searchResults = this.props.products.reduce((filtered, product, i) => {
-      if (JSON.stringify(product).toLowerCase().indexOf(this.state.searchText.toLowerCase()) > -1 && i < 10 && this.state.searchText) {
-        filtered.push(<SearchResult product={product} setProduct={this.setProduct} key={i} />);
-      }
-      return filtered;
-    }, []);
+    let searchResults = [];
+    if (this.props.products.products.length) {
+      searchResults = this.props.products.products.reduce((filtered, product, i) => {
+        if (JSON.stringify(product).toLowerCase().indexOf(this.state.searchText.toLowerCase()) > -1 && i < 10 && this.state.searchText) {
+          filtered.push(<SearchResult product={product} setProduct={this.setProduct} key={i} />);
+        }
+        return filtered;
+      }, []);
+    }
 
     return (
       <div className="nav-wrapper">

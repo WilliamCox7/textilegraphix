@@ -105,16 +105,19 @@
         }
         h1 {
           text-align: center;
+          margin: 10px;
         }
         h1.fs-20.c-gray-1 {
-          @media(max-width: 1200px) {
-            margin: 20px 0px;
-          }
           @media(max-width: 550px) {
             font-size: 16px;
           }
         }
         .color-boxes {
+          min-height: -webkit-min-content;
+          min-height: -moz-min-content;
+          min-height: min-content;
+          padding: 0px 20px;
+          margin: 0px 0px 10px;
           @media(max-width: 1200px) {
             margin: 20px 0px;
           }
@@ -128,7 +131,7 @@
               width: 30px;
               height: 30px;
             }
-            margin: 0px 5px;
+            margin: 0px 5px 5px;
             cursor: pointer;
           }
         }

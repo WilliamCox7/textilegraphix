@@ -114,9 +114,11 @@ class ProductBuilder extends Component {
               <MediaQuery maxWidth={1200}>
                 <h1 className="fs-20 c-black fw-bold">{this.props.builder.product.brand} {this.props.builder.product.number}</h1>
               </MediaQuery>
-              <h1 className="fs-20 c-gray-1">{this.props.builder.product.description}</h1>
+              {this.props.builder.product.description ? (
+                <h1 className="fs-20 c-gray-1">{this.props.builder.product.description}</h1>
+              ) : null}
               <h1 className="fs-20 c-black fw-bold">{this.state.selectedColor.toUpperCase()}</h1>
-              <div className="color-boxes flex">{colors}</div>
+              <div className="color-boxes flex fw-w">{colors}</div>
               <div className="steps">
                 <div className="step">
                   <div className="step-no flex ai-c">
