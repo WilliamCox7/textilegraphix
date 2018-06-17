@@ -5,8 +5,8 @@
   position: absolute;
   z-index: 1;
   width: 100%;
-  top: -42px;
-  @media(max-width: 1200px) {
+  top: 0px;
+  @media(max-width: 1230px) {
     padding: 0px 40px 20px;
   }
   h1.fs-12 {
@@ -26,7 +26,7 @@
     margin: auto;
     .nav-filters {
       .filter-thumbs {
-        @media(max-width: 540px) {
+        @media(max-width: 580px) {
           -webkit-box-pack: justify;
           -ms-flex-pack: justify;
           justify-content: space-between;
@@ -39,7 +39,7 @@
           margin-right: 10px;
           margin-bottom: 10px;
           cursor: pointer;
-          @media(max-width: 450px) {
+          @media(max-width: 545px) {
             width: 70px;
             height: 100px;
             padding: 7px;
@@ -47,14 +47,14 @@
           }
           img {
             width: 60px;
-            @media(max-width: 450px) {
+            @media(max-width: 545px) {
               width: 40px;
             }
           }
           h1.fs-12 {
             padding-top: 8px;
             line-height: 14px;
-            @media(max-width: 450px) {
+            @media(max-width: 545px) {
               padding-top: 0px;
               text-align: center;
               font-size: 8px;
@@ -68,10 +68,14 @@
           margin-bottom: 10px;
           .dp-rectangle {
             padding: 15px 30px;
+            background: $blue;
             @media(max-width: 545px) {
               padding: 15px;
               font-size: 10px;
             }
+          }
+          .space-right {
+            margin-right: 10px;
           }
           .opt-cell {
             h1 {
@@ -80,20 +84,39 @@
               }
             }
             input {
+              width: 120px;
+              border: none;
+              border-bottom: solid 1px $gray-3;
+              color: $black;
+              text-align: center;
+              font-size: 34px;
+              font-weight: bold;
               @media(max-width: 545px) {
                 font-size: 24px;
               }
             }
           }
         }
+        .color-cells {
+          height: 42px;
+          @media(max-width: 490px) {
+            height: 64px;
+          }
+        }
         .color-cell {
           min-width: 135px;
         }
         .bottom-portion {
+          margin-left: 10px;
           h1.fs-24 {
+            position: relative;
+            margin: 0px 8px;
             @media(max-width: 545px) {
               font-size: 19px;
             }
+          }
+          i.fs-12 {
+            cursor: pointer;
           }
         }
         hr {

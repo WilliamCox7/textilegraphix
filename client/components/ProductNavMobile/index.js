@@ -1,5 +1,5 @@
 import { React, Component } from '../../packages';
-import { getAsset, setFilter } from '../../modules';
+import { getAsset } from '../../modules';
 import './style.scss';
 
 import * as method from './methods';
@@ -7,20 +7,13 @@ import * as method from './methods';
 const active = {"background": "#44B1DE", "border": "none"};
 
 class ProductNavMobile extends Component {
-
-  constructor() {
-    super();
-    this.setFilter = this.setFilter.bind(this);
-    this.toggleFilter = this.toggleFilter.bind(this);
-  }
-
   render() {
     return (
       <div className="ProductNavMobile" style={this.props.showFilter ? {"background": "white"} : null}>
         <div className="nav-options flex jc-sb">
-          <h1 className="fs-12 c-black fw-bold" onClick={this.toggleFilter}>Select a Shirt</h1>
+          <h1 className="fs-12 c-black fw-bold" onClick={() => this.props.toggle('showFilter', 'overlay')}>Select a Shirt</h1>
           {!this.props.showFilter ? (
-            <h1 onClick={this.toggleFilter} className="fs-12 c-blue fw-bold">
+            <h1 onClick={() => this.props.toggle('showFilter', 'overlay')} className="fs-12 c-blue fw-bold">
               Filter <i className="fas fa-arrow-down"></i>
             </h1>
           ) : null}
@@ -29,22 +22,22 @@ class ProductNavMobile extends Component {
           <div className="nav-filters-wrapper">
             <div className="nav-filters flex fd-c">
               <div className="filter-thumbs flex fw-w">
-                <span className="flex ai-c jc-fe fd-c" onClick={() => this.setFilter('t-shirts')}
+                <span className="flex ai-c jc-fe fd-c" onClick={() => this.props.setFilter('t-shirts')}
                   style={this.props.filter === 't-shirts' ? active : null}>
                   <img src={getAsset(this.props.filter === 't-shirts' ? 't-shirt-thumb-white' : 't-shirt-thumb')} />
                   <h1 className="fs-12 c-blue fw-bold" style={this.props.filter === 't-shirts' ? {"color": "white"} : null}>T-Shirts</h1>
                 </span>
-                <span className="flex ai-c jc-fe fd-c" onClick={() => this.setFilter('long sleeve shirt')}
+                <span className="flex ai-c jc-fe fd-c" onClick={() => this.props.setFilter('long sleeve shirt')}
                   style={this.props.filter === 'long sleeve shirt' ? active : null}>
                   <img src={getAsset(this.props.filter === 'long sleeve shirt' ? 'long-sleeve-thumb-white' : 'long-sleeve-thumb')} />
                   <h1 className="fs-12 c-blue fw-bold" style={this.props.filter === 'long sleeve shirt' ? {"color": "white"} : null}>Long Sleeves</h1>
                 </span>
-                <span className="flex ai-c jc-fe fd-c" onClick={() => this.setFilter('hoodies')}
+                <span className="flex ai-c jc-fe fd-c" onClick={() => this.props.setFilter('hoodies')}
                   style={this.props.filter === 'hoodies' ? active : null}>
                   <img src={getAsset(this.props.filter === 'hoodies' ? 'hoodie-thumb-white' : 'hoodie-thumb')} />
                   <h1 className="fs-12 c-blue fw-bold" style={this.props.filter === 'hoodies' ? {"color": "white"} : null}>Hoodies</h1>
                 </span>
-                <span className="flex ai-c jc-fe fd-c" onClick={() => this.setFilter('sweaters')}
+                <span className="flex ai-c jc-fe fd-c" onClick={() => this.props.setFilter('sweaters')}
                   style={this.props.filter === 'sweaters' ? active : null}>
                   <img src={getAsset(this.props.filter === 'sweaters' ? 'sweater-thumb-white' : 'sweater-thumb')} />
                   <h1 className="fs-12 c-blue fw-bold" style={this.props.filter === 'sweaters' ? {"color": "white"} : null}>Sweaters</h1>
@@ -58,7 +51,7 @@ class ProductNavMobile extends Component {
                     <input type="text" value={this.props.productBuilderInit.quantity} onChange={this.props.updateQuantity} />
                   </div>
                 </div>
-                <div className="flex jc-sb fw-w">
+                <div className="color-cells flex jc-sb fw-w">
                   <div className="color-cell opt-cell flex ai-c">
                     <h1 className="fs-14 fw-bold c-black space-right">Front Colors</h1>
                     <div className="bottom-portion flex ai-c jc-c">
@@ -93,7 +86,7 @@ class ProductNavMobile extends Component {
                   <span className="fs-14 c-blue" onClick={() => this.props.setSort('best')} style={this.props.sort === 'best' ? {"background": "#44B1DE", "color": "white"} : null}>BEST SELLERS</span>
                 </div>
               </div>
-              <div className="filter-button" onClick={this.toggleFilter}>
+              <div className="filter-button" onClick={() => this.props.toggle('showFilter', 'overlay')}>
                 <h1 className="fs-12 c-blue fw-bold">Filter <i className="fas fa-arrow-up"></i></h1>
               </div>
             </div>
@@ -103,8 +96,5 @@ class ProductNavMobile extends Component {
     );
   }
 }
-
-ProductNavMobile.prototype.setFilter = setFilter;
-ProductNavMobile.prototype.toggleFilter = method.toggleFilter;
 
 export default ProductNavMobile;

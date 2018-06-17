@@ -112,7 +112,7 @@ class ProductBuilder extends Component {
           <div className="builder flex">
             <div className="left side flex fd-c ai-c jc-sb">
               <MediaQuery maxWidth={1200}>
-                <h1 className="fs-20 c-black fw-bold">{this.props.builder.product.brand} {this.props.builder.product.number}</h1>
+                <h1 className="brand-header fs-20 c-black fw-bold">{this.props.builder.product.brand} {this.props.builder.product.number}</h1>
               </MediaQuery>
               {this.props.builder.product.description ? (
                 <h1 className="fs-20 c-gray-1">{this.props.builder.product.description}</h1>

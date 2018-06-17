@@ -60,7 +60,7 @@ class Nav extends Component {
 
           {/* Mobile Menu */}
           <MediaQuery maxWidth={1150}>
-            <button onClick={this.toggleMenu} className="fs-12 c-white">MENU</button>
+            <button onClick={() => {this.toggleMenu(); this.props.closeBuilder()}} className="fs-12 c-white">MENU</button>
           </MediaQuery>
           {this.state.menu ? (
             <Menu toggleMenu={this.toggleMenu} closeBuilder={this.props.closeBuilder} />

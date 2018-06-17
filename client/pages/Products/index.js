@@ -116,18 +116,18 @@ class Products extends Component {
             <MediaQuery minWidth={1230}>
               <ProductNav setFilter={this.setFilter} filter={this.state.filter} />
             </MediaQuery>
-            <MediaQuery maxWidth={1230}>
-              <ProductNavMobile toggle={this.toggle} productBuilderInit={this.state.productBuilderInit}
-                setFilter={this.setFilter} filter={this.state.filter} updateQuantity={this.updateQuantity} setSort={this.setSort}
-                showFilter={this.state.showFilter} sort={this.state.sort}
-                decrimentColor={this.decrimentColor} incrimentColor={this.incrimentColor} />
-            </MediaQuery>
             <div className="products flex jc-fe">
               <div className="products-wrapper flex fw-w">
                 {products}
               </div>
             </div>
           </div>
+          <MediaQuery maxWidth={1230}>
+            <ProductNavMobile toggle={this.toggle} productBuilderInit={this.state.productBuilderInit}
+              setFilter={this.setFilter} filter={this.state.filter} updateQuantity={this.updateQuantity} setSort={this.setSort}
+              showFilter={this.state.showFilter} sort={this.state.sort}
+              decrimentColor={this.decrimentColor} incrimentColor={this.incrimentColor} />
+          </MediaQuery>
           {this.state.overlay ? (
             <div className="gray-overlay" onClick={this.closeAll}></div>
           ) : null}

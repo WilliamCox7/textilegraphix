@@ -2,7 +2,9 @@ const SET = 'products/SET';
 
 // test products
 // import { products } from './products';
-// const initState = products;
+// const initState = {
+//   products: products
+// };
 
 const initState = {
   products: []
