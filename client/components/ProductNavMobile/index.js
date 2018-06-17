@@ -2,8 +2,6 @@ import { React, Component } from '../../packages';
 import { getAsset } from '../../modules';
 import './style.scss';
 
-import * as method from './methods';
-
 const active = {"background": "#44B1DE", "border": "none"};
 
 class ProductNavMobile extends Component {
