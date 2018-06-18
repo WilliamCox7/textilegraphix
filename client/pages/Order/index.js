@@ -365,6 +365,7 @@ class Order extends Component {
             ) : null}
             {this.state.paymentModal ? (
               <Processor total={orderTotal} exempt={this.state.taxExempt} orders={cartOrders}
+                billing={this.state.billing} shipping={this.state.shipping} contact={this.state.contact}
                 first={this.state.contact.first} last={this.state.contact.last} toggle={this.toggle} />
             ) : null}
             <MediaQuery maxWidth={650}>

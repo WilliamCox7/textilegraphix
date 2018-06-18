@@ -30,6 +30,7 @@
     "webpack": "^1.14.0"
   },
   "dependencies": {
+    "authorizenet": "^1.0.5",
     "axios": "^0.16.2",
     "body-parser": "^1.16.1",
     "dom-to-image": "^2.6.0",

@@ -16,6 +16,7 @@ class Processor extends Component {
       ccv: ''
     }
     this.update = this.update.bind(this);
+    this.authorizeCreditCard = this.authorizeCreditCard.bind(this);
   }
 
   render() {
@@ -71,7 +72,7 @@ class Processor extends Component {
                 <MediaQuery maxWidth={1200}>
                   <span></span>
                 </MediaQuery>
-                <button className="fs-24 c-blue fw-bold">PAY NOW</button>
+                <button onClick={this.authorizeCreditCard} className="fs-24 c-blue fw-bold">PAY NOW</button>
                 <span className="auth-image">
                   <img src={getAsset('auth', 'png')} />
                 </span>
@@ -97,5 +98,6 @@ class Processor extends Component {
 }
 
 Processor.prototype.update = method.update;
+Processor.prototype.authorizeCreditCard = method.authorizeCreditCard;
 
 export default Processor;
