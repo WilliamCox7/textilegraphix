@@ -25,7 +25,9 @@ class HelpHover extends Component {
         <div className="mid-section">
           <div className="mid-section-1 flex jc-sb ai-c">
             <h1 className="fs-8 fw-bold">DON'T HAVE A LOGO?</h1>
-            <button className="fs-8 c-green" onClick={() => Intercom('show')}>CHAT NOW</button>
+            <button className="fs-8 c-green" onClick={() => Intercom('show')}>
+              CHAT NOW
+            </button>
           </div>
           <hr />
           <div className="mid-section-2 fs-10">

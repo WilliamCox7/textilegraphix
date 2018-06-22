@@ -6,7 +6,7 @@ import './style.scss';
 class Footer extends Component {
   render() {
     return (
-      <div id="Footer">
+      <section id="Footer">
         <div className="wrapper flex ai-fe">
           <Link to="/" id="footer-logo">
             <img id="logo-img" src={getAsset('logo-white')} />
@@ -18,7 +18,7 @@ class Footer extends Component {
             Copyright 2018. Textile Graphix, LLC
           </p>
         </div>
-      </div>
+      </section>
     );
   }
 }
