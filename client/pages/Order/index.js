@@ -1,4 +1,4 @@
-import { React, Component, connect, NumberFormat, MediaQuery } from '../../packages';
+import { React, Component, connect, NumberFormat, MediaQuery, SwipeableViews } from '../../packages';
 import { getAsset, toggle, setProduct } from '../../modules';
 import { updOrder, removeOrder, clearCart } from '../../reducers/cart';
 import { WaitIndicator, SizingForm, Processor } from '../../components';
@@ -47,6 +47,7 @@ class Order extends Component {
       waiting: false,
       builder: false,
       overlay: false,
+      front: true,
       editOrder: undefined,
       taxExempt: false,
       thankYou: false,
@@ -153,19 +154,40 @@ class Order extends Component {
           <div className="left">
             <input className="project-name fs-34 c-gray-1 fw-bold" type="text" placeholder="*Project Name"
               onChange={(e) => this.updateInput(e, 'contact')} value={this.state.projectName} name="projectName" />
+            <MediaQuery maxWidth={550}>
+              <div className="swipe-guide flex jc-c ai-c">
+                <i className="fas fa-arrow-left"></i>
+                <h1 className="fs-10 c-black">{this.state.front ? 'Front' : 'Back'}</h1>
+                <i className="fas fa-arrow-right"></i>
+              </div>
+            </MediaQuery>
             <MediaQuery maxWidth={1400}>
               <div className="mockup flex jc-c">
-                <div className="side-buttons-left flex fd-c">
-                  <span onClick={() => this.toggleMockup(0)}>
-                    <img src={getAsset('front-side-button')} />
-                  </span>
-                  <span onClick={() => this.toggleMockup(1)}>
-                    <img src={getAsset('back-side-button')} />
-                  </span>
+                <MediaQuery minWidth={550}>
+                  <div className="side-buttons-left flex fd-c">
+                    <span onClick={() => this.toggleMockup(0)}>
+                      <img src={getAsset('front-side-button')} />
+                    </span>
+                    <span onClick={() => this.toggleMockup(1)}>
+                      <img src={getAsset('back-side-button')} />
+                    </span>
+                  </div>
+                </MediaQuery>
+                <div className="mockup-img">
+                  {this.state.mockup ? (
+                    <div>
+                      <MediaQuery maxWidth={550}>
+                        <SwipeableViews resistance onChangeIndex={() => this.toggle('front')}>
+                          <img src={this.state.mockup[0]} />
+                          <img src={this.state.mockup[1]} />
+                        </SwipeableViews>
+                      </MediaQuery>
+                      <MediaQuery minWidth={550}>
+                        <img src={this.state.mockup[this.state.mockupIndex]} />
+                      </MediaQuery>
+                    </div>
+                  ) : null}
                 </div>
-                {this.state.mockup ? (
-                  <img src={this.state.mockup[this.state.mockupIndex]} />
-                ) : null}
               </div>
             </MediaQuery>
             <div className="orders-in-cart">
@@ -196,9 +218,11 @@ class Order extends Component {
                     <img src={getAsset('back-side-button')} />
                   </span>
                 </div>
-                {this.state.mockup ? (
-                  <img src={this.state.mockup[this.state.mockupIndex]} />
-                ) : null}
+                <div className="mockup-img">
+                  {this.state.mockup ? (
+                    <img src={this.state.mockup[this.state.mockupIndex]} />
+                  ) : null}
+                </div>
               </div>
             </div>
           </MediaQuery>
@@ -338,18 +362,18 @@ class Order extends Component {
             </MediaQuery>
             <div className="descriptions flex">
               <div className="desc-section">
+                <h1 className="fs-12 c-gray-3">*BUY NOW</h1>
+                <p className="fs-12 c-gray-3">
+                  Upon submitting, your card will be authorized but will
+                  not be charged until the order has been shipped.
+                </p>
+              </div>
+              <div className="desc-section">
                 <h1 className="fs-12 c-gray-3">*BILL ME LATER</h1>
                 <p className="fs-12 c-gray-3">
                   This option is only availible for orders over the amount
                   of $500, upon submiting our account specialists will
                   discuss payment options.
-                </p>
-              </div>
-              <div className="desc-section">
-                <h1 className="fs-12 c-gray-3">*BUY NOW</h1>
-                <p className="fs-12 c-gray-3">
-                  Upon submitting, your card will be authorized but will
-                  not be charged until the order has been shipped.
                 </p>
               </div>
             </div>

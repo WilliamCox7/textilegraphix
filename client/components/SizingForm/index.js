@@ -34,32 +34,32 @@ class SizingForm extends Component {
         <div id="left-shadow" className="shadow"></div>
         <div className="scroll-area flex">
           <div className="size">
-            <input type="text" name="XS" onChange={this.props.updSizing}
+            <input type="text" name="XS" onChange={(e) => this.props.updSizing(e, this.props.order)}
               value={this.props.order.XS} className="fs-18 c-black" placeholder="0" />
             <h1 className="fs-18 c-gray-3">XS</h1>
           </div>
           <div className="size">
-            <input type="text" name="S" onChange={this.props.updSizing}
+            <input type="text" name="S" onChange={(e) => this.props.updSizing(e, this.props.order)}
                value={this.props.order.S} className="fs-18 c-black" placeholder="0" />
             <h1 className="fs-18 c-gray-3">S</h1>
           </div>
           <div className="size">
-            <input type="text" name="M" onChange={this.props.updSizing}
+            <input type="text" name="M" onChange={(e) => this.props.updSizing(e, this.props.order)}
                value={this.props.order.M} className="fs-18 c-black" placeholder="0" />
             <h1 className="fs-18 c-gray-3">M</h1>
           </div>
           <div className="size">
-            <input type="text" name="L" onChange={this.props.updSizing}
+            <input type="text" name="L" onChange={(e) => this.props.updSizing(e, this.props.order)}
                value={this.props.order.L} className="fs-18 c-black" placeholder="0" />
             <h1 className="fs-18 c-gray-3">L</h1>
           </div>
           <div className="size">
-            <input type="text" name="XL" onChange={this.props.updSizing}
+            <input type="text" name="XL" onChange={(e) => this.props.updSizing(e, this.props.order)}
                value={this.props.order.XL} className="fs-18 c-black" placeholder="0" />
             <h1 className="fs-18 c-gray-3">XL</h1>
           </div>
           <div className="size">
-            <input type="text" name="XL2" onChange={this.props.updSizing}
+            <input type="text" name="XL2" onChange={(e) => this.props.updSizing(e, this.props.order)}
                value={this.props.order.XL2} className="fs-18 c-black" placeholder="0" />
             <h1 className="fs-18 c-gray-3">2XL</h1>
             {this.props.optionalText ? (
@@ -67,7 +67,7 @@ class SizingForm extends Component {
             ) : null}
           </div>
           <div className="size">
-            <input type="text" name="XL3" onChange={this.props.updSizing}
+            <input type="text" name="XL3" onChange={(e) => this.props.updSizing(e, this.props.order)}
                value={this.props.order.XL3} className="fs-18 c-black" placeholder="0" />
             <h1 className="fs-18 c-gray-3">3XL</h1>
             {this.props.optionalText ? (
@@ -75,7 +75,7 @@ class SizingForm extends Component {
             ) : null}
           </div>
           <div className="size">
-            <input type="text" name="XL4" onChange={this.props.updSizing}
+            <input type="text" name="XL4" onChange={(e) => this.props.updSizing(e, this.props.order)}
                value={this.props.order.XL4} className="fs-18 c-black" placeholder="0" />
             <h1 className="fs-18 c-gray-3">4XL</h1>
             {this.props.optionalText ? (
@@ -83,7 +83,7 @@ class SizingForm extends Component {
             ) : null}
           </div>
           <div className="size">
-            <input type="text" name="XL5" onChange={this.props.updSizing}
+            <input type="text" name="XL5" onChange={(e) => this.props.updSizing(e, this.props.order)}
                value={this.props.order.XL5} className="fs-18 c-black" placeholder="0" />
             <h1 className="fs-18 c-gray-3">5XL</h1>
             {this.props.optionalText ? (

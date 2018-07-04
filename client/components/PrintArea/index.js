@@ -33,7 +33,7 @@ class PrintArea extends Component {
       let position = image.position ? image.position : {x: 0, y: 0};
       return (
         <Draggable key={i} on bounds="parent" cancel=".resizer" defaultPosition={position}
-          onStop={(e) => this.onStopMove(e, image.index, this.props.side)}>
+          onStop={(e) => this.onStopMove(e, image.index, this.props.side)} onStart={() => this.props.toggle('dragging')}>
           <div style={{"width": image.width}}>
             <div className="image-wrapper" style={this.state.dragging ? {
               "border": "dashed 2px #707070"

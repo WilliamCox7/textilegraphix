@@ -1,4 +1,4 @@
-import { React, Component, NumberFormat, MediaQuery, connect } from '../../packages';
+import { React, Component, NumberFormat, MediaQuery, connect, SwipeableViews } from '../../packages';
 import { getAsset, calculateTotalCost, toggle } from '../../modules';
 import { PrintArea, Footer, WaitIndicator, HelpHover, SizingForm } from '../';
 import { addOrder, updOrder } from '../../reducers/cart';
@@ -27,6 +27,8 @@ class ProductBuilder extends Component {
       shownSide: 0,
       addOns: true,
       waiting: false,
+      dragging: false,
+      front: true,
       help: false,
       zip: '',
       uploaded: {
@@ -111,14 +113,23 @@ class ProductBuilder extends Component {
           </MediaQuery>
           <div className="builder flex">
             <div className="left side flex fd-c ai-c jc-sb">
-              <MediaQuery maxWidth={1200}>
-                <h1 className="brand-header fs-20 c-black fw-bold">{this.props.builder.product.brand} {this.props.builder.product.number}</h1>
-              </MediaQuery>
               {this.props.builder.product.description ? (
-                <h1 className="fs-20 c-gray-1">{this.props.builder.product.description}</h1>
+                <div className="description">
+                  <MediaQuery maxWidth={550}>
+                    <h2 className="fs-12 c-black fw-bold">DESCRIPTION</h2>
+                  </MediaQuery>
+                  <h1 className="fs-20 c-gray-1">{this.props.builder.product.description}</h1>
+                </div>
               ) : null}
-              <h1 className="fs-20 c-black fw-bold">{this.state.selectedColor.toUpperCase()}</h1>
-              <div className="color-boxes flex fw-w">{colors}</div>
+              <MediaQuery minWidth={550}>
+                <h1 className="fs-20 c-black fw-bold">{this.state.selectedColor.toUpperCase()}</h1>
+              </MediaQuery>
+              <div className="available-colors">
+                <MediaQuery maxWidth={550}>
+                  <h2 className="fs-12 c-black fw-bold">AVAILABLE COLORS</h2>
+                </MediaQuery>
+                <div className="color-boxes flex fw-w">{colors}</div>
+              </div>
               <div className="steps">
                 <div className="step">
                   <div className="step-no flex ai-c">
@@ -300,58 +311,88 @@ class ProductBuilder extends Component {
                   </MediaQuery>
                 </div>
                 <MediaQuery maxWidth={1200}>
-                  <div className="action-buttons flex jc-sb">
-                    <button className="help-button flex" onClick={() => toggle('help')} onMouseEnter={this.showHelp} onMouseLeave={this.fadeHelp}>
-                      <h1 className="fs-15 fw-bold c-white">HELP</h1>
-                      <span className="fs-15 fw-bold c-blue">?</span>
-                    </button>
+                  <div className="action-buttons flex jc-c">
                     {this.props.builder.edit ? (
                       <button className="add-to-quote" onClick={this.updateOrderInCart}>SAVE ORDER</button>
                     ) : (
                       <button className="add-to-quote" onClick={this.addProductToCart}>ADD TO QUOTE</button>
                     )}
-                    {this.state.help ? (
-                      <HelpHover top fadeHelp={this.fadeHelp} cancelHelpTimer={this.cancelHelpTimer} />
-                    ) : null}
                   </div>
                 </MediaQuery>
               </div>
             </div>
             <div className="right side">
-              <div className="side-buttons-left flex fd-c">
-                <span onClick={() => this.toggleShownSide(0)} className="flex fd-c ai-c jc-c">
-                  <img src={getAsset('front-side-button')} />
-                  <h1 className="fs-10">FRONT</h1>
-                </span>
-                <span onClick={() => this.toggleShownSide(1)} className="flex fd-c ai-c jc-c">
-                  <img src={getAsset('back-side-button')} />
-                  <h1 className="fs-10">BACK</h1>
-                </span>
-              </div>
+              <MediaQuery minWidth={550}>
+                <div className="side-buttons-left flex fd-c">
+                  <span onClick={() => this.toggleShownSide(0)} className="flex fd-c ai-c jc-c">
+                    <img src={getAsset('front-side-button')} />
+                    <h1 className="fs-10">FRONT</h1>
+                  </span>
+                  <span onClick={() => this.toggleShownSide(1)} className="flex fd-c ai-c jc-c">
+                    <img src={getAsset('back-side-button')} />
+                    <h1 className="fs-10">BACK</h1>
+                  </span>
+                  <span onClick={this.downloadMockup} className="flex fd-c ai-c jc-c">
+                    <img src={getAsset('download-button')} />
+                    <h1 className="fs-10">DOWNLOAD</h1>
+                  </span>
+                </div>
+              </MediaQuery>
+              <MediaQuery maxWidth={1200}>
+                <h1 className="brand-header fs-20 c-black fw-bold">{this.props.builder.product.brand} {this.props.builder.product.number}</h1>
+              </MediaQuery>
+              <MediaQuery maxWidth={550}>
+                <div className="swipe-guide flex jc-c ai-c">
+                  <i className="fas fa-arrow-left"></i>
+                  <h1 className="fs-10 c-black">{this.state.front ? 'Front' : 'Back'}</h1>
+                  <i className="fas fa-arrow-right"></i>
+                </div>
+              </MediaQuery>
               <div className="side-buttons-right">
                 <span onClick={() => document.getElementById('inputButton').click()} className="flex fd-c ai-c jc-c">
                   <i className="fas fa-plus-circle"></i>
                   <h1 className="fs-10">ADD LOGO</h1>
                 </span>
-                <span onClick={this.downloadMockup} className="flex fd-c ai-c jc-c">
-                  <img src={getAsset('download-button')} />
-                  <h1 className="fs-10">DOWNLOAD</h1>
-                </span>
               </div>
-              <div className="product-image-wrapper flex jc-c"
-                style={this.state.shownSide ? {"zIndex": 1} : {"zIndex": 0}}>
-                <div id="back-side">
-                  <img src={this.state.product.images[this.state.selectedHex][1]} />
-                  <PrintArea uploaded={this.state.uploaded.back} removeImage={this.removeImage} saveEdits={this.saveEdits} side="back" />
+              <MediaQuery maxWidth={550}>
+                <SwipeableViews resistance disabled={this.state.dragging} onChangeIndex={() => this.toggle('front')}>
+                  <div className="product-image-wrapper flex jc-c"
+                    style={this.state.shownSide ? {"zIndex": 0} : {"zIndex": 1}}>
+                    <div id="front-side">
+                      <img src={this.state.product.images[this.state.selectedHex][0]} />
+                      <PrintArea uploaded={this.state.uploaded.front} removeImage={this.removeImage} saveEdits={this.saveEdits} side="front" toggle={this.toggle} />
+                    </div>
+                  </div>
+                  <div className="product-image-wrapper flex jc-c"
+                    style={this.state.shownSide ? {"zIndex": 1} : {"zIndex": 0}}>
+                    <div id="back-side">
+                      <img src={this.state.product.images[this.state.selectedHex][1]} />
+                      <PrintArea uploaded={this.state.uploaded.back} removeImage={this.removeImage} saveEdits={this.saveEdits} side="back" toggle={this.toggle} />
+                    </div>
+                  </div>
+                </SwipeableViews>
+              </MediaQuery>
+              <MediaQuery minWidth={550}>
+                <div className="non-swipe">
+                  <div className="product-image-wrapper flex jc-c"
+                    style={this.state.shownSide ? {"zIndex": 1} : {"zIndex": 0}}>
+                    <div id="back-side">
+                      <img src={this.state.product.images[this.state.selectedHex][1]} />
+                      <PrintArea uploaded={this.state.uploaded.back} removeImage={this.removeImage} saveEdits={this.saveEdits} side="back" toggle={this.toggle} />
+                    </div>
+                  </div>
+                  <div className="product-image-wrapper flex jc-c"
+                    style={this.state.shownSide ? {"zIndex": 0} : {"zIndex": 1}}>
+                    <div id="front-side">
+                      <img src={this.state.product.images[this.state.selectedHex][0]} />
+                      <PrintArea uploaded={this.state.uploaded.front} removeImage={this.removeImage} saveEdits={this.saveEdits} side="front" toggle={this.toggle} />
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div className="product-image-wrapper flex jc-c"
-                style={this.state.shownSide ? {"zIndex": 0} : {"zIndex": 1}}>
-                <div id="front-side">
-                  <img src={this.state.product.images[this.state.selectedHex][0]} />
-                  <PrintArea uploaded={this.state.uploaded.front} removeImage={this.removeImage} saveEdits={this.saveEdits} side="front" />
-                </div>
-              </div>
+              </MediaQuery>
+              <MediaQuery maxWidth={550}>
+                <h1 className="sel-color fs-20 c-black fw-bold">{this.state.selectedColor.toUpperCase()}</h1>
+              </MediaQuery>
               <input id="inputButton" type="file" accept="image/x-png,image/jpeg"
                 onChange={this.storeFile} />
             </div>

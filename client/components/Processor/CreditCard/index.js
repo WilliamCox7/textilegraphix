@@ -4,9 +4,16 @@ import './style.scss';
 
 class CreditCard extends Component {
   render() {
+
+    let cardType;
+    if (this.props.form.number[0] === '4') cardType = getAsset('visa', 'png');
+    if (this.props.form.number[0] === '5') cardType = getAsset('mastercard', 'png');
+    if (this.props.form.number[0] === '3') cardType = getAsset('express', 'png');
+    if (this.props.form.number[0] === '6') cardType = getAsset('discover', 'png');
+
     return (
       <div className="CreditCard">
-        <img className="visa" src={getAsset('visa')} />
+        <img className="card-type" src={cardType} />
         <h1 className="fs-30 c-white">{this.props.first || 'Mack'} {this.props.last || 'Wible'}</h1>
         <h1 className="fs-18 c-white">Credit Card Number</h1>
         <input className="card-input fs-26 c-white" type="text" placeholder="xxxx  xxxx  xxxx  xxxx"

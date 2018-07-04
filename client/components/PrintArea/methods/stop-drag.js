@@ -4,5 +4,6 @@ export default function stopDrag(e, index, side) {
     dragging: false, mousePos: undefined, width: undefined
   }, () => {
     this.props.saveEdits(element, index, side);
+    this.props.toggle('dragging');
   });
 }

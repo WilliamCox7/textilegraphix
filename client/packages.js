@@ -13,6 +13,7 @@ import NumberFormat from 'react-number-format';
 import MediaQuery from 'react-responsive';
 import Vimeo from 'react-vimeo';
 import html2canvas from 'html2canvas';
+import SwipeableViews from 'react-swipeable-views';
 
 export {
   React, Component,
@@ -29,5 +30,6 @@ export {
   NumberFormat,
   MediaQuery,
   Vimeo,
-  html2canvas
+  html2canvas,
+  SwipeableViews
 }

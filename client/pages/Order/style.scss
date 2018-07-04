@@ -29,6 +29,18 @@
       width: 100%;
       margin: auto;
     }
+    .swipe-guide {
+      padding: 10px;
+      h1 {
+        padding: 0px 5px;
+      }
+      i {
+        font-size: 10px;
+      }
+    }
+    .react-swipeable-view-container > div {
+      overflow: hidden !important;
+    }
     input.project-name {
       border: none;
       border-bottom: solid 1px $blue;
@@ -251,6 +263,12 @@
         }
       }
     }
+    .mockup-img {
+      max-width: 310px;
+      img {
+        width: 100%;
+      }
+    }
   }
   .bottom-section {
     margin-bottom: 100px;
@@ -333,7 +351,7 @@
         background: $gray-5;
         position: absolute;
         width: 100%;
-        height: 535px;
+        height: 538px;
         left: 0;
         bottom: 0;
         z-index: -1;
@@ -409,7 +427,7 @@
           }
         }
         button.fs-20 {
-          background: white;
+          background: none;
           @media(max-width: 650px) {
             font-size: 12px;
           }
