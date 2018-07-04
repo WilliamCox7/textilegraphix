@@ -5,6 +5,7 @@ const OrderSvc = require('./server_services/Order');
 const ErrorSvc = require('./server_services/Error');
 const ProductSvc = require('./server_services/Product');
 const AuthNetSvc = require('./server_services/AuthNet');
+const ImageSvc = require('./server_services/Image');
 
 const app = module.exports = express();
 
@@ -16,6 +17,12 @@ app.post('/order', OrderSvc.processOrder);
 app.post('/error', ErrorSvc.sendError);
 app.get('/products/ssaw', ProductSvc.getProducts);
 app.post('/authorize', AuthNetSvc.authorize);
+app.post('/tmp-image/store', ImageSvc.store);
+app.post('/tmp-image/remove', ImageSvc.remove);
+
+app.get('/tmp/*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, `.${req.url}`))
+})
 
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, './build/index.html'));

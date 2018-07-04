@@ -13,6 +13,7 @@ import { saveAs } from 'file-saver';
 import NumberFormat from 'react-number-format';
 import MediaQuery from 'react-responsive';
 import Vimeo from 'react-vimeo';
+import html2canvas from 'html2canvas';
 
 export {
   React, Component,
@@ -29,5 +30,6 @@ export {
   saveAs,
   NumberFormat,
   MediaQuery,
-  Vimeo
+  Vimeo,
+  html2canvas
 }

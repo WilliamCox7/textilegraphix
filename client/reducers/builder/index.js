@@ -1,5 +1,6 @@
 const INIT = 'builder/INIT';
 const CLOSE = 'builder/CLOSE';
+const REP_IMG = 'builder/REP_IMG';
 
 const initState = {
   init: undefined,
@@ -27,6 +28,10 @@ export default function reducer(state=initState, action) {
       document.getElementById('current-page').style.opacity = 1;
       return Object.assign({}, state, editState);
 
+    case REP_IMG:
+      editState.product.images[action.hex][action.index] = action.payload;
+      return Object.assign({}, state, editState);
+
     default: return state;
 
   }
@@ -44,5 +49,14 @@ export function initBuilder(init, product, edit) {
 export function closeBuilder() {
   return {
     type: CLOSE
+  }
+}
+
+export function replaceImage(data, hex, index) {
+  return {
+    type: REP_IMG,
+    payload: data,
+    hex: hex,
+    index: index
   }
 }
