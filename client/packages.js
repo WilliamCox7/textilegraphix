@@ -7,7 +7,6 @@ import thunk from 'redux-thunk';
 import axios from 'axios';
 import Draggable from 'react-draggable';
 import moment from 'moment';
-import domtoimage from 'dom-to-image';
 import jszip from 'jszip';
 import { saveAs } from 'file-saver';
 import NumberFormat from 'react-number-format';
@@ -25,7 +24,6 @@ export {
   axios,
   Draggable,
   moment,
-  domtoimage,
   jszip,
   saveAs,
   NumberFormat,

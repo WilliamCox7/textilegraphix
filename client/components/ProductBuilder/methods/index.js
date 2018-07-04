@@ -18,13 +18,11 @@ import setDelivery from './set-delivery';
 import setZip from './set-zip';
 import calculateCost from './calculate-cost';
 import saveEdits from './save-edits';
-import replaceImageWithBase64 from './replace-image-with-base64';
 
 export {
   updateColor, updateQuantity, incrimentColor, decrimentColor,
   updateCheckBox, toggleShownSide, downloadMockup, uploadImage,
   storeFile, removeImage, addProductToCart, fadeHelp,
   cancelHelpTimer, showHelp, updSizing, setDelivery,
-  setZip, calculateCost, saveEdits, updateOrderInCart,
-  replaceImageWithBase64
+  setZip, calculateCost, saveEdits, updateOrderInCart
 }

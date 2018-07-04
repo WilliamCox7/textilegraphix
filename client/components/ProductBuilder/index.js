@@ -2,7 +2,7 @@ import { React, Component, NumberFormat, MediaQuery, connect } from '../../packa
 import { getAsset, calculateTotalCost, toggle } from '../../modules';
 import { PrintArea, Footer, WaitIndicator, HelpHover, SizingForm } from '../';
 import { addOrder, updOrder } from '../../reducers/cart';
-import { closeBuilder, replaceImage } from '../../reducers/builder';
+import { closeBuilder } from '../../reducers/builder';
 import './style.scss';
 
 import * as method from './methods';
@@ -64,7 +64,6 @@ class ProductBuilder extends Component {
     this.toggle = this.toggle.bind(this);
     this.calculateCost = this.calculateCost.bind(this);
     this.saveEdits = this.saveEdits.bind(this);
-    this.replaceImageWithBase64 = this.replaceImageWithBase64.bind(this);
   }
 
   componentDidMount() {
@@ -72,10 +71,6 @@ class ProductBuilder extends Component {
     let initState = Object.assign({}, this.state, this.props.builder.init);
     initState.delivery = this.setDelivery();
     this.setState(initState);
-    let images = this.props.builder.product.images;
-    let colors = this.props.builder.product.colors;
-    // this.replaceImageWithBase64(images[colors[0].hex][0], colors[0].hex, 0);
-    // this.replaceImageWithBase64(images[colors[0].hex][1], colors[0].hex, 1);
   }
 
   componentWillUnmount() {
@@ -393,7 +388,6 @@ ProductBuilder.prototype.setZip = method.setZip;
 ProductBuilder.prototype.toggle = toggle;
 ProductBuilder.prototype.calculateCost = method.calculateCost;
 ProductBuilder.prototype.saveEdits = method.saveEdits;
-ProductBuilder.prototype.replaceImageWithBase64 = method.replaceImageWithBase64;
 
 const mapStateToProps = (state) => {
   return {
@@ -404,8 +398,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   addOrder: addOrder,
   updOrder: updOrder,
-  closeBuilder: closeBuilder,
-  replaceImage: replaceImage
+  closeBuilder: closeBuilder
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductBuilder);

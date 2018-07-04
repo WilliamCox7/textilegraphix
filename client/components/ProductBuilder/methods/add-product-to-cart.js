@@ -1,4 +1,4 @@
-import { domtoimage, html2canvas } from '../../../packages';
+import { html2canvas } from '../../../packages';
 
 export default function addProductToCart() {
   this.toggle('waiting');
@@ -9,8 +9,6 @@ export default function addProductToCart() {
   var promises = [];
   promises.push(h2c(front));
   promises.push(h2c(back));
-  // promises.push(domtoimage.toPng(front));
-  // promises.push(domtoimage.toPng(back));
   Promise.all(promises).then((mockup) => {
     newState.mockup = mockup;
     this.setState(newState, () => {
@@ -30,10 +28,6 @@ function createGuid() {
 
 function h2c(element) {
   return html2canvas(element, { useCORS: true, logging: false })
-  .then((canvas) => {
-    return canvas.toDataURL("image/jpeg");
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+  .then((canvas) => canvas.toDataURL("image/jpeg"))
+  .catch((err) => console.log(err));
 }
