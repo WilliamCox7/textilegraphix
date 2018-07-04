@@ -18,6 +18,7 @@ textarea {
 button, textarea, input, select {
   outline: none;
   border-radius: none;
+  -webkit-border-radius: 0px;
 }
 
 .App {
