@@ -324,11 +324,11 @@ class ProductBuilder extends Component {
             <div className="right side">
               <MediaQuery minWidth={550}>
                 <div className="side-buttons-left flex fd-c">
-                  <span onClick={() => this.toggleShownSide(0)} className="flex fd-c ai-c jc-c">
+                  <span onClick={() => this.toggleShownSide()} className="flex fd-c ai-c jc-c">
                     <img src={getAsset('front-side-button')} />
                     <h1 className="fs-10">FRONT</h1>
                   </span>
-                  <span onClick={() => this.toggleShownSide(1)} className="flex fd-c ai-c jc-c">
+                  <span onClick={() => this.toggleShownSide()} className="flex fd-c ai-c jc-c">
                     <img src={getAsset('back-side-button')} />
                     <h1 className="fs-10">BACK</h1>
                   </span>
@@ -355,7 +355,7 @@ class ProductBuilder extends Component {
                 </span>
               </div>
               <MediaQuery maxWidth={550}>
-                <SwipeableViews resistance disabled={this.state.dragging} onChangeIndex={() => this.toggle('front')}>
+                <SwipeableViews resistance disabled={this.state.dragging} onChangeIndex={() => {this.toggle('front'); this.toggleShownSide()}}>
                   <div className="product-image-wrapper flex jc-c"
                     style={this.state.shownSide ? {"zIndex": 0} : {"zIndex": 1}}>
                     <div id="front-side">
