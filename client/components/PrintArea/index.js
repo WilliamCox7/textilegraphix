@@ -25,6 +25,9 @@ class PrintArea extends Component {
     var areaSpecs = area.getBoundingClientRect();
     var edge = areaSpecs.right + 1;
     this.setState({edge: edge});
+    window.addEventListener('touchmove', (e) => {
+      if (this.state.dragging || this.props.dragging) e.preventDefault();
+    }, { passive: false });
   }
 
   render() {
@@ -40,9 +43,8 @@ class PrintArea extends Component {
             } : null}>
               <img src={image.src} draggable="false" />
             </div>
-            <img src={getAsset('resize')} className="resizer" onTouchStart={this.startDrag} onDragStart={this.startDrag} draggable="true"
-              onDragEnd={(e) => this.stopDrag(e, image.index, this.props.side)} onTouchEnd={(e) => this.stopDrag(e, image.index, this.props.side)}
-              onDrag={this.drag} onTouchMove={this.drag} />
+            <img src={getAsset('resize')} className="resizer" onTouchStart={this.startDrag} draggable="true"
+               onTouchEnd={(e) => this.stopDrag(e, image.index, this.props.side)} onTouchMove={this.drag} />
             <img src={getAsset('close-x-red')} className="close" onClick={() => this.props.removeImage(image.index)} style={this.state.dragging ? {
               "display": "block"
             } : null} />

@@ -378,14 +378,16 @@ class ProductBuilder extends Component {
                     style={this.state.shownSide ? {"zIndex": 1} : {"zIndex": 0}}>
                     <div id="back-side">
                       <img src={this.state.product.images[this.state.selectedHex][1]} />
-                      <PrintArea uploaded={this.state.uploaded.back} removeImage={this.removeImage} saveEdits={this.saveEdits} side="back" toggle={this.toggle} />
+                      <PrintArea uploaded={this.state.uploaded.back} removeImage={this.removeImage}
+                        saveEdits={this.saveEdits} side="back" toggle={this.toggle} dragging={this.state.dragging} />
                     </div>
                   </div>
                   <div className="product-image-wrapper flex jc-c"
                     style={this.state.shownSide ? {"zIndex": 0} : {"zIndex": 1}}>
                     <div id="front-side">
                       <img src={this.state.product.images[this.state.selectedHex][0]} />
-                      <PrintArea uploaded={this.state.uploaded.front} removeImage={this.removeImage} saveEdits={this.saveEdits} side="front" toggle={this.toggle} />
+                      <PrintArea uploaded={this.state.uploaded.front} removeImage={this.removeImage}
+                        saveEdits={this.saveEdits} side="front" toggle={this.toggle} dragging={this.state.dragging} />
                     </div>
                   </div>
                 </div>
