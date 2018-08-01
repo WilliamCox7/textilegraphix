@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect, Provider } from 'react-redux';
 import { combineReducers, createStore, applyMiddleware, compose } from 'redux';
 import ReactDOM from "react-dom";
+import ReactDOMServer from "react-dom/server";
 import { BrowserRouter, Switch, Route, Link, withRouter } from "react-router-dom";
 import thunk from 'redux-thunk';
 import axios from 'axios';
@@ -19,7 +20,7 @@ export {
   React, Component,
   connect, Provider,
   combineReducers, createStore, applyMiddleware, compose,
-  ReactDOM,
+  ReactDOM, ReactDOMServer,
   BrowserRouter, Switch, Link, Route, withRouter,
   thunk,
   axios,

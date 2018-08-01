@@ -1,5 +1,5 @@
 import calculateTotalCost from './calculate-total-cost';
-import buildOrderHtml from './build-order-html';
+import OrderHtml from './OrderHtml';
 import getAsset from './get-asset';
 import toggle from './toggle';
 import setFilter from './set-filter';
@@ -9,7 +9,7 @@ import scrollToTop from './scroll-to-top';
 
 export {
   calculateTotalCost,
-  buildOrderHtml,
+  OrderHtml,
   getAsset,
   toggle,
   setFilter,

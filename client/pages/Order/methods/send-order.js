@@ -1,5 +1,5 @@
-import { axios } from '../../../packages';
-import { buildOrderHtml } from '../../../modules';
+import { axios, ReactDOMServer } from '../../../packages';
+import { OrderHtml } from '../../../modules';
 
 export default function sendOrder(orderType, orderTotal) {
   if (valid(this.state)) {
@@ -18,7 +18,9 @@ function send(self, orderType) {
   axios.post('/order', {
     to: self.state.contact.email,
     from: `${self.state.contact.first} ${self.state.contact.last}`,
-    order: buildOrderHtml(self.state, self.props.cart.orders, orderType),
+    order: ReactDOMServer.renderToStaticMarkup(new OrderHtml({
+      form: self.state, products: self.props.cart.orders
+    }).render()),
     attachments: self.prepareAttachments()
   }).then((response) => {
     orderType === 'bill-later'

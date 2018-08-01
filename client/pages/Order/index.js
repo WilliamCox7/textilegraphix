@@ -1,5 +1,5 @@
 import { React, Component, connect, NumberFormat, MediaQuery, SwipeableViews } from '../../packages';
-import { getAsset, toggle, setProduct } from '../../modules';
+import { getAsset, toggle, setProduct, OrderHtml } from '../../modules';
 import { updOrder, removeOrder, clearCart } from '../../reducers/cart';
 import { WaitIndicator, SizingForm, Processor } from '../../components';
 import { initBuilder } from '../../reducers/builder';
@@ -72,6 +72,7 @@ class Order extends Component {
 
     let orderTotal = 0;
     let cartOrders = this.props.cart.orders;
+    console.log(cartOrders[0]);
 
     let orders = this.props.cart.orders.map((order, i) => {
       let locationText = this.buildCardSubHeader(order);
@@ -149,6 +150,9 @@ class Order extends Component {
 
     return (
       <div className="Order" id="current-page">
+        <div style={{position: 'absolute', top: '0', left: '0', width: '100%', height: '100%', zIndex: '100'}}>
+          <OrderHtml form={this.state} products={this.props.cart.orders} />
+        </div>
         <h1 className="h1-fs-30 fs-30 c-blue fw-bold">Quote Submission Form</h1>
         <div className="flex">
           <div className="left">

@@ -17,7 +17,7 @@ app.post('/error', ErrorSvc.sendError);
 app.get('/products/ssaw', ProductSvc.getProducts);
 app.post('/authorize', AuthNetSvc.authorize);
 
-app.get('/tmp/*', (req, res) => {
+app.get('/src/*', (req, res) => {
   res.sendFile(path.resolve(__dirname, `.${req.url}`))
 })
 
