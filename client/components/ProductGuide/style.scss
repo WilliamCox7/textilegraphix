@@ -1,0 +1,66 @@
+@import "../../vars.scss";
+
+#ProductGuide {
+  width: 100%;
+  position: relative;
+  padding: 40px 0px;
+  height: 125px;
+  #guide-wrapper {
+    position: relative;
+    .circle-wrapper {
+      width: 765px;
+      margin: auto;
+      position: relative;
+      span {
+        width: 25px;
+        height: 25px;
+        border-radius: 50px;
+        position: relative;
+        label {
+          position: absolute;
+          white-space: nowrap;
+          top: 35px;
+          font-size: 11px;
+          color: $product-guide-label;
+        }
+      }
+      .previous {
+        background: $main-green;
+      }
+      .current {
+        background: $main-blue;
+      }
+      .next {
+        background: white;
+        border: solid 1px $product-guide-border;
+      }
+      hr {
+        position: absolute;
+        width: 100%;
+        border: none;
+        border-top: solid 1px $product-guide-border;
+        margin: auto;
+        z-index: -1;
+      }
+    }
+    button {
+      width: 145px;
+      cursor: pointer;
+      font-size: 14px;
+      padding: 6px;
+      border-radius: 5px;
+      -webkit-box-shadow: 3px 6px 12px rgba(0, 0, 0, 0.16);
+      box-shadow: 3px 6px 12px rgba(0, 0, 0, 0.16);
+    }
+    button#back-button {
+      background: white;
+      border: solid 1px $product-button-border;
+      color: $product-button-border;
+    }
+    button#next-button {
+      background: $main-blue;
+      border: none;
+      color: white;
+    }
+  }
+}

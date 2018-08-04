@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route } from "react-router-dom";
 import { connect } from 'react-redux';
 import MainNav from './components/MainNav';
+import ProductGuide from './components/ProductGuide';
 import MainFooter from './components/MainFooter';
 import HomeFooter from './components/HomeFooter';
 import Home from './pages/Home';
 import Products from './pages/Products';
+import Product from './pages/Product';
+import Checkout from './pages/Checkout';
 import Support from './pages/Support';
 import Cart from './pages/Cart';
 import './reset.scss';
@@ -37,8 +40,15 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <MainNav route={this.state.route} updateRoute={this.updateRoute} />
+          {this.state.route === '/products' ||
+           this.state.route === '/product'  ||
+           this.state.route === '/checkout' ? (
+            <ProductGuide route={this.state.route} updateRoute={this.updateRoute} />
+          ) : null}
           <Route exact path="/" component={Home} />
           <Route path="/products" component={Products} />
+          <Route path="/product" component={Product} />
+          <Route path="/checkout" component={Checkout} />
           <Route path="/support" component={Support} />
           <Route path="/cart" component={Cart} />
           {this.state.route === '/' ? <HomeFooter /> : <MainFooter />}
