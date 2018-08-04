@@ -1,16 +1,24 @@
 @import "../../../vars.scss";
 
-#ActionTile {
+.ActionTile {
   text-decoration: none;
-  border: solid 1px $gray-4;
+  border: solid 1px $border-gray;
   border-radius: 5px;
   padding: 15px;
   width: 308px;
   min-height: 210px;
-  margin-bottom: 40px;
   cursor: pointer;
   .tile-asset {
     height: 80px;
+  }
+  .tile-title {
+    font-size: 25px;
+    color: black;
+  }
+  .tile-copy {
+    font-size: 16px;
+    color: black;
+    margin-bottom: 8px;
   }
   .tile-button {
     padding: 10px 20px;

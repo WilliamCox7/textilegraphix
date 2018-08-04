@@ -1,4 +1,4 @@
-import { React, Component } from '../../packages';
+import React, { Component } from 'react';
 import './style.scss';
 
 class SeparatorLine extends Component {

@@ -1,33 +1,16 @@
 @import "../../vars.scss";
 
-.Support {
-  max-width: $max-width;
-  margin: auto;
-  margin-bottom: 150px;
-  padding: 0px 20px;
-  @media(max-width: 1040px) {
-    padding: 0px;
+#Support {
+  #support-header {
+    font-size: 40px;
+    color: $main-blue;
+    font-weight: bold;
+    margin-bottom: 60px;
+    border-bottom: solid 1px $border-dark-gray;
+    padding-bottom: 20px;
+    margin-top: 60px;
   }
-  h1.fs-40 {
-    padding: 10px 0px;
-    border-bottom: solid 1px $gray-4;
-    margin: 0px 20px;
-    @media(max-width: 1040px) {
-      margin: 0px 40px;
-    }
-  }
-  .wrapper {
-    .copy {
-      @media(max-width: 700px) {
-        width: 100% !important;
-        padding: 40px;
-        p {
-          margin: auto !important;
-        }
-      }
-      @media(max-width: 650px) {
-        margin-top: 40px !important;
-      }
-    }
+  #bottom-space {
+    height: 100px;
   }
 }

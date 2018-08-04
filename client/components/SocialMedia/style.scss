@@ -1,12 +1,13 @@
 @import "../../vars.scss";
 
-.SocialMedia {
-  margin: 0px 15px;
-  @media(max-width: 755px) {
-    margin: 0px 0px 20px;
+#SocialMedia {
+  img {
+    margin: 0px 20px;
   }
-  .social {
-    height: 40px;
-    margin: 0px 15px;
+  img#fb-logo {
+    height: 36px;
+  }
+  img#insta-logo {
+    height: 32px;
   }
 }

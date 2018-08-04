@@ -1,23 +1,5 @@
 var webpack = require('webpack');
 var path = require('path');
-var config = require('./config');
-
-let plugins = [];
-if (config.env === 'production') {
-  plugins.push(new webpack.optimize.DedupePlugin());
-  plugins.push(new webpack.optimize.UglifyJsPlugin({
-    minimize: true,
-    compress: {
-      warnings: false
-    }
-  }));
-}
-plugins.push(new webpack.DefinePlugin({
-  'process.env': {
-    'NODE_ENV': JSON.stringify(config.env),
-    'HOST': JSON.stringify(config.host)
-  }
-}));
 
 module.exports = {
 
@@ -32,8 +14,6 @@ module.exports = {
     filename: "bundle.js",
     publicPath: '/'
   },
-
-  plugins: plugins,
 
   module: {
     loaders: [

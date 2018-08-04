@@ -1,17 +1,14 @@
-import { React, Component, MediaQuery } from '../../packages';
-import { Actions } from '../../components';
+import React, { Component } from 'react';
+import Actions from '../../components/Actions';
 import './style.scss';
 
 class Support extends Component {
   render() {
     return (
-      <div className="Support" id="current-page">
-        <MediaQuery minWidth={650}>
-          <h1 className="fs-40 c-blue fw-bold">
-            Support
-          </h1>
-        </MediaQuery>
-        <Actions showCopy />
+      <div id="Support">
+        <h1 id="support-header">Support</h1>
+        <Actions />
+        <div id="bottom-space"></div>
       </div>
     );
   }

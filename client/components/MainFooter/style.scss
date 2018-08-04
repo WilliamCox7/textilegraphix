@@ -1,0 +1,30 @@
+@import "../../vars.scss";
+
+#MainFooter {
+  background: $gray-background;
+  padding: 20px;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  #footer-container {
+    max-width: 1432px;
+    width: 100%;
+    padding: 0px 40px;
+    #logo-container {
+      width: 500px;
+    }
+    #SocialMedia {
+      margin-top: 15px;
+    }
+    hr {
+      width: 100%;
+      margin: 15px 0px;
+      color: $hr-gray;
+      border: none;
+      border-top: solid 1px;
+    }
+    h1 {
+      font-size: 14px;
+    }
+  }
+}

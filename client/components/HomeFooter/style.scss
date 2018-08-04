@@ -1,0 +1,32 @@
+@import "../../vars.scss";
+
+#HomeFooter {
+  background: $main-blue;
+  padding: 40px 0px 30px;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  #footer-container {
+    max-width: 1432px;
+    width: 100%;
+    padding: 0px 40px;
+    #logo-container {
+      width: 500px;
+      margin-bottom: 30px;
+    }
+    #SocialMedia {
+      margin-bottom: 10px;
+    }
+    hr {
+      width: 100%;
+      margin: 15px 0px;
+      color: $hr-white;
+      border: none;
+      border-top: solid 1px;
+    }
+    h1 {
+      font-size: 14px;
+      color: white;
+    }
+  }
+}

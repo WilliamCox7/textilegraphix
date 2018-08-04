@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import './style.scss';
 
-class Home extends Component {
+class Cart extends Component {
   render() {
     return (
-      <div id="Home">
-        Home
+      <div id="Cart">
+        Cart
       </div>
     );
   }
 }
 
-export default Home;
+export default Cart;

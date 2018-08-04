@@ -1,16 +1,16 @@
-import { React, Component } from '../../packages';
+import React, { Component } from 'react';
 import { getAsset } from '../../modules';
 import './style.scss';
 
 class SocialMedia extends Component {
   render() {
     return (
-      <div className={"SocialMedia flex " + (window.innerWidth > 755 ? "jc-sb" : "jc-c")}>
+      <div id="SocialMedia" className="flex jc-c ai-c">
         <a href="https://www.facebook.com/textilegraphix/" target="_blank">
-          <img className="social" src={getAsset(this.props.color === 'blue' ? 'fb-blue' : 'fb-white')} />
+          <img id="fb-logo" src={getAsset(`fb-${this.props.color}`)} />
         </a>
         <a href="https://www.instagram.com/textilegraphix/" target="_blank">
-          <img className="social" src={getAsset(this.props.color === 'blue' ? 'insta-blue' : 'insta-white')} />
+          <img id="insta-logo" src={getAsset(`insta-${this.props.color}`)} />
         </a>
       </div>
     );

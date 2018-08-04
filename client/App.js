@@ -1,11 +1,30 @@
-import { React, Component, BrowserRouter, Route, connect, axios } from './packages';
-import { Nav, Footer, ProductBuilder, HandleProducts } from './components';
-import { Home, Products, Order, Support } from './pages';
+import React, { Component } from 'react';
+import { BrowserRouter, Route } from "react-router-dom";
+import { connect } from 'react-redux';
+import MainNav from './components/MainNav';
+import MainFooter from './components/MainFooter';
+import HomeFooter from './components/HomeFooter';
+import Home from './pages/Home';
+import Products from './pages/Products';
+import Support from './pages/Support';
+import Cart from './pages/Cart';
 import './reset.scss';
 import './main.scss';
-import './headers.scss';
+import './skeleton.scss';
 
 class App extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      route: window.location.pathname
+    }
+    this.updateRoute = this.updateRoute.bind(this);
+  }
+
+  updateRoute(route) {
+    this.setState({route: route});
+  }
 
   componentDidMount() {
     window.Intercom("boot", {
@@ -17,23 +36,23 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <HandleProducts />
-          <Nav />
+          <MainNav route={this.state.route} updateRoute={this.updateRoute} />
           <Route exact path="/" component={Home} />
           <Route path="/products" component={Products} />
-          <Route path="/order" component={Order} />
           <Route path="/support" component={Support} />
-          {this.props.builder.show ? <ProductBuilder /> : <Footer />}
+          <Route path="/cart" component={Cart} />
+          {this.state.route === '/' ? <HomeFooter /> : <MainFooter />}
         </div>
       </BrowserRouter>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    builder: state.builder
-  }
-}
+// const mapStateToProps = (state) => {
+//   return {
+//     builder: state.builder
+//   }
+// }
 
-export default connect(mapStateToProps)(App);
+// export default connect(mapStateToProps)(App);
+export default App;
