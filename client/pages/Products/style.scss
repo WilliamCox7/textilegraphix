@@ -1,5 +1,93 @@
 @import "../../vars.scss";
 
 #Products {
-
+  position: relative;
+  width: 100%;
+  #products-page-wrapper {
+    #products-body-wrapper {
+      margin-left: 50px;
+      #products-options {
+        #qty-input {
+          margin-right: 30px;
+          label {
+            font-size: 19px;
+            color: $product-nav-border;
+            margin-right: 10px;
+          }
+          input[type="text"] {
+            width: 80px;
+            font-size: 27px;
+            border: none;
+            border-bottom: solid 1px $product-guide-border;
+            color: $black;
+            text-align: center;
+            font-weight: bold;
+          }
+        }
+        .color-updater {
+          position: relative;
+          margin: 0px 30px;
+          label {
+            position: absolute;
+            font-size: 10px;
+            top: -12px;
+          }
+          .button-wrapper {
+            border-radius: 5px;
+            border: solid 1px $product-guide-border;
+            padding: 4px 0px;
+            i {
+              font-size: 12px;
+              color: $main-blue;
+              margin: 0px 10px;
+              cursor: pointer;
+            }
+            h1 {
+              font-size: 24px;
+              color: $black;
+              font-weight: bold;
+              margin: 0px 10px;
+            }
+          }
+        }
+        #sort-by {
+          cursor: pointer;
+          position: absolute;
+          right: 0;
+          padding: 10px 15px;
+          background: $main-blue;
+          border-radius: 10px;
+          img {
+            height: 15px;
+            margin-right: 10px;
+          }
+          h1 {
+            font-size: 13px;
+            color: white;
+            white-space: nowrap;
+          }
+          #sort-box {
+            position: absolute;
+            padding: 12px;
+            right: 0;
+            width: 100%;
+            bottom: -107px;
+            background: white;
+            border-radius: 10px;
+            z-index: 1;
+            border: solid 1px $main-blue;
+            -webkit-box-shadow: 3px 6px 12px rgba(0, 0, 0, 0.16);
+            box-shadow: 3px 6px 12px rgba(0, 0, 0, 0.16);
+            span {
+              margin-bottom: 5px;
+              font-size: 14px;
+              color: $main-blue;
+              cursor: pointer;
+              white-space: nowrap;
+            }
+          }
+        }
+      }
+    }
+  }
 }
