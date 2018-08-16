@@ -1,0 +1,29 @@
+@import "../../vars.scss";
+
+.Product {
+  width: 200px;
+  margin-bottom: 40px;
+  cursor: pointer;
+  text-decoration: none;
+  color: $black;
+  img {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  .product-info-wrapper {
+    .info {
+      h1, h2 {
+        font-size: 11px;
+      }
+      h1 {
+        font-weight: bold;
+        margin-bottom: 3px;
+      }
+    }
+    .cost {
+      font-size: 26px;
+      color: $main-blue;
+      font-weight: bold;
+    }
+  }
+}

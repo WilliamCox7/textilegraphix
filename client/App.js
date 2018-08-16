@@ -7,7 +7,7 @@ import MainFooter from './components/MainFooter';
 import HomeFooter from './components/HomeFooter';
 import Home from './pages/Home';
 import Products from './pages/Products';
-import Product from './pages/Product';
+import Builder from './pages/Builder';
 import Checkout from './pages/Checkout';
 import Support from './pages/Support';
 import Cart from './pages/Cart';
@@ -41,13 +41,13 @@ class App extends Component {
         <div className="App">
           <MainNav route={this.state.route} updateRoute={this.updateRoute} />
           {this.state.route === '/products' ||
-           this.state.route === '/product'  ||
+           this.state.route === '/builder'  ||
            this.state.route === '/checkout' ? (
             <ProductGuide route={this.state.route} updateRoute={this.updateRoute} />
           ) : null}
           <Route exact path="/" component={Home} />
           <Route path="/products" component={Products} />
-          <Route path="/product" component={Product} />
+          <Route path="/builder" component={Builder} />
           <Route path="/checkout" component={Checkout} />
           <Route path="/support" component={Support} />
           <Route path="/cart" component={Cart} />

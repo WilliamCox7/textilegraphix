@@ -1,6 +1,11 @@
 import getAsset from './get-asset';
 import toggle from './toggle';
+import calculateTotalCost from './calculate-total-cost';
+import scrollToTop from './scroll-to-top';
+import setProduct from './set-product';
+import updateCost from './update-cost';
 
 export {
-  getAsset, toggle
+  getAsset, toggle, calculateTotalCost, scrollToTop,
+  setProduct, updateCost
 }

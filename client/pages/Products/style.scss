@@ -7,6 +7,7 @@
     #products-body-wrapper {
       margin-left: 50px;
       #products-options {
+        margin-bottom: 30px;
         #qty-input {
           margin-right: 30px;
           label {
@@ -24,31 +25,8 @@
             font-weight: bold;
           }
         }
-        .color-updater {
-          position: relative;
+        .ColorUpdater {
           margin: 0px 30px;
-          label {
-            position: absolute;
-            font-size: 10px;
-            top: -12px;
-          }
-          .button-wrapper {
-            border-radius: 5px;
-            border: solid 1px $product-guide-border;
-            padding: 4px 0px;
-            i {
-              font-size: 12px;
-              color: $main-blue;
-              margin: 0px 10px;
-              cursor: pointer;
-            }
-            h1 {
-              font-size: 24px;
-              color: $black;
-              font-weight: bold;
-              margin: 0px 10px;
-            }
-          }
         }
         #sort-by {
           cursor: pointer;
@@ -68,7 +46,7 @@
           }
           #sort-box {
             position: absolute;
-            padding: 12px;
+            padding: 8px 12px;
             right: 0;
             width: 100%;
             bottom: -107px;
@@ -79,7 +57,7 @@
             -webkit-box-shadow: 3px 6px 12px rgba(0, 0, 0, 0.16);
             box-shadow: 3px 6px 12px rgba(0, 0, 0, 0.16);
             span {
-              margin-bottom: 5px;
+              margin: 3px 0px;
               font-size: 14px;
               color: $main-blue;
               cursor: pointer;
@@ -87,6 +65,9 @@
             }
           }
         }
+      }
+      #products-wrapper {
+        margin-bottom: 100px;
       }
     }
   }
