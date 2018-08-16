@@ -2,7 +2,7 @@
 
 .ActionTile {
   text-decoration: none;
-  border: solid 1px $border-gray;
+  border: solid 1px #DEDEDE;
   border-radius: 5px;
   padding: 15px;
   width: 308px;
@@ -22,7 +22,7 @@
   }
   .tile-button {
     padding: 10px 20px;
-    border: solid 1px $black;
+    border: solid 1px black;
     border-radius: 5px;
     cursor: pointer;
     i.fa-arrow-right {

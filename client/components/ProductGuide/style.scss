@@ -22,7 +22,7 @@
           white-space: nowrap;
           top: 35px;
           font-size: 11px;
-          color: $product-guide-label;
+          color: #525252;
         }
       }
       .previous {
@@ -33,13 +33,13 @@
       }
       .next {
         background: white;
-        border: solid 1px $product-guide-border;
+        border: solid 1px #DEDEDE;
       }
       hr {
         position: absolute;
         width: 100%;
         border: none;
-        border-top: solid 1px $product-guide-border;
+        border-top: solid 1px #DEDEDE;
         margin: auto;
         z-index: -1;
       }
@@ -56,8 +56,8 @@
     }
     button#back-button {
       background: white;
-      border: solid 1px $product-button-border;
-      color: $product-button-border;
+      border: solid 1px #707070;
+      color: #707070;
     }
     button#next-button {
       background: $main-blue;
