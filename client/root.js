@@ -1,7 +1,8 @@
 import { combineReducers } from './packages';
 import inventory from './reducers/inventory';
 import builder from './reducers/builder';
+import cart from './reducers/cart';
 
 export default combineReducers({
-  inventory, builder
+  inventory, builder, cart
 });

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 import { getAsset } from '../../modules';
 import './style.scss';
@@ -34,7 +35,7 @@ class MainNav extends Component {
         </div>
         <div id="main-nav-right" className="flex ai-fe">
           <div id="nav-cart-wrapper" className="flex ai-c">
-            <span id="num-items">0 Items</span>
+            <span id="num-items">{this.props.cart.orders.length} Items</span>
             <span id="cart-divider">|</span>
             <Link to="/cart" onClick={() => this.props.updateRoute('/cart')}>
               <img id="cart-icon" src={getAsset('shopping-cart')} />
@@ -46,4 +47,10 @@ class MainNav extends Component {
   }
 }
 
-export default MainNav;
+const mapStateToProps = (state) => {
+  return {
+    cart: state.cart
+  }
+}
+
+export default connect(mapStateToProps)(MainNav);

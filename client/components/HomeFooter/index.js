@@ -4,25 +4,6 @@ import { getAsset } from '../../modules';
 import './style.scss';
 
 class HomeFooter extends Component {
-
-  componentDidMount() {
-    this.setFooter();
-  }
-
-  componentWillUpdate() {
-    this.setFooter();
-  }
-
-  setFooter() {
-    let bodyHeight = window.innerHeight;
-    let footer = document.getElementById('HomeFooter');
-    footer.style.bottom = 'initial';
-    let footerBottom = footer.getBoundingClientRect().bottom;
-    if (footerBottom < bodyHeight) {
-      footer.style.bottom = 0;
-    }
-  }
-
   render() {
     return (
       <div id="HomeFooter" className="flex jc-c">

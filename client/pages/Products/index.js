@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getAsset, toggle, calculateTotalCost, updateCost, setProduct } from '../../modules';
+import { getAsset, toggle, calculateTotalCost, updateCost, setProduct, setFooter } from '../../modules';
 import ProductNav from '../../components/ProductNav';
 import Product from '../../components/Product';
 import ColorUpdater from '../../components/ColorUpdater';
@@ -51,6 +51,11 @@ class Products extends Component {
     let newState = Object.assign({}, this.state);
     newState.productsWrapperWidth = wrapperWidth;
     this.setState(newState);
+    setFooter('MainFooter');
+  }
+
+  componentDidUpdate() {
+    setFooter('MainFooter');
   }
 
   render() {
@@ -98,18 +103,18 @@ class Products extends Component {
                 decrimentColor={this.decrimentColor} incrimentColor={this.incrimentColor} />
               <ColorUpdater label="Right Sleeve" location="rightSleeve" numColors={this.state.productBuilderInit.rightSleeveColors}
                 decrimentColor={this.decrimentColor} incrimentColor={this.incrimentColor} />
-              <div id="sort-by" className="flex ai-c" onClick={() => this.state.showSort ? null : this.toggle('showSort')}>
+              <div id="sort-by" className="flex ai-c" onClick={() => this.toggle('showSort')}>
                 <img src={getAsset('sort-by')} />
                 <h1>SORT BY</h1>
-                {this.state.showSort ? (
-                  <div id="sort-box" className="flex fd-c">
-                    <span onClick={() => this.setSort('low')}>Lowest Price</span>
-                    <span onClick={() => this.setSort('high')}>Highest Price</span>
-                    <span onClick={() => this.setSort('atoz')}>A-Z</span>
-                    <span onClick={() => this.setSort('best')}>Best Sellers</span>
-                  </div>
-                ) : null}
               </div>
+              {this.state.showSort ? (
+                <div id="sort-box" className="flex fd-c">
+                  <span onClick={() => this.setSort('low')}>Lowest Price</span>
+                  <span onClick={() => this.setSort('high')}>Highest Price</span>
+                  <span onClick={() => this.setSort('atoz')}>A-Z</span>
+                  <span onClick={() => this.setSort('best')}>Best Sellers</span>
+                </div>
+              ) : null}
             </div>
             <div id="products-wrapper" className="flex fw-w" style={{width: `calc(100% + ${extraMargin}px)`}}>
               {products}

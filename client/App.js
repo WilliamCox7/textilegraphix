@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route } from "react-router-dom";
 import { connect } from 'react-redux';
 import MainNav from './components/MainNav';
-import ProductGuide from './components/ProductGuide';
 import MainFooter from './components/MainFooter';
 import HomeFooter from './components/HomeFooter';
 import Home from './pages/Home';
@@ -40,11 +39,6 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <MainNav route={this.state.route} updateRoute={this.updateRoute} />
-          {this.state.route === '/products' ||
-           this.state.route === '/builder'  ||
-           this.state.route === '/checkout' ? (
-            <ProductGuide route={this.state.route} updateRoute={this.updateRoute} />
-          ) : null}
           <Route exact path="/" component={Home} />
           <Route path="/products" component={Products} />
           <Route path="/builder" component={Builder} />
@@ -58,11 +52,4 @@ class App extends Component {
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//     builder: state.builder
-//   }
-// }
-
-// export default connect(mapStateToProps)(App);
 export default App;

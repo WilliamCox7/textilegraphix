@@ -44,25 +44,24 @@
             color: white;
             white-space: nowrap;
           }
-          #sort-box {
-            position: absolute;
-            padding: 8px 12px;
-            right: 0;
-            width: 100%;
-            bottom: -107px;
-            background: white;
-            border-radius: 10px;
-            z-index: 1;
-            border: solid 1px $main-blue;
-            -webkit-box-shadow: 3px 6px 12px rgba(0, 0, 0, 0.16);
-            box-shadow: 3px 6px 12px rgba(0, 0, 0, 0.16);
-            span {
-              margin: 3px 0px;
-              font-size: 14px;
-              color: $main-blue;
-              cursor: pointer;
-              white-space: nowrap;
-            }
+        }
+        #sort-box {
+          position: absolute;
+          padding: 8px 12px;
+          right: 0;
+          top: 40px;
+          background: white;
+          border-radius: 10px;
+          z-index: 1;
+          border: solid 1px $main-blue;
+          -webkit-box-shadow: 3px 6px 12px rgba(0, 0, 0, 0.16);
+          box-shadow: 3px 6px 12px rgba(0, 0, 0, 0.16);
+          span {
+            margin: 3px 0px;
+            font-size: 14px;
+            color: $main-blue;
+            cursor: pointer;
+            white-space: nowrap;
           }
         }
       }

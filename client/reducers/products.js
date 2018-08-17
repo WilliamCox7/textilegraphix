@@ -34,7 +34,13 @@ export const products = [
     ],
     rating: 1,
     quality: 'premium',
-    material: "60/40 Blend"
+    material: "60/40 Blend",
+    printArea: {
+      width: '262px',
+      height: '322px',
+      top: '120px',
+      left: '34px'
+    }
   },
   {
     images: {
@@ -71,7 +77,13 @@ export const products = [
     ],
     rating: 3,
     quality: 'premium',
-    material: "60/40 Blend"
+    material: "60/40 Blend",
+    printArea: {
+      width: '262px',
+      height: '322px',
+      top: '120px',
+      left: '34px'
+    }
   },
   {
     images: {
@@ -108,7 +120,13 @@ export const products = [
     ],
     rating: 9,
     quality: 'premium',
-    material: "60/40 Blend"
+    material: "60/40 Blend",
+    printArea: {
+      width: '262px',
+      height: '322px',
+      top: '120px',
+      left: '34px'
+    }
   },
   {
     images: {
@@ -145,7 +163,13 @@ export const products = [
     ],
     rating: 2,
     quality: 'premium',
-    material: "60/40 Blend"
+    material: "60/40 Blend",
+    printArea: {
+      width: '262px',
+      height: '322px',
+      top: '120px',
+      left: '34px'
+    }
   },
   {
     images: {
@@ -182,7 +206,13 @@ export const products = [
     ],
     rating: 2,
     quality: 'premium',
-    material: "60/40 Blend"
+    material: "60/40 Blend",
+    printArea: {
+      width: '262px',
+      height: '322px',
+      top: '120px',
+      left: '34px'
+    }
   },
   {
     images: {
@@ -219,7 +249,13 @@ export const products = [
     ],
     rating: 5,
     quality: 'premium',
-    material: "60/40 Blend"
+    material: "60/40 Blend",
+    printArea: {
+      width: '262px',
+      height: '322px',
+      top: '120px',
+      left: '34px'
+    }
   },
   {
     images: {
@@ -256,7 +292,13 @@ export const products = [
     ],
     rating: 1,
     quality: 'premium',
-    material: "60/40 Blend"
+    material: "60/40 Blend",
+    printArea: {
+      width: '262px',
+      height: '322px',
+      top: '120px',
+      left: '34px'
+    }
   },
   {
     images: {
@@ -293,7 +335,13 @@ export const products = [
     ],
     rating: 8,
     quality: 'premium',
-    material: "60/40 Blend"
+    material: "60/40 Blend",
+    printArea: {
+      width: '262px',
+      height: '322px',
+      top: '120px',
+      left: '34px'
+    }
   },
   {
     images: {
@@ -330,6 +378,12 @@ export const products = [
     ],
     rating: 3,
     quality: 'premium',
-    material: "60/40 Blend"
+    material: "60/40 Blend",
+    printArea: {
+      width: '262px',
+      height: '322px',
+      top: '120px',
+      left: '34px'
+    }
   }
 ];
