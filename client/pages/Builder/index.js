@@ -39,7 +39,7 @@ class Builder extends Component {
       zip: '',
       showZip: true,
       edit: props.builder ? props.builder.edit : false,
-      uploaded: props.builder ? props.builder.uploaded : { front: [], back: [] },
+      uploaded: props.builder && props.builder.uploaded ? props.builder.uploaded : { front: [], back: [] },
       XS: props.builder ? props.builder.XS : "",
       S: props.builder ? props.builder.S : "",
       M: props.builder ? props.builder.M : "",
