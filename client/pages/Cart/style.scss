@@ -1,5 +1,234 @@
 @import "../../vars.scss";
 
 #Cart {
-
+  .page-header {
+    color: $main-blue;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 26px;
+  }
+  .page-nav {
+    button {
+      background: $main-green;
+      border-radius: 10px;
+      border: none;
+      height: 42px;
+      margin-top: -5px;
+      cursor: pointer;
+      padding: 0px 20px;
+      color: white;
+      -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+      box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    }
+  }
+  #cart-wrapper {
+    width: 100%;
+    -webkit-box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.16);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.16);
+    border-radius: 10px;
+    border: solid 1px #DEDEDE;
+    #cart-wrapper-left {
+      padding: 30px 0px;
+      width: 50%;
+      border-right: solid 1px #DEDEDE;
+      background: #FAFAFA;
+      #orders-in-cart {
+        height: 480px;
+        padding: 0px 30px;
+        width: 100%;
+        overflow-y: scroll;
+        .order {
+          margin-bottom: 15px;
+          i.fa-arrow-right {
+            color: #FAFAFA;
+            margin-right: 20px;
+          }
+          .sizes-card {
+            -webkit-box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.12);
+            box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.12);
+            background: white;
+            padding: 12px 16px 5px;
+            position: relative;
+            border-radius: 5px;
+            padding-right: 180px;
+            .card-header {
+              span {
+                margin: 0px 6px;
+              }
+              .brand-header {
+                font-size: 15px;
+                color: #363636;
+                font-weight: bold;
+                margin-bottom: 5px;
+              }
+              .color-header {
+                font-size: 15px;
+                color: #363636;
+              }
+            }
+            .location-header {
+              font-size: 13px;
+              color: #363636;
+            }
+            .sizes-price {
+              .price {
+                position: absolute;
+                right: 0;
+                width: 100%;
+                max-width: 166px;
+                top: 0;
+                height: 100%;
+                background: $main-blue;
+                padding: 18px 30px;
+                border-radius: 5px;
+                -webkit-box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.16);
+                box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.16);
+                h1 {
+                  font-size: 13px;
+                  color: white;
+                  margin-bottom: 8px;
+                }
+                h2 {
+                  font-size: 18px;
+                  color: white;
+                  font-weight: bold;
+                  margin-bottom: 8px;
+                }
+              }
+            }
+          }
+          .card-actions {
+            width: 40px;
+            margin-left: 20px;
+            .action-icon {
+              img {
+                height: 32px;
+                cursor: pointer;
+              }
+              .delete-text {
+                color: $main-red;
+              }
+              .edit-text {
+                color: $main-blue;
+              }
+              h1 {
+                font-size: 12px;
+                margin: 6px 10px 10px;
+              }
+            }
+          }
+          &:hover {
+            i.fa-arrow-right {
+              color: #DEDEDE;
+            }
+          }
+        }
+      }
+      #section-line {
+        border: solid 1px #DEDEDE;
+        width: calc(100% - 60px);
+        margin: 20px auto;
+      }
+      #total-shipping-wrapper {
+        position: relative;
+        background: white;
+        padding: 16px;
+        -webkit-box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.16);
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.16);
+        border-radius: 5px;
+        margin: 0px 30px;
+        .total-price {
+          margin-left: 15px;
+          margin-right: 30px;
+          margin-top: 10px;
+          h1 {
+            font-size: 22px;
+            color: #A0A0A0;
+            margin-bottom: 10px;
+          }
+          .number-format {
+            font-size: 40px;
+            font-weight: bold;
+            color: #525252;
+            h2 {
+              margin-left: 4px;
+              margin-top: 27px;
+              font-size: 8px;
+            }
+          }
+          #total-line {
+            border: solid 1px #DEDEDE;
+          }
+        }
+        .estimated-delivery {
+          height: 100%;
+          h1 {
+            font-size: 11px;
+            color: #A0A0A0;
+            margin-bottom: 6px;
+          }
+          h2 {
+            font-size: 21px;
+            color: #525252;
+          }
+        }
+        button {
+          position: absolute;
+          right: 0;
+          top: 0;
+          cursor: pointer;
+          height: 100%;
+          width: 170px;
+          background: $main-green;
+          border-radius: 5px;
+          color: white;
+          border: none;
+          img {
+            height: 86px;
+            margin-bottom: 4px;
+          }
+          h1 {
+            font-size: 16px;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+    #cart-wrapper-right {
+      padding: 30px;
+      width: 50%;
+      position: relative;
+      #side-buttons {
+        position: absolute;
+        z-index: 2;
+        top: 190px;
+        .side-button {
+          cursor: pointer;
+          border: solid 1px transparent;
+          margin-bottom: 10px;
+          border-radius: 50%;
+          padding: 20px;
+          width: 80px;
+          height: 80px;
+          span {
+            text-align: center;
+            h1 {
+              font-size: 9px;
+            }
+          }
+        }
+        .active {
+          border: solid 1px black;
+        }
+      }
+      #mockup-wrapper {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  }
+  .bottom-space {
+    width: 100%;
+    height: 50px;
+  }
 }

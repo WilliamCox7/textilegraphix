@@ -4,10 +4,14 @@ import './style.scss';
 
 class SizeForm extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    let width = props.size === 'large' ? 97 : 55;
+    let limit = props.size === 'large' ? 485 : 270;
     this.state = {
-      position: -97
+      position: 0 - width,
+      width: width,
+      limit: limit
     }
     this.moveLeft = this.moveLeft.bind(this);
     this.moveRight = this.moveRight.bind(this);
@@ -15,26 +19,28 @@ class SizeForm extends Component {
 
   moveLeft() {
     if (this.state.position < 0) {
-      this.setState({position: this.state.position + 97});
+      this.setState({position: this.state.position + this.state.width});
     }
   }
 
   moveRight() {
-    if (this.state.position > -485) {
-      this.setState({position: this.state.position - 97});
+    if (this.state.position > (0 - this.state.limit)) {
+      this.setState({position: this.state.position - this.state.width});
     }
   }
 
   render() {
 
     let marginLeft = this.state.position + "px";
+    let maxWidth = this.props.size === 'large' ? "388px" : "222px";
+    let className = `SizeForm flex ai-fe ${this.props.size}`;
 
     return (
-      <div className="SizeForm flex ai-fe">
+      <div className={className}>
         <div className="img-wrapper flex ai-c">
           <img src={getAsset('left-arrow')} onClick={this.moveLeft} />
         </div>
-        <div className="form-wrapper">
+        <div className="form-wrapper" style={{maxWidth: maxWidth}}>
           <div id="move-frame" className="flex ai-fe" style={{marginLeft: marginLeft}}>
             <div className="circle-display flex jc-c">
               <label style={this.props.form.XS ? colored : null}>XS</label>
@@ -86,7 +92,7 @@ class SizeForm extends Component {
         <div className="img-wrapper flex ai-c">
           <img src={getAsset('right-arrow')} onClick={this.moveRight} />
         </div>
-        <div className="form-wrapper flex ai-fe">
+        <div className="form-wrapper flex ai-fe" style={{maxWidth: maxWidth}}>
           <div className="circle-display total-circle flex jc-c">
             <label>TOTAL</label>
             <div className="circle-quantity flex jc-c ai-c">{this.props.form.quantity}</div>

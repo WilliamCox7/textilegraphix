@@ -55,7 +55,7 @@ class PrintArea extends Component {
       );
     });
 
-    let style = this.props.printArea;
+    let style = Object.assign({}, this.props.printArea);
     if (this.state.dragging) {
       style.background = "rgba(255, 255, 255, 0.7)";
       style.border = "solid 3px #E6E6E6";

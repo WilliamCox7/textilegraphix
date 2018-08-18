@@ -1,6 +1,6 @@
 @import "../../vars.scss";
 
-.SizeForm {
+.SizeForm.large {
   height: 128px;
   .img-wrapper {
     height: 91px;
@@ -41,6 +41,57 @@
   }
   .form-wrapper {
     max-width: 388px;
+    overflow: hidden;
+    padding: 8px 0px;
+    height: 100%;
+  }
+  #move-frame {
+    height: 100%;
+    -webkit-transition: margin-left 0.4s ease;
+    transition: margin-left 0.4s ease;
+  }
+}
+
+.SizeForm.medium {
+  height: 77px;
+  .img-wrapper {
+    height: 61px;
+    margin: 0px 10px;
+    img {
+      height: 22px;
+      cursor: pointer;
+    }
+  }
+  .circle-display {
+    margin: 0px 5px;
+    position: relative;
+    label {
+      color: #525252;
+      position: absolute;
+      font-size: 12px;
+      top: -14px;
+    }
+    input[type="text"], .circle-quantity {
+      -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+      box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+      border-radius: 50%;
+      width: 43px;
+      height: 43px;
+      text-align: center;
+      border: none;
+      background: white;
+      font-size: 16px;
+    }
+    .circle-quantity {
+      color: $main-blue;
+    }
+  }
+  .total-circle {
+    label {
+      color: $main-blue;
+    }
+  }
+  .form-wrapper {
     overflow: hidden;
     padding: 8px 0px;
     height: 100%;

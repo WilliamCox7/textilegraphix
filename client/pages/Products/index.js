@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getAsset, toggle, calculateTotalCost, updateCost, setProduct, setFooter } from '../../modules';
+import { getAsset, toggle, calculateTotalCost, updateCost, setFooter } from '../../modules';
 import ProductNav from '../../components/ProductNav';
 import Product from '../../components/Product';
 import ColorUpdater from '../../components/ColorUpdater';
@@ -132,7 +132,7 @@ Products.prototype.incrimentColor = methods.incrimentColor;
 Products.prototype.decrimentColor = methods.decrimentColor;
 Products.prototype.toggle = toggle;
 Products.prototype.setSort = methods.setSort;
-Products.prototype.setProduct = setProduct;
+Products.prototype.setProduct = methods.setProduct;
 Products.prototype.closeAll = methods.closeAll;
 Products.prototype.updateCost = updateCost;
 Products.prototype.sortLowestPrice = methods.sortLowestPrice;

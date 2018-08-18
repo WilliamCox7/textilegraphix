@@ -9,9 +9,10 @@ import sortBestSeller from './sort-best-sellar';
 import sortDefault from './sort-default';
 import sortHighestPrice from './sort-highest-price';
 import sortLowestPrice from './sort-lowest-price';
+import setProduct from './set-product';
 
 export {
   setFilter, updateQuantity, decrimentColor, incrimentColor,
   setSort, closeAll, sortAtoZ, sortBestSeller,
-  sortDefault, sortHighestPrice, sortLowestPrice
+  sortDefault, sortHighestPrice, sortLowestPrice, setProduct
 }

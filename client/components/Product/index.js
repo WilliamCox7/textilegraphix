@@ -18,7 +18,7 @@ class Product extends Component {
           </div>
           <h1 className="cost">
             <NumberFormat value={this.props.product.costPerShirt} displayType={'text'}
-              thousandSeparator={true} prefix={'$'} decimalScale={2} />
+              thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} />
           </h1>
         </div>
       </Link>

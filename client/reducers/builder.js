@@ -7,19 +7,17 @@ export default function reducer(state=initState, action) {
   switch(action.type) {
 
     case INIT:
-      return Object.assign({}, state, editState, action.payload);
+      editState = action.payload;
+      return Object.assign({}, state, editState);
 
     default: return state;
 
   }
 }
 
-export function initializeBuilder(init, product) {
+export function initializeBuilder(order) {
   return {
     type: INIT,
-    payload: {
-      build: init,
-      product: product
-    }
+    payload: order
   }
 }

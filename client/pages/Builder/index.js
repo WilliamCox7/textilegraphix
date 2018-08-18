@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import NumberFormat from 'react-number-format';
 import SwipeableViews from 'react-swipeable-views';
-import { getAsset, toggle, setFooter } from '../../modules';
+import { getAsset, toggle, setFooter, setDelivery } from '../../modules';
 import * as methods from './methods';
 import ColorUpdater from '../../components/ColorUpdater';
 import SizeForm from '../../components/SizeForm';
@@ -17,41 +17,38 @@ class Builder extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      product: props.builder.product ? props.builder.product : undefined,
-      selectedColor: props.builder.product ? props.builder.product.colors[0].name : undefined,
-      selectedHex: props.builder.product ? props.builder.product.colors[0].hex : undefined,
-      quantity: props.builder.build ? props.builder.build.quantity : 1,
-      frontColors: props.builder.build ? props.builder.build.frontColors : 0,
-      backColors: props.builder.build ? props.builder.build.backColors : 0,
-      leftSleeveColors: props.builder.build ? props.builder.build.leftSleeveColors : 0,
-      rightSleeveColors: props.builder.build ? props.builder.build.rightSleeveColors : 0,
+      product: props.builder ? props.builder.product : undefined,
+      selectedColor: props.builder ? props.builder.selectedColor : undefined,
+      selectedHex: props.builder ? props.builder.selectedHex : undefined,
+      quantity: props.builder ? props.builder.quantity : 1,
+      frontColors: props.builder ? props.builder.frontColors : 0,
+      backColors: props.builder ? props.builder.backColors : 0,
+      leftSleeveColors: props.builder ? props.builder.leftSleeveColors : 0,
+      rightSleeveColors: props.builder ? props.builder.rightSleeveColors : 0,
       foldedAndBagged: false,
       insideTagPrinting: false,
       total: 0,
       totalPerShirt: 0,
-      delivery: this.setDelivery(),
       shownSide: 0,
       addOns: true,
       waiting: false,
       dragging: false,
       front: true,
+      guid: props.builder ? props.builder.guid : undefined,
       help: false,
       zip: '',
       showZip: true,
-      edit: false,
-      uploaded: {
-        front: [],
-        back: []
-      },
-      XS: "",
-      S: "",
-      M: "",
-      L: "",
-      XL: "",
-      XL2: "",
-      XL3: "",
-      XL4: "",
-      XL5: ""
+      edit: props.builder ? props.builder.edit : false,
+      uploaded: props.builder ? props.builder.uploaded : { front: [], back: [] },
+      XS: props.builder ? props.builder.XS : "",
+      S: props.builder ? props.builder.S : "",
+      M: props.builder ? props.builder.M : "",
+      L: props.builder ? props.builder.L : "",
+      XL: props.builder ? props.builder.XL : "",
+      XL2: props.builder ? props.builder.XL2 : "",
+      XL3: props.builder ? props.builder.XL3 : "",
+      XL4: props.builder ? props.builder.XL4 : "",
+      XL5: props.builder ? props.builder.XL5 : ""
     }
     this.selectColor = this.selectColor.bind(this);
     this.updateQuantity = this.updateQuantity.bind(this);
@@ -59,13 +56,13 @@ class Builder extends Component {
     this.incrimentColor = this.incrimentColor.bind(this);
     this.decrimentColor = this.decrimentColor.bind(this);
     this.updateSize = this.updateSize.bind(this);
-    this.setDelivery = this.setDelivery.bind(this);
     this.toggleShownSide = this.toggleShownSide.bind(this);
     this.storeFile = this.storeFile.bind(this);
     this.uploadImage = this.uploadImage.bind(this);
     this.saveEdits = this.saveEdits.bind(this);
     this.removeImage = this.removeImage.bind(this);
     this.addToCart = this.addToCart.bind(this);
+    this.updateToCart = this.updateToCart.bind(this);
     this.toggle = this.toggle.bind(this);
   }
 
@@ -75,7 +72,7 @@ class Builder extends Component {
   }
 
   componentWillMount() {
-    if (!this.props.builder.build || !this.props.builder.product) {
+    if (!this.props.builder || !this.props.builder.product) {
       this.props.history.push('/products');
     }
   }
@@ -86,12 +83,13 @@ class Builder extends Component {
 
   render() {
 
-    if (!this.props.builder.build || !this.props.builder.product) {
+    if (!this.props.builder || !this.props.builder.product) {
       return <div></div>;
     }
 
-    let build = this.props.builder.build;
+    let build = this.props.builder;
     let product = this.props.builder.product;
+    let delivery = setDelivery();
 
     let colors = product.colors.map((color, i) => {
       return (
@@ -159,7 +157,7 @@ class Builder extends Component {
             </div>
             <hr />
             <h5 className="section-h">Sizing:</h5>
-            <SizeForm form={this.state} updateSize={this.updateSize} />
+            <SizeForm form={this.state} updateSize={this.updateSize} size="large" />
             <hr />
             <h5 className="section-h">Total:</h5>
             {this.state.showZip ? (
@@ -177,7 +175,7 @@ class Builder extends Component {
                   <div className="flex">
                     <h2>
                       <NumberFormat value={this.state.totalPerShirt} displayType={'text'}
-                        thousandSeparator={true} prefix={'$'} decimalScale={2} />
+                        thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} />
                     </h2>
                     <h3>/ Shirt</h3>
                   </div>
@@ -190,10 +188,10 @@ class Builder extends Component {
                   <h1>Total + Free Shipping:</h1>
                   <h2>
                     <NumberFormat value={this.state.total} displayType={'text'}
-                      thousandSeparator={true} prefix={'$'} decimalScale={2} />
+                      thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} />
                   </h2>
                   <h5>Estimated Delivery:</h5>
-                  <h6>{this.state.delivery}</h6>
+                  <h6>{delivery}</h6>
                 </div>
               </div>
             )}
@@ -253,13 +251,13 @@ Builder.prototype.calculateCost = methods.calculateCost;
 Builder.prototype.incrimentColor = methods.incrimentColor;
 Builder.prototype.decrimentColor = methods.decrimentColor;
 Builder.prototype.updateSize = methods.updateSize;
-Builder.prototype.setDelivery = methods.setDelivery;
 Builder.prototype.toggleShownSide = methods.toggleShownSide;
 Builder.prototype.storeFile = methods.storeFile;
 Builder.prototype.uploadImage = methods.uploadImage;
 Builder.prototype.saveEdits = methods.saveEdits;
 Builder.prototype.removeImage = methods.removeImage;
 Builder.prototype.addToCart = methods.addToCart;
+Builder.prototype.updateToCart = methods.updateToCart;
 Builder.prototype.toggle = toggle;
 
 const mapStateToProps = (state) => {
