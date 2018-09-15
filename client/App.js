@@ -40,6 +40,7 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <MainNav route={this.state.route} updateRoute={this.updateRoute} />
+          <div id={this.state.route === '/' ? 'nav-space-home' : 'nav-space'}></div>
           <Route exact path="/" component={Home} />
           <Route path="/products" component={Products} />
           <Route path="/builder" component={Builder} />

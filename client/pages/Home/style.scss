@@ -1,5 +1,132 @@
 @import "../../vars.scss";
 
 #Home {
-  
+  #banner-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    .banners {
+      position: relative;
+    }
+    #scroll-down {
+      position: absolute;
+      width: 54px;
+      left: 0;
+      right: 0;
+      margin: auto;
+      bottom: 150px;
+    }
+    .social-side {
+      position: absolute;
+      top: -160px;
+      bottom: 0;
+      left: 40px;
+      margin: auto;
+      img {
+        height: 24px;
+        margin-bottom: 20px;
+      }
+    }
+    .vertical-banner {
+      width: 25%;
+      height: 100vh;
+      h1 {
+        font-size: 36px;
+        font-weight: bold;
+        margin-bottom: 15px;
+      }
+      h2 {
+        font-size: 20px;
+        margin-bottom: 8px;
+      }
+      a {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        width: 120px;
+        padding: 5px 17px;
+        border-radius: 50px;
+        background: white;
+        border: solid 2px #707070;
+        margin-top: 20px;
+        img {
+          width: 65px;
+        }
+      }
+    }
+    .vertical-banner.active {
+      h1, h2 {
+        color: white;
+      }
+      a {
+        border: solid 2px white;
+      }
+      &:nth-child(1) {
+        background: #024C70;
+      }
+      &:nth-child(2) {
+        background: #0093D1;
+      }
+      &:nth-child(3) {
+        background: #F1635F;
+      }
+      &:nth-child(4) {
+        background: #F4D00D;
+      }
+    }
+  }
+  #section-2 {
+    h1 {
+      font-size: 36px;
+      font-weight: bold;
+    }
+    div {
+      width: 50%;
+      height: 641px;
+      &:nth-child(1) {
+        background: #F5F5F5;
+      }
+    }
+  }
+  #section-3 {
+    padding: 70px 0px;
+    .sec-3-header-wrapper {
+      width: 243px;
+      margin: auto;
+      margin-bottom: 50px;
+      h1 {
+        font-size: 45px;
+        font-weight: bold;
+        margin-bottom: 30px;
+      }
+    }
+    .imgs-wrapper {
+      padding: 0px 20px;
+      .img-wrapper {
+        border: solid 1px black;
+        padding: 10px;
+        margin: 0px 20px;
+        max-width: calc(25% - 80px);
+        img {
+          max-width: 355px;
+          width: 100%;
+        }
+      }
+    }
+  }
+  #Actions {
+    max-width: 1432px;
+    margin: auto;
+    margin-top: 70px;
+  }
+  #vertical-space {
+    height: calc(100vh - 310px);
+  }
 }

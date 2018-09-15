@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 54 93.386">
+  <defs>
+    <style>
+      .cls-1, .cls-4 {
+        fill: none;
+      }
+
+      .cls-1 {
+        stroke: #000;
+        stroke-width: 2px;
+      }
+
+      .cls-2 {
+        font-size: 10px;
+        font-family: Avenir-Medium, Avenir;
+        font-weight: 500;
+      }
+
+      .cls-3 {
+        stroke: none;
+      }
+    </style>
+  </defs>
+  <g id="Group_709" data-name="Group 709" transform="translate(-932.149 -811.579)">
+    <g id="Rectangle_322" data-name="Rectangle 322" class="cls-1" transform="translate(940.207 881.869) rotate(-90)">
+      <rect class="cls-3" width="70.289" height="39.693" rx="19.846"/>
+      <rect class="cls-4" x="1" y="1" width="68.289" height="37.693" rx="18.846"/>
+    </g>
+    <rect id="Rectangle_323" data-name="Rectangle 323" width="22.327" height="12.404" rx="6.202" transform="translate(953.438 843.83) rotate(-90)"/>
+    <text id="Scroll_Down" data-name="Scroll Down" class="cls-2" transform="translate(932.149 900.965)"><tspan x="0" y="0">Scroll Down</tspan></text>
+  </g>
+</svg>

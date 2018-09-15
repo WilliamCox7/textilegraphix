@@ -1,0 +1,26 @@
+@import "../../../vars.scss";
+
+.BenefitTile {
+  text-align: center;
+  padding: 20px;
+  width: 300px;
+  @media(max-width: 650px) {
+    width: 100%;
+  }
+  img {
+    height: 100px;
+    margin-bottom: 15px;
+  }
+  h1 {
+    font-size: 38px;
+    color: #58595B;
+    margin: 18px 0px 20px;
+    white-space: nowrap;
+  }
+  p {
+    font-size: 21px;
+    color: #58595B;
+    margin-bottom: 25px;
+    line-height: 29px;
+  }
+}
