@@ -48,7 +48,13 @@ class Builder extends Component {
       XL2: props.builder ? props.builder.XL2 : "",
       XL3: props.builder ? props.builder.XL3 : "",
       XL4: props.builder ? props.builder.XL4 : "",
-      XL5: props.builder ? props.builder.XL5 : ""
+      XL5: props.builder ? props.builder.XL5 : "",
+      sizeOffsets: {
+        XL2: 0,
+        XL3: 0,
+        XL4: 0,
+        XL5: 0
+      }
     }
     this.selectColor = this.selectColor.bind(this);
     this.updateQuantity = this.updateQuantity.bind(this);
@@ -89,7 +95,7 @@ class Builder extends Component {
 
     let build = this.props.builder;
     let product = this.props.builder.product;
-    let delivery = setDelivery();
+    let delivery = setDelivery(4);
 
     let colors = product.colors.map((color, i) => {
       return (
@@ -157,7 +163,7 @@ class Builder extends Component {
             </div>
             <hr />
             <h5 className="section-h">Sizing:</h5>
-            <SizeForm form={this.state} updateSize={this.updateSize} size="large" />
+            <SizeForm edit={true} form={this.state} updateSize={this.updateSize} size="large" />
             <hr />
             <h5 className="section-h">Total:</h5>
             {this.state.showZip ? (
@@ -171,17 +177,33 @@ class Builder extends Component {
             ) : (
               <div id="total-section-wrapper" className="flex jc-sa">
                 <div id="total-left-section">
-                  <h1>Price Per Shirt:</h1>
+                  <h1>Cost Per Item:</h1>
                   <div className="flex">
+                    <h3>XS-XL</h3>
                     <h2>
                       <NumberFormat value={this.state.totalPerShirt} displayType={'text'}
-                        thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} />
+                        thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix="ea" />
                     </h2>
-                    <h3>/ Shirt</h3>
                   </div>
                   <div className="flex jc-sb">
-                    <h4>2XL - $2.50 more.</h4>
-                    <h4>3XL - $3.50 more.</h4>
+                    <h4>2XL <span className="format-wrapper">
+                      <NumberFormat value={Number(this.state.totalPerShirt) + this.state.sizeOffsets.XL2} displayType={'text'}
+                        thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix="ea" />
+                    </span></h4>
+                    <h4>3XL <span className="format-wrapper">
+                      <NumberFormat value={Number(this.state.totalPerShirt) + this.state.sizeOffsets.XL3} displayType={'text'}
+                        thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix="ea" />
+                    </span></h4>
+                  </div>
+                  <div className="flex jc-sb">
+                    <h4>4XL <span className="format-wrapper">
+                      <NumberFormat value={Number(this.state.totalPerShirt) + this.state.sizeOffsets.XL4} displayType={'text'}
+                        thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix="ea" />
+                    </span></h4>
+                    <h4>5XL <span className="format-wrapper">
+                      <NumberFormat value={Number(this.state.totalPerShirt) + this.state.sizeOffsets.XL5} displayType={'text'}
+                        thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix="ea" />
+                    </span></h4>
                   </div>
                 </div>
                 <div id="total-right-section">

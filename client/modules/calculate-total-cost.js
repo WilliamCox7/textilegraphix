@@ -7,13 +7,14 @@ export default function calculateTotalCost(order, shirtCostOverride) {
   let curLoc = 1;
   let shippingRate = .3;
   let markup = 1.5;
-  let setCost = 0, setCostOne, setCostTwo, setCostThree; //, setCostFour, setCostFive;
+  let setCost = 0, setCostOne, setCostTwo, setCostThree, setCostFour; //, setCostFive;
   let numColors = {One: 0, Two: 0, Three: 0}; //, Four: 0, Five: 0};
 
   // initialize from order
   if (order.frontColors > 0) { setNumColors(curLoc, order.frontColors, numColors); numLocations++; curLoc++; }
   if (order.backColors > 0) { setNumColors(curLoc, order.backColors, numColors); numLocations++; curLoc++; }
-  if (order.sleeveColors > 0) { setNumColors(curLoc, order.sleeveColors, numColors); numLocations++; curLoc++; }
+  if (order.leftSleeveColors > 0) { setNumColors(curLoc, order.leftSleeveColors, numColors); numLocations++; curLoc++; }
+  if (order.rightSleeveColors > 0) { setNumColors(curLoc, order.rightSleeveColors, numColors); numLocations++; curLoc++; }
 
   // determine markup
   if (costOfShirt < 0.01) markup = 0;
@@ -51,10 +52,19 @@ export default function calculateTotalCost(order, shirtCostOverride) {
     else if (numColors.Three == 6) setCostThree = setCostX([6.0, 6.2, 3.1, 2.5, 2.15, 1.8, 1.25, .85, .8, .75, .7], numShirts);
   }
 
+  if (numLocations >= 4) {
+    if (numColors.Four == 1) setCostFour = setCostX([6.0, 3.2, 1.6, 1.25, .9, .8, .75, .6, .55, .5, .45], numShirts);
+    else if (numColors.Four == 2) setCostFour = setCostX([6.0, 3.8, 1.9, 1.5, 1.15, 1.0, .85, .65, .6, .55, .5], numShirts);
+    else if (numColors.Four == 3) setCostFour = setCostX([6.0, 4.4, 2.2, 1.75, 1.4, 1.2, .95, .7, .65, .6, .55], numShirts);
+    else if (numColors.Four == 4) setCostFour = setCostX([6.0, 5.0, 2.5, 2.0, 1.65, 1.4, 1.05, .75, .7, .65, .6], numShirts);
+    else if (numColors.Four == 5) setCostFour = setCostX([6.0, 5.6, 2.8, 2.25, 1.90, 1.6, 1.15, .8, .75, .7, .65], numShirts);
+    else if (numColors.Four == 6) setCostFour = setCostX([6.0, 6.2, 3.1, 2.5, 2.15, 1.8, 1.25, .85, .8, .75, .7], numShirts);
+  }
+
   if (numLocations == 1) setCost = setCostOne;
   else if (numLocations == 2) setCost = setCostOne + setCostTwo;
   else if (numLocations == 3) setCost = setCostOne + setCostTwo + setCostThree;
-  // else if (numLocations == 4) setCost = setCostOne + setCostTwo + setCostThree + setCostFour;
+  else if (numLocations == 4) setCost = setCostOne + setCostTwo + setCostThree + setCostFour;
   // else if (numLocations == 5) setCost = setCostOne + setCostTwo + setCostThree + setCostFour + setCostFive;
 
   // calculate add ons
@@ -62,31 +72,39 @@ export default function calculateTotalCost(order, shirtCostOverride) {
   if (order.insideTagPrinting) costOfShirt += 1.15;
   if (order.hemTags) costOfShirt += 2.25;
 
+  let sizeOffsets = {
+    XL2: 2.50,
+    XL3: 3.50,
+    XL4: 4.00,
+    XL5: 5.00
+  }
+
   // calculate results and return
-  let numShirtsXL = 0, XL2Cost = 0, XL3Cost = 0, XL4Cost = 0;
+  let numShirtsXL = 0, XL2Cost = 0, XL3Cost = 0, XL4Cost = 0, XL5Cost = 0;
   if (order.XL2) {
     numShirtsXL += order.XL2;
-    XL2Cost = parseFloat(costOfShirt + setCost + markup + 2.50) * (order.XL2);
+    XL2Cost = parseFloat(costOfShirt + setCost + markup + sizeOffsets.XL2) * (order.XL2);
   }
   if (order.XL3) {
     numShirtsXL += order.XL3;
-    XL3Cost = parseFloat(costOfShirt + setCost + markup + 3.50) * (order.XL3);
+    XL3Cost = parseFloat(costOfShirt + setCost + markup + sizeOffsets.XL3) * (order.XL3);
   }
   if (order.XL4) {
     numShirtsXL += order.XL4;
-    XL4Cost = parseFloat(costOfShirt + setCost + markup + 4) * (order.XL4);
+    XL4Cost = parseFloat(costOfShirt + setCost + markup + sizeOffsets.XL4) * (order.XL4);
   }
   if (order.XL5) {
     numShirtsXL += order.XL5;
-    XL4Cost = parseFloat(costOfShirt + setCost + markup + 5) * (order.XL5);
+    XL5Cost = parseFloat(costOfShirt + setCost + markup + sizeOffsets.XL5) * (order.XL5);
   }
   let regCost = parseFloat(costOfShirt + setCost + markup) * (numShirts - numShirtsXL);
   let shippingCost = parseFloat(shippingRate) * numShirts;
 
   return {
-    totalCost: (regCost + XL2Cost + XL3Cost + XL4Cost + shippingCost).toFixed(2),
+    totalCost: (regCost + XL2Cost + XL3Cost + XL4Cost + XL5Cost + shippingCost).toFixed(2),
     costPerShirt: (parseFloat(costOfShirt + setCost + markup + shippingRate)).toFixed(2),
-    totalShipping: shippingCost
+    totalShipping: shippingCost,
+    sizeOffsets: sizeOffsets
   }
 }
 
@@ -109,7 +127,7 @@ function setNumColors(loc, num, numColors) {
     case 1: numColors.One = num; break;
     case 2: numColors.Two = num; break;
     case 3: numColors.Three = num; break;
-    // case 4: numColors.Four = num; break;
+    case 4: numColors.Four = num; break;
     // case 5: numColors.Five = num; break;
   }
   return numColors;

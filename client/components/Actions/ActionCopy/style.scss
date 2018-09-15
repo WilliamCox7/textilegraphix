@@ -1,7 +1,7 @@
 @import "../../../vars.scss";
 
 .ActionCopy {
-  width: 645px;
+  width: 610px;
   margin: auto;
   text-align: center;
   // @media(max-width: 800px) {
@@ -10,14 +10,14 @@
   // }
   h1 {
     margin-bottom: 20px;
-    font-size: 45px;
+    font-size: 33px;
     color: black;
     font-weight: bold;
   }
   p {
-    line-height: 38px;
+    line-height: 33px;
     margin-bottom: 80px;
-    font-size: 30px;
+    font-size: 24px;
     color: black;
   }
 }

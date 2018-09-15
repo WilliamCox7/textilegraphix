@@ -6,7 +6,16 @@ const endOfYear = [
   'December 31st', 'January 1st', 'January 2nd'
 ];
 
-export default function setDelivery(offset) {
+export default function getDeliveryOptions() {
+  return {
+    ground: getOption(4),
+    day3: getOption(3),
+    day2: getOption(2),
+    next: getOption(1)
+  }
+}
+
+function getOption(offset) {
   var today = moment();
   var year = today.get('year');
   if (today.get('month') === 11) {
@@ -20,6 +29,9 @@ export default function setDelivery(offset) {
   var weekday = deliveryDay.weekday();
   if (weekday === 0) { deliveryDay.add(1, 'days'); }
   else if (weekday === 6) { deliveryDay.add(2, 'days'); }
-  var displayedDay = deliveryDay.format('MMMM Do');
-  return displayedDay;
+
+  return {
+    day: deliveryDay.get('date'),
+    month: deliveryDay.get('month') + 1
+  };
 }

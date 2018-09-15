@@ -14,9 +14,11 @@ class Cart extends Component {
 
   constructor(props) {
     super(props);
+    let extended = props.cart.orders.map((o) => false);
     this.state = {
       shownSide: 0,
-      selected: 0
+      selected: 0,
+      extended: extended
     }
     this.toggleShownSide = this.toggleShownSide.bind(this);
     this.buildCardSubHeader = this.buildCardSubHeader.bind(this);
@@ -25,6 +27,7 @@ class Cart extends Component {
     this.calculateCost = this.calculateCost.bind(this);
     this.setProduct = this.setProduct.bind(this);
     this.removeOrder = this.removeOrder.bind(this);
+    this.extendPrice = this.extendPrice.bind(this);
   }
 
   componentDidMount() {
@@ -39,7 +42,7 @@ class Cart extends Component {
 
     let orderTotal = 0;
     let orders = this.props.cart.orders;
-    let delivery = setDelivery();
+    let delivery = setDelivery(4);
     let display = orders.length ? true : false;
 
     let items = orders.map((order, i) => {
@@ -58,17 +61,53 @@ class Cart extends Component {
             <h1 className="location-header">{locationText}</h1>
             <div className="sizes-price flex">
               <SizeForm form={order} updateSize={this.updOrder} size="medium" />
-              <div className="price">
-                <h1>Cost Per Item:</h1>
-                <h2>
-                  <NumberFormat value={order.totalPerShirt} displayType={'text'}
-                    thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
-                </h2>
-                <h1>Total Cost:</h1>
-                <h2>
-                  <NumberFormat value={order.total} displayType={'text'}
-                    thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} />
-                </h2>
+              <div id={`price-box-wrapper-${i}`} className="price-box-wrapper" onClick={() => this.extendPrice(i)}>
+                <div id={`blue-arrow-${i}`} className="blue-arrow"></div>
+                <div className="price flex">
+                  <div id={`price-typical-${i}`} className="price-typical">
+                    <h1>Cost Per Item:</h1>
+                    <h3>XS-XL</h3>
+                    <h2 className="space-below">
+                      <NumberFormat value={order.totalPerShirt} displayType={'text'}
+                        thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
+                    </h2>
+                    <h1>Total Cost:</h1>
+                    <h2>
+                      <NumberFormat value={order.total} displayType={'text'}
+                        thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} />
+                    </h2>
+                  </div>
+                  <div className="price-extended flex fw-w">
+                    <div className="corner flex fd-c jc-c">
+                      <h3>2XL</h3>
+                      <h4>
+                        <NumberFormat value={Number(order.totalPerShirt) + order.sizeOffsets.XL2} displayType={'text'}
+                          thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
+                      </h4>
+                    </div>
+                    <div className="corner flex fd-c jc-c">
+                      <h3>3XL</h3>
+                      <h4>
+                        <NumberFormat value={Number(order.totalPerShirt) + order.sizeOffsets.XL3} displayType={'text'}
+                          thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
+                      </h4>
+                    </div>
+                    <div className="corner flex fd-c jc-c">
+                      <h3>4XL</h3>
+                      <h4>
+                        <NumberFormat value={Number(order.totalPerShirt) + order.sizeOffsets.XL4} displayType={'text'}
+                          thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
+                      </h4>
+                    </div>
+                    <div className="corner flex fd-c jc-c">
+                      <h3>5XL</h3>
+                      <h4>
+                        <NumberFormat value={Number(order.totalPerShirt) + order.sizeOffsets.XL5} displayType={'text'}
+                          thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
+                      </h4>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -120,29 +159,32 @@ class Cart extends Component {
               </button>
             </div>
           </div>
-          <div id="cart-wrapper-right">
-            <div id="side-buttons" className="flex fd-c">
-              <span className={!this.state.shownSide ? "side-button active" : "side-button"}>
-                <span onClick={() => this.toggleShownSide()}>
-                  <img src={getAsset('front-side-button')} />
-                  <h1>FRONT</h1>
+          {orders.length ? (
+            <div id="cart-wrapper-right">
+              <div id="side-buttons" className="flex fd-c">
+                <span className={!this.state.shownSide ? "side-button active" : "side-button"}>
+                  <span onClick={() => this.toggleShownSide()}>
+                    <img src={getAsset('front-side-button')} />
+                    <h1>FRONT</h1>
+                  </span>
                 </span>
-              </span>
-              <span className={this.state.shownSide ? "side-button active" : "side-button"}>
-                <span onClick={() => this.toggleShownSide()}>
-                  <img src={getAsset('back-side-button')} />
-                  <h1>BACK</h1>
+                <span className={this.state.shownSide ? "side-button active" : "side-button"}>
+                  <span onClick={() => this.toggleShownSide()}>
+                    <img src={getAsset('back-side-button')} />
+                    <h1>BACK</h1>
+                  </span>
                 </span>
-              </span>
+              </div>
+              <div id="mockup-wrapper">
+                {!this.state.shownSide ? (
+                  <img src={display ? orders[this.state.selected].mockup[0] : ''} />
+                ) : (
+                  <img src={display ? orders[this.state.selected].mockup[1] : ''} />
+                )}
+              </div>
             </div>
-            <div id="mockup-wrapper">
-              {!this.state.shownSide ? (
-                <img src={display ? orders[this.state.selected].mockup[0] : ''} />
-              ) : (
-                <img src={display ? orders[this.state.selected].mockup[1] : ''} />
-              )}
-            </div>
-          </div>
+          ) : null}
+
         </div>
         <div className="bottom-space"></div>
       </div>
@@ -157,6 +199,7 @@ Cart.prototype.updOrder = methods.updOrder;
 Cart.prototype.calculateCost = methods.calculateCost;
 Cart.prototype.setProduct = methods.setProduct;
 Cart.prototype.removeOrder = methods.removeOrder;
+Cart.prototype.extendPrice = methods.extendPrice;
 
 const mapStateToProps = (state) => {
   return {

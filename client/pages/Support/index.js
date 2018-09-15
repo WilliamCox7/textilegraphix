@@ -16,7 +16,10 @@ class Support extends Component {
   render() {
     return (
       <div id="Support">
-        <h1 id="support-header">Support</h1>
+        <div className="blue-banner">
+          <h1>WE'RE HERE TO HELP YOU!</h1>
+        </div>
+        <div id="top-space"></div>
         <Actions />
         <div id="bottom-space"></div>
       </div>

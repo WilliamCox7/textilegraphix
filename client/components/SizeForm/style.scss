@@ -19,6 +19,19 @@
       font-size: 22px;
       top: -28px;
     }
+    h1 {
+      -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+      box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+      border-radius: 50%;
+      width: 77px;
+      height: 77px;
+      text-align: center;
+      border: none;
+      background: white;
+      font-size: 29px;
+      padding: 25px;
+      color: #525252;
+    }
     input[type="text"], .circle-quantity {
       -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
       box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
@@ -70,6 +83,19 @@
       position: absolute;
       font-size: 12px;
       top: -14px;
+    }
+    h1 {
+      -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+      box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      text-align: center;
+      border: none;
+      background: white;
+      font-size: 16px;
+      padding: 15px;
+      color: #525252;
     }
     input[type="text"], .circle-quantity {
       -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);

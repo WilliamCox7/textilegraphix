@@ -6,13 +6,13 @@ const endOfYear = [
   'December 31st', 'January 1st', 'January 2nd'
 ];
 
-export default function setDelivery() {
+export default function setDelivery(offset) {
   var today = moment();
   var year = today.get('year');
   if (today.get('month') === 11) {
     year = today.add(1, 'years').get('year');
   }
-  var deliveryDay = moment(today).add(14, 'days');
+  var deliveryDay = moment(today).add(offset, 'days');
   var estDelDay = deliveryDay.format('MMMM Do');
   if (JSON.stringify(endOfYear).indexOf(estDelDay) > -1) {
     deliveryDay = moment("01-03-"+year);

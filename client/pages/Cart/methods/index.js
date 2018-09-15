@@ -5,8 +5,9 @@ import updOrder from './upd-order';
 import calculateCost from './calculate-cost';
 import removeOrder from './remove-order';
 import setProduct from './set-product';
+import extendPrice from './extend-price';
 
 export {
   toggleShownSide, buildCardSubHeader, selectOrder, updOrder,
-  calculateCost, removeOrder, setProduct
+  calculateCost, removeOrder, setProduct, extendPrice
 }

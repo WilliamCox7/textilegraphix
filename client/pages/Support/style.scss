@@ -1,6 +1,19 @@
 @import "../../vars.scss";
 
 #Support {
+  .blue-banner {
+    background: $main-blue;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    padding: 80px 20px;
+    z-index: 1;
+    h1 {
+      color: white;
+      font-size: 40px;
+    }
+  }
   #support-header {
     font-size: 40px;
     color: $main-blue;
@@ -9,6 +22,9 @@
     border-bottom: solid 1px #707070;
     padding-bottom: 20px;
     margin-top: 60px;
+  }
+  #top-space {
+    height: 240px;
   }
   #bottom-space {
     height: 100px;

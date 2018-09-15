@@ -1,0 +1,121 @@
+@import "../../../vars.scss";
+
+.CreditCard {
+  position: absolute;
+  z-index: 3;
+  margin-top: 30px;
+  width: 524px;
+  height: 326px;
+  background: $main-blue;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.16);
+  padding: 20px 20px 20px 30px;
+  @media(max-width: 1200px) {
+    margin: auto;
+    left: 0;
+    padding: 15px 15px 15px 20px;
+  }
+  @media(max-width: 580px) {
+    width: 350px;
+    height: 200px;
+  }
+  .card-type {
+    float: right;
+    max-width: 80px;
+    @media(max-width: 580px) {
+      height: 20px;
+    }
+  }
+  h1 {
+    margin-bottom: 55px;
+    margin-top: 16px;
+    color: white;
+    font-size: 30px;
+    @media(max-width: 580px) {
+      font-size: 18px;
+      margin: 10px 0px 28px;
+    }
+  }
+  h2 {
+    font-size: 18px;
+    color: white;
+    @media(max-width: 580px) {
+      font-size: 10px;
+    }
+  }
+  .card-input {
+    font-size: 26px;
+    color: white;
+    width: 324px;
+    @media(max-width: 580px) {
+      margin-bottom: 10px !important;
+    }
+  }
+  .expiration {
+    input[type="text"] {
+      font-size: 22px;
+      color: white;
+    }
+    input[type="text"]:nth-child(1) {
+      width: 150px;
+      @media(max-width: 580px) {
+        width: 100px;
+      }
+    }
+    input[type="text"]:nth-child(2) {
+      width: 100px;
+      @media(max-width: 580px) {
+        width: 70px;
+      }
+    }
+  }
+  .ccv {
+    margin-left: 40px;
+    input[type="text"] {
+      width: 90px;
+      @media(max-width: 580px) {
+        width: 50px;
+      }
+    }
+  }
+  input[type="text"] {
+    background: rgba(255, 255, 255, 0.19);
+    border: none;
+    text-align: center;
+    margin: 10px 0px 20px;
+    font-size: 22px;
+    color: white;
+    margin-right: 2px;
+    height: 40px;
+    @media(max-width: 580px) {
+      font-size: 15px;
+      height: 30px;
+      width: 215px;
+    }
+    &::-webkit-input-placeholder {
+      color: $main-blue;
+      @media(max-width: 580px) {
+        font-size: 15px;
+      }
+    }
+    &:-ms-input-placeholder {
+      color: $main-blue;
+      @media(max-width: 580px) {
+        font-size: 15px;
+      }
+    }
+    &::-ms-input-placeholder {
+      color: $main-blue;
+      @media(max-width: 580px) {
+        font-size: 15px;
+      }
+    }
+    &::placeholder {
+      color: $main-blue;
+      @media(max-width: 580px) {
+        font-size: 15px;
+      }
+    }
+  }
+}
