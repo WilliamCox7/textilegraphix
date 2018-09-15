@@ -22,11 +22,11 @@ class MainNav extends Component {
               onClick={() => this.props.updateRoute('/blog')}>
               Blog
             </Link>
+            */}
             <Link to="/about" className={this.props.route === '/about' ? 'active' : null}
               onClick={() => this.props.updateRoute('/about')}>
               About
             </Link>
-            */}
             <Link to="/support" className={this.props.route === '/support' ? 'active' : null}
               onClick={() => this.props.updateRoute('/support')}>
               Support

@@ -10,6 +10,7 @@ import Builder from './pages/Builder';
 import Checkout from './pages/Checkout';
 import Support from './pages/Support';
 import Cart from './pages/Cart';
+import About from './pages/About';
 import './reset.scss';
 import './main.scss';
 import './skeleton.scss';
@@ -45,6 +46,7 @@ class App extends Component {
           <Route path="/checkout" component={Checkout} />
           <Route path="/support" component={Support} />
           <Route path="/cart" component={Cart} />
+          <Route path="/about" component={About} />
           {this.state.route === '/' ? <HomeFooter /> : <MainFooter />}
         </div>
       </BrowserRouter>
