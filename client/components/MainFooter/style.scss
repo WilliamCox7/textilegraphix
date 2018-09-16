@@ -5,16 +5,23 @@
   padding: 20px;
   position: absolute;
   left: 0;
-  width: 100%;
+  width: 100vw;
+  max-height: 187px;
   #footer-container {
     max-width: 1432px;
     width: 100%;
     padding: 0px 40px;
     #logo-container {
       width: 500px;
+      @media(max-width: 560px) {
+        width: 218px;
+      }
     }
     #SocialMedia {
       margin-top: 15px;
+      @media(max-width: 560px) {
+        margin-top: 10px;
+      }
     }
     hr {
       width: 100%;
@@ -22,9 +29,15 @@
       color: #DEDEDE;
       border: none;
       border-top: solid 1px;
+      @media(max-width: 560px) {
+        margin: 10px 0px;
+      }
     }
     h1 {
       font-size: 14px;
+      @media(max-width: 560px) {
+        font-size: 10px;
+      }
     }
   }
 }

@@ -1,18 +1,9 @@
 import React, { Component } from 'react';
-import { setFooter } from '../../modules';
 import Actions from '../../components/Actions';
+import MainFooter from '../../components/MainFooter';
 import './style.scss';
 
 class Support extends Component {
-
-  componentDidMount() {
-    setFooter('MainFooter');
-  }
-
-  componentDidUpdate() {
-    setFooter('MainFooter');
-  }
-
   render() {
     return (
       <div id="Support">
@@ -22,6 +13,7 @@ class Support extends Component {
         <div id="top-space"></div>
         <Actions />
         <div id="bottom-space"></div>
+        <MainFooter />
       </div>
     );
   }

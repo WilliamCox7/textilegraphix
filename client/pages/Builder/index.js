@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import NumberFormat from 'react-number-format';
 import SwipeableViews from 'react-swipeable-views';
-import { getAsset, toggle, setFooter, setDelivery } from '../../modules';
+import { getAsset, toggle, setDelivery } from '../../modules';
 import * as methods from './methods';
 import ColorUpdater from '../../components/ColorUpdater';
 import SizeForm from '../../components/SizeForm';
 import PrintArea from '../../components/PrintArea';
 import WaitIndicator from '../../components/WaitIndicator';
+import MainFooter from '../../components/MainFooter';
 import { addOrder, updOrder } from '../../reducers/cart';
 import './style.scss';
 
@@ -74,17 +75,12 @@ class Builder extends Component {
 
   componentDidMount() {
     if (this.state.product) this.calculateCost();
-    setFooter('MainFooter');
   }
 
   componentWillMount() {
     if (!this.props.builder || !this.props.builder.product) {
       this.props.history.push('/products');
     }
-  }
-
-  componentDidUpdate() {
-    setFooter('MainFooter');
   }
 
   render() {
@@ -262,6 +258,7 @@ class Builder extends Component {
         </div>
         <div className="bottom-space"></div>
         <WaitIndicator message="Preparing your cart..." waiting={this.state.waiting} />
+        <MainFooter />
       </div>
     );
   }

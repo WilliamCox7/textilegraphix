@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route } from "react-router-dom";
 import { connect } from 'react-redux';
 import MainNav from './components/MainNav';
-import MainFooter from './components/MainFooter';
 import Home from './pages/Home';
 import Products from './pages/Products';
 import Builder from './pages/Builder';
@@ -47,7 +46,6 @@ class App extends Component {
           <Route path="/support" component={Support} />
           <Route path="/cart" component={Cart} />
           <Route path="/about" component={About} />
-          {this.state.route === '/' ? null : <MainFooter />}
         </div>
       </BrowserRouter>
     );

@@ -2,7 +2,11 @@
 
 .Product {
   width: 200px;
-  margin-bottom: 40px;
+  margin: 0px 25.75555555px 40px;
+  @media(max-width: 585px) {
+    width: 150px;
+    margin: 0px 25.75555555px 20px;
+  }
   cursor: pointer;
   text-decoration: none;
   color: black;
@@ -24,6 +28,9 @@
       font-size: 26px;
       color: $main-blue;
       font-weight: bold;
+      @media(max-width: 585px) {
+        font-size: 16px;
+      }
     }
   }
 }

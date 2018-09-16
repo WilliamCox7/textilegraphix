@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { setFooter, getAsset } from '../../modules';
+import { getAsset } from '../../modules';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import NumberFormat from 'react-number-format';
 import SizeForm from '../../components/SizeForm';
 import Processor from '../../components/Processor';
 import WaitIndicator from '../../components/WaitIndicator';
+import MainFooter from '../../components/MainFooter';
 import * as methods from './methods';
 import { removeOrder } from '../../reducers/cart';
 import { initializeBuilder } from '../../reducers/builder';
@@ -60,14 +61,6 @@ class Checkout extends Component {
     this.toggle = this.toggle.bind(this);
     this.sendOrder = this.sendOrder.bind(this);
     this.prepareAttachments = this.prepareAttachments.bind(this);
-  }
-
-  componentDidMount() {
-    setFooter('MainFooter');
-  }
-
-  componentDidUpdate() {
-    setFooter('MainFooter');
   }
 
   render() {
@@ -288,6 +281,7 @@ class Checkout extends Component {
             first={this.state.billing.first} last={this.state.billing.last} toggle={this.toggle} />
         ) : null}
         <WaitIndicator message="Placing your order..." waiting={this.state.waiting} />
+        <MainFooter />
       </div>
     );
   }

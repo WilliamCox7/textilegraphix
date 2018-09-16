@@ -9,7 +9,7 @@ class Product extends Component {
     let thumbnail = this.props.product.images[this.props.product.colors[0].hex][0];
 
     return (
-      <Link to="/builder" className="Product" style={{marginRight: `${this.props.marginRight}px`}} onClick={() => this.props.setProduct(this.props.product)}>
+      <Link to="/builder" className="Product" onClick={() => this.props.setProduct(this.props.product)}>
         <img src={thumbnail} />
         <div className="product-info-wrapper flex jc-sb">
           <div className="info">

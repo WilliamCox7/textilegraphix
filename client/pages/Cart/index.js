@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { setFooter, getAsset } from '../../modules';
+import { getAsset } from '../../modules';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import NumberFormat from 'react-number-format';
 import SizeForm from '../../components/SizeForm';
+import MainFooter from '../../components/MainFooter';
 import * as methods from './methods';
 import { removeOrder } from '../../reducers/cart';
 import { initializeBuilder } from '../../reducers/builder';
@@ -28,14 +29,6 @@ class Cart extends Component {
     this.setProduct = this.setProduct.bind(this);
     this.removeOrder = this.removeOrder.bind(this);
     this.extendPrice = this.extendPrice.bind(this);
-  }
-
-  componentDidMount() {
-    setFooter('MainFooter');
-  }
-
-  componentDidUpdate() {
-    setFooter('MainFooter');
   }
 
   render() {
@@ -187,6 +180,7 @@ class Cart extends Component {
 
         </div>
         <div className="bottom-space"></div>
+        <MainFooter />
       </div>
     );
   }

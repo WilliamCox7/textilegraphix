@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getAsset, toggle, calculateTotalCost, updateCost, setFooter } from '../../modules';
+import { getAsset, toggle, calculateTotalCost, updateCost } from '../../modules';
 import ProductNav from '../../components/ProductNav';
 import Product from '../../components/Product';
 import ColorUpdater from '../../components/ColorUpdater';
+import MainFooter from '../../components/MainFooter';
+import ProductNavMobile from '../../components/ProductNavMobile';
+import MediaQuery from 'react-responsive';
 import { initializeBuilder } from '../../reducers/builder';
 import * as methods from './methods';
 import './style.scss';
@@ -18,7 +21,7 @@ class Products extends Component {
       overlay: false,
       sort: '',
       showSort: false,
-      productsWrapperWidth: 0,
+      extraMargin: 0,
       productBuilderInit: {
         frontColors: 0,
         backColors: 0,
@@ -45,24 +48,7 @@ class Products extends Component {
     this.sortDefault = this.sortDefault.bind(this);
   }
 
-  componentDidMount() {
-    let productsWrapper = document.getElementById('products-wrapper');
-    let wrapperWidth = productsWrapper.getBoundingClientRect().width;
-    let newState = Object.assign({}, this.state);
-    newState.productsWrapperWidth = wrapperWidth;
-    this.setState(newState);
-    setFooter('MainFooter');
-  }
-
-  componentDidUpdate() {
-    setFooter('MainFooter');
-  }
-
   render() {
-
-    let numOfProducts = Math.floor(this.state.productsWrapperWidth / 200);
-    if (numOfProducts > 4) numOfProducts = 4;
-    let extraMargin = (this.state.productsWrapperWidth - (numOfProducts * 200)) / (numOfProducts - 1);
 
     let products = [];
 
@@ -79,7 +65,7 @@ class Products extends Component {
       products = this.props.inventory.products.map((product, i) => {
         if (!this.state.filter || product.type === this.state.filter) {
           return (
-            <Product product={product} key={i} setProduct={this.setProduct} marginRight={extraMargin} />
+            <Product product={product} key={i} setProduct={this.setProduct} />
           );
         }
       });
@@ -87,40 +73,59 @@ class Products extends Component {
 
     return (
       <div id="Products">
+        <MediaQuery maxWidth={1300}>
+          <div id="product-mobile-nav-wrapper">
+            <ProductNavMobile toggle={this.toggle} productBuilderInit={this.state.productBuilderInit}
+              setFilter={this.setFilter} filter={this.state.filter} updateQuantity={this.updateQuantity} setSort={this.setSort}
+              showFilter={this.state.showFilter} sort={this.state.sort}
+              decrimentColor={this.decrimentColor} incrimentColor={this.incrimentColor} />
+          </div>
+        </MediaQuery>
         <div id="products-page-wrapper" className="flex">
-          <ProductNav setFilter={this.setFilter} />
+          <MediaQuery minWidth={1300}>
+            <ProductNav setFilter={this.setFilter} />
+          </MediaQuery>
           <div id="products-body-wrapper">
-            <div id="products-options" className="flex">
-              <div id="qty-input" className="flex ai-c">
-                <label>QTY:</label>
-                <input type="text" value={this.state.productBuilderInit.quantity} onChange={this.updateQuantity} />
-              </div>
-              <ColorUpdater label="Front" location="front" numColors={this.state.productBuilderInit.frontColors}
-                decrimentColor={this.decrimentColor} incrimentColor={this.incrimentColor} />
-              <ColorUpdater label="Back" location="back" numColors={this.state.productBuilderInit.backColors}
-                decrimentColor={this.decrimentColor} incrimentColor={this.incrimentColor} />
-              <ColorUpdater label="Left Sleeve" location="leftSleeve" numColors={this.state.productBuilderInit.leftSleeveColors}
-                decrimentColor={this.decrimentColor} incrimentColor={this.incrimentColor} />
-              <ColorUpdater label="Right Sleeve" location="rightSleeve" numColors={this.state.productBuilderInit.rightSleeveColors}
-                decrimentColor={this.decrimentColor} incrimentColor={this.incrimentColor} />
-              <div id="sort-by" className="flex ai-c" onClick={() => this.toggle('showSort')}>
-                <img src={getAsset('sort-by')} />
-                <h1>SORT BY</h1>
-              </div>
-              {this.state.showSort ? (
-                <div id="sort-box" className="flex fd-c">
-                  <span onClick={() => this.setSort('low')}>Lowest Price</span>
-                  <span onClick={() => this.setSort('high')}>Highest Price</span>
-                  <span onClick={() => this.setSort('atoz')}>A-Z</span>
-                  <span onClick={() => this.setSort('best')}>Best Sellers</span>
+            <MediaQuery minWidth={1300}>
+              <div id="products-options" className="flex">
+                <div id="qty-input" className="flex ai-c">
+                  <label>QTY:</label>
+                  <input type="text" value={this.state.productBuilderInit.quantity} onChange={this.updateQuantity} />
                 </div>
-              ) : null}
-            </div>
-            <div id="products-wrapper" className="flex fw-w" style={{width: `calc(100% + ${extraMargin}px)`}}>
+                <ColorUpdater label="Front" location="front" numColors={this.state.productBuilderInit.frontColors}
+                  decrimentColor={this.decrimentColor} incrimentColor={this.incrimentColor} />
+                <ColorUpdater label="Back" location="back" numColors={this.state.productBuilderInit.backColors}
+                  decrimentColor={this.decrimentColor} incrimentColor={this.incrimentColor} />
+                <ColorUpdater label="Left Sleeve" location="leftSleeve" numColors={this.state.productBuilderInit.leftSleeveColors}
+                  decrimentColor={this.decrimentColor} incrimentColor={this.incrimentColor} />
+                <ColorUpdater label="Right Sleeve" location="rightSleeve" numColors={this.state.productBuilderInit.rightSleeveColors}
+                  decrimentColor={this.decrimentColor} incrimentColor={this.incrimentColor} />
+                <div id="sort-by" className="flex ai-c" onClick={() => this.toggle('showSort')}>
+                  <img src={getAsset('sort-by')} />
+                  <h1>SORT BY</h1>
+                </div>
+                {this.state.showSort ? (
+                  <div id="sort-box" className="flex fd-c">
+                    <span onClick={() => this.setSort('low')}>Lowest Price</span>
+                    <span onClick={() => this.setSort('high')}>Highest Price</span>
+                    <span onClick={() => this.setSort('atoz')}>A-Z</span>
+                    <span onClick={() => this.setSort('best')}>Best Sellers</span>
+                  </div>
+                ) : null}
+              </div>
+            </MediaQuery>
+            <div id="products-wrapper" className="flex fw-w jc-sb">
               {products}
             </div>
           </div>
         </div>
+        {this.state.overlay ? (
+          <div className="gray-overlay" onClick={() => {
+            this.toggle('showFilter', 'overlay');
+            document.body.style.position = 'relative';
+          }}></div>
+        ) : null}
+        <MainFooter />
       </div>
     );
   }
