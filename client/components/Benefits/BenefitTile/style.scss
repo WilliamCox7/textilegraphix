@@ -3,7 +3,8 @@
 .BenefitTile {
   text-align: center;
   padding: 20px;
-  width: 300px;
+  width: 328px;
+  min-width: 255px;
   @media(max-width: 650px) {
     width: 100%;
   }
@@ -12,15 +13,22 @@
     margin-bottom: 15px;
   }
   h1 {
-    font-size: 38px;
+    font-size: 35px;
     color: #58595B;
     margin: 18px 0px 20px;
     white-space: nowrap;
+    @media(max-width: 520px) {
+      font-size: 27px;
+    }
   }
   p {
     font-size: 21px;
     color: #58595B;
     margin-bottom: 25px;
     line-height: 29px;
+    @media(max-width: 520px) {
+      font-size: 14px;
+      line-height: 20px;
+    }
   }
 }

@@ -6,8 +6,14 @@
     top: 0;
     left: 0;
     width: 100%;
-    .banners {
+    #banners-wrapper, #banners-wrapper-mobile {
       position: relative;
+      width: 100%;
+    }
+    #extra-buttons-wrapper {
+      position: absolute;
+      width: 100%;
+      height: 100vh;
     }
     #scroll-down {
       position: absolute;
@@ -28,9 +34,39 @@
         margin-bottom: 20px;
       }
     }
+    @media(max-width: 1240px) {
+      .blue-background {
+        background: #024C70;
+      }
+      .light-blue-background {
+        background: #0093D1;
+      }
+      .pink-background {
+        background: #F1635F;
+      }
+      .yellow-background {
+        background: #F4D00D;
+      }
+    }
     .vertical-banner {
       width: 25%;
       height: 100vh;
+      position: relative;
+      -webkit-transition: margin-right 0.5s ease;
+      transition: margin-right 0.5s ease;
+      @media(max-width: 1240px) {
+        min-width: 100%;
+        color: white;
+      }
+      @media(max-width: 610px) {
+        div {
+          &:nth-child(1) {
+            position: absolute;
+            left: 40px;
+            bottom: 40px;
+          }
+        }
+      }
       h1 {
         font-size: 36px;
         font-weight: bold;
@@ -68,30 +104,70 @@
       a {
         border: solid 2px white;
       }
-      &:nth-child(1) {
+    }
+    @media(min-width: 1240px) {
+      .blue-background.vertical-banner.active {
         background: #024C70;
       }
-      &:nth-child(2) {
+      .light-blue-background.vertical-banner.active {
         background: #0093D1;
       }
-      &:nth-child(3) {
+      .pink-background.vertical-banner.active {
         background: #F1635F;
       }
-      &:nth-child(4) {
+      .yellow-background.vertical-banner.active {
         background: #F4D00D;
       }
     }
   }
   #section-2 {
+    @media(max-width: 1125px) {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+    }
     h1 {
       font-size: 36px;
       font-weight: bold;
     }
     div {
       width: 50%;
-      height: 641px;
+      @media(max-width: 1125px) {
+        width: 100%;
+      }
       &:nth-child(1) {
         background: #F5F5F5;
+        @media(max-width: 1125px) {
+          background: white;
+          height: 100px;
+        }
+        @media(max-width: 520px) {
+          h1 {
+            font-size: 24px;
+          }
+        }
+      }
+    }
+    video {
+      width: 100%;
+      cursor: pointer;
+    }
+    #video-play-button {
+      position: absolute;
+      border: none;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.92);
+      -webkit-box-shadow: 0px 3px 6px rgba(0,0,0,0.16);
+      box-shadow: 0px 3px 6px rgba(0,0,0,0.16);
+      i {
+        font-size: 26px;
+        color: $main-blue;
       }
     }
   }
@@ -107,13 +183,34 @@
         margin-bottom: 30px;
       }
     }
-    .imgs-wrapper {
+    #imgs-wrapper {
       padding: 0px 20px;
+      @media(max-width: 669px) {
+        -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+        overflow: hidden;
+        width: 355px;
+        margin: auto;
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+      }
       .img-wrapper {
         border: solid 1px black;
         padding: 10px;
-        margin: 0px 20px;
+        margin: 20px;
+        min-width: 275px;
         max-width: calc(25% - 80px);
+        -webkit-transition: margin-right 0.5s ease;
+        transition: margin-right 0.5s ease;
+        &:nth-child(4) {
+          @media(max-width: 1299px) {
+            display: none;
+          }
+          @media(max-width: 984px) {
+            display: block;
+          }
+        }
         img {
           max-width: 355px;
           width: 100%;
@@ -123,10 +220,21 @@
   }
   #Actions {
     max-width: 1432px;
-    margin: auto;
-    margin-top: 70px;
-  }
-  #vertical-space {
-    height: calc(100vh - 310px);
+    margin: 70px auto;
+    @media(max-width: 815px) {
+      .ActionCopy {
+        display: none;
+      }
+    }
+    @media(max-width: 510px) {
+      margin: 40px auto;
+    }
+    .tiles {
+      @media(max-width: 815px) {
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+      }
+    }
   }
 }

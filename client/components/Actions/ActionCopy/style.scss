@@ -4,20 +4,27 @@
   width: 610px;
   margin: auto;
   text-align: center;
-  // @media(max-width: 800px) {
-  //   width: 100%;
-  //   padding: 0px 40px;
-  // }
+  min-width: 240px;
+  @media(max-width: 800px) {
+    width: 100%;
+  }
   h1 {
     margin-bottom: 20px;
     font-size: 33px;
     color: black;
     font-weight: bold;
+    @media(max-width: 800px) {
+      font-size: 22px;
+    }
   }
   p {
     line-height: 33px;
-    margin-bottom: 80px;
+    margin-bottom: 40px;
     font-size: 24px;
     color: black;
+    @media(max-width: 800px) {
+      font-size: 18px;
+      line-height: 25px;
+    }
   }
 }

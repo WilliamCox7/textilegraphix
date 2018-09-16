@@ -31,7 +31,7 @@ module.exports = {
         loader: 'file-loader'
       },
       {
-        test: /\.(ttc|ttf|eot|woff|woff2)$/,
+        test: /\.(ttc|ttf|eot|woff|woff2|mp4)$/,
         loader: 'file-loader'
       },
       {

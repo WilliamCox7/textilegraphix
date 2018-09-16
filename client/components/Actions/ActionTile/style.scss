@@ -7,7 +7,12 @@
   padding: 15px;
   width: 308px;
   min-height: 210px;
+  margin: 20px 0px;
+  min-width: 240px;
   cursor: pointer;
+  @media(max-width: 1420px) {
+    margin: 20px;
+  }
   .tile-asset {
     height: 80px;
   }
@@ -19,6 +24,7 @@
     font-size: 16px;
     color: black;
     margin-bottom: 8px;
+    text-align: center;
   }
   .tile-button {
     padding: 10px 20px;

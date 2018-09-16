@@ -6,12 +6,15 @@
     position: absolute;
     width: 100%;
     left: 0;
-    text-align: center;
-    padding: 80px 20px;
     z-index: 1;
+    max-height: 200px;
+    min-height: 200px;
     h1 {
       color: white;
       font-size: 40px;
+      @media(max-width: 630px) {
+        font-size: 24px;
+      }
     }
   }
   #support-header {
@@ -24,9 +27,26 @@
     margin-top: 60px;
   }
   #top-space {
-    height: 240px;
+    height: 200px;
   }
   #bottom-space {
     height: 100px;
+    @media(max-width: 895px) {
+      height: 40px;
+    }
+  }
+  #Actions {
+    margin-top: 40px;
+    @media(max-width: 390px) {
+      padding: 0px;
+      margin: 40px auto 0px;
+    }
+    .tiles {
+      @media(max-width: 895px) {
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+      }
+    }
   }
 }

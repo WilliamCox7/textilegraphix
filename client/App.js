@@ -3,7 +3,6 @@ import { BrowserRouter, Route } from "react-router-dom";
 import { connect } from 'react-redux';
 import MainNav from './components/MainNav';
 import MainFooter from './components/MainFooter';
-import HomeFooter from './components/HomeFooter';
 import Home from './pages/Home';
 import Products from './pages/Products';
 import Builder from './pages/Builder';
@@ -40,7 +39,7 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <MainNav route={this.state.route} updateRoute={this.updateRoute} />
-          <div id={this.state.route === '/' ? 'nav-space-home' : 'nav-space'}></div>
+          <div id="nav-space"></div>
           <Route exact path="/" component={Home} />
           <Route path="/products" component={Products} />
           <Route path="/builder" component={Builder} />
@@ -48,7 +47,7 @@ class App extends Component {
           <Route path="/support" component={Support} />
           <Route path="/cart" component={Cart} />
           <Route path="/about" component={About} />
-          {this.state.route === '/' ? <HomeFooter /> : <MainFooter />}
+          {this.state.route === '/' ? null : <MainFooter />}
         </div>
       </BrowserRouter>
     );

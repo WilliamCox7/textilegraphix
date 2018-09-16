@@ -42,7 +42,7 @@ module.exports = {
       test: /\.(jpg|png|svg)$/,
       loader: 'file-loader'
     }, {
-      test: /\.(ttf|eot|woff|woff2)$/,
+      test: /\.(ttf|eot|woff|woff2|mp4)$/,
       loader: 'file-loader'
     }, {
       test: /\.json$/,

@@ -5,12 +5,13 @@
   @media(max-width: 1040px) {
     padding: 40px;
   }
-  @media(max-width: 755px) {
-    margin-top: 0px;
+  @media(max-width: 910px) {
+    padding: 10px;
   }
   .body-wrapper {
     padding: 20px;
     .tiles {
+      padding: 0px 40px;
       max-width: 1432px;
       margin: auto;
       @media(max-width: 799px) {
@@ -21,6 +22,9 @@
         -webkit-box-align: center;
         -ms-flex-align: center;
         align-items: center;
+      }
+      @media(max-width: 470px) {
+        padding: 0px 20px;
       }
     }
     .t-shirts {
