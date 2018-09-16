@@ -1,4 +1,4 @@
-import { moment } from '../../../packages';
+import { moment } from 'moment';
 
 const endOfYear = [
   'December 23rd', 'December 24th', 'December 25th', 'December 26th',

@@ -1,4 +1,4 @@
-import { axios } from '../../../packages';
+import { axios } from 'axios';
 
 export default function authorizeCreditCard() {
   this.props.toggle('waiting');

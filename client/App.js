@@ -11,7 +11,6 @@ import Cart from './pages/Cart';
 import About from './pages/About';
 import './reset.scss';
 import './main.scss';
-import './skeleton.scss';
 
 class App extends Component {
 

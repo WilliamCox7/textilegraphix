@@ -1,4 +1,4 @@
-import { React, Component } from '../../packages';
+import React, { Component } from 'react';
 import { getAsset } from '../../modules';
 import './style.scss';
 
