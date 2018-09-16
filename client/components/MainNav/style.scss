@@ -9,6 +9,9 @@
   #main-nav-left {
     #nav-logo {
       width: 354px;
+      @media(max-width: 600px) {
+        width: 200px;
+      }
     }
     #nav-links {
       margin: 0px 30px;
@@ -36,10 +39,16 @@
         font-size: 27px;
         color: #D4D4D4;
         margin: 0px 25px;
+        @media(max-width: 600px) {
+          margin: 0px 14px;
+        }
       }
       #cart-icon {
         margin-top: -5px;
         height: 35px;
+        @media(max-width: 600px) {
+          height: 19px;
+        }
       }
     }
   }
@@ -53,5 +62,8 @@
     left: 0;
     border-radius: 5px;
     border-top-left-radius: inherit;
+    @media(max-width: 600px) {
+      padding: 5px 12px;
+    }
   }
 }

@@ -10,4 +10,15 @@
   img#insta-logo {
     height: 32px;
   }
+  @media(max-width: 560px) {
+    img {
+      margin: 0px 10px;
+    }
+    img#fb-logo {
+      height: 20px;
+    }
+    img#insta-logo {
+      height: 18px;
+    }
+  }
 }

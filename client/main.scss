@@ -29,6 +29,9 @@ button, textarea, input, select {
   #nav-space {
     margin-bottom: 86px;
   }
+  @media(max-width: 600px) {
+    padding: 30px 40px;
+  }
 }
 
 input[type=number]::-webkit-inner-spin-button,

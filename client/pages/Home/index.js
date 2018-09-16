@@ -225,8 +225,8 @@ class Home extends Component {
                 </div>
               </div>
             </MediaQuery>
-            <div id="extra-buttons-wrapper">
-              {this.state.windowWidth > 1240 ? (
+            {this.state.windowWidth > 1240 ? (
+              <div id="extra-buttons-wrapper">
                 <div className="social-side flex fd-c ai-c jc-c">
                   <a href="https://www.facebook.com/textilegraphix/" target="_blank">
                     <img src={getAsset('fb-black')} />
@@ -235,11 +235,9 @@ class Home extends Component {
                     <img src={getAsset('insta-black')} />
                   </a>
                 </div>
-              ) : null}
-              {this.state.windowWidth > 1240 ? (
                 <img id="scroll-down" src={getAsset('scroll-down')} />
-              ) : null}
-            </div>
+              </div>
+            ) : null}
           </div>
           <div id="section-2" className="flex">
             <div className="flex jc-c ai-c">
