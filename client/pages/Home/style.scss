@@ -9,6 +9,7 @@
     #banners-wrapper, #banners-wrapper-mobile {
       position: relative;
       width: 100%;
+      overflow: hidden;
     }
     #extra-buttons-wrapper {
       position: absolute;
@@ -177,6 +178,8 @@
       width: 243px;
       margin: auto;
       margin-bottom: 50px;
+      white-space: nowrap;
+      text-align: center;
       h1 {
         font-size: 45px;
         font-weight: bold;
