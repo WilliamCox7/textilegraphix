@@ -10,6 +10,7 @@ import SizeForm from '../../components/SizeForm';
 import PrintArea from '../../components/PrintArea';
 import WaitIndicator from '../../components/WaitIndicator';
 import MainFooter from '../../components/MainFooter';
+import MediaQuery from 'react-responsive';
 import { addOrder, updOrder } from '../../reducers/cart';
 import './style.scss';
 
@@ -108,33 +109,51 @@ class Builder extends Component {
     return (
       <div id="Builder">
         <div className="page-nav flex jc-sb">
-          <h1 className="page-header">PRODUCT BUILDER</h1>
-          {this.state.edit ? (
-            <button onClick={this.updateToCart}>SAVE ORDER</button>
-          ) : (
-            <button onClick={this.addToCart}>ADD TO CART</button>
-          )}
+          <MediaQuery minWidth={690}>
+            <h1 className="page-header">PRODUCT BUILDER</h1>
+          </MediaQuery>
+          <MediaQuery minWidth={690}>
+            {this.state.edit ? (
+              <button className="add-to-cart-button" onClick={this.updateToCart}>SAVE ORDER</button>
+            ) : (
+              <button className="add-to-cart-button" onClick={this.addToCart}>ADD TO CART</button>
+            )}
+          </MediaQuery>
+          <MediaQuery maxWidth={690}>
+            <h2>{product.brand} {product.number}</h2>
+          </MediaQuery>
+          <MediaQuery maxWidth={690}>
+            <div className="swipe-guide flex jc-c ai-c">
+              <i className="fas fa-arrow-left"></i>
+              <h1>{this.state.front ? 'Front' : 'Back'}</h1>
+              <i className="fas fa-arrow-right"></i>
+            </div>
+          </MediaQuery>
         </div>
         <div id="builder-wrapper" className="flex">
           <div id="builder-wrapper-left">
-            <h1 className="h-wrapper">
-              <span className="brand-header">{product.brand}</span>
-              <span className="brand-number"> - {product.number}</span>
-            </h1>
-            <h2 className="h-wrapper">
-              <span className="desc-section">
-                <span className="desc-header">Quality:</span>
-                <span>{product.quality}</span>
-              </span>
-              <span className="desc-section">
-                <span className="desc-header">Material:</span>
-                <span>{product.material}</span>
-              </span>
-              <span className="desc-section">
-                <span className="desc-header">Our Rating:</span>
-                <span>{product.rating}/10</span>
-              </span>
-            </h2>
+            <MediaQuery minWidth={690}>
+              <h1 className="h-wrapper">
+                <span className="brand-header">{product.brand}</span>
+                <span className="brand-number"> - {product.number}</span>
+              </h1>
+            </MediaQuery>
+            <MediaQuery minWidth={690}>
+              <h2 className="h-wrapper">
+                <span className="desc-section">
+                  <span className="desc-header">Quality:</span>
+                  <span>{product.quality}</span>
+                </span>
+                <span className="desc-section">
+                  <span className="desc-header">Material:</span>
+                  <span>{product.material}</span>
+                </span>
+                <span className="desc-section">
+                  <span className="desc-header">Our Rating:</span>
+                  <span>{product.rating}/10</span>
+                </span>
+              </h2>
+            </MediaQuery>
             <h3 className="h-wrapper">
               <span className="color-header">Color:</span>
               <span className="color-selected">{this.state.selectedColor}</span>
@@ -142,12 +161,33 @@ class Builder extends Component {
             <div id="colors-wrapper" className="flex">
               {colors}
             </div>
+            <MediaQuery maxWidth={690}>
+              <div className="description-mobile">
+                <h3>PRODUCT DESCRIPTION</h3>
+                <hr />
+                <div className="desc-section-wrapper flex jc-sb fw-w">
+                  <span className="desc-section">
+                    <span className="desc-header">Quality:</span>
+                    <span>{product.quality}</span>
+                  </span>
+                  <span className="desc-section">
+                    <span className="desc-header">Material:</span>
+                    <span>{product.material}</span>
+                  </span>
+                  <span className="desc-section">
+                    <span className="desc-header">Our Rating:</span>
+                    <span>{product.rating}/10</span>
+                  </span>
+                </div>
+                <h3>ORDER DETAILS</h3>
+              </div>
+            </MediaQuery>
             <hr />
             <h4 className="h-wrapper">
               <span className="quantity-header">Quantity:</span>
               <input type="text" value={this.state.quantity} onChange={this.updateQuantity} />
             </h4>
-            <div id="color-updater-wrapper" className="flex">
+            <div id="color-updater-wrapper" className="flex fw-w">
               <ColorUpdater label="Front" location="front" numColors={this.state.frontColors}
                 decrimentColor={this.decrimentColor} incrimentColor={this.incrimentColor} />
               <ColorUpdater label="Back" location="back" numColors={this.state.backColors}
@@ -159,7 +199,12 @@ class Builder extends Component {
             </div>
             <hr />
             <h5 className="section-h">Sizing:</h5>
-            <SizeForm edit={true} form={this.state} updateSize={this.updateSize} size="large" />
+            <MediaQuery minWidth={550}>
+              <SizeForm edit={true} form={this.state} updateSize={this.updateSize} size="large" />
+            </MediaQuery>
+            <MediaQuery maxWidth={550}>
+              <SizeForm edit={true} form={this.state} updateSize={this.updateSize} size="medium" />
+            </MediaQuery>
             <hr />
             <h5 className="section-h">Total:</h5>
             {this.state.showZip ? (
@@ -213,22 +258,32 @@ class Builder extends Component {
                 </div>
               </div>
             )}
+            <MediaQuery maxWidth={690}>
+              <hr />
+            </MediaQuery>
+            <MediaQuery maxWidth={690}>
+              <div className="button-wrapper">
+                <button className="add-to-cart-button" onClick={this.addToCart}>ADD TO CART</button>
+              </div>
+            </MediaQuery>
           </div>
           <div id="builder-wrapper-right">
-            <div id="side-buttons" className="flex fd-c">
-              <span className={!this.state.shownSide ? "side-button active" : "side-button"}>
-                <span onClick={() => this.toggleShownSide()}>
-                  <img src={getAsset('front-side-button')} />
-                  <h1>FRONT</h1>
+            <MediaQuery minWidth={690}>
+              <div id="side-buttons" className="flex fd-c">
+                <span className={!this.state.shownSide ? "side-button active" : "side-button"}>
+                  <span onClick={() => this.toggleShownSide()}>
+                    <img src={getAsset('front-side-button')} />
+                    <h1>FRONT</h1>
+                  </span>
                 </span>
-              </span>
-              <span className={this.state.shownSide ? "side-button active" : "side-button"}>
-                <span onClick={() => this.toggleShownSide()}>
-                  <img src={getAsset('back-side-button')} />
-                  <h1>BACK</h1>
+                <span className={this.state.shownSide ? "side-button active" : "side-button"}>
+                  <span onClick={() => this.toggleShownSide()}>
+                    <img src={getAsset('back-side-button')} />
+                    <h1>BACK</h1>
+                  </span>
                 </span>
-              </span>
-            </div>
+              </div>
+            </MediaQuery>
             <div id="add-logo-button">
               <span onClick={() => document.getElementById('inputButton').click()} className="flex fd-c ai-c">
                 <i className="fas fa-plus-circle"></i>
@@ -236,27 +291,51 @@ class Builder extends Component {
               </span>
               <input id="inputButton" type="file" accept="image/x-png,image/jpeg" onChange={this.storeFile} />
             </div>
-            <div className="non-swipe">
-              <div className="product-image-wrapper flex jc-c"
-                style={this.state.shownSide ? {"zIndex": 1} : {"zIndex": 0}}>
-                <div id="back-side">
-                  <img src={this.state.product.images[this.state.selectedHex][1]} />
-                  <PrintArea uploaded={this.state.uploaded.back} removeImage={this.removeImage} printArea={this.state.product.printArea}
-                    saveEdits={this.saveEdits} side="back" toggle={this.toggle} dragging={this.state.dragging} />
+            <MediaQuery maxWidth={690}>
+              <SwipeableViews resistance disabled={this.state.dragging} onChangeIndex={() => {this.toggle('front'); this.toggleShownSide()}}>
+                <div className="product-image-wrapper flex jc-c"
+                  style={this.state.shownSide ? {"zIndex": 0} : {"zIndex": 1}}>
+                  <div id="front-side">
+                    <img src={this.state.product.images[this.state.selectedHex][0]} />
+                    <PrintArea uploaded={this.state.uploaded.front} removeImage={this.removeImage} printArea={this.state.product.printArea}
+                      saveEdits={this.saveEdits} side="front" toggle={this.toggle} dragging={this.state.dragging} />
+                  </div>
+                </div>
+                <div className="product-image-wrapper flex jc-c"
+                  style={this.state.shownSide ? {"zIndex": 1} : {"zIndex": 0}}>
+                  <div id="back-side">
+                    <img src={this.state.product.images[this.state.selectedHex][1]} />
+                    <PrintArea uploaded={this.state.uploaded.back} removeImage={this.removeImage} printArea={this.state.product.printArea}
+                      saveEdits={this.saveEdits} side="back" toggle={this.toggle} dragging={this.state.dragging} />
+                  </div>
+                </div>
+              </SwipeableViews>
+            </MediaQuery>
+            <MediaQuery minWidth={690}>
+              <div className="non-swipe">
+                <div className="product-image-wrapper flex jc-c"
+                  style={this.state.shownSide ? {"zIndex": 1} : {"zIndex": 0}}>
+                  <div id="back-side">
+                    <img src={this.state.product.images[this.state.selectedHex][1]} />
+                    <PrintArea uploaded={this.state.uploaded.back} removeImage={this.removeImage} printArea={this.state.product.printArea}
+                      saveEdits={this.saveEdits} side="back" toggle={this.toggle} dragging={this.state.dragging} />
+                  </div>
+                </div>
+                <div className="product-image-wrapper flex jc-c"
+                  style={this.state.shownSide ? {"zIndex": 0} : {"zIndex": 1}}>
+                  <div id="front-side">
+                    <img src={this.state.product.images[this.state.selectedHex][0]} />
+                    <PrintArea uploaded={this.state.uploaded.front} removeImage={this.removeImage} printArea={this.state.product.printArea}
+                      saveEdits={this.saveEdits} side="front" toggle={this.toggle} dragging={this.state.dragging} />
+                  </div>
                 </div>
               </div>
-              <div className="product-image-wrapper flex jc-c"
-                style={this.state.shownSide ? {"zIndex": 0} : {"zIndex": 1}}>
-                <div id="front-side">
-                  <img src={this.state.product.images[this.state.selectedHex][0]} />
-                  <PrintArea uploaded={this.state.uploaded.front} removeImage={this.removeImage} printArea={this.state.product.printArea}
-                    saveEdits={this.saveEdits} side="front" toggle={this.toggle} dragging={this.state.dragging} />
-                </div>
-              </div>
-            </div>
+            </MediaQuery>
           </div>
         </div>
-        <div className="bottom-space"></div>
+        <MediaQuery minWidth={690}>
+          <div className="bottom-space"></div>
+        </MediaQuery>
         <WaitIndicator message="Preparing your cart..." waiting={this.state.waiting} />
         <MainFooter />
       </div>
