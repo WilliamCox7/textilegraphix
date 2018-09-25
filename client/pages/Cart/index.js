@@ -3,8 +3,10 @@ import { getAsset } from '../../modules';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import NumberFormat from 'react-number-format';
+import MediaQuery from 'react-responsive';
 import SizeForm from '../../components/SizeForm';
 import MainFooter from '../../components/MainFooter';
+import SwipeableViews from 'react-swipeable-views';
 import * as methods from './methods';
 import { removeOrder } from '../../reducers/cart';
 import { initializeBuilder } from '../../reducers/builder';
@@ -53,56 +55,111 @@ class Cart extends Component {
             </div>
             <h1 className="location-header">{locationText}</h1>
             <div className="sizes-price flex">
-              <SizeForm form={order} updateSize={this.updOrder} size="medium" />
-              <div id={`price-box-wrapper-${i}`} className="price-box-wrapper" onClick={() => this.extendPrice(i)}>
-                <div id={`blue-arrow-${i}`} className="blue-arrow"></div>
-                <div className="price flex">
-                  <div id={`price-typical-${i}`} className="price-typical">
-                    <h1>Cost Per Item:</h1>
-                    <h3>XS-XL</h3>
-                    <h2 className="space-below">
-                      <NumberFormat value={order.totalPerShirt} displayType={'text'}
-                        thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
-                    </h2>
-                    <h1>Total Cost:</h1>
-                    <h2>
-                      <NumberFormat value={order.total} displayType={'text'}
-                        thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} />
-                    </h2>
-                  </div>
-                  <div className="price-extended flex fw-w">
-                    <div className="corner flex fd-c jc-c">
-                      <h3>2XL</h3>
-                      <h4>
-                        <NumberFormat value={Number(order.totalPerShirt) + order.sizeOffsets.XL2} displayType={'text'}
+              <MediaQuery minWidth={690}>
+                <SizeForm edit={true} form={order} updateSize={this.updOrder} size="medium" />
+              </MediaQuery>
+              <MediaQuery maxWidth={689}>
+                <SizeForm edit={true} form={order} updateSize={this.updOrder} size="small" />
+              </MediaQuery>
+              <MediaQuery minWidth={480}>
+                <div id={`price-box-wrapper-${i}`} className="price-box-wrapper" onClick={() => this.extendPrice(i)}>
+                  <div id={`blue-arrow-${i}`} className="blue-arrow"></div>
+                  <div className="price flex">
+                    <div id={`price-typical-${i}`} className="price-typical">
+                      <h1>Cost Per Item:</h1>
+                      <h3>XS-XL</h3>
+                      <h2 className="space-below">
+                        <NumberFormat value={order.totalPerShirt} displayType={'text'}
                           thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
-                      </h4>
+                      </h2>
+                      <h1>Total Cost:</h1>
+                      <h2>
+                        <NumberFormat value={order.total} displayType={'text'}
+                          thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} />
+                      </h2>
                     </div>
-                    <div className="corner flex fd-c jc-c">
-                      <h3>3XL</h3>
-                      <h4>
-                        <NumberFormat value={Number(order.totalPerShirt) + order.sizeOffsets.XL3} displayType={'text'}
-                          thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
-                      </h4>
-                    </div>
-                    <div className="corner flex fd-c jc-c">
-                      <h3>4XL</h3>
-                      <h4>
-                        <NumberFormat value={Number(order.totalPerShirt) + order.sizeOffsets.XL4} displayType={'text'}
-                          thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
-                      </h4>
-                    </div>
-                    <div className="corner flex fd-c jc-c">
-                      <h3>5XL</h3>
-                      <h4>
-                        <NumberFormat value={Number(order.totalPerShirt) + order.sizeOffsets.XL5} displayType={'text'}
-                          thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
-                      </h4>
+                    <div className="price-extended flex fw-w">
+                      <div className="corner flex fd-c jc-c">
+                        <h3>2XL</h3>
+                        <h4>
+                          <NumberFormat value={Number(order.totalPerShirt) + order.sizeOffsets.XL2} displayType={'text'}
+                            thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
+                        </h4>
+                      </div>
+                      <div className="corner flex fd-c jc-c">
+                        <h3>3XL</h3>
+                        <h4>
+                          <NumberFormat value={Number(order.totalPerShirt) + order.sizeOffsets.XL3} displayType={'text'}
+                            thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
+                        </h4>
+                      </div>
+                      <div className="corner flex fd-c jc-c">
+                        <h3>4XL</h3>
+                        <h4>
+                          <NumberFormat value={Number(order.totalPerShirt) + order.sizeOffsets.XL4} displayType={'text'}
+                            thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
+                        </h4>
+                      </div>
+                      <div className="corner flex fd-c jc-c">
+                        <h3>5XL</h3>
+                        <h4>
+                          <NumberFormat value={Number(order.totalPerShirt) + order.sizeOffsets.XL5} displayType={'text'}
+                            thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
+                        </h4>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </MediaQuery>
             </div>
+            <MediaQuery maxWidth={480}>
+              <div className="price-box-wrapper-mobile flex jc-sb">
+                <div className="flex">
+                  <span>
+                    <h1>Cost Per Item:</h1>
+                    <h3>XS-XL</h3>
+                  </span>
+                  <h2 className="space-left">
+                    <NumberFormat value={order.totalPerShirt} displayType={'text'}
+                      thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
+                  </h2>
+                </div>
+                <div className="flex">
+                  <span>
+                    <div className="flex">
+                      <h3>2XL</h3>
+                      <h3 className="space-left">
+                        <NumberFormat value={Number(order.totalPerShirt) + order.sizeOffsets.XL2} displayType={'text'}
+                          thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
+                      </h3>
+                    </div>
+                    <div className="flex">
+                      <h3>3XL</h3>
+                      <h3 className="space-left">
+                        <NumberFormat value={Number(order.totalPerShirt) + order.sizeOffsets.XL3} displayType={'text'}
+                          thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
+                      </h3>
+                    </div>
+                  </span>
+                  <span className="space-left">
+                    <div className="flex">
+                      <h3>4XL</h3>
+                      <h3 className="space-left">
+                        <NumberFormat value={Number(order.totalPerShirt) + order.sizeOffsets.XL4} displayType={'text'}
+                          thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
+                      </h3>
+                    </div>
+                    <div className="flex">
+                      <h3>5XL</h3>
+                      <h3 className="space-left">
+                        <NumberFormat value={Number(order.totalPerShirt) + order.sizeOffsets.XL5} displayType={'text'}
+                          thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
+                      </h3>
+                    </div>
+                  </span>
+                </div>
+              </div>
+            </MediaQuery>
           </div>
           <div className="card-actions flex fd-c">
             <span className="action-icon flex fd-c ai-c" onClick={() => this.removeOrder(order.guid)}>
@@ -122,8 +179,17 @@ class Cart extends Component {
       <div id="Cart">
         <div className="page-nav flex jc-sb">
           <h1 className="page-header">MY CART</h1>
-          <button onClick={() => this.props.history.push('/checkout')}>CHECKOUT</button>
+          <MediaQuery minWidth={490}>
+            <button onClick={() => this.props.history.push('/checkout')}>CHECKOUT</button>
+          </MediaQuery>
         </div>
+        <MediaQuery maxWidth={489}>
+          <div className="swipe-guide flex jc-c ai-c">
+            <i className="fas fa-arrow-left"></i>
+            <h1>{this.state.shownSide ? 'Back' : 'Front'}</h1>
+            <i className="fas fa-arrow-right"></i>
+          </div>
+        </MediaQuery>
         <div id="cart-wrapper" className="flex">
           <div id="cart-wrapper-left">
             <div id="orders-in-cart">
@@ -154,30 +220,43 @@ class Cart extends Component {
           </div>
           {orders.length ? (
             <div id="cart-wrapper-right">
-              <div id="side-buttons" className="flex fd-c">
-                <span className={!this.state.shownSide ? "side-button active" : "side-button"}>
-                  <span onClick={() => this.toggleShownSide()}>
-                    <img src={getAsset('front-side-button')} />
-                    <h1>FRONT</h1>
+              <MediaQuery minWidth={490}>
+                <div id="side-buttons" className="flex fd-c">
+                  <span className={!this.state.shownSide ? "side-button active" : "side-button"}>
+                    <span onClick={() => this.toggleShownSide()}>
+                      <img src={getAsset('front-side-button')} />
+                      <h1>FRONT</h1>
+                    </span>
                   </span>
-                </span>
-                <span className={this.state.shownSide ? "side-button active" : "side-button"}>
-                  <span onClick={() => this.toggleShownSide()}>
-                    <img src={getAsset('back-side-button')} />
-                    <h1>BACK</h1>
+                  <span className={this.state.shownSide ? "side-button active" : "side-button"}>
+                    <span onClick={() => this.toggleShownSide()}>
+                      <img src={getAsset('back-side-button')} />
+                      <h1>BACK</h1>
+                    </span>
                   </span>
-                </span>
-              </div>
-              <div id="mockup-wrapper">
-                {!this.state.shownSide ? (
-                  <img src={display ? orders[this.state.selected].mockup[0] : ''} />
-                ) : (
-                  <img src={display ? orders[this.state.selected].mockup[1] : ''} />
-                )}
-              </div>
+                </div>
+              </MediaQuery>
+              <MediaQuery minWidth={490}>
+                <div id="mockup-wrapper">
+                  {!this.state.shownSide ? (
+                    <img src={display ? orders[this.state.selected].mockup[0] : ''} />
+                  ) : (
+                    <img src={display ? orders[this.state.selected].mockup[1] : ''} />
+                  )}
+                </div>
+              </MediaQuery>
+              <MediaQuery maxWidth={489}>
+                <SwipeableViews resistance onChangeIndex={this.toggleShownSide}>
+                  <div id="mockup-wrapper-front">
+                    <img src={orders[this.state.selected].mockup[0]} />
+                  </div>
+                  <div id="mockup-wrapper-back">
+                    <img src={orders[this.state.selected].mockup[1]} />
+                  </div>
+                </SwipeableViews>
+              </MediaQuery>
             </div>
           ) : null}
-
         </div>
         <div className="bottom-space"></div>
         <MainFooter />

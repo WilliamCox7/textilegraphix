@@ -6,8 +6,8 @@ class SizeForm extends Component {
 
   constructor(props) {
     super(props);
-    let width = props.size === 'large' ? 97 : 55;
-    let limit = props.size === 'large' ? 485 : 270;
+    let width = getWidth(props.size);
+    let limit = getLimit(props.size);
     this.state = {
       position: 0 - width,
       width: width,
@@ -32,7 +32,7 @@ class SizeForm extends Component {
   render() {
 
     let marginLeft = this.state.position + "px";
-    let maxWidth = this.props.size === 'large' ? "388px" : "222px";
+    let maxWidth = getMaxWidth(this.props.size);
     let className = `SizeForm flex ai-fe ${this.props.size}`;
 
     return (
@@ -136,6 +136,36 @@ class SizeForm extends Component {
         </div>
       </div>
     );
+  }
+}
+
+function getWidth(size) {
+  if (size === 'small') {
+    return 42;
+  } else if (size === 'medium') {
+    return 55;
+  } else if (size === 'large') {
+    return 97;
+  }
+}
+
+function getLimit(size) {
+  if (size === 'small') {
+    return 164;
+  } else if (size === 'medium') {
+    return 270;
+  } else if (size === 'large') {
+    return 485;
+  }
+}
+
+function getMaxWidth(size) {
+  if (size === 'small') {
+    return 168;
+  } else if (size === 'medium') {
+    return 222;
+  } else if (size === 'large') {
+    return 388;
   }
 }
 

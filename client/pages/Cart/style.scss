@@ -20,6 +20,24 @@
       -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
       box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
     }
+    @media(max-width: 490px) {
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+    }
+  }
+  .swipe-guide {
+    padding: 10px;
+    width: 100px;
+    margin: auto;
+    h1 {
+      padding: 0px 10px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    i {
+      font-size: 18px;
+    }
   }
   #cart-wrapper {
     width: 100%;
@@ -27,21 +45,57 @@
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.16);
     border-radius: 10px;
     border: solid 1px #DEDEDE;
+    @media(max-width: 1310px) {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: reverse;
+      -ms-flex-direction: column-reverse;
+      flex-direction: column-reverse;
+      border: none;
+      border-radius: 0px;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+    }
     #cart-wrapper-left {
       padding: 30px 0px;
       width: 50%;
       border-right: solid 1px #DEDEDE;
       background: #FAFAFA;
+      @media(max-width: 1310px) {
+        width: 100%;
+        border: none;
+        -webkit-box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.16);
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.16);
+        border-radius: 10px;
+      }
+      @media(max-width: 770px) {
+        width: 100vw;
+        margin-left: -40px;
+        border-radius: 0px;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        background: white;
+      }
       #orders-in-cart {
         height: 480px;
         padding: 0px 30px;
         width: 100%;
         overflow-y: scroll;
+        @media(max-width: 530px) {
+          padding: 0px 10px;
+        }
+        @media(max-width: 490px) {
+          height: auto;
+          padding-bottom: 10px;
+        }
         .order {
           margin-bottom: 15px;
           i.fa-arrow-right {
             color: #FAFAFA;
             margin-right: 20px;
+            @media(max-width: 689px) {
+              margin-right: 10px;
+              font-size: 14px;
+            }
           }
           .sizes-card {
             -webkit-box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.12);
@@ -52,26 +106,52 @@
             border-radius: 5px;
             padding-right: 180px;
             width: 100%;
+            @media(max-width: 689px) {
+              padding-right: 124px;
+            }
+            @media(max-width: 530px) {
+              padding: 5px 116px 5px 8px;
+            }
+            @media(max-width: 480px) {
+              padding: 5px 8px;
+            }
             .card-header {
               span {
                 margin: 0px 6px;
+                @media(max-width: 689px) {
+                  font-size: 10px;
+                }
               }
               .brand-header {
                 font-size: 15px;
                 color: #363636;
                 font-weight: bold;
                 margin-bottom: 5px;
+                @media(max-width: 689px) {
+                  font-size: 10px;
+                }
               }
               .color-header {
                 font-size: 15px;
                 color: #363636;
+                @media(max-width: 689px) {
+                  font-size: 10px;
+                }
               }
             }
             .location-header {
               font-size: 13px;
               color: #363636;
+              @media(max-width: 689px) {
+                font-size: 9px;
+              }
             }
             .sizes-price {
+              .SizeForm {
+                @media(max-width: 480px) {
+                  margin: auto;
+                }
+              }
               .price-box-wrapper {
                 cursor: pointer;
                 overflow: hidden;
@@ -84,6 +164,9 @@
                 right: 0;
                 -webkit-transition: max-width 0.5s ease;
                 transition: max-width 0.5s ease;
+                @media(max-width: 689px) {
+                  max-width: 116px;
+                }
                 .blue-arrow {
                   width: 10px;
                   height: 10px;
@@ -97,6 +180,11 @@
                   transform: rotate(45deg);
                   -webkit-transition: left 0.5s ease;
                   transition: left 0.5s ease;
+                  @media(max-width: 689px) {
+                    width: 8px;
+                    height: 8px;
+                    left: 3px;
+                  }
                 }
               }
               .price {
@@ -123,12 +211,19 @@
                   font-size: 14px;
                   color: white;
                   margin-bottom: 8px;
+                  @media(max-width: 689px) {
+                    font-size: 10px;
+                    margin-bottom: 6px;
+                  }
                 }
                 h2 {
                   font-size: 18px;
                   color: white;
                   font-weight: bold;
                   margin-bottom: 8px;
+                  @media(max-width: 689px) {
+                    font-size: 13px;
+                  }
                 }
                 h2.space-below {
                   margin-bottom: 10px;
@@ -137,6 +232,9 @@
                   font-size: 10px;
                   color: white;
                   margin-bottom: 6px;
+                  @media(max-width: 689px) {
+                    font-size: 9px;
+                  }
                 }
                 h4 {
                   font-size: 13px;
@@ -144,14 +242,65 @@
                 }
               }
             }
+            .price-box-wrapper-mobile {
+              background: $main-blue;
+              width: calc(100% + 16px);
+              height: 36px;
+              margin-top: 7px;
+              margin-bottom: -5px;
+              margin-left: -8px;
+              border-bottom-left-radius: 6px;
+              border-bottom-right-radius: 6px;
+              padding: 5px 8px;
+              h1 {
+                font-size: 14px;
+                color: white;
+                margin-bottom: 8px;
+                @media(max-width: 689px) {
+                  font-size: 10px;
+                  margin-bottom: 6px;
+                }
+              }
+              h2 {
+                font-size: 18px;
+                color: white;
+                font-weight: bold;
+                margin-bottom: 8px;
+                @media(max-width: 689px) {
+                  font-size: 13px;
+                }
+              }
+              .space-left {
+                margin-left: 10px;
+              }
+              h3 {
+                font-size: 10px;
+                color: white;
+                margin-bottom: 6px;
+                @media(max-width: 689px) {
+                  font-size: 9px;
+                }
+              }
+              h4 {
+                font-size: 13px;
+                color: white;
+              }
+            }
           }
           .card-actions {
             width: 40px;
             margin-left: 20px;
+            @media(max-width: 689px) {
+              width: 30px;
+              margin-left: 10px;
+            }
             .action-icon {
               img {
                 height: 32px;
                 cursor: pointer;
+                @media(max-width: 689px) {
+                  height: 22px;
+                }
               }
               .delete-text {
                 color: $main-red;
@@ -162,6 +311,9 @@
               h1 {
                 font-size: 12px;
                 margin: 6px 10px 10px;
+                @media(max-width: 689px) {
+                  font-size: 8px;
+                }
               }
             }
           }
@@ -185,6 +337,9 @@
         box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.16);
         border-radius: 5px;
         margin: 0px 30px;
+        @media(max-width: 490px) {
+          padding: 5px;
+        }
         .total-price {
           margin-left: 15px;
           margin-right: 30px;
@@ -193,15 +348,24 @@
             font-size: 22px;
             color: #A0A0A0;
             margin-bottom: 10px;
+            @media(max-width: 490px) {
+              font-size: 12px;
+            }
           }
           .number-format {
             font-size: 40px;
             font-weight: bold;
             color: #525252;
+            @media(max-width: 490px) {
+              font-size: 22px;
+            }
             h2 {
               margin-left: 4px;
               margin-top: 27px;
               font-size: 8px;
+              @media(max-width: 490px) {
+                margin-top: 14px;
+              }
             }
           }
           #total-line {
@@ -214,10 +378,16 @@
             font-size: 11px;
             color: #A0A0A0;
             margin-bottom: 6px;
+            @media(max-width: 490px) {
+              font-size: 8px;
+            }
           }
           h2 {
             font-size: 21px;
             color: #525252;
+            @media(max-width: 490px) {
+              font-size: 12px;
+            }
           }
         }
         button {
@@ -231,13 +401,22 @@
           border-radius: 5px;
           color: white;
           border: none;
+          @media(max-width: 490px) {
+            width: 90px;
+          }
           img {
             height: 86px;
             margin-bottom: 4px;
+            @media(max-width: 490px) {
+              height: 45px;
+            }
           }
           h1 {
             font-size: 16px;
             font-weight: bold;
+            @media(max-width: 490px) {
+              font-size: 10px;
+            }
           }
         }
       }
@@ -246,6 +425,16 @@
       padding: 30px;
       width: 50%;
       position: relative;
+      @media(max-width: 1310px) {
+        width: 100%;
+        height: 580px;
+      }
+      @media(max-width: 490px) {
+        height: auto;
+      }
+      .react-swipeable-view-container > div {
+        overflow: hidden !important;
+      }
       #side-buttons {
         position: absolute;
         z-index: 2;
@@ -272,6 +461,18 @@
       #mockup-wrapper {
         width: 100%;
         text-align: center;
+        img {
+          max-width: 350px;
+          @media(max-width: 490px) {
+            width: 100%;
+          }
+        }
+      }
+      #mockup-wrapper-front, #mockup-wrapper-back {
+        width: 100%;
+        img {
+          width: 100%;
+        }
       }
     }
   }
