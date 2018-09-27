@@ -3,6 +3,7 @@ import { getAsset } from '../../modules';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import NumberFormat from 'react-number-format';
+import MediaQuery from 'react-responsive';
 import SizeForm from '../../components/SizeForm';
 import Processor from '../../components/Processor';
 import WaitIndicator from '../../components/WaitIndicator';
@@ -55,6 +56,7 @@ class Checkout extends Component {
     this.setProduct = this.setProduct.bind(this);
     this.removeOrder = this.removeOrder.bind(this);
     this.extendPrice = this.extendPrice.bind(this);
+    this.extendPriceMobile = this.extendPriceMobile.bind(this);
     this.updateInput = this.updateInput.bind(this);
     this.toggleSameAsBilling = this.toggleSameAsBilling.bind(this);
     this.updateShippingMethod = this.updateShippingMethod.bind(this);
@@ -82,66 +84,113 @@ class Checkout extends Component {
             </div>
             <h1 className="location-header">{locationText}</h1>
             <div className="sizes-price flex">
-              <SizeForm form={order} updateSize={this.updOrder} size="medium" />
-              <div id={`price-box-wrapper-${i}`} className="price-box-wrapper" onClick={() => this.extendPrice(i)}>
-                <div id={`blue-arrow-${i}`} className="blue-arrow"></div>
-                <div className="price flex">
-                  <div id={`price-typical-${i}`} className="price-typical">
-                    <h1>Cost Per Item:</h1>
-                    <h3>XS-XL</h3>
-                    <h2 className="space-below">
-                      <NumberFormat value={order.totalPerShirt} displayType={'text'}
-                        thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
-                    </h2>
-                    <h1>Total Cost:</h1>
-                    <h2>
-                      <NumberFormat value={order.total} displayType={'text'}
-                        thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} />
-                    </h2>
-                  </div>
-                  <div className="price-extended flex fw-w">
-                    <div className="corner flex fd-c jc-c">
-                      <h3>2XL</h3>
-                      <h4>
-                        <NumberFormat value={Number(order.totalPerShirt) + order.sizeOffsets.XL2} displayType={'text'}
+              <MediaQuery minWidth={690}>
+                <SizeForm form={order} updateSize={this.updOrder} size="medium" />
+              </MediaQuery>
+              <MediaQuery maxWidth={689}>
+                <SizeForm form={order} updateSize={this.updOrder} size="small" />
+              </MediaQuery>
+              <MediaQuery minWidth={480}>
+                <div id={`price-box-wrapper-${i}`} className="price-box-wrapper" onClick={() => this.extendPrice(i)}>
+                  <div id={`blue-arrow-${i}`} className="blue-arrow"></div>
+                  <div className="price flex">
+                    <div id={`price-typical-${i}`} className="price-typical">
+                      <h1>Cost Per Item:</h1>
+                      <h3>XS-XL</h3>
+                      <h2 className="space-below">
+                        <NumberFormat value={order.totalPerShirt} displayType={'text'}
                           thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
-                      </h4>
+                      </h2>
+                      <h1>Total Cost:</h1>
+                      <h2>
+                        <NumberFormat value={order.total} displayType={'text'}
+                          thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} />
+                      </h2>
                     </div>
-                    <div className="corner flex fd-c jc-c">
-                      <h3>3XL</h3>
-                      <h4>
-                        <NumberFormat value={Number(order.totalPerShirt) + order.sizeOffsets.XL3} displayType={'text'}
-                          thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
-                      </h4>
-                    </div>
-                    <div className="corner flex fd-c jc-c">
-                      <h3>4XL</h3>
-                      <h4>
-                        <NumberFormat value={Number(order.totalPerShirt) + order.sizeOffsets.XL4} displayType={'text'}
-                          thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
-                      </h4>
-                    </div>
-                    <div className="corner flex fd-c jc-c">
-                      <h3>5XL</h3>
-                      <h4>
-                        <NumberFormat value={Number(order.totalPerShirt) + order.sizeOffsets.XL5} displayType={'text'}
-                          thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
-                      </h4>
+                    <div className="price-extended flex fw-w">
+                      <div className="corner flex fd-c jc-c">
+                        <h3>2XL</h3>
+                        <h4>
+                          <NumberFormat value={Number(order.totalPerShirt) + order.sizeOffsets.XL2} displayType={'text'}
+                            thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
+                        </h4>
+                      </div>
+                      <div className="corner flex fd-c jc-c">
+                        <h3>3XL</h3>
+                        <h4>
+                          <NumberFormat value={Number(order.totalPerShirt) + order.sizeOffsets.XL3} displayType={'text'}
+                            thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
+                        </h4>
+                      </div>
+                      <div className="corner flex fd-c jc-c">
+                        <h3>4XL</h3>
+                        <h4>
+                          <NumberFormat value={Number(order.totalPerShirt) + order.sizeOffsets.XL4} displayType={'text'}
+                            thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
+                        </h4>
+                      </div>
+                      <div className="corner flex fd-c jc-c">
+                        <h3>5XL</h3>
+                        <h4>
+                          <NumberFormat value={Number(order.totalPerShirt) + order.sizeOffsets.XL5} displayType={'text'}
+                            thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
+                        </h4>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </MediaQuery>
             </div>
-          </div>
-          <div className="card-actions flex fd-c">
-            <span className="action-icon flex fd-c ai-c" onClick={() => this.removeOrder(order.guid)}>
-              <img src={getAsset('garbage')} />
-              <h1 className="delete-text">DELETE</h1>
-            </span>
-            <span className="action-icon flex fd-c ai-c" onClick={() => this.setProduct(order)}>
-              <img src={getAsset('edit-blue')} />
-              <h1 className="edit-text">EDIT</h1>
-            </span>
+            <MediaQuery maxWidth={480}>
+              <div id={`price-box-wrapper-mobile-${i}`} className="price-box-wrapper-mobile" onClick={() => this.extendPriceMobile(i)}>
+                <div id={`blue-arrow-mobile-${i}`} className="blue-arrow"></div>
+                <label id={`blue-arrow-label-${i}`}>SEE MORE</label>
+                <div className="flex">
+                  <h1>Total: </h1>
+                  <h2 className="left-space">
+                    <NumberFormat value={order.total} displayType={'text'}
+                      thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} />
+                  </h2>
+                </div>
+                <div className={`extended-sizes-wrapper-mobile flex jc-sb ${this.state.extended[i] ? 'active' : 'inactive'}`}>
+                  <span>
+                    <h3>XS-XL</h3>
+                    <h2>
+                      <NumberFormat value={order.totalPerShirt} displayType={'text'}
+                        thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
+                    </h2>
+                  </span>
+                  <span>
+                    <h3>2XL</h3>
+                    <h2>
+                      <NumberFormat value={Number(order.totalPerShirt) + order.sizeOffsets.XL2} displayType={'text'}
+                        thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
+                    </h2>
+                  </span>
+                  <span>
+                    <h3>3XL</h3>
+                    <h2>
+                      <NumberFormat value={Number(order.totalPerShirt) + order.sizeOffsets.XL3} displayType={'text'}
+                        thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
+                    </h2>
+                  </span>
+                  <span>
+                    <h3>4XL</h3>
+                    <h2>
+                      <NumberFormat value={Number(order.totalPerShirt) + order.sizeOffsets.XL4} displayType={'text'}
+                        thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
+                    </h2>
+                  </span>
+                  <span>
+                    <h3>5XL</h3>
+                    <h2>
+                      <NumberFormat value={Number(order.totalPerShirt) + order.sizeOffsets.XL5} displayType={'text'}
+                        thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
+                    </h2>
+                  </span>
+                </div>
+              </div>
+            </MediaQuery>
           </div>
         </div>
       );
@@ -156,33 +205,35 @@ class Checkout extends Component {
               {items}
             </div>
             <hr id="section-line" />
-            <div id="total-shipping-wrapper" className="flex">
-              <div className="flex">
-                <div className="total-price">
-                  <h1>Total + Shipping</h1>
-                  <div className="flex number-format">
-                    <NumberFormat value={orderTotal} displayType={'text'}
-                      thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} />
-                    <h2>Plus Tax</h2>
+            <MediaQuery minWidth={1310}>
+              <div id="total-shipping-wrapper" className="flex">
+                <div className="flex">
+                  <div className="total-price">
+                    <h1>Total + Shipping</h1>
+                    <div className="flex number-format">
+                      <NumberFormat value={orderTotal} displayType={'text'}
+                        thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} />
+                      <h2>Plus Tax</h2>
+                    </div>
+                    <hr id="total-line" />
                   </div>
-                  <hr id="total-line" />
+                  <div className="estimated-delivery flex fd-c jc-c">
+                    <h1>Estimated Delivery:</h1>
+                    <h2>{this.state.delivery}</h2>
+                  </div>
                 </div>
-                <div className="estimated-delivery flex fd-c jc-c">
-                  <h1>Estimated Delivery:</h1>
-                  <h2>{this.state.delivery}</h2>
+                <div className="checkout-buttons flex fd-c">
+                  <button className="flex ai-c jc-sb" onClick={() => this.sendOrder('buy-now', orderTotal)}>
+                    <h1>BUY NOW</h1>
+                    <img src={getAsset('buy-now-icon')} />
+                  </button>
+                  <button className="flex ai-c jc-sb" onClick={() => this.sendOrder('bill-later', orderTotal)}>
+                    <h1>BILL ME</h1>
+                    <img src={getAsset('bill-me-icon')} />
+                  </button>
                 </div>
               </div>
-              <div className="checkout-buttons flex fd-c">
-                <button className="flex ai-c jc-sb" onClick={() => this.sendOrder('buy-now', orderTotal)}>
-                  <h1>BUY NOW</h1>
-                  <img src={getAsset('buy-now-icon')} />
-                </button>
-                <button className="flex ai-c jc-sb" onClick={() => this.sendOrder('bill-later', orderTotal)}>
-                  <h1>BILL ME</h1>
-                  <img src={getAsset('bill-me-icon')} />
-                </button>
-              </div>
-            </div>
+            </MediaQuery>
             {this.state.error ? (
               <h1 className="error">{this.state.error}</h1>
             ) : null}
@@ -234,29 +285,86 @@ class Checkout extends Component {
                 onChange={(e) => this.updateInput(e, 'shipping')} />
             </div>
             <h1>Shipping Method</h1>
-            <div className="shipping-method flex ai-c" onClick={() => this.updateShippingMethod('ground')}>
-              <h3>UPS GROUND</h3>
-              {this.state.selectedShippingMethod === 'ground' ? <img src={getAsset('blue-check')} /> : <span></span>}
-              <h3>*Guaranteed {deliveryOpts.ground.month}/{deliveryOpts.ground.day} (FREE)</h3>
-            </div>
-            <div className="shipping-method flex ai-c" onClick={() => this.updateShippingMethod('3-day')}>
-              <h3>UPS 3-Day</h3>
-              {this.state.selectedShippingMethod === '3-day' ? <img src={getAsset('blue-check')} /> : <span></span>}
-              <h3>*Guaranteed {deliveryOpts.day3.month}/{deliveryOpts.day3.day} (+ $26)</h3>
-            </div>
-            <div className="shipping-method flex ai-c" onClick={() => this.updateShippingMethod('2-day')}>
-              <h3>UPS 2-Day</h3>
-              {this.state.selectedShippingMethod === '2-day' ? <img src={getAsset('blue-check')} /> : <span></span>}
-              <h3>*Guaranteed {deliveryOpts.day2.month}/{deliveryOpts.day2.day} (+ $70)</h3>
-            </div>
-            <div className="shipping-method flex ai-c" onClick={() => this.updateShippingMethod('next-day')}>
-              <h3>UPS Next Day</h3>
-              {this.state.selectedShippingMethod === 'next-day' ? <img src={getAsset('blue-check')} /> : <span></span>}
-              <h3>*Guaranteed {deliveryOpts.next.month}/{deliveryOpts.next.day} (+ $180)</h3>
+            <div id="shipping-method-wrapper">
+              <div className="shipping-method flex ai-c" onClick={() => this.updateShippingMethod('ground')}>
+                <h3>UPS GROUND</h3>
+                {this.state.selectedShippingMethod === 'ground' ? <img src={getAsset('blue-check')} /> : <span></span>}
+                <h3>*Guaranteed {deliveryOpts.ground.month}/{deliveryOpts.ground.day} (FREE)</h3>
+              </div>
+              <div className="shipping-method flex ai-c" onClick={() => this.updateShippingMethod('3-day')}>
+                <h3>UPS 3-Day</h3>
+                {this.state.selectedShippingMethod === '3-day' ? <img src={getAsset('blue-check')} /> : <span></span>}
+                <h3>*Guaranteed {deliveryOpts.day3.month}/{deliveryOpts.day3.day} (+ $26)</h3>
+              </div>
+              <div className="shipping-method flex ai-c" onClick={() => this.updateShippingMethod('2-day')}>
+                <h3>UPS 2-Day</h3>
+                {this.state.selectedShippingMethod === '2-day' ? <img src={getAsset('blue-check')} /> : <span></span>}
+                <h3>*Guaranteed {deliveryOpts.day2.month}/{deliveryOpts.day2.day} (+ $70)</h3>
+              </div>
+              <div className="shipping-method flex ai-c" onClick={() => this.updateShippingMethod('next-day')}>
+                <h3>UPS Next Day</h3>
+                {this.state.selectedShippingMethod === 'next-day' ? <img src={getAsset('blue-check')} /> : <span></span>}
+                <h3>*Guaranteed {deliveryOpts.next.month}/{deliveryOpts.next.day} (+ $180)</h3>
+              </div>
             </div>
           </div>
         </div>
-        <div className="bottom-space"></div>
+        <MediaQuery maxWidth={1310} minWidth={640}>
+          <div id="total-shipping-wrapper" className="flex">
+            <div className="flex">
+              <div className="total-price">
+                <h1>Total + Shipping</h1>
+                <div className="flex number-format">
+                  <NumberFormat value={orderTotal} displayType={'text'}
+                    thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} />
+                  <h2>Plus Tax</h2>
+                </div>
+                <hr id="total-line" />
+              </div>
+              <div className="estimated-delivery flex fd-c jc-c">
+                <h1>Estimated Delivery:</h1>
+                <h2>{this.state.delivery}</h2>
+              </div>
+            </div>
+            <div className="checkout-buttons flex fd-c">
+              <button className="flex ai-c jc-sb" onClick={() => this.sendOrder('buy-now', orderTotal)}>
+                <h1>BUY NOW</h1>
+                <img src={getAsset('buy-now-icon')} />
+              </button>
+              <button className="flex ai-c jc-sb" onClick={() => this.sendOrder('bill-later', orderTotal)}>
+                <h1>BILL ME</h1>
+                <img src={getAsset('bill-me-icon')} />
+              </button>
+            </div>
+          </div>
+        </MediaQuery>
+        <MediaQuery maxWidth={639}>
+          <div id="total-shipping-wrapper-mobile">
+            <h1>Total + Shipping</h1>
+            <div className="total-price">
+              <div className="flex jc-c number-format">
+                <NumberFormat value={orderTotal} displayType={'text'}
+                  thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} />
+                <h2>Plus Tax</h2>
+              </div>
+              <hr id="total-line" />
+            </div>
+            <div className="checkout-buttons flex jc-sb">
+              <button className="flex ai-c jc-sb" onClick={() => this.sendOrder('buy-now', orderTotal)}>
+                <h3>BUY NOW</h3>
+                <img src={getAsset('buy-now-icon')} />
+              </button>
+              <div className="divider-margin"></div>
+              <button className="flex ai-c jc-sb" onClick={() => this.sendOrder('bill-later', orderTotal)}>
+                <h3>BILL ME</h3>
+                <img src={getAsset('bill-me-icon')} />
+              </button>
+            </div>
+          </div>
+        </MediaQuery>
+        <MediaQuery minWidth={700}>
+          <div className="bottom-space"></div>
+        </MediaQuery>
         <div className="button-desc-wrapper flex">
           <div className="button-desc">
             <h1>*BILL ME LATER</h1>
@@ -266,6 +374,7 @@ class Checkout extends Component {
               discuss payment options.
             </p>
           </div>
+          <div className="divider-margin"></div>
           <div className="button-desc">
             <h1>*BUY NOW</h1>
             <p>
@@ -293,6 +402,7 @@ Checkout.prototype.calculateCost = methods.calculateCost;
 Checkout.prototype.setProduct = methods.setProduct;
 Checkout.prototype.removeOrder = methods.removeOrder;
 Checkout.prototype.extendPrice = methods.extendPrice;
+Checkout.prototype.extendPriceMobile = methods.extendPriceMobile;
 Checkout.prototype.updateInput = methods.updateInput;
 Checkout.prototype.toggleSameAsBilling = methods.toggleSameAsBilling;
 Checkout.prototype.updateShippingMethod = methods.updateShippingMethod;

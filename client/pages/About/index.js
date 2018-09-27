@@ -12,10 +12,10 @@ class About extends Component {
             <img src={getAsset('grow-business', 'jpg')} />
           </div>
           <div className="flex jc-sb copy-wrapper">
-            <div>
+            <div className="about-us">
               <h2>About us.</h2>
             </div>
-            <div>
+            <div className="about-us-copy">
               <h1>We grow businesses by creating experiences people love.</h1>
               <p>
                 Today, people embrace companies with the customer experiences that best meet their needs.

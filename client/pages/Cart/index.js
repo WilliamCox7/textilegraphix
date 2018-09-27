@@ -114,50 +114,41 @@ class Cart extends Component {
             </div>
             <MediaQuery maxWidth={480}>
               <div className="price-box-wrapper-mobile flex jc-sb">
-                <div className="flex">
-                  <span>
-                    <h1>Cost Per Item:</h1>
-                    <h3>XS-XL</h3>
-                  </span>
-                  <h2 className="space-left">
+                <span>
+                  <h3>XS-XL</h3>
+                  <h2>
                     <NumberFormat value={order.totalPerShirt} displayType={'text'}
                       thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
                   </h2>
-                </div>
-                <div className="flex">
-                  <span>
-                    <div className="flex">
-                      <h3>2XL</h3>
-                      <h3 className="space-left">
-                        <NumberFormat value={Number(order.totalPerShirt) + order.sizeOffsets.XL2} displayType={'text'}
-                          thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
-                      </h3>
-                    </div>
-                    <div className="flex">
-                      <h3>3XL</h3>
-                      <h3 className="space-left">
-                        <NumberFormat value={Number(order.totalPerShirt) + order.sizeOffsets.XL3} displayType={'text'}
-                          thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
-                      </h3>
-                    </div>
-                  </span>
-                  <span className="space-left">
-                    <div className="flex">
-                      <h3>4XL</h3>
-                      <h3 className="space-left">
-                        <NumberFormat value={Number(order.totalPerShirt) + order.sizeOffsets.XL4} displayType={'text'}
-                          thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
-                      </h3>
-                    </div>
-                    <div className="flex">
-                      <h3>5XL</h3>
-                      <h3 className="space-left">
-                        <NumberFormat value={Number(order.totalPerShirt) + order.sizeOffsets.XL5} displayType={'text'}
-                          thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
-                      </h3>
-                    </div>
-                  </span>
-                </div>
+                </span>
+                <span>
+                  <h3>2XL</h3>
+                  <h2>
+                    <NumberFormat value={Number(order.totalPerShirt) + order.sizeOffsets.XL2} displayType={'text'}
+                      thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
+                  </h2>
+                </span>
+                <span>
+                  <h3>3XL</h3>
+                  <h2>
+                    <NumberFormat value={Number(order.totalPerShirt) + order.sizeOffsets.XL3} displayType={'text'}
+                      thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
+                  </h2>
+                </span>
+                <span>
+                  <h3>4XL</h3>
+                  <h2>
+                    <NumberFormat value={Number(order.totalPerShirt) + order.sizeOffsets.XL4} displayType={'text'}
+                      thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
+                  </h2>
+                </span>
+                <span>
+                  <h3>5XL</h3>
+                  <h2>
+                    <NumberFormat value={Number(order.totalPerShirt) + order.sizeOffsets.XL5} displayType={'text'}
+                      thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={true} suffix={'ea'} />
+                  </h2>
+                </span>
               </div>
             </MediaQuery>
           </div>
