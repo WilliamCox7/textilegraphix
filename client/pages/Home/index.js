@@ -134,6 +134,7 @@ class Home extends Component {
                       <img src={getAsset('go-arrow')} />
                     </Link>
                   </div>
+                  <img id="slide-image-1" src={getAsset('slide-image-1', 'png')} />
                 </div>
                 <div className={`light-blue-background ${classes}${this.state.activeBanner === 'light-blue-background' ? ' active' : ''}`}>
                   <div>
@@ -146,6 +147,7 @@ class Home extends Component {
                       <img src={getAsset('go-arrow')} />
                     </Link>
                   </div>
+                  <img id="slide-image-2" src={getAsset('slide-image-2', 'png')} />
                 </div>
                 <div className={`pink-background ${classes}${this.state.activeBanner === 'pink-background' ? ' active' : ''}`}>
                   <div>
@@ -158,6 +160,7 @@ class Home extends Component {
                       <img src={getAsset('go-arrow')} />
                     </Link>
                   </div>
+                  <img id="slide-image-3" src={getAsset('slide-image-3', 'png')} />
                 </div>
                 <div className={`yellow-background ${classes}${this.state.activeBanner === 'yellow-background' ? ' active' : ''}`}>
                   <div>
@@ -170,6 +173,7 @@ class Home extends Component {
                       <img src={getAsset('go-arrow')} />
                     </Link>
                   </div>
+                  <img id="slide-image-4" src={getAsset('slide-image-4', 'png')} />
                 </div>
               </div>
             </MediaQuery>
@@ -186,6 +190,9 @@ class Home extends Component {
                       <img src={getAsset('go-arrow')} />
                     </Link>
                   </div>
+                  {this.state.activeBanner === 'blue-background' ? (
+                    <img id="slide-image-1" src={getAsset('slide-image-1', 'png')} />
+                  ) : null}
                 </div>
                 <div className={`light-blue-background ${classes}${this.state.activeBanner === 'light-blue-background' ? ' active' : ''}`}>
                   <div>
@@ -198,6 +205,9 @@ class Home extends Component {
                       <img src={getAsset('go-arrow')} />
                     </Link>
                   </div>
+                  {this.state.activeBanner === 'light-blue-background' ? (
+                    <img id="slide-image-2" src={getAsset('slide-image-2', 'png')} />
+                  ) : null}
                 </div>
                 <div className={`pink-background ${classes}${this.state.activeBanner === 'pink-background' ? ' active' : ''}`}>
                   <div>
@@ -210,6 +220,9 @@ class Home extends Component {
                       <img src={getAsset('go-arrow')} />
                     </Link>
                   </div>
+                  {this.state.activeBanner === 'pink-background' ? (
+                    <img id="slide-image-3" src={getAsset('slide-image-3', 'png')} />
+                  ) : null}
                 </div>
                 <div className={`yellow-background ${classes}${this.state.activeBanner === 'yellow-background' ? ' active' : ''}`}>
                   <div>
@@ -222,6 +235,9 @@ class Home extends Component {
                       <img src={getAsset('go-arrow')} />
                     </Link>
                   </div>
+                  {this.state.activeBanner === 'yellow-background' ? (
+                    <img id="slide-image-4" src={getAsset('slide-image-4', 'png')} />
+                  ) : null}
                 </div>
               </div>
             </MediaQuery>

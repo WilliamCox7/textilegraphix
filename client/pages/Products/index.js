@@ -69,6 +69,11 @@ class Products extends Component {
           );
         }
       });
+      products.push(<div className="fake-product"></div>);
+      products.push(<div className="fake-product"></div>);
+      products.push(<div className="fake-product"></div>);
+      products.push(<div className="fake-product"></div>);
+      products.push(<div className="fake-product"></div>);
     }
 
     return (

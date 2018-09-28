@@ -9,6 +9,7 @@
   #products-page-wrapper {
     #products-body-wrapper {
       margin-left: 50px;
+      width: 100%;
       min-height: calc(100vh - 358px);
       @media(max-width: 1300px) {
         margin-left: 0px;
@@ -89,12 +90,11 @@
           -ms-flex-pack: center;
           justify-content: center;
         }
-        // &:after {
-        //   content: "";
-        //   -webkit-box-flex: 1;
-        //   -ms-flex: auto;
-        //   flex: auto;
-        // }
+        .fake-product {
+          height: 0;
+          width: 200px;
+          margin: 0px 10px 40px;
+        }
       }
     }
   }

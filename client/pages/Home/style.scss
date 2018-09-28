@@ -13,6 +13,16 @@
       position: relative;
       width: 100%;
       overflow: hidden;
+      z-index: 1;
+    }
+    #banners-wrapper-mobile {
+      @media(max-width: 1240px) {
+        div {
+          &:nth-child(2) {
+            z-index: 5;
+          }
+        }
+      }
     }
     #extra-buttons-wrapper {
       position: absolute;
@@ -33,6 +43,7 @@
       bottom: 0;
       left: 40px;
       margin: auto;
+      z-index: 1;
       img {
         height: 24px;
         margin-bottom: 20px;
@@ -40,16 +51,20 @@
     }
     @media(max-width: 1240px) {
       .blue-background {
-        background: #024C70;
+        background: #628CA1;
+        z-index: 1;
       }
       .light-blue-background {
-        background: #0093D1;
+        background: #66B7D9;
+        z-index: 2;
       }
       .pink-background {
-        background: #F1635F;
+        background: #EB9896;
+        z-index: 3;
       }
       .yellow-background {
-        background: #F4D00D;
+        background: #EDD86B;
+        z-index: 4;
       }
       .vertical-banner {
         a {
@@ -66,11 +81,10 @@
       @media(max-width: 1240px) {
         min-width: 100%;
         color: white;
-      }
-      @media(max-width: 768px) {
         div {
           &:nth-child(1) {
             position: absolute;
+            z-index: 0;
             left: 40px;
             bottom: 40px;
           }
@@ -78,6 +92,50 @@
       }
       @media(max-width: 600px) {
         height: calc(100vh - 116px);
+      }
+      #slide-image-1 {
+        position: absolute;
+        bottom: 0;
+        left: -55px;
+        z-index: -1;
+        @media(max-width: 1240px) {
+          left: auto;
+          height: 90%;
+          opacity: 0.8;
+        }
+      }
+      #slide-image-2 {
+        position: absolute;
+        bottom: 0;
+        left: -55px;
+        z-index: -1;
+        @media(max-width: 1240px) {
+          left: auto;
+          height: 90%;
+          opacity: 0.8;
+        }
+      }
+      #slide-image-3 {
+        position: absolute;
+        bottom: 0;
+        right: -88px;
+        z-index: -1;
+        @media(max-width: 1240px) {
+          right: auto;
+          height: 90%;
+          opacity: 0.8;
+        }
+      }
+      #slide-image-4 {
+        position: absolute;
+        bottom: 0;
+        right: -5px;
+        z-index: -1;
+        @media(max-width: 1240px) {
+          right: auto;
+          height: 90%;
+          opacity: 0.8;
+        }
       }
       h1 {
         font-size: 36px;
@@ -104,6 +162,9 @@
         background: white;
         border: solid 2px #707070;
         margin-top: 20px;
+        @media(max-width: 1240px) {
+          border: solid 2px white;
+        }
         img {
           width: 65px;
         }
@@ -119,16 +180,16 @@
     }
     @media(min-width: 1240px) {
       .blue-background.vertical-banner.active {
-        background: #024C70;
+        background: #024c70ab;
       }
       .light-blue-background.vertical-banner.active {
-        background: #0093D1;
+        background: #0093d1b0;
       }
       .pink-background.vertical-banner.active {
-        background: #F1635F;
+        background: #f1635f96;
       }
       .yellow-background.vertical-banner.active {
-        background: #F4D00D;
+        background: #f4d00d99;
       }
     }
   }
@@ -286,28 +347,6 @@
       margin: 40px auto;
       padding: 0px 20px;
     }
-    // @media(max-width: 580px) {
-    //   .tiles {
-    //     .ActionTile {
-    //       width: 140px;
-    //       min-width: 140px;
-    //       min-height: 106px;
-    //       .tile-asset {
-    //         height: 30px;
-    //       }
-    //       .tile-title {
-    //         font-size: 10px;
-    //       }
-    //       .tile-copy {
-    //         font-size: 10px;
-    //       }
-    //       .tile-button {
-    //         padding: 4px 8px;
-    //         font-size: 10px;
-    //       }
-    //     }
-    //   }
-    // }
     @media(max-width: 500px) {
       .tiles {
         .ActionTile {

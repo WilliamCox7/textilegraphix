@@ -2,10 +2,13 @@
 
 .Product {
   width: 200px;
-  margin: 0px 25.75555555px 40px;
+  margin: 0px 10px 40px;
   @media(max-width: 585px) {
     width: 150px;
-    margin: 0px 25.75555555px 20px;
+    margin: 0px 10px 20px;
+  }
+  @media(max-width: 420px) {
+    width: 130px;
   }
   cursor: pointer;
   text-decoration: none;
