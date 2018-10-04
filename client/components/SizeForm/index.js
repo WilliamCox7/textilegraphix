@@ -89,7 +89,7 @@ class SizeForm extends Component {
               )}
             </div>
             <div className="circle-display flex jc-c">
-              <label style={this.props.form.XL2 ? colored : null}>XL2</label>
+              <label style={this.props.form.XL2 ? colored : null}>2XL</label>
               {this.props.edit ? (
                 <input type="text" name="XL2" style={this.props.form.XL2 ? colored : null}
                   value={this.props.form.XL2} onChange={(e) => this.props.updateSize(e, this.state.form)} placeholder="0" />
@@ -98,7 +98,7 @@ class SizeForm extends Component {
               )}
             </div>
             <div className="circle-display flex jc-c">
-              <label style={this.props.form.XL3 ? colored : null}>XL3</label>
+              <label style={this.props.form.XL3 ? colored : null}>3XL</label>
               {this.props.edit ? (
                 <input type="text" name="XL3" style={this.props.form.XL3 ? colored : null}
                   value={this.props.form.XL3} onChange={(e) => this.props.updateSize(e, this.state.form)} placeholder="0" />
@@ -107,7 +107,7 @@ class SizeForm extends Component {
               )}
             </div>
             <div className="circle-display flex jc-c">
-              <label style={this.props.form.XL4 ? colored : null}>XL4</label>
+              <label style={this.props.form.XL4 ? colored : null}>4XL</label>
               {this.props.edit ? (
                 <input type="text" name="XL4" style={this.props.form.XL4 ? colored : null}
                   value={this.props.form.XL4} onChange={(e) => this.props.updateSize(e, this.state.form)} placeholder="0" />
@@ -116,7 +116,7 @@ class SizeForm extends Component {
               )}
             </div>
             <div className="circle-display flex jc-c">
-              <label style={this.props.form.XL5 ? colored : null}>XL5</label>
+              <label style={this.props.form.XL5 ? colored : null}>5XL</label>
               {this.props.edit ? (
                 <input type="text" name="XL5" style={this.props.form.XL5 ? colored : null}
                   value={this.props.form.XL5} onChange={(e) => this.props.updateSize(e, this.state.form)} placeholder="0" />
