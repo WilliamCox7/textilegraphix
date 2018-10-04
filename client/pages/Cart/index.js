@@ -11,6 +11,7 @@ import * as methods from './methods';
 import { removeOrder } from '../../reducers/cart';
 import { initializeBuilder } from '../../reducers/builder';
 import { setDelivery } from '../../modules';
+import { updOrder } from '../../reducers/cart';
 import './style.scss';
 
 class Cart extends Component {
@@ -273,7 +274,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   removeOrder: removeOrder,
-  initializeBuilder: initializeBuilder
+  initializeBuilder: initializeBuilder,
+  updOrder: updOrder
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Cart));

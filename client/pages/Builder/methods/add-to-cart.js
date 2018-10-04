@@ -3,6 +3,7 @@ import html2canvas from 'html2canvas';
 export default function addToCart() {
   this.toggle('waiting');
   let newState = Object.assign({}, this.state);
+  console.log(newState);
   newState.guid = createGuid();
   var front = document.getElementById("front-side");
   var back = document.getElementById("back-side");

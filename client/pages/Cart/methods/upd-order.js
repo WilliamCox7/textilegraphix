@@ -1,6 +1,6 @@
-export default function updOrder(e, order) {
+export default function updOrder(e, form) {
   if (!isNaN(e.target.value)) {
-    let updOrder = Object.assign({}, order);
+    let updOrder = Object.assign({}, form);
     updOrder[e.target.name] = Number(e.target.value);
     updOrder.quantity = 0;
     if (updOrder.XS) updOrder.quantity += updOrder.XS;

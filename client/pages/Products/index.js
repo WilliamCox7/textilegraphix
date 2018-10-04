@@ -69,11 +69,11 @@ class Products extends Component {
           );
         }
       });
-      products.push(<div className="fake-product"></div>);
-      products.push(<div className="fake-product"></div>);
-      products.push(<div className="fake-product"></div>);
-      products.push(<div className="fake-product"></div>);
-      products.push(<div className="fake-product"></div>);
+      products.push(<div className="fake-product" key="fake-1"></div>);
+      products.push(<div className="fake-product" key="fake-2"></div>);
+      products.push(<div className="fake-product" key="fake-3"></div>);
+      products.push(<div className="fake-product" key="fake-4"></div>);
+      products.push(<div className="fake-product" key="fake-5"></div>);
     }
 
     return (

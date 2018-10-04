@@ -1,6 +1,6 @@
-export default function updateSize(e) {
+export default function updateSize(e, form) {
   if (!isNaN(e.target.value)) {
-    let newState = Object.assign({}, this.state);
+    let newState = Object.assign({}, form);
     newState[e.target.name] = Number(e.target.value);
     newState.quantity = 0;
     if (newState.XS) newState.quantity += newState.XS;
