@@ -242,9 +242,11 @@ class Checkout extends Component {
                 </div>
               </div>
             </MediaQuery>
-            {this.state.error ? (
-              <h1 className="error">{this.state.error}</h1>
-            ) : null}
+            <MediaQuery minWidth={1310}>
+              {this.state.error ? (
+                <h1 className="error">{this.state.error}</h1>
+              ) : null}
+            </MediaQuery>
           </div>
           <div id="cart-wrapper-right">
             <h1>Contact Information</h1>
@@ -325,6 +327,11 @@ class Checkout extends Component {
             </div>
           </div>
         </div>
+        <MediaQuery maxWidth={1309}>
+          {this.state.error ? (
+            <h1 className="error">{this.state.error}</h1>
+          ) : null}
+        </MediaQuery>
         <MediaQuery maxWidth={1309} minWidth={640}>
           <div id="total-shipping-wrapper" className="flex">
             <div className="flex">
@@ -383,19 +390,19 @@ class Checkout extends Component {
         </MediaQuery>
         <div className="button-desc-wrapper flex">
           <div className="button-desc">
+            <h1>*BUY NOW</h1>
+            <p>
+              Upon submitting, your card will be authorized but will
+              not be charged until the order has been shipped.
+            </p>
+          </div>
+          <div className="divider-margin"></div>
+          <div className="button-desc">
             <h1>*BILL ME LATER</h1>
             <p>
               This option is only availible for orders over the amount
               of $500, upon submiting our account specialists will
               discuss payment options.
-            </p>
-          </div>
-          <div className="divider-margin"></div>
-          <div className="button-desc">
-            <h1>*BUY NOW</h1>
-            <p>
-              Upon submitting, your card will be authorized but will
-              not be charged until the order has been shipped.
             </p>
           </div>
         </div>
