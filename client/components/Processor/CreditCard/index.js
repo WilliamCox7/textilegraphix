@@ -14,13 +14,13 @@ class CreditCard extends Component {
     return (
       <div className="CreditCard">
         <img className="card-type" src={cardType} />
-        <h1>{this.props.first || 'Mack'} {this.props.last || 'Wible'}</h1>
-        <h2>Credit Card Number</h2>
+        <h4>{this.props.first || 'Mack'} {this.props.last || 'Wible'}</h4>
+        <h5>Credit Card Number</h5>
         <input className="card-input" type="text" placeholder="xxxx  xxxx  xxxx  xxxx"
           name="number" onChange={this.props.update} value={this.props.form.number} maxLength="22" />
         <div className="flex">
           <div className="expiration">
-            <h2 className="fs-18 c-white">Expiration</h2>
+            <h5 className="fs-18 c-white">Expiration</h5>
             <div className="flex">
               <input type="text" placeholder="January" name="expMonth"
                 onChange={this.props.update} value={this.props.form.expMonth} />
@@ -29,7 +29,7 @@ class CreditCard extends Component {
             </div>
           </div>
           <div className="ccv">
-            <h2>CCV</h2>
+            <h5>CCV</h5>
             <input type="text" placeholder="xxx"
               name="ccv" onChange={this.props.update} value={this.props.form.ccv} maxLength="3" />
           </div>
