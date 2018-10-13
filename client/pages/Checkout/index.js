@@ -200,6 +200,10 @@ class Checkout extends Component {
       );
     });
 
+    if (this.state.selectedShippingMethod === '3-day') orderTotal += 26;
+    else if (this.state.selectedShippingMethod === '2-day') orderTotal += 70;
+    else if (this.state.selectedShippingMethod === 'next-day') orderTotal += 180;
+
     return (
       <div id="Checkout">
         <h1 className="page-header">CHECKOUT</h1>
