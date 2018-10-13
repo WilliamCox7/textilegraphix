@@ -119,10 +119,10 @@ class Builder extends Component {
               <button className="add-to-cart-button" onClick={this.addToCart}>ADD TO CART</button>
             )}
           </MediaQuery>
-          <MediaQuery maxWidth={690}>
+          <MediaQuery maxWidth={689}>
             <h2>{product.brand} {product.number}</h2>
           </MediaQuery>
-          <MediaQuery maxWidth={690}>
+          <MediaQuery maxWidth={689}>
             <div className="swipe-guide flex jc-c ai-c">
               <i className="fas fa-arrow-left"></i>
               <h1>{this.state.front ? 'Front' : 'Back'}</h1>
@@ -161,7 +161,7 @@ class Builder extends Component {
             <div id="colors-wrapper" className="flex">
               {colors}
             </div>
-            <MediaQuery maxWidth={690}>
+            <MediaQuery maxWidth={689}>
               <div className="description-mobile">
                 <h3>PRODUCT DESCRIPTION</h3>
                 <hr />
@@ -202,7 +202,7 @@ class Builder extends Component {
             <MediaQuery minWidth={550}>
               <SizeForm edit={true} form={this.state} updateSize={this.updateSize} size="large" />
             </MediaQuery>
-            <MediaQuery maxWidth={550}>
+            <MediaQuery maxWidth={549}>
               <SizeForm edit={true} form={this.state} updateSize={this.updateSize} size="medium" />
             </MediaQuery>
             <hr />
@@ -258,10 +258,10 @@ class Builder extends Component {
                 </div>
               </div>
             )}
-            <MediaQuery maxWidth={690}>
+            <MediaQuery maxWidth={689}>
               <hr />
             </MediaQuery>
-            <MediaQuery maxWidth={690}>
+            <MediaQuery maxWidth={689}>
               <div className="add-to-cart-button-wrapper">
                 <button className="add-to-cart-button" onClick={this.addToCart}>ADD TO CART</button>
               </div>
@@ -291,7 +291,7 @@ class Builder extends Component {
               </span>
               <input id="inputButton" type="file" accept="image/x-png,image/jpeg" onChange={this.storeFile} />
             </div>
-            <MediaQuery maxWidth={690}>
+            <MediaQuery maxWidth={689}>
               <SwipeableViews resistance disabled={this.state.dragging} onChangeIndex={() => {this.toggle('front'); this.toggleShownSide()}}>
                 <div className="product-image-wrapper flex jc-c"
                   style={this.state.shownSide ? {"zIndex": 0} : {"zIndex": 1}}>

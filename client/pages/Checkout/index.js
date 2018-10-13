@@ -141,7 +141,7 @@ class Checkout extends Component {
                 </div>
               </MediaQuery>
             </div>
-            <MediaQuery maxWidth={480}>
+            <MediaQuery maxWidth={479}>
               <div id={`price-box-wrapper-mobile-${i}`} className="price-box-wrapper-mobile" onClick={() => this.extendPriceMobile(i)}>
                 <div id={`blue-arrow-mobile-${i}`} className="blue-arrow"></div>
                 <label id={`blue-arrow-label-${i}`}>SEE MORE</label>
@@ -309,7 +309,7 @@ class Checkout extends Component {
             </div>
           </div>
         </div>
-        <MediaQuery maxWidth={1310} minWidth={640}>
+        <MediaQuery maxWidth={1309} minWidth={640}>
           <div id="total-shipping-wrapper" className="flex">
             <div className="flex">
               <div className="total-price">

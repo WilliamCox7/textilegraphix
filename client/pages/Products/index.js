@@ -78,7 +78,7 @@ class Products extends Component {
 
     return (
       <div id="Products">
-        <MediaQuery maxWidth={1300}>
+        <MediaQuery maxWidth={1299}>
           <div id="product-mobile-nav-wrapper">
             <ProductNavMobile toggle={this.toggle} productBuilderInit={this.state.productBuilderInit}
               setFilter={this.setFilter} filter={this.state.filter} updateQuantity={this.updateQuantity} setSort={this.setSort}

@@ -64,7 +64,7 @@ class Processor extends Component {
               <div className="detail-container">
                 {details}
               </div>
-              <MediaQuery maxWidth={1200}>
+              <MediaQuery maxWidth={1199}>
                 <div className="message">Order Succesfully Submitted!</div>
               </MediaQuery>
               <hr />
@@ -76,7 +76,7 @@ class Processor extends Component {
                 </h4>
               </div>
               <div className="pay-now flex jc-fe">
-                <MediaQuery maxWidth={1200}>
+                <MediaQuery maxWidth={1199}>
                   <span></span>
                 </MediaQuery>
                 <button onClick={this.authorizeCreditCard}>PAY NOW</button>
@@ -84,7 +84,7 @@ class Processor extends Component {
                   <img src={getAsset('auth', 'png')} />
                 </span>
               </div>
-              <MediaQuery maxWidth={1200}>
+              <MediaQuery maxWidth={1199}>
                 <CreditCard first={this.props.first} last={this.props.last} update={this.update} form={this.state} />
               </MediaQuery>
             </div>

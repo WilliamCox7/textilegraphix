@@ -121,7 +121,7 @@ class Home extends Component {
       <div id="Home">
         <div id="banner-wrapper">
           <div className="flex">
-            <MediaQuery maxWidth={1240}>
+            <MediaQuery maxWidth={1239}>
               <div id="banners-wrapper-mobile" className="flex">
                 <div className={`blue-background ${classes}${this.state.activeBanner === 'blue-background' ? ' active' : ''}`}>
                   <div>

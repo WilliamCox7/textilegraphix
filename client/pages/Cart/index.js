@@ -113,7 +113,7 @@ class Cart extends Component {
                 </div>
               </MediaQuery>
             </div>
-            <MediaQuery maxWidth={480}>
+            <MediaQuery maxWidth={479}>
               <div className="price-box-wrapper-mobile flex jc-sb">
                 <span>
                   <h3>XS-XL</h3>

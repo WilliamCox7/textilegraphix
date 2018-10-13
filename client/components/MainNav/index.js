@@ -66,11 +66,11 @@ class MainNav extends Component {
           </div>
         </div>
         {this.state.menu ? (
-          <MediaQuery maxWidth={1020}>
+          <MediaQuery maxWidth={1019}>
             <Menu toggleMenu={this.toggleMenu} />
           </MediaQuery>
         ) : null}
-        <MediaQuery maxWidth={1020}>
+        <MediaQuery maxWidth={1019}>
           <button id="menu-button" onClick={this.toggleMenu}>MENU</button>
         </MediaQuery>
       </div>
