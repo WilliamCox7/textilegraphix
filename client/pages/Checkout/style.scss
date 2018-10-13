@@ -335,6 +335,7 @@
           font-size: 24px;
           margin-top: 10px;
           margin-bottom: 20px;
+          width: 100%;
         }
       }
       h2 {
@@ -370,6 +371,9 @@
       .same-as-billing {
         margin-left: 15px;
         cursor: pointer;
+        @media(max-width: 700px) {
+          margin: 10px 0px;
+        }
         img {
           width: 22px;
           height: 22px;

@@ -269,12 +269,20 @@ class Checkout extends Component {
             </div>
             <span className="flex">
               <h1>Shipping Information</h1>
-              <span className="same-as-billing flex ai-c" onClick={this.toggleSameAsBilling}>
-                <img src={getAsset(this.state.shipping.sameAsBilling ? 'radio-filled' : 'radio-empty')} />
-                <h2>SAME AS BILLING</h2>
-              </span>
+              <MediaQuery minWidth={700}>
+                <span className="same-as-billing flex ai-c" onClick={this.toggleSameAsBilling}>
+                  <img src={getAsset(this.state.shipping.sameAsBilling ? 'radio-filled' : 'radio-empty')} />
+                  <h2>SAME AS BILLING</h2>
+                </span>
+              </MediaQuery>
             </span>
             <div className="form-section flex fw-w">
+              <MediaQuery maxWidth={699}>
+                <span className="same-as-billing flex ai-c" onClick={this.toggleSameAsBilling}>
+                  <img src={getAsset(this.state.shipping.sameAsBilling ? 'radio-filled' : 'radio-empty')} />
+                  <h2>SAME AS BILLING</h2>
+                </span>
+              </MediaQuery>
               <input type="text" name="first" placeholder="*First" value={this.state.shipping.first}
                 onChange={(e) => this.updateInput(e, 'shipping')} />
               <input type="text" name="last" placeholder="*Last" value={this.state.shipping.last}
