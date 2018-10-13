@@ -26,6 +26,7 @@ function send(self, orderType) {
     attachments: self.prepareAttachments()
   }).then((response) => {
     if (orderType === 'bill-later') self.toggle('paymentModal');
+    else { self.props.clearCart(); }
     self.toggle('waiting');
   }).catch((error) => {
     axios.post('/error', {error: error});

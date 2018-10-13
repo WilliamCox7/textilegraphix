@@ -9,7 +9,7 @@ import Processor from '../../components/Processor';
 import WaitIndicator from '../../components/WaitIndicator';
 import MainFooter from '../../components/MainFooter';
 import * as methods from './methods';
-import { removeOrder } from '../../reducers/cart';
+import { removeOrder, clearCart } from '../../reducers/cart';
 import { initializeBuilder } from '../../reducers/builder';
 import { setDelivery, toggle, scrollToTop } from '../../modules';
 import './style.scss';
@@ -441,6 +441,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   removeOrder: removeOrder,
+  clearCart: clearCart,
   initializeBuilder: initializeBuilder
 }
 
