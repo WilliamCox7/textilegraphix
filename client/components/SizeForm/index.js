@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import { getAsset } from '../../modules';
 import './style.scss';
 
-// need to get the parent width as a parameter
-// if width of sizing form is greater than the width, remove a size
-
 class SizeForm extends Component {
 
   constructor(props) {

@@ -262,7 +262,7 @@ class Builder extends Component {
               <hr />
             </MediaQuery>
             <MediaQuery maxWidth={690}>
-              <div className="button-wrapper">
+              <div className="add-to-cart-button-wrapper">
                 <button className="add-to-cart-button" onClick={this.addToCart}>ADD TO CART</button>
               </div>
             </MediaQuery>
