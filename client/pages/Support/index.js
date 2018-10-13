@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import Actions from '../../components/Actions';
 import MainFooter from '../../components/MainFooter';
+import { scrollToTop } from '../../modules';
 import './style.scss';
 
 class Support extends Component {
+
+  componentDidMount() {
+    scrollToTop();
+  }
+
   render() {
     return (
       <div id="Support">

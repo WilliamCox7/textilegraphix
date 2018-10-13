@@ -11,7 +11,7 @@ import MainFooter from '../../components/MainFooter';
 import * as methods from './methods';
 import { removeOrder } from '../../reducers/cart';
 import { initializeBuilder } from '../../reducers/builder';
-import { setDelivery, toggle } from '../../modules';
+import { setDelivery, toggle, scrollToTop } from '../../modules';
 import './style.scss';
 
 class Checkout extends Component {
@@ -63,6 +63,10 @@ class Checkout extends Component {
     this.toggle = this.toggle.bind(this);
     this.sendOrder = this.sendOrder.bind(this);
     this.prepareAttachments = this.prepareAttachments.bind(this);
+  }
+
+  componentDidMount() {
+    scrollToTop();
   }
 
   render() {

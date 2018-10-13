@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
-import { getAsset } from '../../modules';
+import { getAsset, scrollToTop } from '../../modules';
 import MainFooter from '../../components/MainFooter';
 import './style.scss';
 
 class About extends Component {
+
+  componentDidMount() {
+    scrollToTop();
+  }
+
   render() {
     return (
       <div id="About">

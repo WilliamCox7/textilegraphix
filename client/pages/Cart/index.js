@@ -10,7 +10,7 @@ import SwipeableViews from 'react-swipeable-views';
 import * as methods from './methods';
 import { removeOrder } from '../../reducers/cart';
 import { initializeBuilder } from '../../reducers/builder';
-import { setDelivery } from '../../modules';
+import { setDelivery, scrollToTop } from '../../modules';
 import { updOrder } from '../../reducers/cart';
 import './style.scss';
 
@@ -32,6 +32,10 @@ class Cart extends Component {
     this.setProduct = this.setProduct.bind(this);
     this.removeOrder = this.removeOrder.bind(this);
     this.extendPrice = this.extendPrice.bind(this);
+  }
+
+  componentDidMount() {
+    scrollToTop();
   }
 
   render() {

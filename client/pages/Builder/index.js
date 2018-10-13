@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import NumberFormat from 'react-number-format';
 import SwipeableViews from 'react-swipeable-views';
-import { getAsset, toggle, setDelivery } from '../../modules';
+import { getAsset, toggle, setDelivery, scrollToTop } from '../../modules';
 import * as methods from './methods';
 import ColorUpdater from '../../components/ColorUpdater';
 import SizeForm from '../../components/SizeForm';
@@ -75,6 +75,7 @@ class Builder extends Component {
   }
 
   componentDidMount() {
+    scrollToTop();
     if (this.state.product) this.calculateCost();
   }
 

@@ -5,7 +5,7 @@ import SeparatorLine from '../../components/SeparatorLine';
 import Benefits from '../../components/Benefits';
 import Actions from '../../components/Actions';
 import HomeFooter from '../../components/HomeFooter';
-import { getAsset } from '../../modules';
+import { getAsset, scrollToTop } from '../../modules';
 import './style.scss';
 
 class Home extends Component {
@@ -24,6 +24,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
+    scrollToTop();
     if (window.innerWidth > 1240) this.startBannerInterval();
     else this.startBannerIntervalMobile();
     if (window.innerWidth <= 669) this.startOurWorkInterval();

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getAsset, toggle, calculateTotalCost, updateCost } from '../../modules';
+import { getAsset, toggle, calculateTotalCost, updateCost, scrollToTop } from '../../modules';
 import ProductNav from '../../components/ProductNav';
 import Product from '../../components/Product';
 import ColorUpdater from '../../components/ColorUpdater';
@@ -46,6 +46,10 @@ class Products extends Component {
     this.sortAtoZ = this.sortAtoZ.bind(this);
     this.sortBestSeller = this.sortBestSeller.bind(this);
     this.sortDefault = this.sortDefault.bind(this);
+  }
+
+  componentDidMount() {
+    scrollToTop();
   }
 
   render() {
