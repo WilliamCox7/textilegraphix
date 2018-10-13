@@ -2,38 +2,77 @@ import React, { Component } from 'react';
 import { getAsset } from '../../modules';
 import './style.scss';
 
+// need to get the parent width as a parameter
+// if width of sizing form is greater than the width, remove a size
+
 class SizeForm extends Component {
 
   constructor(props) {
     super(props);
-    let width = getWidth(props.size);
-    let limit = getLimit(props.size);
     this.state = {
-      position: 0 - width,
-      width: width,
-      limit: limit,
+      position: 1,
+      limit: 9,
+      maxWidth: 'none',
       form: props.form ? props.form : undefined
     }
     this.moveLeft = this.moveLeft.bind(this);
     this.moveRight = this.moveRight.bind(this);
+    this.determineMaxWidth = this.determineMaxWidth.bind(this);
+  }
+
+  componentDidMount() {
+    this.determineMaxWidth(true);
+    window.addEventListener('resize', this.determineMaxWidth);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.determineMaxWidth);
+  }
+
+  determineMaxWidth(mounting) {
+    let forms = document.getElementsByClassName('SizeForm');
+    for (var i = 0; i < forms.length; i++) {
+      let form = forms[i];
+      let formWidth = form.getBoundingClientRect().width;
+      let imgWrapper = form.firstElementChild;
+      let imgWrapperMargin = (imgWrapper.currentStyle || window.getComputedStyle(imgWrapper)).marginLeft;
+      let imgWrapperLength = imgWrapper.getBoundingClientRect().width + (convertPxToNum(imgWrapperMargin) * 2);
+      let circleDisplay = form.children[1].firstElementChild.firstElementChild;
+      let inputMargin = (circleDisplay.currentStyle || window.getComputedStyle(circleDisplay)).marginLeft;
+      let inputWidth = circleDisplay.getBoundingClientRect().width + (convertPxToNum(inputMargin) * 2);
+      let surroundingLength = (imgWrapperLength * 2) + inputWidth;
+      let remainingSpace = formWidth - surroundingLength;
+      let numOfInputs = Math.floor(remainingSpace / inputWidth);
+      if (numOfInputs > 9) numOfInputs = 9;
+      let maxWidth = (numOfInputs * inputWidth);
+      let newState = Object.assign({}, this.state);
+      newState.maxWidth = maxWidth;
+      newState.moveAmount = inputWidth;
+      newState.limit = numOfInputs;
+      if (mounting && numOfInputs >= 9) newState.position = 0;
+      this.setState(newState);
+    }
   }
 
   moveLeft() {
-    if (this.state.position < 0) {
-      this.setState({position: this.state.position + this.state.width});
+    let leftMostPos = 0;
+    if (this.state.position > leftMostPos) {
+      let prevPos = this.state.position - 1;
+      this.setState({position: prevPos});
     }
   }
 
   moveRight() {
-    if (this.state.position > (0 - this.state.limit)) {
-      this.setState({position: this.state.position - this.state.width});
+    let rightMostPos = 9 - this.state.limit;
+    if (this.state.position < rightMostPos) {
+      let nextPos = this.state.position + 1;
+      this.setState({position: nextPos});
     }
   }
 
   render() {
 
-    let marginLeft = this.state.position + "px";
-    let maxWidth = getMaxWidth(this.props.size);
+    let marginLeft = -(this.state.position * this.state.moveAmount) + "px";
     let className = `SizeForm flex ai-fe ${this.props.size}`;
 
     return (
@@ -41,7 +80,7 @@ class SizeForm extends Component {
         <div className="img-wrapper flex ai-c">
           <img src={getAsset('left-arrow')} onClick={this.moveLeft} />
         </div>
-        <div className="form-wrapper" style={{maxWidth: maxWidth}}>
+        <div className="form-wrapper" style={{maxWidth: this.state.maxWidth}}>
           <div id="move-frame" className="flex ai-fe" style={{marginLeft: marginLeft}}>
             <div className="circle-display flex jc-c">
               <label style={this.props.form.XS ? colored : null}>XS</label>
@@ -129,7 +168,7 @@ class SizeForm extends Component {
         <div className="img-wrapper flex ai-c">
           <img src={getAsset('right-arrow')} onClick={this.moveRight} />
         </div>
-        <div className="form-wrapper flex ai-fe" style={{maxWidth: maxWidth}}>
+        <div className="form-wrapper total-form-wrapper flex ai-fe">
           <div className="circle-display total-circle flex jc-c">
             <label>TOTAL</label>
             <div className="circle-quantity flex jc-c ai-c">{this.props.form.quantity}</div>
@@ -140,34 +179,8 @@ class SizeForm extends Component {
   }
 }
 
-function getWidth(size) {
-  if (size === 'small') {
-    return 42;
-  } else if (size === 'medium') {
-    return 55;
-  } else if (size === 'large') {
-    return 97;
-  }
-}
-
-function getLimit(size) {
-  if (size === 'small') {
-    return 164;
-  } else if (size === 'medium') {
-    return 270;
-  } else if (size === 'large') {
-    return 485;
-  }
-}
-
-function getMaxWidth(size) {
-  if (size === 'small') {
-    return 168;
-  } else if (size === 'medium') {
-    return 222;
-  } else if (size === 'large') {
-    return 388;
-  }
+function convertPxToNum(str) {
+  return Number(str.substring(0, str.length - 2));
 }
 
 const colored = {

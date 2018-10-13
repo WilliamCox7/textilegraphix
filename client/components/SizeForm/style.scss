@@ -1,47 +1,34 @@
 @import "../../vars.scss";
 
-.SizeForm.large {
-  height: 128px;
+.SizeForm {
+  .form-content-wrapper {
+    height: 100%;
+  }
   .img-wrapper {
-    height: 91px;
     margin: 0px 10px;
+    min-width: 12px;
     img {
-      height: 22px;
       cursor: pointer;
     }
   }
   .circle-display {
-    margin: 0px 10px;
     position: relative;
     label {
-      color: #525252;
       position: absolute;
-      font-size: 22px;
-      top: -28px;
+      color: #525252;
+    }
+    h1, input[type="text"], .circle-quantity {
+      -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+      box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+      border-radius: 50%;
+      text-align: center;
+      border: none;
+      background: white;
     }
     h1 {
-      -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-      box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-      border-radius: 50%;
-      width: 77px;
-      height: 77px;
-      text-align: center;
-      border: none;
-      background: white;
-      font-size: 29px;
-      padding: 25px;
       color: #525252;
     }
-    input[type="text"], .circle-quantity {
-      -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-      box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-      border-radius: 50%;
-      width: 75px;
-      height: 75px;
-      text-align: center;
-      border: none;
-      background: white;
-      font-size: 29px;
+    input[type="text"] {
       padding: 0px;
     }
     .circle-quantity {
@@ -54,15 +41,45 @@
     }
   }
   .form-wrapper {
-    max-width: 388px;
     overflow: hidden;
-    padding: 8px 0px;
     height: 100%;
+    padding: 8px 0px;
+  }
+  .form-wrapper.total-form-wrapper {
+
   }
   #move-frame {
     height: 100%;
     -webkit-transition: margin-left 0.4s ease;
     transition: margin-left 0.4s ease;
+  }
+}
+
+.SizeForm.large {
+  height: 128px;
+  .img-wrapper {
+    height: 91px;
+    img {
+      height: 22px;
+    }
+  }
+  .circle-display {
+    margin: 0px 8px;
+    label {
+      font-size: 22px;
+      top: -28px;
+    }
+    h1 {
+      width: 77px;
+      height: 77px;
+      font-size: 29px;
+      padding: 25px;
+    }
+    input[type="text"], .circle-quantity {
+      width: 75px;
+      height: 75px;
+      font-size: 29px;
+    }
   }
 }
 
@@ -70,63 +87,27 @@
   height: 77px;
   .img-wrapper {
     height: 61px;
-    margin: 0px 10px;
     img {
       height: 22px;
-      cursor: pointer;
     }
   }
   .circle-display {
     margin: 0px 5px;
-    position: relative;
     label {
-      color: #525252;
-      position: absolute;
       font-size: 12px;
       top: -14px;
     }
     h1 {
-      -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-      box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-      border-radius: 50%;
       width: 45px;
       height: 45px;
-      text-align: center;
-      border: none;
-      background: white;
       font-size: 16px;
       padding: 15px;
-      color: #525252;
     }
     input[type="text"], .circle-quantity {
-      -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-      box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-      border-radius: 50%;
       width: 43px;
       height: 43px;
-      text-align: center;
-      border: none;
-      background: white;
       font-size: 16px;
     }
-    .circle-quantity {
-      color: $main-blue;
-    }
-  }
-  .total-circle {
-    label {
-      color: $main-blue;
-    }
-  }
-  .form-wrapper {
-    overflow: hidden;
-    padding: 8px 0px;
-    height: 100%;
-  }
-  #move-frame {
-    height: 100%;
-    -webkit-transition: margin-left 0.4s ease;
-    transition: margin-left 0.4s ease;
   }
 }
 
@@ -134,62 +115,26 @@
   height: 62px;
   .img-wrapper {
     height: 49px;
-    margin: 0px 10px;
     img {
       height: 16px;
-      cursor: pointer;
     }
   }
   .circle-display {
     margin: 0px 5px;
-    position: relative;
     label {
-      color: #525252;
-      position: absolute;
       font-size: 9px;
       top: -14px;
     }
     h1 {
-      -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-      box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-      border-radius: 50%;
       width: 32px;
       height: 32px;
-      text-align: center;
-      border: none;
-      background: white;
       font-size: 12px;
       padding: 10px;
-      color: #525252;
     }
     input[type="text"], .circle-quantity {
-      -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-      box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-      border-radius: 50%;
       width: 30px;
       height: 30px;
-      text-align: center;
-      border: none;
-      background: white;
       font-size: 12px;
     }
-    .circle-quantity {
-      color: $main-blue;
-    }
-  }
-  .total-circle {
-    label {
-      color: $main-blue;
-    }
-  }
-  .form-wrapper {
-    overflow: hidden;
-    padding: 8px 0px;
-    height: 100%;
-  }
-  #move-frame {
-    height: 100%;
-    -webkit-transition: margin-left 0.4s ease;
-    transition: margin-left 0.4s ease;
   }
 }
