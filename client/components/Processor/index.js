@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import NumberFormat from 'react-number-format';
 import MediaQuery from 'react-responsive';
 import { clearCart } from '../../reducers/cart';
-import { getAsset } from '../../modules';
+import { getAsset, toggle } from '../../modules';
 import './style.scss';
 
 import CreditCard from './CreditCard';
@@ -18,28 +18,48 @@ class Processor extends Component {
       number: '',
       expMonth: '',
       expYear: '',
-      ccv: ''
+      ccv: '',
+      taxExempt: false
     }
     this.update = this.update.bind(this);
+    this.toggle = this.toggle.bind(this);
     this.authorizeCreditCard = this.authorizeCreditCard.bind(this);
   }
 
   render() {
 
     let total = this.props.total;
-    let tax = total * 0.06;
+    let tax = total * (this.state.taxExempt ? 0 : 0.06);
 
     let details = this.props.orders.map((order, i) => {
       return (
         <div className="detail" key={i}>
-          <div className="flex ai-c">
-            <h5>{order.product.brand} {order.product.number}</h5>
-            <span className="dash">-</span><h6>{order.selectedColor}</h6>
-          </div>
-          <h7>
-            <NumberFormat value={order.total} displayType={'text'}
-              thousandSeparator={true} prefix={'$'} decimalScale={2} />
-          </h7>
+          <MediaQuery minWidth={580}>
+            <div className="deets-wrapper">
+              <div className="flex ai-c">
+                <h5>{order.product.brand} {order.product.number}</h5>
+                <span className="dash">-</span><h6>{order.selectedColor}</h6>
+              </div>
+              <h7>
+                <NumberFormat value={order.total} displayType={'text'}
+                  thousandSeparator={true} prefix={'$'} decimalScale={2} />
+              </h7>
+            </div>
+          </MediaQuery>
+          <MediaQuery maxWidth={579}>
+            <div className="deets-wrapper">
+              <div className="flex ai-c jc-sb">
+                <div className="flex fd-c">
+                  <h5>{order.product.brand} {order.product.number} -</h5>
+                  <h6>{order.selectedColor}</h6>
+                </div>
+                <h3>
+                  <NumberFormat value={order.total} displayType={'text'}
+                    thousandSeparator={true} prefix={'$'} decimalScale={2} />
+                </h3>
+              </div>
+            </div>
+          </MediaQuery>
         </div>
       );
     });
@@ -51,30 +71,64 @@ class Processor extends Component {
             <img src={getAsset('close-x-blue')} onClick={() => this.props.toggle('paymentModal')} />
           </div>
           <MediaQuery minWidth={1200}>
-            <div className="message">Order Succesfully Submitted!</div>
+            <div className="message">{/*Order Succesfully Submitted!*/}</div>
           </MediaQuery>
           <div className="flex">
             <div className="side left">
-              <h1>TOTAL</h1>
-              <h2>
-                <NumberFormat value={total + tax} displayType={'text'}
-                  thousandSeparator={true} prefix={'$'} decimalScale={2} />
-              </h2>
-              <h1>DETAILS</h1>
-              <div className="detail-container">
-                {details}
-              </div>
-              <MediaQuery maxWidth={1199}>
-                <div className="message">Order Succesfully Submitted!</div>
+              <MediaQuery minWidth={580}>
+                <div className="info-wrapper">
+                  <h1>TOTAL</h1>
+                  <h2>
+                    <NumberFormat value={total + tax} displayType={'text'}
+                      thousandSeparator={true} prefix={'$'} decimalScale={2} />
+                  </h2>
+                  <h1>DETAILS</h1>
+                  <div className="detail-container">
+                    {details}
+                  </div>
+                  <hr />
+                  <div className="tax-amount flex">
+                    <h3>TAX</h3>
+                    <h4>
+                      <NumberFormat value={tax} displayType={'text'}
+                        thousandSeparator={true} prefix={'$'} decimalScale={2} />
+                    </h4>
+                  </div>
+                </div>
               </MediaQuery>
-              <hr />
-              <div className="tax-amount flex">
-                <h3>TAX</h3>
-                <h4>
-                  <NumberFormat value={tax} displayType={'text'}
-                    thousandSeparator={true} prefix={'$'} decimalScale={2} />
-                </h4>
-              </div>
+              <MediaQuery maxWidth={579}>
+                <div className="info-wrapper-mobile">
+                  <h4>DETAILS</h4>
+                  <hr />
+                  <div className="detail-container">
+                    {details}
+                  </div>
+                  <div className="tax-amount flex jc-sb">
+                    <div className="flex ai-c">
+                      <h6>TAX</h6>
+                      <span className="tax-exempt flex ai-c" onClick={() => this.toggle('taxExempt')}>
+                        <img src={getAsset(this.state.taxExempt ? 'radio-filled' : 'radio-empty')} />
+                        <label>Tax Exempt</label>
+                      </span>
+                    </div>
+                    <h3>
+                      <NumberFormat value={tax} displayType={'text'}
+                        thousandSeparator={true} prefix={'$'} decimalScale={2} />
+                    </h3>
+                  </div>
+                  <hr />
+                  <div className="flex jc-sb">
+                    <h4>TOTAL</h4>
+                    <h2>
+                      <NumberFormat value={total + tax} displayType={'text'}
+                        thousandSeparator={true} prefix={'$'} decimalScale={2} />
+                    </h2>
+                  </div>
+                </div>
+              </MediaQuery>
+              <MediaQuery maxWidth={1199}>
+                <CreditCard first={this.props.first} last={this.props.last} update={this.update} form={this.state} />
+              </MediaQuery>
               <div className="pay-now flex jc-fe">
                 <MediaQuery maxWidth={1199}>
                   <span></span>
@@ -84,9 +138,6 @@ class Processor extends Component {
                   <img src={getAsset('auth', 'png')} />
                 </span>
               </div>
-              <MediaQuery maxWidth={1199}>
-                <CreditCard first={this.props.first} last={this.props.last} update={this.update} form={this.state} />
-              </MediaQuery>
             </div>
             <MediaQuery minWidth={1200}>
               <div className="side right">
@@ -105,6 +156,7 @@ class Processor extends Component {
 }
 
 Processor.prototype.update = method.update;
+Processor.prototype.toggle = toggle;
 Processor.prototype.authorizeCreditCard = method.authorizeCreditCard;
 
 const mapDispatchToProps = {

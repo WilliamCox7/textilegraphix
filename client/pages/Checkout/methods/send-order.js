@@ -16,21 +16,24 @@ export default function sendOrder(orderType, orderTotal) {
 
 function send(self, orderType) {
   self.toggle('waiting');
-  axios.post('/order', {
-    to: self.state.contact.email,
-    from: `${self.state.billing.first} ${self.state.billing.last}`,
-    order: '<p>TEST</p>',
-    // order: ReactDOMServer.renderToStaticMarkup(new OrderHtml({
-    //   form: self.state, products: self.props.cart.orders
-    // }).render()),
-    attachments: self.prepareAttachments()
-  }).then((response) => {
-    if (orderType === 'bill-later') self.toggle('paymentModal');
-    else { self.props.clearCart(); }
-    self.toggle('waiting');
-  }).catch((error) => {
-    axios.post('/error', {error: error});
-  });
+  if (orderType === 'buy-now') {
+    self.toggle('paymentModal');
+  } else {
+    axios.post('/order', {
+      to: self.state.contact.email,
+      from: `${self.state.billing.first} ${self.state.billing.last}`,
+      order: '<p>TEST</p>',
+      // order: ReactDOMServer.renderToStaticMarkup(new OrderHtml({
+      //   form: self.state, products: self.props.cart.orders
+      // }).render()),
+      attachments: self.prepareAttachments()
+    }).then((response) => {
+      self.props.clearCart();
+      self.toggle('waiting');
+    }).catch((error) => {
+      axios.post('/error', {error: error});
+    });
+  }
 }
 
 function valid(form) {

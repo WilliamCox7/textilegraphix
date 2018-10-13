@@ -41,6 +41,7 @@
       text-align: right;
       color: $main-green;
       font-size: 26px;
+      height: 26px;
       @media(max-width: 1200px) {
         text-align: left;
       }
@@ -52,6 +53,26 @@
       padding: 20px 70px 20px 40px;
       @media(max-width: 1200px) {
         padding: 20px;
+        width: 100%;
+      }
+      @media(max-width: 580px) {
+        padding: 0px;
+      }
+      .info-wrapper-mobile {
+        margin-top: 10px;
+        hr {
+          border: none;
+          border-bottom: solid 1px #F2F2F2;
+        }
+        .tax-exempt {
+          margin-left: 10px;
+          cursor: pointer;
+          img {
+            width: 18px;
+            height: 18px;
+            margin-right: 4px;
+          }
+        }
       }
       h1 {
         margin-bottom: 12px;
@@ -74,11 +95,17 @@
       }
       h3 {
         font-size: 18px;
-        color: #58595B;
-      }
-      h3 {
-        font-size: 18px;
         color: $main-blue;
+      }
+      h4 {
+        font-size: 18px;
+      }
+      label {
+        font-size: 10px;
+        color: #363636;
+      }
+      h6 {
+        font-size: 14px;
       }
       .detail-container {
         height: 176px;
@@ -92,6 +119,11 @@
         }
         .detail {
           margin-bottom: 4px;
+          @media(max-width: 580px) {
+            padding-bottom: 10px;
+            border-bottom: solid 1px #F2F2F2;
+            margin-bottom: 10px;
+          }
           h5 {
             font-size: 14px;
             color: #58595B;
@@ -114,6 +146,9 @@
       .tax-amount {
         h3 {
           margin-right: 20px;
+          @media(max-width: 580px) {
+            margin-right: 0px;
+          }
         }
         h1.fs-18.c-black-2 {
           margin-right: 20px;
@@ -127,12 +162,14 @@
           -ms-flex-pack: justify;
           justify-content: space-between;
           margin-bottom: 40px;
+          margin-top: 364px;
           span, button, .auth-image {
             width: 33.33%;
           }
         }
         @media(max-width: 580px) {
           height: 50px;
+          margin-top: 228px;
         }
         .auth-image {
           text-align: right;
