@@ -105,7 +105,7 @@
             position: relative;
             border-radius: 5px;
             padding-right: 180px;
-            width: 100%;
+            width: calc(100% - 85px);
             @media(max-width: 689px) {
               padding-right: 124px;
             }
