@@ -81,6 +81,8 @@
       @media(max-width: 1240px) {
         min-width: 100%;
         color: white;
+        -webkit-transition: none;
+        transition: none;
         div {
           &:nth-child(1) {
             position: absolute;

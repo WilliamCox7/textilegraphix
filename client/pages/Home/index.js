@@ -5,6 +5,7 @@ import SeparatorLine from '../../components/SeparatorLine';
 import Benefits from '../../components/Benefits';
 import Actions from '../../components/Actions';
 import HomeFooter from '../../components/HomeFooter';
+import Carousel from '../../components/Carousel';
 import { getAsset, scrollToTop } from '../../modules';
 import './style.scss';
 
@@ -18,21 +19,25 @@ class Home extends Component {
       windowWidth: window.innerWidth
     }
     this.startOurWorkInterval = this.startOurWorkInterval.bind(this);
-    this.startBannerIntervalMobile = this.startBannerIntervalMobile.bind(this);
     this.startBannerInterval = this.startBannerInterval.bind(this);
     this.handleIntervals = this.handleIntervals.bind(this);
+    this.clearIntervals = this.clearIntervals.bind(this);
     this.controlVideo = this.controlVideo.bind(this);
   }
 
   componentDidMount() {
     scrollToTop();
     if (window.innerWidth > 1240) this.startBannerInterval();
-    else this.startBannerIntervalMobile();
     if (window.innerWidth <= 669) this.startOurWorkInterval();
     window.addEventListener('resize', this.handleIntervals);
   }
 
   componentWillUnmount() {
+    this.clearIntervals();
+    window.removeEventListener('resize', this.handleIntervals);
+  }
+
+  clearIntervals() {
     if (this.bannerInterval !== undefined) {
       clearInterval(this.bannerInterval);
       this.bannerInterval = undefined;
@@ -45,7 +50,6 @@ class Home extends Component {
       clearInterval(this.ourWorkInterval);
       this.ourWorkInterval = undefined;
     }
-    window.removeEventListener('resize', this.handleIntervals);
   }
 
   handleIntervals() {
@@ -82,19 +86,6 @@ class Home extends Component {
     }, 4000);
   }
 
-  startBannerIntervalMobile() {
-    this.bannerIntervalMobile = setInterval(() => {
-      let bannersWrapper = document.getElementById('banners-wrapper-mobile');
-      let displayedBanner = bannersWrapper.firstChild;
-      let clonedNode = displayedBanner.cloneNode(true);
-      displayedBanner.style.marginRight = `-${window.innerWidth}px`;
-      setTimeout(() => {
-        bannersWrapper.append(clonedNode);
-        displayedBanner.remove();
-      }, 500);
-    }, 4000);
-  }
-
   startOurWorkInterval() {
     this.ourWorkInterval = setInterval(() => {
       let imgsWrapper = document.getElementById('imgs-wrapper');
@@ -128,58 +119,60 @@ class Home extends Component {
           <div className="flex">
             <MediaQuery maxWidth={1239}>
               <div id="banners-wrapper-mobile" className="flex">
-                <div className={`blue-background ${classes}${this.state.activeBanner === 'blue-background' ? ' active' : ''}`}>
-                  <div>
-                    <h1>SHIRTS</h1>
-                    <h2>T-Shirts</h2>
-                    <h2>Long Sleeve</h2>
-                    <h2>Tank Tops</h2>
-                    <h2>& more</h2>
-                    <Link to="/products">
-                      <img src={getAsset('go-arrow')} />
-                    </Link>
+                <Carousel>
+                  <div className={`blue-background ${classes}${this.state.activeBanner === 'blue-background' ? ' active' : ''}`}>
+                    <div>
+                      <h1>SHIRTS</h1>
+                      <h2>T-Shirts</h2>
+                      <h2>Long Sleeve</h2>
+                      <h2>Tank Tops</h2>
+                      <h2>& more</h2>
+                      <Link to="/products">
+                        <img src={getAsset('go-arrow')} />
+                      </Link>
+                    </div>
+                    <img id="slide-image-1" src={getAsset('slide-image-1', 'png')} />
                   </div>
-                  <img id="slide-image-1" src={getAsset('slide-image-1', 'png')} />
-                </div>
-                <div className={`light-blue-background ${classes}${this.state.activeBanner === 'light-blue-background' ? ' active' : ''}`}>
-                  <div>
-                    <h1>OUTERWEAR</h1>
-                    <h2>Hoodies</h2>
-                    <h2>Sweaters</h2>
-                    <h2>Jackets</h2>
-                    <h2>& more</h2>
-                    <Link to="/products">
-                      <img src={getAsset('go-arrow')} />
-                    </Link>
+                  <div className={`light-blue-background ${classes}${this.state.activeBanner === 'light-blue-background' ? ' active' : ''}`}>
+                    <div>
+                      <h1>OUTERWEAR</h1>
+                      <h2>Hoodies</h2>
+                      <h2>Sweaters</h2>
+                      <h2>Jackets</h2>
+                      <h2>& more</h2>
+                      <Link to="/products">
+                        <img src={getAsset('go-arrow')} />
+                      </Link>
+                    </div>
+                    <img id="slide-image-2" src={getAsset('slide-image-2', 'png')} />
                   </div>
-                  <img id="slide-image-2" src={getAsset('slide-image-2', 'png')} />
-                </div>
-                <div className={`pink-background ${classes}${this.state.activeBanner === 'pink-background' ? ' active' : ''}`}>
-                  <div>
-                    <h1>HEADWEAR</h1>
-                    <h2>Truckers</h2>
-                    <h2>Dad Hats</h2>
-                    <h2>Baseball Caps</h2>
-                    <h2>& more</h2>
-                    <Link to="/products">
-                      <img src={getAsset('go-arrow')} />
-                    </Link>
+                  <div className={`pink-background ${classes}${this.state.activeBanner === 'pink-background' ? ' active' : ''}`}>
+                    <div>
+                      <h1>HEADWEAR</h1>
+                      <h2>Truckers</h2>
+                      <h2>Dad Hats</h2>
+                      <h2>Baseball Caps</h2>
+                      <h2>& more</h2>
+                      <Link to="/products">
+                        <img src={getAsset('go-arrow')} />
+                      </Link>
+                    </div>
+                    <img id="slide-image-3" src={getAsset('slide-image-3', 'png')} />
                   </div>
-                  <img id="slide-image-3" src={getAsset('slide-image-3', 'png')} />
-                </div>
-                <div className={`yellow-background ${classes}${this.state.activeBanner === 'yellow-background' ? ' active' : ''}`}>
-                  <div>
-                    <h1>PERFORMANCE</h1>
-                    <h2>Workout Wear</h2>
-                    <h2>Sports Wear</h2>
-                    <h2>Full Sublimation</h2>
-                    <h2>& more</h2>
-                    <Link to="/products">
-                      <img src={getAsset('go-arrow')} />
-                    </Link>
+                  <div className={`yellow-background ${classes}${this.state.activeBanner === 'yellow-background' ? ' active' : ''}`}>
+                    <div>
+                      <h1>PERFORMANCE</h1>
+                      <h2>Workout Wear</h2>
+                      <h2>Sports Wear</h2>
+                      <h2>Full Sublimation</h2>
+                      <h2>& more</h2>
+                      <Link to="/products">
+                        <img src={getAsset('go-arrow')} />
+                      </Link>
+                    </div>
+                    <img id="slide-image-4" src={getAsset('slide-image-4', 'png')} />
                   </div>
-                  <img id="slide-image-4" src={getAsset('slide-image-4', 'png')} />
-                </div>
+                </Carousel>
               </div>
             </MediaQuery>
             <MediaQuery minWidth={1240}>

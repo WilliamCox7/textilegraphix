@@ -1,0 +1,29 @@
+@import "../../vars.scss";
+
+.Carousel {
+  width: 100%;
+  .carousel-wrapper {
+    width: 100%;
+    overflow: hidden;
+    .carousel-container {
+      .slot {
+        min-width: 100vw;
+      }
+    }
+    #stagnate {
+      -webkit-transition: 'none';
+      transition: 'none';
+      margin-left: 0px;
+    }
+    #not-sliding {
+      -webkit-transition: margin-left 0.5s ease;
+      transition: margin-left 0.5s ease;
+      margin-left: -100%;
+    }
+    #dir-prev {
+      -webkit-transition: 'none';
+      transition: 'none';
+      margin-left: -200%;
+    }
+  }
+}
