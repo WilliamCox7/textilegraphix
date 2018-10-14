@@ -20,6 +20,7 @@ class Home extends Component {
     this.startOurWorkInterval = this.startOurWorkInterval.bind(this);
     this.startBannerIntervalMobile = this.startBannerIntervalMobile.bind(this);
     this.startBannerInterval = this.startBannerInterval.bind(this);
+    this.handleIntervals = this.handleIntervals.bind(this);
     this.controlVideo = this.controlVideo.bind(this);
   }
 
@@ -28,28 +29,7 @@ class Home extends Component {
     if (window.innerWidth > 1240) this.startBannerInterval();
     else this.startBannerIntervalMobile();
     if (window.innerWidth <= 669) this.startOurWorkInterval();
-    window.addEventListener('resize', () => {
-      if (window.innerWidth <= 669 && this.ourWorkInterval === undefined) {
-        this.startOurWorkInterval();
-      } else if (window.innerWidth > 669 && this.ourWorkInterval !== undefined) {
-        clearInterval(this.ourWorkInterval);
-        this.ourWorkInterval = undefined;
-      }
-      if (window.innerWidth > 1240 && this.bannerInterval === undefined) {
-        this.startBannerInterval();
-        if (this.bannerIntervalMobile !== undefined) {
-          clearInterval(this.bannerIntervalMobile);
-          this.bannerIntervalMobile = undefined;
-        }
-      } else if (window.innerWidth <= 1240 && this.bannerIntervalMobile === undefined) {
-        this.startBannerIntervalMobile();
-        if (this.bannerInterval !== undefined) {
-          clearInterval(this.bannerInterval);
-          this.bannerInterval = undefined;
-        }
-      }
-      this.setState({windowWidth: window.innerWidth});
-    });
+    window.addEventListener('resize', this.handleIntervals);
   }
 
   componentWillUnmount() {
@@ -65,6 +45,30 @@ class Home extends Component {
       clearInterval(this.ourWorkInterval);
       this.ourWorkInterval = undefined;
     }
+    window.removeEventListener('resize', this.handleIntervals);
+  }
+
+  handleIntervals() {
+    if (window.innerWidth <= 669 && this.ourWorkInterval === undefined) {
+      this.startOurWorkInterval();
+    } else if (window.innerWidth > 669 && this.ourWorkInterval !== undefined) {
+      clearInterval(this.ourWorkInterval);
+      this.ourWorkInterval = undefined;
+    }
+    if (window.innerWidth > 1240 && this.bannerInterval === undefined) {
+      this.startBannerInterval();
+      if (this.bannerIntervalMobile !== undefined) {
+        clearInterval(this.bannerIntervalMobile);
+        this.bannerIntervalMobile = undefined;
+      }
+    } else if (window.innerWidth <= 1240 && this.bannerIntervalMobile === undefined) {
+      this.startBannerIntervalMobile();
+      if (this.bannerInterval !== undefined) {
+        clearInterval(this.bannerInterval);
+        this.bannerInterval = undefined;
+      }
+    }
+    this.setState({windowWidth: window.innerWidth});
   }
 
   startBannerInterval() {
