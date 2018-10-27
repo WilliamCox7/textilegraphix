@@ -10,11 +10,10 @@ import toggleSameAsBilling from './toggle-same-as-billing';
 import getDeliveryOptions from './get-delivery-options';
 import updateShippingMethod from './update-shipping-method';
 import sendOrder from './send-order';
-import prepareAttachments from './prepare-attachments';
 
 export {
   buildCardSubHeader, updOrder, updateInput, toggleSameAsBilling,
   calculateCost, removeOrder, setProduct, extendPrice,
-  getDeliveryOptions, updateShippingMethod, sendOrder, prepareAttachments,
+  getDeliveryOptions, updateShippingMethod, sendOrder,
   extendPriceMobile
 }

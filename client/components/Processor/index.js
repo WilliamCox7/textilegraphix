@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import NumberFormat from 'react-number-format';
 import MediaQuery from 'react-responsive';
 import { clearCart } from '../../reducers/cart';
-import { getAsset, toggle } from '../../modules';
+import { getAsset, toggle, sendConfirmation } from '../../modules';
 import './style.scss';
 
 import CreditCard from './CreditCard';
@@ -23,6 +23,7 @@ class Processor extends Component {
     }
     this.update = this.update.bind(this);
     this.toggle = this.toggle.bind(this);
+    this.sendConfirmation = this.sendConfirmation.bind(this);
     this.authorizeCreditCard = this.authorizeCreditCard.bind(this);
   }
 
@@ -158,10 +159,17 @@ class Processor extends Component {
 
 Processor.prototype.update = method.update;
 Processor.prototype.toggle = toggle;
+Processor.prototype.sendConfirmation = sendConfirmation;
 Processor.prototype.authorizeCreditCard = method.authorizeCreditCard;
 
 const mapDispatchToProps = {
   clearCart: clearCart
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(Processor));
+const mapStateToProps = (state) => {
+  return {
+    cart: state.cart
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Processor));

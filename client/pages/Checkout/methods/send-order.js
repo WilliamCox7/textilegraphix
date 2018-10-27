@@ -1,6 +1,6 @@
 import axios from 'axios';
 import ReactDOMServer from "react-dom/server";
-import { renderEmail } from '../../../modules';
+import { sendConfirmation } from '../../../modules';
 
 export default function sendOrder(orderType, orderTotal) {
   if (valid(this.state)) {
@@ -18,18 +18,9 @@ function send(self, orderType) {
   self.toggle('waiting');
   if (orderType === 'buy-now') {
     self.toggle('paymentModal');
+    self.props.storeForm(self.state);
   } else {
-    axios.post('/order', {
-      to: self.state.contact.email,
-      from: `${self.state.billing.first} ${self.state.billing.last}`,
-      order: renderEmail(self.state, self.props.cart.orders),
-      attachments: self.prepareAttachments()
-    }).then((response) => {
-      self.props.clearCart();
-      self.toggle('waiting');
-    }).catch((error) => {
-      axios.post('/error', {error: error});
-    });
+    self.sendConfirmation(self.state, self.props.cart.orders);
   }
 }
 

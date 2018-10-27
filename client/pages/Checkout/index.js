@@ -9,9 +9,9 @@ import Processor from '../../components/Processor';
 import WaitIndicator from '../../components/WaitIndicator';
 import MainFooter from '../../components/MainFooter';
 import * as methods from './methods';
-import { removeOrder, clearCart } from '../../reducers/cart';
+import { removeOrder, clearCart, storeForm } from '../../reducers/cart';
 import { initializeBuilder } from '../../reducers/builder';
-import { setDelivery, toggle, scrollToTop, createGuid } from '../../modules';
+import { setDelivery, toggle, scrollToTop, createGuid, sendConfirmation } from '../../modules';
 import './style.scss';
 
 class Checkout extends Component {
@@ -63,7 +63,7 @@ class Checkout extends Component {
     this.updateShippingMethod = this.updateShippingMethod.bind(this);
     this.toggle = this.toggle.bind(this);
     this.sendOrder = this.sendOrder.bind(this);
-    this.prepareAttachments = this.prepareAttachments.bind(this);
+    this.sendConfirmation = this.sendConfirmation.bind(this);
   }
 
   componentDidMount() {
@@ -431,7 +431,7 @@ Checkout.prototype.updateInput = methods.updateInput;
 Checkout.prototype.toggleSameAsBilling = methods.toggleSameAsBilling;
 Checkout.prototype.updateShippingMethod = methods.updateShippingMethod;
 Checkout.prototype.sendOrder = methods.sendOrder;
-Checkout.prototype.prepareAttachments = methods.prepareAttachments;
+Checkout.prototype.sendConfirmation = sendConfirmation;
 Checkout.prototype.toggle = toggle;
 
 const mapStateToProps = (state) => {
@@ -443,6 +443,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   removeOrder: removeOrder,
   clearCart: clearCart,
+  storeForm: storeForm,
   initializeBuilder: initializeBuilder
 }
 

@@ -6,8 +6,11 @@ import updateCost from './update-cost';
 import setDelivery from './set-delivery';
 import createGuid from './create-guid';
 import renderEmail from './render-email';
+import sendConfirmation from './send-confirmation';
+import prepareAttachments from './prepare-attachments';
 
 export {
   getAsset, toggle, calculateTotalCost, scrollToTop,
-  updateCost, setDelivery, createGuid, renderEmail
+  updateCost, setDelivery, createGuid, renderEmail,
+  sendConfirmation, prepareAttachments
 }

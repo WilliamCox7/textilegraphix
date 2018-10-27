@@ -2,13 +2,15 @@ const ADD = 'cart/ADD';
 const UPD = 'cart/UPD';
 const REM = 'cart/REM';
 const CLEAR = 'cart/CLEAR';
+const FORM = 'cart/FORM';
 
 let orders = localStorage.getItem('orders');
 orders = JSON.parse(orders);
 if (!orders) orders = [];
 
 const initState = {
-  orders: orders
+  orders: orders,
+  form: undefined
 };
 
 export default function reducer(state=initState, action) {
@@ -41,6 +43,11 @@ export default function reducer(state=initState, action) {
     case CLEAR:
       localStorage.removeItem('orders');
       editState.orders = [];
+      editState.form = undefined;
+      return Object.assign({}, state, editState);
+
+    case FORM:
+      editState.form = action.payload;
       return Object.assign({}, state, editState);
 
     default: return state;
@@ -72,5 +79,12 @@ export function removeOrder(guid) {
 export function clearCart() {
   return {
     type: CLEAR
+  }
+}
+
+export function storeForm(form) {
+  return {
+    type: FORM,
+    payload: form
   }
 }

@@ -1,6 +1,6 @@
-export default function prepareAttachments() {
+export default function prepareAttachments(orders) {
   let attachments = [];
-  this.props.cart.orders.forEach((order) => {
+  orders.forEach((order) => {
     attachments.push({
       filename: `${order.guid}-front.png`,
       path: order.mockup[0]

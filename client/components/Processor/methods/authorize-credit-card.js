@@ -9,6 +9,7 @@ export default function authorizeCreditCard() {
     // response.data.messages.resultCode [ "Ok" | "Error" ]
     // response.data.messages.message.text
     console.log(response);
+    this.sendConfirmation(this.props.cart.form, this.props.cart.orders);
     this.props.toggle('waiting', 'paymentModal');
     this.props.clearCart();
     this.props.history.push('/cart');
