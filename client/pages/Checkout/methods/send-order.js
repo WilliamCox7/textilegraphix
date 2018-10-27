@@ -1,6 +1,6 @@
 import axios from 'axios';
-// import ReactDOMServer from "react-dom/server";
-// import { OrderHtml } from '../../../modules';
+import ReactDOMServer from "react-dom/server";
+import { renderEmail } from '../../../modules';
 
 export default function sendOrder(orderType, orderTotal) {
   if (valid(this.state)) {
@@ -22,10 +22,7 @@ function send(self, orderType) {
     axios.post('/order', {
       to: self.state.contact.email,
       from: `${self.state.billing.first} ${self.state.billing.last}`,
-      order: '<p>TEST</p>',
-      // order: ReactDOMServer.renderToStaticMarkup(new OrderHtml({
-      //   form: self.state, products: self.props.cart.orders
-      // }).render()),
+      order: renderEmail(self.state, self.props.cart.orders),
       attachments: self.prepareAttachments()
     }).then((response) => {
       self.props.clearCart();

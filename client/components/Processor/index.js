@@ -32,6 +32,7 @@ class Processor extends Component {
     let tax = total * (this.state.taxExempt ? 0 : 0.06);
 
     let details = this.props.orders.map((order, i) => {
+      order.taxExempt = this.state.taxExempt;
       return (
         <div className="detail" key={i}>
           <MediaQuery minWidth={580}>

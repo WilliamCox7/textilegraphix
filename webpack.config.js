@@ -1,5 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
+var config = require('./config');
 
 module.exports = {
 
@@ -14,6 +15,15 @@ module.exports = {
     filename: "bundle.js",
     publicPath: '/'
   },
+
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify(config.env),
+        'HOST': JSON.stringify(config.host)
+      }
+    })
+  ],
 
   module: {
     loaders: [

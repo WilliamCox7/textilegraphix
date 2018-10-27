@@ -1,9 +1,9 @@
 import html2canvas from 'html2canvas';
+import { createGuid } from '../../../modules';
 
 export default function addToCart() {
   this.toggle('waiting');
   let newState = Object.assign({}, this.state);
-  console.log(newState);
   newState.guid = createGuid();
   var front = document.getElementById("front-side");
   var back = document.getElementById("back-side");
@@ -18,13 +18,6 @@ export default function addToCart() {
       this.props.history.push('/products');
     });
   });
-}
-
-function createGuid() {
-  function s4() {
-    return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
-  }
-  return s4() + s4();
 }
 
 function h2c(element) {

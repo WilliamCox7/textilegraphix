@@ -11,7 +11,7 @@ import MainFooter from '../../components/MainFooter';
 import * as methods from './methods';
 import { removeOrder, clearCart } from '../../reducers/cart';
 import { initializeBuilder } from '../../reducers/builder';
-import { setDelivery, toggle, scrollToTop } from '../../modules';
+import { setDelivery, toggle, scrollToTop, createGuid } from '../../modules';
 import './style.scss';
 
 class Checkout extends Component {
@@ -48,7 +48,8 @@ class Checkout extends Component {
       },
       paymentModal: false,
       error: false,
-      waiting: false
+      waiting: false,
+      guid: createGuid()
     }
     this.buildCardSubHeader = this.buildCardSubHeader.bind(this);
     this.updOrder = this.updOrder.bind(this);
