@@ -11,10 +11,12 @@ import saveEdits from './save-edits';
 import removeImage from './remove-image';
 import addToCart from './add-to-cart';
 import updateToCart from './update-to-cart';
+import setZip from './set-zip';
+import getRates from './get-rates';
 
 export {
   selectColor, calculateCost, updateQuantity, incrimentColor,
   decrimentColor, updateSize, toggleShownSide, updateToCart,
   storeFile, uploadImage, saveEdits, removeImage,
-  addToCart
+  addToCart, setZip, getRates
 }

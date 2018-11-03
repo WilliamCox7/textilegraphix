@@ -1,17 +1,17 @@
 export default function updateSize(e, form) {
   if (!isNaN(e.target.value)) {
-    let newState = Object.assign({}, form);
+    let newState = Object.assign({}, this.state);
     newState[e.target.name] = Number(e.target.value);
     newState.quantity = 0;
-    if (newState.XS) newState.quantity += newState.XS;
-    if (newState.S) newState.quantity += newState.S;
-    if (newState.M) newState.quantity += newState.M;
-    if (newState.L) newState.quantity += newState.L;
-    if (newState.XL) newState.quantity += newState.XL;
-    if (newState.XL2) newState.quantity += newState.XL2;
-    if (newState.XL3) newState.quantity += newState.XL3;
-    if (newState.XL4) newState.quantity += newState.XL4;
-    if (newState.XL5) newState.quantity += newState.XL5;
+    if (form.XS) newState.quantity += form.XS;
+    if (form.S) newState.quantity += form.S;
+    if (form.M) newState.quantity += form.M;
+    if (form.L) newState.quantity += form.L;
+    if (form.XL) newState.quantity += form.XL;
+    if (form.XL2) newState.quantity += form.XL2;
+    if (form.XL3) newState.quantity += form.XL3;
+    if (form.XL4) newState.quantity += form.XL4;
+    if (form.XL5) newState.quantity += form.XL5;
     this.setState(newState, this.calculateCost)
   }
 }

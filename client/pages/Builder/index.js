@@ -34,11 +34,13 @@ class Builder extends Component {
       shownSide: 0,
       addOns: true,
       waiting: false,
+      waiting2: false,
       dragging: false,
       front: true,
       guid: props.builder ? props.builder.guid : undefined,
       help: false,
       zip: '',
+      rates: [],
       showZip: true,
       edit: props.builder ? props.builder.edit : false,
       uploaded: props.builder && props.builder.uploaded ? props.builder.uploaded : { front: [], back: [] },
@@ -71,7 +73,9 @@ class Builder extends Component {
     this.removeImage = this.removeImage.bind(this);
     this.addToCart = this.addToCart.bind(this);
     this.updateToCart = this.updateToCart.bind(this);
+    this.setZip = this.setZip.bind(this);
     this.toggle = this.toggle.bind(this);
+    this.getRates = this.getRates.bind(this);
   }
 
   componentDidMount() {
@@ -208,12 +212,12 @@ class Builder extends Component {
             </MediaQuery>
             <hr />
             <h5 className="section-h">Total:</h5>
-            {this.state.showZip ? (
+            {this.state.showZip || !this.state.rates.length ? (
               <div id="zip-section-wrapper" className="flex fd-c jc-c ai-c">
                 <h1>WHERE WILL THIS BE SHIPPED?</h1>
                 <div className="ship-buttons flex jc-c">
                   <input className="zip-input" type="text" placeholder="ZIP CODE" onChange={this.setZip} />
-                  <button className="ok-button" onClick={() => this.toggle('showZip')}>OK</button>
+                  <button className="ok-button" onClick={this.getRates}>OK</button>
                 </div>
               </div>
             ) : (
@@ -338,6 +342,7 @@ class Builder extends Component {
           <div className="bottom-space"></div>
         </MediaQuery>
         <WaitIndicator message="Preparing your cart..." waiting={this.state.waiting} />
+        <WaitIndicator message="Retrieving shipment information..." waiting={this.state.waiting2} />
         <MainFooter />
       </div>
     );
@@ -357,6 +362,8 @@ Builder.prototype.saveEdits = methods.saveEdits;
 Builder.prototype.removeImage = methods.removeImage;
 Builder.prototype.addToCart = methods.addToCart;
 Builder.prototype.updateToCart = methods.updateToCart;
+Builder.prototype.setZip = methods.setZip;
+Builder.prototype.getRates = methods.getRates;
 Builder.prototype.toggle = toggle;
 
 const mapStateToProps = (state) => {

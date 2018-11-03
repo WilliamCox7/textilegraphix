@@ -1,11 +1,15 @@
-export default function calculateTotalCost(order, shirtCostOverride) {
+export default function calculateTotalCost(args) {
+
+  let order = args.order;
+  let shippingOffset = args.shippingOffset;
+  let costOverride = args.costOverride;
 
   // variable declaration
-  let costOfShirt = shirtCostOverride !== undefined ? shirtCostOverride : order.product.costOfShirt;
+  let costOfShirt = costOverride === undefined ? order.product.costOfShirt : costOverride;
   let numShirts = order.quantity || 1;
   let numLocations = 0;
   let curLoc = 1;
-  let shippingRate = .3;
+  let shippingRate = shippingOffset;
   let markup = 1.5;
   let setCost = 0, setCostOne, setCostTwo, setCostThree, setCostFour; //, setCostFive;
   let numColors = {One: 0, Two: 0, Three: 0}; //, Four: 0, Five: 0};

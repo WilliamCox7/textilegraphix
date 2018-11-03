@@ -40,7 +40,8 @@ export const products = [
       height: '322px',
       top: '120px',
       left: '34px'
-    }
+    },
+    weight: 0.3
   },
   {
     images: {
@@ -83,7 +84,8 @@ export const products = [
       height: '322px',
       top: '120px',
       left: '34px'
-    }
+    },
+    weight: 0.3
   },
   {
     images: {
@@ -126,7 +128,8 @@ export const products = [
       height: '322px',
       top: '120px',
       left: '34px'
-    }
+    },
+    weight: 0.3
   },
   {
     images: {
@@ -169,7 +172,8 @@ export const products = [
       height: '322px',
       top: '120px',
       left: '34px'
-    }
+    },
+    weight: 0.3
   },
   {
     images: {
@@ -212,7 +216,8 @@ export const products = [
       height: '322px',
       top: '120px',
       left: '34px'
-    }
+    },
+    weight: 0.3
   },
   {
     images: {
@@ -255,7 +260,8 @@ export const products = [
       height: '322px',
       top: '120px',
       left: '34px'
-    }
+    },
+    weight: 0.3
   },
   {
     images: {
@@ -298,7 +304,8 @@ export const products = [
       height: '322px',
       top: '120px',
       left: '34px'
-    }
+    },
+    weight: 0.3
   },
   {
     images: {
@@ -341,7 +348,8 @@ export const products = [
       height: '322px',
       top: '120px',
       left: '34px'
-    }
+    },
+    weight: 0.3
   },
   {
     images: {
@@ -384,6 +392,7 @@ export const products = [
       height: '322px',
       top: '120px',
       left: '34px'
-    }
+    },
+    weight: 0.3
   }
 ];

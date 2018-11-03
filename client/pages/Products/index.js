@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getAsset, toggle, calculateTotalCost, updateCost, scrollToTop } from '../../modules';
+import { getAsset, toggle, calculateTotalCost, scrollToTop } from '../../modules';
 import ProductNav from '../../components/ProductNav';
 import Product from '../../components/Product';
 import ColorUpdater from '../../components/ColorUpdater';
@@ -40,7 +40,6 @@ class Products extends Component {
     this.setSort = this.setSort.bind(this);
     this.setProduct = this.setProduct.bind(this);
     this.closeAll = this.closeAll.bind(this);
-    this.updateCost = this.updateCost.bind(this);
     this.sortLowestPrice = this.sortLowestPrice.bind(this);
     this.sortHighestPrice = this.sortHighestPrice.bind(this);
     this.sortAtoZ = this.sortAtoZ.bind(this);
@@ -58,7 +57,11 @@ class Products extends Component {
 
     if (this.props.inventory.products.length) {
       this.props.inventory.products.forEach((product) => {
-        let results = calculateTotalCost(this.state.productBuilderInit, product.costOfShirt);
+        let results = calculateTotalCost({
+          order: this.state.productBuilderInit,
+          shippingOffset: 0,
+          costOverride: product.costOfShirt
+        });
         product.costPerShirt = results.costPerShirt;
       });
       if (this.state.sort === 'low') this.props.inventory.products.sort(this.sortLowestPrice);
@@ -148,7 +151,6 @@ Products.prototype.toggle = toggle;
 Products.prototype.setSort = methods.setSort;
 Products.prototype.setProduct = methods.setProduct;
 Products.prototype.closeAll = methods.closeAll;
-Products.prototype.updateCost = updateCost;
 Products.prototype.sortLowestPrice = methods.sortLowestPrice;
 Products.prototype.sortHighestPrice = methods.sortHighestPrice;
 Products.prototype.sortAtoZ = methods.sortAtoZ;

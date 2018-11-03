@@ -74,8 +74,25 @@ class Checkout extends Component {
 
     let orderTotal = 0;
     let orders = this.props.cart.orders;
+    console.log(orders);
     let display = orders.length ? true : false;
     let deliveryOpts = methods.getDeliveryOptions();
+
+    let shippingRates = {
+      ground: 0,
+      day3: 0,
+      day2: 0,
+      dayNext: 0
+    }
+
+    orders.forEach((order) => {
+      order.rates.forEach((rate) => {
+        if (rate.service === "Ground") shippingRates.ground += Number(rate.rate);
+        else if (rate.service === "3DaySelect") shippingRates.day3 += Number(rate.rate);
+        else if (rate.service === "2ndDayAir") shippingRates.day2 += Number(rate.rate);
+        else if (rate.service === "NextDayAir") shippingRates.dayNext += Number(rate.rate);
+      });
+    });
 
     let items = orders.map((order, i) => {
       let locationText = this.buildCardSubHeader(order);
@@ -201,9 +218,11 @@ class Checkout extends Component {
       );
     });
 
-    if (this.state.selectedShippingMethod === '3-day') orderTotal += 26;
-    else if (this.state.selectedShippingMethod === '2-day') orderTotal += 70;
-    else if (this.state.selectedShippingMethod === 'next-day') orderTotal += 180;
+    // need to accumulate shipping from each order (from each rate)
+
+    if (this.state.selectedShippingMethod === '3-day') orderTotal += shippingRates.day3 - shippingRates.ground;
+    else if (this.state.selectedShippingMethod === '2-day') orderTotal += shippingRates.day2 - shippingRates.ground;
+    else if (this.state.selectedShippingMethod === 'next-day') orderTotal += shippingRates.dayNext - shippingRates.ground;
 
     return (
       <div id="Checkout">
@@ -313,17 +332,17 @@ class Checkout extends Component {
               <div className="shipping-method flex ai-c" onClick={() => this.updateShippingMethod('3-day')}>
                 <h3>UPS 3-Day</h3>
                 {this.state.selectedShippingMethod === '3-day' ? <img src={getAsset('blue-check')} /> : <span></span>}
-                <h3>*Guaranteed {deliveryOpts.day3.month}/{deliveryOpts.day3.day} (+ $26)</h3>
+                <h3>*Guaranteed {deliveryOpts.day3.month}/{deliveryOpts.day3.day} (+ ${(shippingRates.day3 - shippingRates.ground).toFixed(2)})</h3>
               </div>
               <div className="shipping-method flex ai-c" onClick={() => this.updateShippingMethod('2-day')}>
                 <h3>UPS 2-Day</h3>
                 {this.state.selectedShippingMethod === '2-day' ? <img src={getAsset('blue-check')} /> : <span></span>}
-                <h3>*Guaranteed {deliveryOpts.day2.month}/{deliveryOpts.day2.day} (+ $70)</h3>
+                <h3>*Guaranteed {deliveryOpts.day2.month}/{deliveryOpts.day2.day} (+ ${(shippingRates.day2 - shippingRates.ground).toFixed(2)})</h3>
               </div>
               <div className="shipping-method flex ai-c" onClick={() => this.updateShippingMethod('next-day')}>
                 <h3>UPS Next Day</h3>
                 {this.state.selectedShippingMethod === 'next-day' ? <img src={getAsset('blue-check')} /> : <span></span>}
-                <h3>*Guaranteed {deliveryOpts.next.month}/{deliveryOpts.next.day} (+ $180)</h3>
+                <h3>*Guaranteed {deliveryOpts.next.month}/{deliveryOpts.next.day} (+ ${(shippingRates.dayNext - shippingRates.ground).toFixed(2)})</h3>
               </div>
             </div>
           </div>
