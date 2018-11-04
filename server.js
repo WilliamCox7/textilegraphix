@@ -21,12 +21,12 @@ app.get('*', (req, res) => {
 });
 
 const options = {
-  key: fs.readFileSync(config.ssl.key),
-  cert: fs.readFileSync(config.ssl.crt)
+  key: fs.readFileSync(config.ssl.key, 'utf8'),
+  cert: fs.readFileSync(config.ssl.crt, 'utf8')
 };
 
 if (process.env.NODE_ENV === 'production') {
-  options.ca = [fs.readFileSync(config.ssl.ca)];
+  options.ca = [fs.readFileSync(config.ssl.ca, 'utf8')];
 }
 
 https.createServer(options, app)
