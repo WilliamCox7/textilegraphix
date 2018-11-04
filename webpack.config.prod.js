@@ -31,10 +31,12 @@ module.exports = {
     })
   ],
 
+  mode: 'production',
+
   module: {
-    loaders: [{
+    rules: [{
       test: /\.js?$/,
-      loader: 'babel',
+      loader: 'babel-loader',
       exclude: /node_modules/
     }, {
       test: /\.scss$/,
@@ -52,7 +54,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ["", ".js", ".css"]
+    extensions: [".js", ".css"]
   }
 
 }
