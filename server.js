@@ -26,7 +26,7 @@ const options = {
 };
 
 if (process.env.NODE_ENV === 'production') {
-  options.ca = fs.readFileSync(config.ssl.ca);
+  options.ca = [fs.readFileSync(config.ssl.ca)];
 }
 
 https.createServer(options, app)
