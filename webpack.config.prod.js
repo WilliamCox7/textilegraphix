@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const config = require('./config');
 
 module.exports = {
 
@@ -25,8 +26,8 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': JSON.stringify('production'),
-        'HOST': JSON.stringify('http://159.65.35.242')
+        'NODE_ENV': JSON.stringify(config.env),
+        'HOST': JSON.stringify(config.host)
       }
     })
   ],

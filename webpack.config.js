@@ -1,6 +1,6 @@
-var webpack = require('webpack');
-var path = require('path');
-var config = require('./config');
+const webpack = require('webpack');
+const path = require('path');
+const config = require('./config');
 
 module.exports = {
 
