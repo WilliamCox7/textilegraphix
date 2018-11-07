@@ -25,6 +25,10 @@ const options = {
   cert: fs.readFileSync(config.ssl.crt, 'utf8')
 };
 
+if (process.env.NODE_ENV === 'production') {
+  options.passphrase = config.ssl.passphrase;
+}
+
 https.createServer(options, app)
 .listen(app.get('port'), () => {
   console.log('localhost:' + app.get('port'));
