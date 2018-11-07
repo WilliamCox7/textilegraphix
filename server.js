@@ -25,7 +25,7 @@ const options = {
   cert: fs.readFileSync(config.ssl.crt, 'utf8')
 };
 
-if (process.env.NODE_ENV === 'production') {
+if (config.env === 'production') {
   options.passphrase = config.ssl.passphrase;
 }
 
