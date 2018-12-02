@@ -1,5 +1,4 @@
-const sendOrder = require('../server_modules/send-order');
-const sendReceipt = require('../server_modules/send-receipt');
+const OrderModule = require('../server_modules/order');
 
 module.exports = {
 
@@ -7,8 +6,8 @@ module.exports = {
   processOrder: (req, res) => {
 
     Promise.all([
-      sendOrder(req.body.order, req.body.from, req.body.attachments),
-      sendReceipt(req.body.order, req.body.to, req.body.attachments)
+      OrderModule.sendOrder(req.body.order, req.body.from, req.body.attachments),
+      OrderModule.sendReceipt(req.body.order, req.body.to, req.body.attachments)
     ])
 
     .then(() => {

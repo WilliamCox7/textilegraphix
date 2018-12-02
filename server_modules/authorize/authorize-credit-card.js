@@ -1,6 +1,6 @@
 const ApiContracts = require('authorizenet').APIContracts;
 const ApiControllers = require('authorizenet').APIControllers;
-const config = require('../config.js');
+const config = require('../../config.js');
 
 module.exports = function authorizeCreditCard(request) {
   return new Promise((resolve, reject) => {

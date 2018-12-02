@@ -1,11 +1,11 @@
-const authorizeCreditCard = require('../server_modules/authorize-credit-card');
+const AuthModule = require('../server_modules/authorize');
 
 module.exports = {
 
   // authorizes a credit card for later charge
   authorize: (req, res) => {
 
-    authorizeCreditCard(req.body).then((response) => {
+    AuthModule.authorizeCreditCard(req.body).then((response) => {
       res.status(200).send(response);
     });
 

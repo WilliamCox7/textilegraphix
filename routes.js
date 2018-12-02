@@ -7,7 +7,7 @@ const ShippingSvc = require('./server_services/Shipping');
 module.exports = (app) => {
 
   // GET
-  app.get('/products/ssaw', ProductSvc.getProducts);
+  app.get('/api/products', ProductSvc.get);
 
   // POST
   app.post('/order', OrderSvc.processOrder);

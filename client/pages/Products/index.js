@@ -8,7 +8,9 @@ import MainFooter from '../../components/MainFooter';
 import ProductNavMobile from '../../components/ProductNavMobile';
 import MediaQuery from 'react-responsive';
 import { initializeBuilder } from '../../reducers/builder';
+import { set } from '../../reducers/inventory';
 import * as methods from './methods';
+import axios from 'axios';
 import './style.scss';
 
 class Products extends Component {
@@ -49,6 +51,13 @@ class Products extends Component {
 
   componentDidMount() {
     scrollToTop();
+    axios.get('/api/products')
+    .then((response) => {
+      this.props.set(response.data);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
   }
 
   render() {
@@ -164,7 +173,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-  initializeBuilder: initializeBuilder
+  initializeBuilder: initializeBuilder,
+  set: set
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Products);
