@@ -32,7 +32,6 @@ export default function renderEmail(form, products) {
           font-family: 'Open Sans', sans-serif;
         }
         img {
-          width: 100%;
           display: block;
         }
         @media only screen and (max-width: 620px) {
