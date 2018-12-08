@@ -1,6 +1,6 @@
 const webpack = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const path = require('path');
-const config = require('./config');
 
 module.exports = {
 
@@ -16,42 +16,44 @@ module.exports = {
     publicPath: '/'
   },
 
+  mode: 'production',
+
+  optimization: {
+    minimizer: [new UglifyJsPlugin()]
+  },
+
   plugins: [
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      minimize: true,
-      compress: {
-        warnings: false
-      }
-    }),
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': JSON.stringify(config.env),
-        'HOST': JSON.stringify(config.host)
+        'NODE_ENV': JSON.stringify('production')
       }
     })
   ],
 
-  mode: 'production',
-
   module: {
-    rules: [{
-      test: /\.js?$/,
-      loader: 'babel-loader',
-      exclude: /node_modules/
-    }, {
-      test: /\.scss$/,
-      loader: 'style-loader!css-loader!sass-loader'
-    }, {
-      test: /\.(jpg|png|svg)$/,
-      loader: 'file-loader'
-    }, {
-      test: /\.(ttf|eot|woff|woff2|mp4)$/,
-      loader: 'file-loader'
-    }, {
-      test: /\.json$/,
-      loader: 'json-loader'
-    }]
+    rules: [
+      {
+        test: /\.js$/,
+        exclude:/node_modules/,
+        loaders: [ 'babel-loader']
+      },
+      {
+        test: /\.scss$/,
+        loader: 'style-loader!css-loader!sass-loader'
+      },
+      {
+        test: /\.(jpg|png|svg)$/,
+        loader: 'file-loader'
+      },
+      {
+        test: /\.(ttc|ttf|eot|woff|woff2|mp4)$/,
+        loader: 'file-loader'
+      },
+      {
+        test: /\.json$/,
+        loader: 'json-loader'
+      }
+    ]
   },
 
   resolve: {
