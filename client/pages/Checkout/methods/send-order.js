@@ -1,7 +1,3 @@
-import axios from 'axios';
-import ReactDOMServer from "react-dom/server";
-import { sendConfirmation } from '../../../modules';
-
 export default function sendOrder(orderType, orderTotal) {
   if (valid(this.state)) {
     if (orderTotal < 500 && orderType === 'bill-later') {

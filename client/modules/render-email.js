@@ -61,7 +61,7 @@ export default function renderEmail(form, products) {
                       <tbody>
                         <tr>
                           <td align="left">
-                            <img style="width: 325px" src="http://159.65.35.242/src/logo-text-black.svg" />
+                            <img style="width: 325px" src="${process.env.HOST}/src/logo-text-black.svg" />
                           </td>
                         </tr>
                       </tbody>
@@ -180,17 +180,17 @@ export default function renderEmail(form, products) {
       </table>
 
       <div style="background: #DEDEDE; text-align: center; padding: 15px 30px; margin-top: 40px">
-        <img style="width: 325px; margin: auto" src="http://159.65.35.242/src/logo-text-black.svg" />
+        <img style="width: 325px; margin: auto" src="${process.env.HOST}/src/logo-text-black.svg" />
         <hr style="border: none; border-bottom: solid 1px #A0A0A0">
         <div style="font-size: 9px; margin-bottom: 4px">Copyright 2018. Textile Graphix, LLC</div>
         <table border="0" cellpadding="0" cellspacing="0" style="margin: 0; padding: 0" width="100%">
           <tr>
             <td align="right" valign="top" height="20px">
-              <img style="height: 100%" src="http://159.65.35.242/src/fb-gray.svg" />
+              <img style="height: 100%" src="${process.env.HOST}/src/fb-gray.svg" />
             </td>
             <td width="20px"></td>
             <td align="left" valign="top" height="20px">
-              <img style="height: 100%" src="http://159.65.35.242/src/insta-gray.svg" />
+              <img style="height: 100%" src="${process.env.HOST}/src/insta-gray.svg" />
             </td>
           </tr>
         </table>
