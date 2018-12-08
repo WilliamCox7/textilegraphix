@@ -180,13 +180,13 @@ export default function renderEmail(form, products) {
       </table>
 
       <div style="background: #DEDEDE; text-align: center; padding: 15px 30px; margin-top: 40px">
-        <img style="width: 325px; margin: auto" src="${process.env.HOST}/src/logo-text-black.gif" />
+        <img style="width: 325px; margin: auto" src="${process.env.HOST}/src/logo-text-black.png" />
         <hr style="border: none; border-bottom: solid 1px #A0A0A0">
         <div style="font-size: 9px; margin-bottom: 4px">Copyright 2018. Textile Graphix, LLC</div>
         <table border="0" cellpadding="0" cellspacing="0" style="margin: 0; padding: 0" width="100%">
           <tr>
             <td align="right" valign="top" height="20px">
-              <img style="height: 100%" src="${process.env.HOST}/src/fb-gray.png" />
+              <img style="height: 100%" src="https://lh3.googleusercontent.com/_cDHhO4gEXuVspjTHQkCBbGhnNI6UzZmVrLQINbIf3BKAyeXq3pNMx5QESclDB8cTjvlAKrbClelFXbjjsaLRo7HDQoSts93LjFr2tuZLEB9lIKUT2vZ58SNNyylMQzOtk0oeC8RaNxMshyi9xYW1lA0ZqMu1QYR07n52VFnxZSI7G7DDkwi9yGOW87koaDrtcOGO25vSBr7ppqtl2wQlz5LHD6jEyruIvtO67DhmZV80u4f83UHKqasGQJTP_W4EGX2naIsoMFT_bnXlMT2HKgsP2DWW0qKYpW3c-a_JP5BMIrzatzGedfsyXmneWFtqNIOo8nZIzSrltx3o2l9ADpJPCCruHb52KiEesalAh0Xmf1MIiTDupm84PP_EZP6jOvLyOutQJqnXLTxftn5nzNSckfLjcFFstsy1zSQgMhRzgfelroELPEmGLf6LxXDg9OtMBnJqYqOJwZiLe15vd_irBncqdesw1glt6epLc3dfJ7XHDH7ImWPxdj_7EIlFQ9VsakFFlEXdau7nJVmoXNdSSOmUrZ1jrZ6d7b8WExgCriTmXt5zGVpMuwndXd7QL3gnflKMUX5e7jz1g47EIl3BzxtyJFR=w200-h150-p-k-nu" />
             </td>
             <td width="20px"></td>
             <td align="left" valign="top" height="20px">
