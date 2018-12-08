@@ -74,7 +74,6 @@ class Checkout extends Component {
 
     let orderTotal = 0;
     let orders = this.props.cart.orders;
-    console.log(orders);
     let display = orders.length ? true : false;
     let deliveryOpts = methods.getDeliveryOptions();
 
