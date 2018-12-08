@@ -61,7 +61,7 @@ export default function renderEmail(form, products) {
                       <tbody>
                         <tr>
                           <td align="left">
-                            <img style="width: 325px" src="${process.env.HOST}/src/logo-text-black.png" />
+                            <img style="width: 325px" src="https://lh3.googleusercontent.com/HeST23zeHNNrSxiGrQnmlihWlmedBsIiNJjeI2ca44szVBGw0vUGmarMjkU4gvMCvNw7E2lfsaeB03dAGPrzPPmrVfbkl3YhMo_qHRm_CB-TlYoQ3sbYeT-IB7xND7YN4thSQ-H3q4y_eoMW31x4fhkr9HMvszCNvWuQ6oaVH82mY1dTV9dL8P8zu-ipRwyrKFUfqQH-R9TXpC2j77X2qijPeUjD9bcW0mKcY_NpUawk5rgIR74JauE8_RSZgByEgmdkp_9gtrO-0PNXIl18okEnQHs7w8OB7a0cRhUu_kO3-JnR_qsZzGgM8Aw34GiynAu37oznZ0Eb2gQecnrEdyAc46mbXcK3CClvLzMXxsSgB3kEbi0cyxI2QIcAV2BkZ4ClHVcFsuR_Z_UYJenG4x1YuOgsiWHEuMpZ5-SKGHzGFuMvASVAx8IX6dyNXiwXFWVusjhJvEUvBAfhLV-MKReaoNsTe1OGx8A9jDCk7Bv5GRBPj41AMvHfOHDnpQIeOk6pehvNbrNiv5YBz1FZ6CIc6c6l-i32Eh5H2efbmOZuARCjk7Fg6ax-xHVgQHEo967W6s_CH1oxkIxs3KFHpXInbBuO0VLe=w200-h150-p-k-nu" />
                           </td>
                         </tr>
                       </tbody>
@@ -180,7 +180,7 @@ export default function renderEmail(form, products) {
       </table>
 
       <div style="background: #DEDEDE; text-align: center; padding: 15px 30px; margin-top: 40px">
-        <img style="width: 325px; margin: auto" src="${process.env.HOST}/src/logo-text-black.png" />
+        <img style="width: 325px; margin: auto" src="https://lh3.googleusercontent.com/HeST23zeHNNrSxiGrQnmlihWlmedBsIiNJjeI2ca44szVBGw0vUGmarMjkU4gvMCvNw7E2lfsaeB03dAGPrzPPmrVfbkl3YhMo_qHRm_CB-TlYoQ3sbYeT-IB7xND7YN4thSQ-H3q4y_eoMW31x4fhkr9HMvszCNvWuQ6oaVH82mY1dTV9dL8P8zu-ipRwyrKFUfqQH-R9TXpC2j77X2qijPeUjD9bcW0mKcY_NpUawk5rgIR74JauE8_RSZgByEgmdkp_9gtrO-0PNXIl18okEnQHs7w8OB7a0cRhUu_kO3-JnR_qsZzGgM8Aw34GiynAu37oznZ0Eb2gQecnrEdyAc46mbXcK3CClvLzMXxsSgB3kEbi0cyxI2QIcAV2BkZ4ClHVcFsuR_Z_UYJenG4x1YuOgsiWHEuMpZ5-SKGHzGFuMvASVAx8IX6dyNXiwXFWVusjhJvEUvBAfhLV-MKReaoNsTe1OGx8A9jDCk7Bv5GRBPj41AMvHfOHDnpQIeOk6pehvNbrNiv5YBz1FZ6CIc6c6l-i32Eh5H2efbmOZuARCjk7Fg6ax-xHVgQHEo967W6s_CH1oxkIxs3KFHpXInbBuO0VLe=w200-h150-p-k-nu" />
         <hr style="border: none; border-bottom: solid 1px #A0A0A0">
         <div style="font-size: 9px; margin-bottom: 4px">Copyright 2018. Textile Graphix, LLC</div>
         <table border="0" cellpadding="0" cellspacing="0" style="margin: 0; padding: 0" width="100%">
@@ -190,7 +190,7 @@ export default function renderEmail(form, products) {
             </td>
             <td width="20px"></td>
             <td align="left" valign="top" height="20px">
-              <img style="height: 100%" src="${process.env.HOST}/src/insta-gray.png" />
+              <img style="height: 100%" src="https://lh3.googleusercontent.com/_9h_3LyvsofTBpNKMi-baxRr9VhB1tp3vf85g9e7IgK7fmyFD_V0u9XnpYtGIw5Vas_jpBTIzztXUM0TXIOX65g8WZL-NcIYri28TJwXzsIKBxf4FJ82Bw0x8fZgGn24jEPkwgujulZvU7oiD6GT0xmBIu5_mdKB7LRoITSRDpUFkEQ_geLaeUabyZeaOOurWK1SH5ToAfN4tR_O4tTra2vXwTBnXiGjXEH5V3Q5-UT-LQp8MjMG_sy5vECVKxRYxkKZLUzonrigywzb4U8xuTrTsm2x_LPae0knYlDkwCR2_r6y3vQVFXYZnGW1gXopGHducF3uYJ9TCvjpsjJhnPI2P0exXPLzMFeZZoLFowXc4skPBYbV1oFlGLF_9zeb4bYnEpUl8_oQI0ujLNEyo4L4UAcdzNULQJS4-Mi_x3J3SAxHizMeuvMabL-kIPhyXHBCdqMpm6Ep66FWqk3KLeSp5wdHSF_N4mfmCC3w_gC2gQhsdoxzBJLOmYPR_N24AtYjpUjo6tMau26SLFUhg5aE890TZsbSfziJWuOTqrbhQkVmxMa4U7MOhMJP8CzYWuuy2sUGtuR-EJI86RkB-xyQxJgLXZLf=w200-h150-p-k-nu" />
             </td>
           </tr>
         </table>
