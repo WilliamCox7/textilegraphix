@@ -185,12 +185,16 @@ export default function renderEmail(form, products) {
         <div style="font-size: 9px; margin-bottom: 4px">Copyright 2018. Textile Graphix, LLC</div>
         <table border="0" cellpadding="0" cellspacing="0" style="margin: 0; padding: 0" width="100%">
           <tr>
-            <td align="right" valign="top" height="20px">
-              <img style="height: 100%" src="https://lh3.googleusercontent.com/wJrRG9TbOjQVwnTN_svaavwxbGckIfFH5TC9kaKt3b7BoUAdo2SNq-FqKTW2BBSQuQ4BxYZxA70ob5BpENG54yI4lVZqUn70IJZh4TJNO_RUh68_gogbknamN7PWibBHUq01r7lShtxHszd5smPtLUUY9R0B_dkdoVmqBkhhu-iGNPUTcOejIkwYFeepWjddE9h_i049hBSqTEECOBV_ESEtsvYrMJFyC4mcy610qW5opaJC18Ru55cJp89vrx53UjPinJeUh8TYWbJ84zo6FWbqDArjuPRDErEA2TzE-baoENXnNMpyl9dlp2KePMw1ZLDdqtyDYyb-wX6PsKQyXMX3_95PiSWz9kkBiZlgt7qou4HVeuW6mxGJK48-6PzcArL6Hs6imw5q7vOB33K3uMpn3B5bBiGRvYcavtA3yDyf9YsRgKFdE4Jn0ibI9hcMJsK9uqGT9k8vgCFelOVltEBqVaE63WlZc33lIShY3cHEC9U4zwNGNtom0Yo1e2Qq0fJOn-a1oUNSb3AM3-FR489V81CYW04VurayIzC3H43MQQubJytUDNVQGiJ4x14VfvDye9RXYDzxRhYTsslAYVRhcXcA0cfG=w1920-h970" />
+            <td align="right" valign="top" height="20px" style="width: 50%">
+              <a href="https://www.facebook.com/textilegraphix/" target="_blank">
+                <img style="margin-right: 10px" src="https://lh3.googleusercontent.com/wJrRG9TbOjQVwnTN_svaavwxbGckIfFH5TC9kaKt3b7BoUAdo2SNq-FqKTW2BBSQuQ4BxYZxA70ob5BpENG54yI4lVZqUn70IJZh4TJNO_RUh68_gogbknamN7PWibBHUq01r7lShtxHszd5smPtLUUY9R0B_dkdoVmqBkhhu-iGNPUTcOejIkwYFeepWjddE9h_i049hBSqTEECOBV_ESEtsvYrMJFyC4mcy610qW5opaJC18Ru55cJp89vrx53UjPinJeUh8TYWbJ84zo6FWbqDArjuPRDErEA2TzE-baoENXnNMpyl9dlp2KePMw1ZLDdqtyDYyb-wX6PsKQyXMX3_95PiSWz9kkBiZlgt7qou4HVeuW6mxGJK48-6PzcArL6Hs6imw5q7vOB33K3uMpn3B5bBiGRvYcavtA3yDyf9YsRgKFdE4Jn0ibI9hcMJsK9uqGT9k8vgCFelOVltEBqVaE63WlZc33lIShY3cHEC9U4zwNGNtom0Yo1e2Qq0fJOn-a1oUNSb3AM3-FR489V81CYW04VurayIzC3H43MQQubJytUDNVQGiJ4x14VfvDye9RXYDzxRhYTsslAYVRhcXcA0cfG=w1920-h970" />
+              </a>
             </td>
             <td width="20px"></td>
-            <td align="left" valign="top" height="20px">
-              <img style="height: 100%" src="https://lh3.googleusercontent.com/7mNJxWGoPurWZ20f8_uZEHPuHyppxd6mYP3f0TWSfy7-qMc_68ZZSEhDlNgvhEvMGwFf92E5CT1fL-PwrMh_vPfnu3jFfv8L_iiV1Xv7rCdFYe_Gj4838XP9MeJ8DM6n3OIzmdi4D3G803K0BFyXlMxP6NDxExZiCnBhGrnR3IGDCvaWa3D8K15P3Q1EmzFRaJM8ydTMqLUjOoPvHe6mvKjExJ1yp3X58hRXpg3ed2RSVdTGd1f68ZHrOKoqW5yM8D3j7nEAjYBTYugG4WG2haYAxdUs2QW77dxjTX5cxk9BaqHTYZNGMWXxXid6NCQtrZzfY3Pc5wtcucUrdTYl-MsNIh3F14H5UC9g_rKug3Sa21_tZ0tQmw426fHunWe-xd74Ie2JiVDdELEepCJzM1ZcP9_bsBoVLKipsEDPbrxiF2rAPACBHuerMvmOGw0pqoFCFwmoeSG16QGCoppejVeRZv9RVyApmo8y_y0hdTjIFvu78qZFNiJb4Ig66i3wq_Yp54K14qPAtOdjfnBxPbnVNwn_42JA7YTJmfWaaGDtcuaIESXEVxQLRIgZmErQiS6pnVjjO4tiyPHHc6xLQBWMuZws0uhc=w725-h954" />
+            <td align="left" valign="top" height="20px" style="width: 50%">
+              <a href="https://www.instagram.com/textilegraphix/" target="_blank">
+                <img style="margin-left: 10px" src="https://lh3.googleusercontent.com/7mNJxWGoPurWZ20f8_uZEHPuHyppxd6mYP3f0TWSfy7-qMc_68ZZSEhDlNgvhEvMGwFf92E5CT1fL-PwrMh_vPfnu3jFfv8L_iiV1Xv7rCdFYe_Gj4838XP9MeJ8DM6n3OIzmdi4D3G803K0BFyXlMxP6NDxExZiCnBhGrnR3IGDCvaWa3D8K15P3Q1EmzFRaJM8ydTMqLUjOoPvHe6mvKjExJ1yp3X58hRXpg3ed2RSVdTGd1f68ZHrOKoqW5yM8D3j7nEAjYBTYugG4WG2haYAxdUs2QW77dxjTX5cxk9BaqHTYZNGMWXxXid6NCQtrZzfY3Pc5wtcucUrdTYl-MsNIh3F14H5UC9g_rKug3Sa21_tZ0tQmw426fHunWe-xd74Ie2JiVDdELEepCJzM1ZcP9_bsBoVLKipsEDPbrxiF2rAPACBHuerMvmOGw0pqoFCFwmoeSG16QGCoppejVeRZv9RVyApmo8y_y0hdTjIFvu78qZFNiJb4Ig66i3wq_Yp54K14qPAtOdjfnBxPbnVNwn_42JA7YTJmfWaaGDtcuaIESXEVxQLRIgZmErQiS6pnVjjO4tiyPHHc6xLQBWMuZws0uhc=w725-h954" />
+              </a>
             </td>
           </tr>
         </table>
