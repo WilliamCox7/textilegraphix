@@ -186,7 +186,7 @@ export default function renderEmail(form, products) {
         <table border="0" cellpadding="0" cellspacing="0" style="margin: 0; padding: 0" width="100%">
           <tr>
             <td align="right" valign="top" height="20px">
-              <img style="height: 100%" src="${process.env.HOST}/src/fb-gray.png" />
+              <img style="height: 100%" src="${process.env.HOST}/src/fb-gray-test.png" />
             </td>
             <td width="20px"></td>
             <td align="left" valign="top" height="20px">
