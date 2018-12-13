@@ -91,7 +91,7 @@ function iterate(iter, cb, conn, orderId, guid) {
 function createOrderItem(iter, orderId, guid, order, conn) {
   return conn.query(`
     INSERT INTO orderItems
-    (orderId, productId, quantity, frontColors, backColors, leftSleeveColors, rightSleeveColors, total, totalPerShirt)
+    (orderId, productId, quantity, frontColors, backColors, leftSleeveColors, rightSleeveColors, total, totalPerShirt, selectedColor)
     VALUES
     (
       ${conn.escape(orderId)},
