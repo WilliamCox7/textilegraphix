@@ -6,8 +6,9 @@ module.exports = {
   processOrder: (req, res) => {
 
     Promise.all([
-      OrderModule.sendOrder(req.body.order, req.body.from, req.body.attachments),
-      OrderModule.sendReceipt(req.body.order, req.body.to, req.body.attachments)
+      OrderModule.saveOrder(req.body.form, req.body.orders),
+      OrderModule.sendOrder(req.body.emailBody, req.body.from, req.body.attachments),
+      OrderModule.sendReceipt(req.body.emailBody, req.body.to, req.body.attachments)
     ])
 
     .then(() => {
@@ -20,6 +21,13 @@ module.exports = {
       res.status(500).send(errorProcessingOrder);
     });
 
+  },
+
+  get: (req, res) => {
+    OrderModule.getOrder(req.params.guid)
+    .then((order) => {
+      res.status(200).send(order);
+    });
   }
 
 }

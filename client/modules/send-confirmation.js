@@ -4,9 +4,11 @@ import prepareAttachments from './prepare-attachments';
 
 export default function sendConfirmation(form, orders) {
   axios.post('/order', {
+    form: form,
+    orders: orders,
     to: form.contact.email,
     from: `${form.billing.first} ${form.billing.last}`,
-    order: renderEmail(form, orders),
+    emailBody: renderEmail(form, orders),
     attachments: prepareAttachments(orders)
   }).then((response) => {
     this.props.clearCart();

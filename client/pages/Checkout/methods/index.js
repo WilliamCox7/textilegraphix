@@ -1,5 +1,4 @@
 import buildCardSubHeader from './build-card-sub-header';
-import updOrder from './upd-order';
 import calculateCost from './calculate-cost';
 import removeOrder from './remove-order';
 import setProduct from './set-product';
@@ -12,7 +11,7 @@ import updateShippingMethod from './update-shipping-method';
 import sendOrder from './send-order';
 
 export {
-  buildCardSubHeader, updOrder, updateInput, toggleSameAsBilling,
+  buildCardSubHeader, updateInput, toggleSameAsBilling,
   calculateCost, removeOrder, setProduct, extendPrice,
   getDeliveryOptions, updateShippingMethod, sendOrder,
   extendPriceMobile

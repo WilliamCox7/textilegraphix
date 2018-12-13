@@ -5,11 +5,17 @@ const getProductsImages = require('./get-products-images');
 const getProductsColors = require('./get-products-colors');
 const ErrorModule = require('../error');
 
-module.exports = function getProducts() {
+module.exports = function getProducts(id) {
   return mysql.createConnection(config.mysql).then((conn) => {
 
+    let whereclause = '';
+
+    if (id) {
+      whereclause = `WHERE id = ${conn.escape(id)}`;
+    }
+
     let products;
-    return conn.query(`SELECT * FROM products`)
+    return conn.query(`SELECT * FROM products ${whereclause}`)
     .then((results) => {
       conn.end();
       return products = results;

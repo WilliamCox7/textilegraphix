@@ -52,7 +52,6 @@ class Checkout extends Component {
       guid: createGuid()
     }
     this.buildCardSubHeader = this.buildCardSubHeader.bind(this);
-    this.updOrder = this.updOrder.bind(this);
     this.calculateCost = this.calculateCost.bind(this);
     this.setProduct = this.setProduct.bind(this);
     this.removeOrder = this.removeOrder.bind(this);
@@ -106,10 +105,10 @@ class Checkout extends Component {
             <h1 className="location-header">{locationText}</h1>
             <div className="sizes-price flex">
               <MediaQuery minWidth={690}>
-                <SizeForm form={order} updateSize={this.updOrder} size="medium" />
+                <SizeForm form={order} size="medium" />
               </MediaQuery>
               <MediaQuery maxWidth={689}>
-                <SizeForm form={order} updateSize={this.updOrder} size="small" />
+                <SizeForm form={order} size="small" />
               </MediaQuery>
               <MediaQuery minWidth={480}>
                 <div id={`price-box-wrapper-${i}`} className="price-box-wrapper" onClick={() => this.extendPrice(i)}>
@@ -439,7 +438,6 @@ class Checkout extends Component {
 }
 
 Checkout.prototype.buildCardSubHeader = methods.buildCardSubHeader;
-Checkout.prototype.updOrder = methods.updOrder;
 Checkout.prototype.calculateCost = methods.calculateCost;
 Checkout.prototype.setProduct = methods.setProduct;
 Checkout.prototype.removeOrder = methods.removeOrder;

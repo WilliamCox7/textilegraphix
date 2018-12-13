@@ -9,6 +9,7 @@ import Checkout from './pages/Checkout';
 import Support from './pages/Support';
 import Cart from './pages/Cart';
 import About from './pages/About';
+import View from './pages/View';
 import './reset.scss';
 import './main.scss';
 
@@ -45,6 +46,7 @@ class App extends Component {
           <Route path="/support" component={Support} />
           <Route path="/cart" component={Cart} />
           <Route path="/about" component={About} />
+          <Route path="/view" component={View} />
         </div>
       </BrowserRouter>
     );

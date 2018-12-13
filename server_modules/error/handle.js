@@ -18,6 +18,8 @@ function getErrorMessage(id) {
     case 'HGF5': return 'There was an error while getting a products colors';
     case 'SDF7': return 'There was an error while getting a products images';
     case 'KLI3': return 'There was an error while getting a products print area';
+    case 'WPJ5': return 'There was an error while saving an order';
+    case 'XZ9S': return 'There was an error while creating an image from buffer';
     default: return 'An unknown message occured';
   }
 

@@ -60,7 +60,7 @@ export default function renderEmail(form, products) {
                       <tbody>
                         <tr>
                           <td align="left">
-                            <img style="width: 325px" src="https://lh3.googleusercontent.com/baG6TwpnPAVukPEp3lZf4x5jpI4Vd0by_uZ3S4DlI4eWvKsxDVpMyTthjBNrRPOe2MzCMHL7NLXiOxtS4twIKg7OUHl9BLMjS8gTD-okXZejuNaOrlSMCdIbOH5UoARhyf5PuC0eVC8B4OWR4XpFapgQDaxkWBAwhOMd5RMgkNakdoNv6n7jhOZ0kIrSPLouy_rRliAxbwQ24jGddz2Lc1hHcW9CAjRX4BTPIVHiZNpGu4VAmK7TbKFvvcNxdS7V6WYTgwbhy7o4VZ9QEZS3JSKasy2lG0v1YdLlEEAyFX5v8jxWjjkR79foKDsCEqzC-iB37tgzyDPm6oRDDLYjJj1FYku6o2v7tqP0-5v7xJHFIDKoeDfcD8zXu0297zIXD0R_g7wU10R_O67hD_2DDISpmJGKIHls2AitoTtVrJaLrxUYbs_qyusFrH5CQCvpXF-0Rs-y55VO4To7YqVYJ7Pqu_ptOeqWrFa-08H1gY-qkhErsmY9_NF-1JE2jS7YdbFMGDr_M9smaPqw5KSdbZX-O0gLsaw1fkuhRBZSVWCIdQ2h8r83dOT9Sx_cyuwH9p5YCzJkJhTmgpphxGRIDERoZJsKGlvV=w725-h954" />
+                            <img style="width: 100%; margin-bottom: 15px" src="https://i.ibb.co/x83MGSP/logo-text-black.png" />
                           </td>
                         </tr>
                       </tbody>
@@ -72,7 +72,7 @@ export default function renderEmail(form, products) {
                       <tbody>
                         <tr>
                           <td align="right">
-                            <div style="font-weight: bold; font-size: 18px">Order #: <span style="color: #44B1DE">${form.guid}</span></div>
+                            <div style="font-weight: bold; font-size: 18px">Order #: <a href="${process.env.HOST}/view?guid=${form.guid}" style="color: #44B1DE; text-decoration: none">${form.guid}</a></div>
                             <div style="font-weight: bold; font-size: 18px">ORDER CONFIRMATION</div>
                           </td>
                         </tr>
@@ -91,7 +91,7 @@ export default function renderEmail(form, products) {
               </p>
               <div style="font-size: 30px; font-weight: bold; margin-bottom: 5px; max-width: 680px; text-align: left">Details</div>
               <hr style="border: none; border-bottom: solid 1px #A0A0A0; margin: 5px 0px 20px; max-width: 680px">
-              <div style="font-weight: bold; font-size: 24px; margin-bottom: 20px; max-width: 680px; text-align: left">Order #: <span style="color: #44B1DE">${form.guid}</span></div>
+              <div style="font-weight: bold; font-size: 24px; margin-bottom: 20px; max-width: 680px; text-align: left">Order #: <a href="${process.env.HOST}/view?guid=${form.guid}" style="color: #44B1DE; text-decoration: none">${form.guid}</a></div>
 
               <div style="padding: 20px; border-radius: 5px; box-shadow: 0px 3px 6px #00000029; -webkit-box-shadow: 0px 3px 6px #00000029; border: solid 1px #DEDEDE; max-width: 640px">
 
@@ -114,7 +114,7 @@ export default function renderEmail(form, products) {
                               <div style="font-size: 14px; line-height: 19px; max-width: 250px; margin-bottom: 24px">
                                 *A shipping confirmation email will be sent as soon as your order ships
                               </div>
-                              <a href="${process.env.HOST}/view/${form.guid}" style="text-decoration: none">
+                              <a href="${process.env.HOST}/view?guid=${form.guid}" style="text-decoration: none">
                                 <div style="white-space: nowrap; background: #68DBAA; max-width: 100%; text-align: center; box-shadow: 0px 3px 6px #00000029; -webkit-box-shadow: 0px 3px 6px #00000029; border-radius: 5px; padding: 30px; color: white; font-size: 26px">VIEW ORDER</div>
                               </a>
                             </td>
@@ -179,20 +179,20 @@ export default function renderEmail(form, products) {
       </table>
 
       <div style="background: #DEDEDE; text-align: center; padding: 15px 30px; margin-top: 40px">
-        <img style="width: 325px; margin: auto" src="https://lh3.googleusercontent.com/baG6TwpnPAVukPEp3lZf4x5jpI4Vd0by_uZ3S4DlI4eWvKsxDVpMyTthjBNrRPOe2MzCMHL7NLXiOxtS4twIKg7OUHl9BLMjS8gTD-okXZejuNaOrlSMCdIbOH5UoARhyf5PuC0eVC8B4OWR4XpFapgQDaxkWBAwhOMd5RMgkNakdoNv6n7jhOZ0kIrSPLouy_rRliAxbwQ24jGddz2Lc1hHcW9CAjRX4BTPIVHiZNpGu4VAmK7TbKFvvcNxdS7V6WYTgwbhy7o4VZ9QEZS3JSKasy2lG0v1YdLlEEAyFX5v8jxWjjkR79foKDsCEqzC-iB37tgzyDPm6oRDDLYjJj1FYku6o2v7tqP0-5v7xJHFIDKoeDfcD8zXu0297zIXD0R_g7wU10R_O67hD_2DDISpmJGKIHls2AitoTtVrJaLrxUYbs_qyusFrH5CQCvpXF-0Rs-y55VO4To7YqVYJ7Pqu_ptOeqWrFa-08H1gY-qkhErsmY9_NF-1JE2jS7YdbFMGDr_M9smaPqw5KSdbZX-O0gLsaw1fkuhRBZSVWCIdQ2h8r83dOT9Sx_cyuwH9p5YCzJkJhTmgpphxGRIDERoZJsKGlvV=w725-h954" />
+        <img style="width: 325px; margin: auto" src="https://i.ibb.co/x83MGSP/logo-text-black.png" />
         <hr style="border: none; border-bottom: solid 1px #A0A0A0">
         <div style="font-size: 9px; margin-bottom: 4px">Copyright 2018. Textile Graphix, LLC</div>
         <table border="0" cellpadding="0" cellspacing="0" style="margin: 0; padding: 0" width="100%">
           <tr>
             <td align="right" valign="top" height="20px" style="width: 50%">
               <a href="https://www.facebook.com/textilegraphix/" target="_blank">
-                <img style="margin-right: 10px" src="https://lh3.googleusercontent.com/wJrRG9TbOjQVwnTN_svaavwxbGckIfFH5TC9kaKt3b7BoUAdo2SNq-FqKTW2BBSQuQ4BxYZxA70ob5BpENG54yI4lVZqUn70IJZh4TJNO_RUh68_gogbknamN7PWibBHUq01r7lShtxHszd5smPtLUUY9R0B_dkdoVmqBkhhu-iGNPUTcOejIkwYFeepWjddE9h_i049hBSqTEECOBV_ESEtsvYrMJFyC4mcy610qW5opaJC18Ru55cJp89vrx53UjPinJeUh8TYWbJ84zo6FWbqDArjuPRDErEA2TzE-baoENXnNMpyl9dlp2KePMw1ZLDdqtyDYyb-wX6PsKQyXMX3_95PiSWz9kkBiZlgt7qou4HVeuW6mxGJK48-6PzcArL6Hs6imw5q7vOB33K3uMpn3B5bBiGRvYcavtA3yDyf9YsRgKFdE4Jn0ibI9hcMJsK9uqGT9k8vgCFelOVltEBqVaE63WlZc33lIShY3cHEC9U4zwNGNtom0Yo1e2Qq0fJOn-a1oUNSb3AM3-FR489V81CYW04VurayIzC3H43MQQubJytUDNVQGiJ4x14VfvDye9RXYDzxRhYTsslAYVRhcXcA0cfG=w1920-h970" />
+                <img style="margin-right: 10px" src="https://i.ibb.co/2cdSnRC/fb-gray.png" />
               </a>
             </td>
             <td width="20px"></td>
             <td align="left" valign="top" height="20px" style="width: 50%">
               <a href="https://www.instagram.com/textilegraphix/" target="_blank">
-                <img style="margin-left: 10px" src="https://lh3.googleusercontent.com/7mNJxWGoPurWZ20f8_uZEHPuHyppxd6mYP3f0TWSfy7-qMc_68ZZSEhDlNgvhEvMGwFf92E5CT1fL-PwrMh_vPfnu3jFfv8L_iiV1Xv7rCdFYe_Gj4838XP9MeJ8DM6n3OIzmdi4D3G803K0BFyXlMxP6NDxExZiCnBhGrnR3IGDCvaWa3D8K15P3Q1EmzFRaJM8ydTMqLUjOoPvHe6mvKjExJ1yp3X58hRXpg3ed2RSVdTGd1f68ZHrOKoqW5yM8D3j7nEAjYBTYugG4WG2haYAxdUs2QW77dxjTX5cxk9BaqHTYZNGMWXxXid6NCQtrZzfY3Pc5wtcucUrdTYl-MsNIh3F14H5UC9g_rKug3Sa21_tZ0tQmw426fHunWe-xd74Ie2JiVDdELEepCJzM1ZcP9_bsBoVLKipsEDPbrxiF2rAPACBHuerMvmOGw0pqoFCFwmoeSG16QGCoppejVeRZv9RVyApmo8y_y0hdTjIFvu78qZFNiJb4Ig66i3wq_Yp54K14qPAtOdjfnBxPbnVNwn_42JA7YTJmfWaaGDtcuaIESXEVxQLRIgZmErQiS6pnVjjO4tiyPHHc6xLQBWMuZws0uhc=w725-h954" />
+                <img style="margin-left: 10px" src="https://i.ibb.co/mcXwHf5/insta-gray.png" />
               </a>
             </td>
           </tr>
