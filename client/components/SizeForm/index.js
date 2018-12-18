@@ -15,6 +15,7 @@ class SizeForm extends Component {
     this.moveLeft = this.moveLeft.bind(this);
     this.moveRight = this.moveRight.bind(this);
     this.determineMaxWidth = this.determineMaxWidth.bind(this);
+    this.update = this.update.bind(this);
   }
 
   componentDidMount() {
@@ -67,6 +68,12 @@ class SizeForm extends Component {
     }
   }
 
+  update(e) {
+    let newState = Object.assign({}, this.state);
+    newState.form[e.target.name] = e.target.value;
+    this.setState(newState, this.props.updateSize(e, this.state.form));
+  }
+
   render() {
 
     let marginLeft = -(this.state.position * this.state.moveAmount) + "px";
@@ -83,7 +90,7 @@ class SizeForm extends Component {
               <label style={this.props.form.XS ? colored : null}>XS</label>
               {this.props.edit ? (
                 <input type="text" name="XS" style={this.props.form.XS ? colored : null}
-                  value={this.props.form.XS} onChange={(e) => this.props.updateSize(e, this.state.form)} placeholder="0" />
+                  value={this.props.form.XS} onChange={this.update} placeholder="0" />
               ) : (
                 <h1 style={this.props.form.XS ? colored : null}>{this.props.form.XS || 0}</h1>
               )}
@@ -92,7 +99,7 @@ class SizeForm extends Component {
               <label style={this.props.form.S ? colored : null}>S</label>
               {this.props.edit ? (
                 <input type="text" name="S" style={this.props.form.S ? colored : null}
-                  value={this.props.form.S} onChange={(e) => this.props.updateSize(e, this.state.form)} placeholder="0" />
+                  value={this.props.form.S} onChange={this.update} placeholder="0" />
               ) : (
                 <h1 style={this.props.form.S ? colored : null}>{this.props.form.S || 0}</h1>
               )}
@@ -101,7 +108,7 @@ class SizeForm extends Component {
               <label style={this.props.form.M ? colored : null}>M</label>
               {this.props.edit ? (
                 <input type="text" name="M" style={this.props.form.M ? colored : null}
-                  value={this.props.form.M} onChange={(e) => this.props.updateSize(e, this.state.form)} placeholder="0" />
+                  value={this.props.form.M} onChange={this.update} placeholder="0" />
               ) : (
                 <h1 style={this.props.form.M ? colored : null}>{this.props.form.M || 0}</h1>
               )}
@@ -110,7 +117,7 @@ class SizeForm extends Component {
               <label style={this.props.form.L ? colored : null}>L</label>
               {this.props.edit ? (
                 <input type="text" name="L" style={this.props.form.L ? colored : null}
-                  value={this.props.form.L} onChange={(e) => this.props.updateSize(e, this.state.form)} placeholder="0" />
+                  value={this.props.form.L} onChange={this.update} placeholder="0" />
               ) : (
                 <h1 style={this.props.form.L ? colored : null}>{this.props.form.L || 0}</h1>
               )}
@@ -119,7 +126,7 @@ class SizeForm extends Component {
               <label style={this.props.form.XL ? colored : null}>XL</label>
               {this.props.edit ? (
                 <input type="text" name="XL" style={this.props.form.XL ? colored : null}
-                  value={this.props.form.XL} onChange={(e) => this.props.updateSize(e, this.state.form)} placeholder="0" />
+                  value={this.props.form.XL} onChange={this.update} placeholder="0" />
               ) : (
                 <h1 style={this.props.form.XL ? colored : null}>{this.props.form.XL || 0}</h1>
               )}
@@ -128,7 +135,7 @@ class SizeForm extends Component {
               <label style={this.props.form.XL2 ? colored : null}>2XL</label>
               {this.props.edit ? (
                 <input type="text" name="XL2" style={this.props.form.XL2 ? colored : null}
-                  value={this.props.form.XL2} onChange={(e) => this.props.updateSize(e, this.state.form)} placeholder="0" />
+                  value={this.props.form.XL2} onChange={this.update} placeholder="0" />
               ) : (
                 <h1 style={this.props.form.XL2 ? colored : null}>{this.props.form.XL2 || 0}</h1>
               )}
@@ -137,7 +144,7 @@ class SizeForm extends Component {
               <label style={this.props.form.XL3 ? colored : null}>3XL</label>
               {this.props.edit ? (
                 <input type="text" name="XL3" style={this.props.form.XL3 ? colored : null}
-                  value={this.props.form.XL3} onChange={(e) => this.props.updateSize(e, this.state.form)} placeholder="0" />
+                  value={this.props.form.XL3} onChange={this.update} placeholder="0" />
               ) : (
                 <h1 style={this.props.form.XL3 ? colored : null}>{this.props.form.XL3 || 0}</h1>
               )}
@@ -146,7 +153,7 @@ class SizeForm extends Component {
               <label style={this.props.form.XL4 ? colored : null}>4XL</label>
               {this.props.edit ? (
                 <input type="text" name="XL4" style={this.props.form.XL4 ? colored : null}
-                  value={this.props.form.XL4} onChange={(e) => this.props.updateSize(e, this.state.form)} placeholder="0" />
+                  value={this.props.form.XL4} onChange={this.update} placeholder="0" />
               ) : (
                 <h1 style={this.props.form.XL4 ? colored : null}>{this.props.form.XL4 || 0}</h1>
               )}
@@ -155,7 +162,7 @@ class SizeForm extends Component {
               <label style={this.props.form.XL5 ? colored : null}>5XL</label>
               {this.props.edit ? (
                 <input type="text" name="XL5" style={this.props.form.XL5 ? colored : null}
-                  value={this.props.form.XL5} onChange={(e) => this.props.updateSize(e, this.state.form)} placeholder="0" />
+                  value={this.props.form.XL5} onChange={this.update} placeholder="0" />
               ) : (
                 <h1 style={this.props.form.XL5 ? colored : null}>{this.props.form.XL5 || 0}</h1>
               )}

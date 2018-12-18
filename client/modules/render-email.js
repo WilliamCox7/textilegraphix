@@ -72,8 +72,8 @@ export default function renderEmail(form, products) {
                       <tbody>
                         <tr>
                           <td align="right">
-                            <div style="font-weight: bold; font-size: 18px">Order #: <a href="${process.env.HOST}/view?guid=${form.guid}" style="color: #44B1DE; text-decoration: none">${form.guid}</a></div>
-                            <div style="font-weight: bold; font-size: 18px">ORDER CONFIRMATION</div>
+                            <div style="font-weight: bold; font-size: 18px">Quote #: <a href="${process.env.HOST}/view?guid=${form.guid}" style="color: #44B1DE; text-decoration: none">${form.guid}</a></div>
+                            <div style="font-weight: bold; font-size: 18px">QUOTE CONFIRMATION</div>
                           </td>
                         </tr>
                       </tbody>

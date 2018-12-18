@@ -40,8 +40,8 @@ class Builder extends Component {
       guid: props.builder ? props.builder.guid : undefined,
       help: false,
       zip: '',
-      rates: [],
-      showZip: true,
+      rates: !!(props.builder && props.builder.rates) ? props.builder.rates : [],
+      showZip: !!(props.builder && props.builder.zip) ? false : true,
       edit: props.builder ? props.builder.edit : false,
       uploaded: props.builder && props.builder.uploaded ? props.builder.uploaded : { front: [], back: [] },
       XS: props.builder && props.builder.XS ? props.builder.XS : "",
@@ -80,7 +80,17 @@ class Builder extends Component {
 
   componentDidMount() {
     scrollToTop();
-    if (this.state.product) this.calculateCost();
+    if (this.state.product) {
+      this.calculateCost(this.state, 0);
+    }
+    let input = document.getElementById('zip-input');
+    if (input) {
+      input.addEventListener('keypress', (e) => {
+        if (e.keyCode === 13 && e.which === 13) {
+          this.getRates();
+        }
+      });
+    }
   }
 
   componentWillMount() {
@@ -117,13 +127,15 @@ class Builder extends Component {
           <MediaQuery minWidth={690}>
             <h1 className="page-header">PRODUCT BUILDER</h1>
           </MediaQuery>
-          <MediaQuery minWidth={690}>
-            {this.state.edit ? (
-              <button className="add-to-cart-button" onClick={this.updateToCart}>SAVE ORDER</button>
-            ) : (
-              <button className="add-to-cart-button" onClick={this.addToCart}>ADD TO CART</button>
-            )}
-          </MediaQuery>
+          {!this.state.waiting2 ? (
+            <MediaQuery minWidth={690}>
+              {this.state.edit ? (
+                <button className="add-to-cart-button" onClick={this.updateToCart}>SAVE ORDER</button>
+              ) : (
+                <button className="add-to-cart-button" onClick={this.addToCart}>ADD TO CART</button>
+              )}
+            </MediaQuery>
+          ) : null}
           <MediaQuery maxWidth={689}>
             <h2>{product.brand} {product.number}</h2>
           </MediaQuery>
@@ -216,7 +228,7 @@ class Builder extends Component {
               <div id="zip-section-wrapper" className="flex fd-c jc-c ai-c">
                 <h1>WHERE WILL THIS BE SHIPPED?</h1>
                 <div className="ship-buttons flex jc-c">
-                  <input className="zip-input" type="text" placeholder="ZIP CODE" onChange={this.setZip} />
+                  <input id="zip-input" className="zip-input" type="text" placeholder="ZIP CODE" onChange={this.setZip} />
                   <button className="ok-button" onClick={this.getRates}>OK</button>
                 </div>
               </div>
@@ -266,11 +278,13 @@ class Builder extends Component {
             <MediaQuery maxWidth={689}>
               <hr />
             </MediaQuery>
-            <MediaQuery maxWidth={689}>
-              <div className="add-to-cart-button-wrapper">
-                <button className="add-to-cart-button" onClick={this.addToCart}>ADD TO CART</button>
-              </div>
-            </MediaQuery>
+            {!this.state.waiting2 ? (
+              <MediaQuery maxWidth={689}>
+                <div className="add-to-cart-button-wrapper">
+                  <button className="add-to-cart-button" onClick={this.addToCart}>ADD TO CART</button>
+                </div>
+              </MediaQuery>
+            ) : null}
           </div>
           <div id="builder-wrapper-right">
             <MediaQuery minWidth={690}>

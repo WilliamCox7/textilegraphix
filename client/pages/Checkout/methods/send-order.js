@@ -1,10 +1,11 @@
 export default function sendOrder(orderType, orderTotal) {
   if (valid(this.state)) {
-    if (orderTotal < 500 && orderType === 'bill-later') {
-      this.setState({error: 'Order must be over $500 to select this option'});
-    } else {
-      send(this, orderType);
-    }
+    send(this, orderType);
+    // if (orderTotal < 500 && orderType === 'bill-later') {
+    //   this.setState({error: 'Order must be over $500 to select this option'});
+    // } else {
+    //   send(this, orderType);
+    // }
   } else {
     this.setState({error: '* Please fill in all required fields'});
   }
@@ -16,7 +17,8 @@ function send(self, orderType) {
     self.toggle('paymentModal');
     self.props.storeForm(self.state);
   } else {
-    self.sendConfirmation(self.state, self.props.cart.orders);
+    self.sendConfirmation(self.state, self.props.cart.orders)
+    .then(() => self.props.history.push(`/view?guid=${self.state.guid}`));
   }
 }
 

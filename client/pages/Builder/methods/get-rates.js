@@ -10,8 +10,11 @@ export default function getRates() {
     axios.post('/shipping', requestBody)
     .then((response) => {
       if (this.state.showZip) this.toggle('waiting2');
-      let groundRate = response.data.rates.find((rate) => rate.carrier === 'UPS' && rate.service === 'Ground').rate;
-      let shippingOffset = Number(groundRate) / this.state.quantity;
+      let groundRate, shippingOffset = 0;
+      if (this.state.rates.length) {
+        groundRate = response.data.rates.find((rate) => rate.carrier === 'UPS' && rate.service === 'Ground').rate;
+        shippingOffset = Number(groundRate) / this.state.quantity;
+      }
       this.calculateCost(this.state, shippingOffset);
       this.setState({
         rates: response.data.rates.filter((rate) => rate.carrier === 'UPS'),

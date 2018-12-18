@@ -224,7 +224,7 @@ class Checkout extends Component {
 
     return (
       <div id="Checkout">
-        <h1 className="page-header">CHECKOUT</h1>
+        <h1 className="page-header">QUOTE SUBMISSION</h1>
         <div id="cart-wrapper" className="flex">
           <div id="cart-wrapper-left">
             <div id="orders-in-cart">
@@ -249,13 +249,13 @@ class Checkout extends Component {
                   </div>
                 </div>
                 <div className="checkout-buttons flex fd-c">
-                  <button className="flex ai-c jc-sb" onClick={() => this.sendOrder('buy-now', orderTotal)}>
+                  {/* <button className="flex ai-c jc-sb" onClick={() => this.sendOrder('buy-now', orderTotal)}>
                     <h1>BUY NOW</h1>
                     <img src={getAsset('buy-now-icon')} />
-                  </button>
-                  <button className="flex ai-c jc-sb" onClick={() => this.sendOrder('bill-later', orderTotal)}>
-                    <h1>BILL ME</h1>
+                  </button> */}
+                  <button className="flex ai-c jc-c fd-c" onClick={() => this.sendOrder('bill-later', orderTotal)}>
                     <img src={getAsset('bill-me-icon')} />
+                    <h1>SUBMIT QUOTE</h1>
                   </button>
                 </div>
               </div>
@@ -327,7 +327,7 @@ class Checkout extends Component {
                 {this.state.selectedShippingMethod === 'ground' ? <img src={getAsset('blue-check')} /> : <span></span>}
                 <h3>*Guaranteed {deliveryOpts.ground.month}/{deliveryOpts.ground.day} (FREE)</h3>
               </div>
-              <div className="shipping-method flex ai-c" onClick={() => this.updateShippingMethod('3-day')}>
+              {/* <div className="shipping-method flex ai-c" onClick={() => this.updateShippingMethod('3-day')}>
                 <h3>UPS 3-Day</h3>
                 {this.state.selectedShippingMethod === '3-day' ? <img src={getAsset('blue-check')} /> : <span></span>}
                 <h3>*Guaranteed {deliveryOpts.day3.month}/{deliveryOpts.day3.day} (+ ${(shippingRates.day3 - shippingRates.ground).toFixed(2)})</h3>
@@ -341,7 +341,7 @@ class Checkout extends Component {
                 <h3>UPS Next Day</h3>
                 {this.state.selectedShippingMethod === 'next-day' ? <img src={getAsset('blue-check')} /> : <span></span>}
                 <h3>*Guaranteed {deliveryOpts.next.month}/{deliveryOpts.next.day} (+ ${(shippingRates.dayNext - shippingRates.ground).toFixed(2)})</h3>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -368,13 +368,13 @@ class Checkout extends Component {
               </div>
             </div>
             <div className="checkout-buttons flex fd-c">
-              <button className="flex ai-c jc-sb" onClick={() => this.sendOrder('buy-now', orderTotal)}>
+              {/* <button className="flex ai-c jc-sb" onClick={() => this.sendOrder('buy-now', orderTotal)}>
                 <h1>BUY NOW</h1>
                 <img src={getAsset('buy-now-icon')} />
-              </button>
-              <button className="flex ai-c jc-sb" onClick={() => this.sendOrder('bill-later', orderTotal)}>
-                <h1>BILL ME</h1>
+              </button> */}
+              <button className="flex ai-c jc-c fd-c" onClick={() => this.sendOrder('bill-later', orderTotal)}>
                 <img src={getAsset('bill-me-icon')} />
+                <h1>SUBMIT QUOTE</h1>
               </button>
             </div>
           </div>
@@ -391,14 +391,14 @@ class Checkout extends Component {
               <hr id="total-line" />
             </div>
             <div className="checkout-buttons flex jc-sb">
-              <button className="flex ai-c jc-sb" onClick={() => this.sendOrder('buy-now', orderTotal)}>
+              {/* <button className="flex ai-c jc-sb" onClick={() => this.sendOrder('buy-now', orderTotal)}>
                 <h3>BUY NOW</h3>
                 <img src={getAsset('buy-now-icon')} />
               </button>
-              <div className="divider-margin"></div>
+              <div className="divider-margin"></div> */}
               <button className="flex ai-c jc-sb" onClick={() => this.sendOrder('bill-later', orderTotal)}>
-                <h3>BILL ME</h3>
                 <img src={getAsset('bill-me-icon')} />
+                <h3>SUBMIT QUOTE</h3>
               </button>
             </div>
           </div>
@@ -408,21 +408,28 @@ class Checkout extends Component {
         </MediaQuery>
         <div className="button-desc-wrapper flex">
           <div className="button-desc">
+            <h1>*SUBMIT QUOTE</h1>
+            <p>
+              Upon submitting, one of our account representatives will
+              reach out to you within 1 business day.
+            </p>
+          </div>
+          {/* <div className="button-desc">
             <h1>*BUY NOW</h1>
             <p>
               Upon submitting, your card will be authorized but will
               not be charged until the order has been shipped.
             </p>
           </div>
-          <div className="divider-margin"></div>
-          <div className="button-desc">
+          <div className="divider-margin"></div> */}
+          {/* <div className="button-desc">
             <h1>*BILL ME LATER</h1>
             <p>
               This option is only availible for orders over the amount
               of $500, upon submiting our account specialists will
               discuss payment options.
             </p>
-          </div>
+          </div> */}
         </div>
         <div className="bottom-space"></div>
         {this.state.paymentModal ? (

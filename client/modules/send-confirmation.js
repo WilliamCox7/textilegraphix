@@ -3,7 +3,7 @@ import renderEmail from './render-email';
 import prepareAttachments from './prepare-attachments';
 
 export default function sendConfirmation(form, orders) {
-  axios.post('/order', {
+  return axios.post('/order', {
     form: form,
     orders: orders,
     to: form.contact.email,
@@ -13,6 +13,7 @@ export default function sendConfirmation(form, orders) {
   }).then((response) => {
     this.props.clearCart();
     this.toggle('waiting');
+    return Promise.resolve();
   }).catch((error) => {
     axios.post('/error', {error: error});
   });

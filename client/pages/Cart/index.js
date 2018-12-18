@@ -174,7 +174,7 @@ class Cart extends Component {
     return (
       <div id="Cart">
         <div className="page-nav flex jc-sb">
-          <h1 className="page-header">MY CART</h1>
+          <h1 className="page-header">MY QUOTES</h1>
           <MediaQuery minWidth={490}>
             <button onClick={() => this.props.history.push('/checkout')}>CHECKOUT</button>
           </MediaQuery>
