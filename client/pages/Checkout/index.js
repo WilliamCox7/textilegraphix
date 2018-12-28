@@ -325,22 +325,22 @@ class Checkout extends Component {
               <div className="shipping-method flex ai-c" onClick={() => this.updateShippingMethod('ground')}>
                 <h3>UPS GROUND</h3>
                 {this.state.selectedShippingMethod === 'ground' ? <img src={getAsset('blue-check')} /> : <span></span>}
-                <h3>*Guaranteed {deliveryOpts.ground.month}/{deliveryOpts.ground.day} (FREE)</h3>
+                <h3>*Estimated Delivery {deliveryOpts.ground.month}/{deliveryOpts.ground.day} (FREE)</h3>
               </div>
               {/* <div className="shipping-method flex ai-c" onClick={() => this.updateShippingMethod('3-day')}>
                 <h3>UPS 3-Day</h3>
                 {this.state.selectedShippingMethod === '3-day' ? <img src={getAsset('blue-check')} /> : <span></span>}
-                <h3>*Guaranteed {deliveryOpts.day3.month}/{deliveryOpts.day3.day} (+ ${(shippingRates.day3 - shippingRates.ground).toFixed(2)})</h3>
+                <h3>*Estimated Delivery {deliveryOpts.day3.month}/{deliveryOpts.day3.day} (+ ${(shippingRates.day3 - shippingRates.ground).toFixed(2)})</h3>
               </div>
               <div className="shipping-method flex ai-c" onClick={() => this.updateShippingMethod('2-day')}>
                 <h3>UPS 2-Day</h3>
                 {this.state.selectedShippingMethod === '2-day' ? <img src={getAsset('blue-check')} /> : <span></span>}
-                <h3>*Guaranteed {deliveryOpts.day2.month}/{deliveryOpts.day2.day} (+ ${(shippingRates.day2 - shippingRates.ground).toFixed(2)})</h3>
+                <h3>*Estimated Delivery {deliveryOpts.day2.month}/{deliveryOpts.day2.day} (+ ${(shippingRates.day2 - shippingRates.ground).toFixed(2)})</h3>
               </div>
               <div className="shipping-method flex ai-c" onClick={() => this.updateShippingMethod('next-day')}>
                 <h3>UPS Next Day</h3>
                 {this.state.selectedShippingMethod === 'next-day' ? <img src={getAsset('blue-check')} /> : <span></span>}
-                <h3>*Guaranteed {deliveryOpts.next.month}/{deliveryOpts.next.day} (+ ${(shippingRates.dayNext - shippingRates.ground).toFixed(2)})</h3>
+                <h3>*Estimated Delivery {deliveryOpts.next.month}/{deliveryOpts.next.day} (+ ${(shippingRates.dayNext - shippingRates.ground).toFixed(2)})</h3>
               </div> */}
             </div>
           </div>

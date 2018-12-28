@@ -28,6 +28,13 @@ module.exports = {
     .then((order) => {
       res.status(200).send(order);
     });
+  },
+
+  getOrderNumber: (req, res) => {
+    OrderModule.getOrderNumber()
+    .then((orderNumber) => {
+      res.status(200).send(orderNumber);
+    });
   }
 
 }

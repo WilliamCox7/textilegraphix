@@ -167,7 +167,7 @@ class Cart extends Component {
     return (
       <div id="Cart">
         <div className="page-nav flex jc-sb">
-          <h1 className="page-header">Quote #: {this.state.guid}</h1>
+          <h1 className="page-header">Quote #: {this.state.details.orderNumber}</h1>
         </div>
         <MediaQuery maxWidth={489}>
           <div className="swipe-guide flex jc-c ai-c">

@@ -83,6 +83,15 @@ export default function calculateTotalCost(args) {
     XL5: 5.00
   }
 
+  if (order.product && (order.product.type === 'hoodies' || order.product.type === 'sweaters')) {
+    sizeOffsets = {
+      XL2: 5.00,
+      XL3: 6.00,
+      XL4: 7.00,
+      XL5: 8.50
+    }
+  }
+
   // calculate results and return
   let numShirtsXL = 0, XL2Cost = 0, XL3Cost = 0, XL4Cost = 0, XL5Cost = 0;
   if (order.XL2) {
@@ -104,9 +113,15 @@ export default function calculateTotalCost(args) {
   let regCost = parseFloat(costOfShirt + setCost + markup) * (numShirts - numShirtsXL);
   let shippingCost = parseFloat(shippingRate) * numShirts;
 
+  let setupFee = order.frontColors >= order.backColors ? order.frontColors * 15 : order.backColors * 15;
+  let setupFeePerShirt = setupFee / numShirts;
+
+  let totalCost = (regCost + XL2Cost + XL3Cost + XL4Cost + XL5Cost + shippingCost + setupFee).toFixed(2);
+  let totalCostOfShirt = (parseFloat(costOfShirt + setCost + markup + shippingRate + setupFeePerShirt)).toFixed(2);
+
   return {
-    totalCost: (regCost + XL2Cost + XL3Cost + XL4Cost + XL5Cost + shippingCost).toFixed(2),
-    costPerShirt: (parseFloat(costOfShirt + setCost + markup + shippingRate)).toFixed(2),
+    totalCost: totalCost,
+    costPerShirt: totalCostOfShirt,
     totalShipping: shippingCost,
     sizeOffsets: sizeOffsets
   }

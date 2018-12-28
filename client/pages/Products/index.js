@@ -25,17 +25,18 @@ class Products extends Component {
       showSort: false,
       extraMargin: 0,
       productBuilderInit: {
-        frontColors: 0,
+        frontColors: 1,
         backColors: 0,
         leftSleeveColors: 0,
         rightSleeveColors: 0,
         total: 0,
         totalPerShirt: 0,
-        quantity: 1
+        quantity: 30
       }
     }
     this.setFilter = this.setFilter.bind(this);
     this.updateQuantity = this.updateQuantity.bind(this);
+    this.validateQuantity = this.validateQuantity.bind(this);
     this.incrimentColor = this.incrimentColor.bind(this);
     this.decrimentColor = this.decrimentColor.bind(this);
     this.toggle = this.toggle.bind(this);
@@ -111,7 +112,7 @@ class Products extends Component {
               <div id="products-options" className="flex">
                 <div id="qty-input" className="flex ai-c">
                   <label>QTY:</label>
-                  <input type="text" value={this.state.productBuilderInit.quantity} onChange={this.updateQuantity} />
+                  <input type="text" onChange={this.updateQuantity} placeholder="30" onBlur={this.validateQuantity} />
                 </div>
                 <ColorUpdater label="Front" location="front" numColors={this.state.productBuilderInit.frontColors}
                   decrimentColor={this.decrimentColor} incrimentColor={this.incrimentColor} />
@@ -154,6 +155,7 @@ class Products extends Component {
 
 Products.prototype.setFilter = methods.setFilter;
 Products.prototype.updateQuantity = methods.updateQuantity;
+Products.prototype.validateQuantity = methods.validateQuantity;
 Products.prototype.incrimentColor = methods.incrimentColor;
 Products.prototype.decrimentColor = methods.decrimentColor;
 Products.prototype.toggle = toggle;

@@ -23,6 +23,12 @@
     @media(max-width: 690px) {
       display: block;
     }
+    .page-nav-right {
+      h1 {
+        margin-right: 10px;
+        color: $main-red;
+      }
+    }
     h2 {
       width: 100%;
       font-size: 18px;
@@ -319,6 +325,10 @@
         width: 100%;
         text-align: center;
         margin-top: 26px;
+        h1 {
+          margin-bottom: 15px;
+          color: $main-red;
+        }
       }
     }
     #builder-wrapper-right {

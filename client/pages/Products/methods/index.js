@@ -1,5 +1,6 @@
 import setFilter from './set-filter';
 import updateQuantity from './update-quantity';
+import validateQuantity from './validate-quantity';
 import decrimentColor from './decriment-color';
 import incrimentColor from './incriment-color';
 import setSort from './set-sort';
@@ -14,5 +15,6 @@ import setProduct from './set-product';
 export {
   setFilter, updateQuantity, decrimentColor, incrimentColor,
   setSort, closeAll, sortAtoZ, sortBestSeller,
-  sortDefault, sortHighestPrice, sortLowestPrice, setProduct
+  sortDefault, sortHighestPrice, sortLowestPrice, setProduct,
+  validateQuantity
 }

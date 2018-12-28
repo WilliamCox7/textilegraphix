@@ -9,6 +9,7 @@ module.exports = (app) => {
   // GET
   app.get('/api/products', ProductSvc.get);
   app.get('/api/order/:guid', OrderSvc.get);
+  app.get('/api/order-number', OrderSvc.getOrderNumber);
 
   // POST
   app.post('/order', OrderSvc.processOrder);

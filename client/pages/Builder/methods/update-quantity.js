@@ -1,6 +1,6 @@
 export default function updateQuantity(e) {
   if (!isNaN(e.target.value)) {
-    this.setState({quantity: Number(e.target.value) || 1}, () => {
+    this.setState({quantity: Number(e.target.value) >= 30 ? Number(e.target.value) : 30}, () => {
       let groundRate, shippingOffset = 0;
       if (this.state.rates.length) {
         groundRate = this.state.rates.find((rate) => rate.carrier === 'UPS' && rate.service === 'Ground').rate;

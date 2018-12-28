@@ -10,9 +10,9 @@ module.exports = function saveOrder(form, orders) {
 
       conn.query(`
         INSERT INTO orders
-        (guid, delivery, shippingMethod)
+        (orderNumber, guid, delivery, shippingMethod)
         VALUES
-        (${conn.escape(form.guid)}, ${conn.escape(form.delivery)}, ${conn.escape(form.selectedShippingMethod)})
+        (${conn.escape(form.orderNumber)}, ${conn.escape(form.guid)}, ${conn.escape(form.delivery)}, ${conn.escape(form.selectedShippingMethod)})
       `)
       .then((result) => {
         let orderId = result.insertId;

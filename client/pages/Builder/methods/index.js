@@ -1,6 +1,7 @@
 import selectColor from './select-color';
 import calculateCost from './calculate-cost';
 import updateQuantity from './update-quantity';
+import validateQuantity from './validate-quantity';
 import incrimentColor from './incriment-color';
 import decrimentColor from './decriment-color';
 import updateSize from './update-size';
@@ -18,5 +19,5 @@ export {
   selectColor, calculateCost, updateQuantity, incrimentColor,
   decrimentColor, updateSize, toggleShownSide, updateToCart,
   storeFile, uploadImage, saveEdits, removeImage,
-  addToCart, setZip, getRates
+  addToCart, setZip, getRates, validateQuantity
 }

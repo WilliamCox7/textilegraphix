@@ -58,10 +58,12 @@ class Builder extends Component {
         XL3: 0,
         XL4: 0,
         XL5: 0
-      }
+      },
+      errMsg: ''
     }
     this.selectColor = this.selectColor.bind(this);
     this.updateQuantity = this.updateQuantity.bind(this);
+    this.validateQuantity = this.validateQuantity.bind(this);
     this.calculateCost = this.calculateCost.bind(this);
     this.incrimentColor = this.incrimentColor.bind(this);
     this.decrimentColor = this.decrimentColor.bind(this);
@@ -127,13 +129,18 @@ class Builder extends Component {
           <MediaQuery minWidth={690}>
             <h1 className="page-header">PRODUCT BUILDER</h1>
           </MediaQuery>
-          {!this.state.waiting2 ? (
+          {!this.state.waiting2 && !this.state.showZip ? (
             <MediaQuery minWidth={690}>
-              {this.state.edit ? (
-                <button className="add-to-cart-button" onClick={this.updateToCart}>SAVE ORDER</button>
-              ) : (
-                <button className="add-to-cart-button" onClick={this.addToCart}>ADD TO CART</button>
-              )}
+              <div className="flex page-nav-right">
+                {this.state.errMsg ? (
+                  <h1>{this.state.errMsg}</h1>
+                ) : null}
+                {this.state.edit ? (
+                  <button className="add-to-cart-button" onClick={this.updateToCart}>SAVE ORDER</button>
+                ) : (
+                  <button className="add-to-cart-button" onClick={this.addToCart}>ADD TO CART</button>
+                )}
+              </div>
             </MediaQuery>
           ) : null}
           <MediaQuery maxWidth={689}>
@@ -202,7 +209,9 @@ class Builder extends Component {
             <hr />
             <h4 className="h-wrapper">
               <span className="quantity-header">Quantity:</span>
-              <input type="text" value={this.state.quantity} onChange={this.updateQuantity} />
+              <input id="qty-input" type="text" onChange={this.updateQuantity} defaultValue={
+                this.state.quantity ? this.state.quantity : 30
+              } placeholder="30" onBlur={this.validateQuantity} />
             </h4>
             <div id="color-updater-wrapper" className="flex fw-w">
               <ColorUpdater label="Front" location="front" numColors={this.state.frontColors}
@@ -278,10 +287,17 @@ class Builder extends Component {
             <MediaQuery maxWidth={689}>
               <hr />
             </MediaQuery>
-            {!this.state.waiting2 ? (
+            {!this.state.waiting2 && !this.state.showZip ? (
               <MediaQuery maxWidth={689}>
                 <div className="add-to-cart-button-wrapper">
-                  <button className="add-to-cart-button" onClick={this.addToCart}>ADD TO CART</button>
+                  {this.state.errMsg ? (
+                    <h1>{this.state.errMsg}</h1>
+                  ) : null}
+                  {this.state.edit ? (
+                    <button className="add-to-cart-button" onClick={this.updateToCart}>SAVE ORDER</button>
+                  ) : (
+                    <button className="add-to-cart-button" onClick={this.addToCart}>ADD TO CART</button>
+                  )}
                 </div>
               </MediaQuery>
             ) : null}
@@ -365,6 +381,7 @@ class Builder extends Component {
 
 Builder.prototype.selectColor = methods.selectColor;
 Builder.prototype.updateQuantity = methods.updateQuantity;
+Builder.prototype.validateQuantity = methods.validateQuantity;
 Builder.prototype.calculateCost = methods.calculateCost;
 Builder.prototype.incrimentColor = methods.incrimentColor;
 Builder.prototype.decrimentColor = methods.decrimentColor;

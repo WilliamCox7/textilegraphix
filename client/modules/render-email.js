@@ -72,7 +72,7 @@ export default function renderEmail(form, products) {
                       <tbody>
                         <tr>
                           <td align="right">
-                            <div style="font-weight: bold; font-size: 18px">Quote #: <a href="${process.env.HOST}/view?guid=${form.guid}" style="color: #44B1DE; text-decoration: none">${form.guid}</a></div>
+                            <div style="font-weight: bold; font-size: 18px">Quote #: <a href="${process.env.HOST}/view?guid=${form.guid}" style="color: #44B1DE; text-decoration: none">${form.orderNumber || form.guid}</a></div>
                             <div style="font-weight: bold; font-size: 18px">QUOTE CONFIRMATION</div>
                           </td>
                         </tr>
@@ -91,7 +91,7 @@ export default function renderEmail(form, products) {
               </p>
               <div style="font-size: 30px; font-weight: bold; margin-bottom: 5px; max-width: 680px; text-align: left">Details</div>
               <hr style="border: none; border-bottom: solid 1px #A0A0A0; margin: 5px 0px 20px; max-width: 680px">
-              <div style="font-weight: bold; font-size: 24px; margin-bottom: 20px; max-width: 680px; text-align: left">Order #: <a href="${process.env.HOST}/view?guid=${form.guid}" style="color: #44B1DE; text-decoration: none">${form.guid}</a></div>
+              <div style="font-weight: bold; font-size: 24px; margin-bottom: 20px; max-width: 680px; text-align: left">Order #: <a href="${process.env.HOST}/view?guid=${form.guid}" style="color: #44B1DE; text-decoration: none">${form.orderNumber || form.guid}</a></div>
 
               <div style="padding: 20px; border-radius: 5px; box-shadow: 0px 3px 6px #00000029; -webkit-box-shadow: 0px 3px 6px #00000029; border: solid 1px #DEDEDE; max-width: 640px">
 
