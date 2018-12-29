@@ -8,7 +8,7 @@ module.exports = function getOrderNumber() {
   .then((c) => conn = c)
   .then(() => {
 
-    return conn.query(`SELECT MAX(orderNumber) + 1 AS orderNumber FROM orders`)
+    return conn.query(`SELECT IFNULL(MAX(orderNumber), 1000) + 1 AS orderNumber FROM orders`)
     .catch((err) => ErrorModule.handle(err, 'B-003'));
 
   })
