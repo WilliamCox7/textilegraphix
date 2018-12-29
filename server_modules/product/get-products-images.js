@@ -3,22 +3,23 @@ const config = require('../../config');
 const ErrorModule = require('../error');
 
 module.exports = function getProductsImages(product) {
-  return mysql.createConnection(config.mysql).then((conn) => {
+  let conn;
+  return mysql.createConnection(config.mysql)
+  .then((c) => conn = c)
+  .then(() => {
 
     return conn.query(`
       SELECT * FROM productImages
       WHERE productId = ${product.id}
     `)
+    .catch((err) => ErrorModule.handle(err, 'B-019'))
     .then((images) => {
-      conn.end();
       let imgObj = {};
       images.forEach((image) => imgObj[image.hex] = [ image.frontUrl, image.backUrl ]);
       return imgObj;
-    })
-    .catch((err) => {
-      conn.end();
-      return Promise.reject(ErrorModule.handle(err, 'SDF7'));
     });
 
-  });
+  })
+  .then((results) => { conn.end(); return results; })
+  .catch((details) => { conn.end(); return details; });
 }

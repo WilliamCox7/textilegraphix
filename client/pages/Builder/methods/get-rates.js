@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { handleError } from '../../../modules';
 
 export default function getRates() {
   if (this.state.zip.length === 5) {
@@ -21,7 +22,8 @@ export default function getRates() {
         showZip: false,
         shippingOffset: shippingOffset
       });
-    });
+    })
+    .catch((err) => handleError(err, 'F-002'));
   } else {
     // error message
   }

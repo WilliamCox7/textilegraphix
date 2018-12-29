@@ -3,20 +3,18 @@ const config = require('../../config');
 const ErrorModule = require('../error');
 
 module.exports = function getProductsColors(product) {
-  return mysql.createConnection(config.mysql).then((conn) => {
+  let conn;
+  return mysql.createConnection(config.mysql)
+  .then((c) => conn = c)
+  .then(() => {
 
     return conn.query(`
       SELECT * FROM productColors
       WHERE productId = ${product.id}
     `)
-    .then((result) => {
-      conn.end();
-      return result;
-    })
-    .catch((err) => {
-      conn.end();
-      return Promise.reject(ErrorModule.handle(err, 'HGF5'));
-    });
+    .catch((err) => ErrorModule.handle(err, 'B-018'));
 
-  });
+  })
+  .then((results) => { conn.end(); return results; })
+  .catch((details) => { conn.end(); return details; });
 }

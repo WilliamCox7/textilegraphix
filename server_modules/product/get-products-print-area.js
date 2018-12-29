@@ -3,14 +3,17 @@ const config = require('../../config');
 const ErrorModule = require('../error');
 
 module.exports = function getProductsPrintArea(product) {
-  return mysql.createConnection(config.mysql).then((conn) => {
+  let conn;
+  return mysql.createConnection(config.mysql)
+  .then((c) => conn = c)
+  .then(() => {
 
     return conn.query(`
       SELECT * FROM productPrintArea
       WHERE productId = ${product.id}
     `)
+    .catch((err) => ErrorModule.handle(err, 'B-020'))
     .then((areas) => {
-      conn.end();
       let printAreas = [];
       areas.forEach((area) => {
         if (area.side === 0) {
@@ -30,11 +33,9 @@ module.exports = function getProductsPrintArea(product) {
         }
       });
       return printAreas;
-    })
-    .catch((err) => {
-      conn.end();
-      return Promise.reject(ErrorModule.handle(err, 'KLI3'));
     });
 
-  });
+  })
+  .then((results) => { conn.end(); return results; })
+  .catch((details) => { conn.end(); return details; });
 }

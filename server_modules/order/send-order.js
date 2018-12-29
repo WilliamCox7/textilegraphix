@@ -20,6 +20,7 @@ module.exports = (order, from, attachments) => {
     attachments: attachments
   }
 
-  return transporter.sendMail(options);
+  return transporter.sendMail(options)
+  .catch((err) => handleError(err, 'B-016'));
 
 }

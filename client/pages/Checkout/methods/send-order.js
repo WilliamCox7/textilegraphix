@@ -1,3 +1,5 @@
+import { handleError } from "../../../modules";
+
 export default function sendOrder(orderType, orderTotal) {
   if (valid(this.state)) {
     send(this, orderType);
@@ -18,7 +20,8 @@ function send(self, orderType) {
     self.props.storeForm(self.state);
   } else {
     self.sendConfirmation(self.state, self.props.cart.orders)
-    .then(() => self.props.history.push(`/view?guid=${self.state.guid}`));
+    .then(() => self.props.history.push(`/view?guid=${self.state.guid}`))
+    .catch(() => {});
   }
 }
 

@@ -1,4 +1,5 @@
 import html2canvas from 'html2canvas';
+import { handleError } from '../../../modules';
 
 export default function addProductToCart() {
   this.toggle('waiting');
@@ -21,5 +22,5 @@ export default function addProductToCart() {
 function h2c(element) {
   return html2canvas(element, { useCORS: true, logging: false })
   .then((canvas) => canvas.toDataURL("image/jpeg"))
-  .catch((err) => console.log(err));
+  .catch((err) => handleError(err, 'F-003', true));
 }

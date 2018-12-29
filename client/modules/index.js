@@ -7,9 +7,10 @@ import createGuid from './create-guid';
 import renderEmail from './render-email';
 import sendConfirmation from './send-confirmation';
 import prepareAttachments from './prepare-attachments';
+import handleError from './handle-error';
 
 export {
   getAsset, toggle, calculateTotalCost, scrollToTop,
   setDelivery, createGuid, renderEmail,
-  sendConfirmation, prepareAttachments
+  sendConfirmation, prepareAttachments, handleError
 }

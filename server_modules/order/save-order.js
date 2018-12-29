@@ -4,7 +4,10 @@ const ErrorModule = require('../error');
 const fs = require('fs');
 
 module.exports = function saveOrder(form, orders) {
-  return mysql.createConnection(config.mysql).then((conn) => {
+  let conn;
+  return mysql.createConnection(config.mysql)
+  .then((c) => conn = c)
+  .then(() => {
 
     return Promise.all([
 
@@ -14,6 +17,7 @@ module.exports = function saveOrder(form, orders) {
         VALUES
         (${conn.escape(form.orderNumber)}, ${conn.escape(form.guid)}, ${conn.escape(form.delivery)}, ${conn.escape(form.selectedShippingMethod)})
       `)
+      .catch((err) => ErrorModule.handle(err, 'B-007'))
       .then((result) => {
         let orderId = result.insertId;
         return Promise.all([
@@ -34,7 +38,8 @@ module.exports = function saveOrder(form, orders) {
               ${conn.escape(form.billing.state)},
               ${conn.escape(form.billing.zip)}
             )
-          `),
+          `)
+          .catch((err) => ErrorModule.handle(err, 'B-008')),
 
           conn.query(`
             INSERT INTO addresses
@@ -50,7 +55,8 @@ module.exports = function saveOrder(form, orders) {
               ${conn.escape(form.shipping.state)},
               ${conn.escape(form.shipping.zip)}
             )
-          `),
+          `)
+          .catch((err) => ErrorModule.handle(err, 'B-009')),
 
           conn.query(`
             INSERT INTO contacts 
@@ -62,21 +68,16 @@ module.exports = function saveOrder(form, orders) {
               ${conn.escape(form.contact.email)}
             )
           `)
+          .catch((err) => ErrorModule.handle(err, 'B-010'))
           
         ]);
       })
 
-    ])
-    .then((results) => {
-      conn.end();
-      return results;
-    })
-    .catch((err) => {
-      conn.end();
-      return Promise.reject(ErrorModule.handle(err, 'WPJ5'));
-    })
+    ]);
 
-  });
+  })
+  .then((results) => { conn.end(); return results; })
+  .catch((details) => { conn.end(); return details; });
 }
 
 function iterate(iter, cb, conn, orderId, guid) {
@@ -106,6 +107,7 @@ function createOrderItem(iter, orderId, guid, order, conn) {
       ${conn.escape(order.selectedColor)}
     )
   `)
+  .catch((err) => ErrorModule.handle(err, 'B-011'))
   .then((result) => {
     let orderItemsId = result.insertId;
     let frontUrl = handleData(order.mockup[0], guid, 'front');
@@ -128,7 +130,8 @@ function createOrderItem(iter, orderId, guid, order, conn) {
           ${conn.escape(order.XL4 || 0)},
           ${conn.escape(order.XL5 || 0)}
         )
-      `),
+      `)
+      .catch((err) => ErrorModule.handle(err, 'B-012')),
 
       conn.query(`
         INSERT INTO mockups
@@ -140,6 +143,7 @@ function createOrderItem(iter, orderId, guid, order, conn) {
           ${conn.escape(backUrl)}
         )
       `)
+      .catch((err) => ErrorModule.handle(err, 'B-013'))
 
     ]);
   })
@@ -152,7 +156,7 @@ function handleData(data, guid, side) {
   else data = data.replace(/^data:image\/jpeg;base64,/, "");
   let fileName = `${config.host}/orders/${side}-${guid}.${fileType}`;
   let fileLocation = `${getRepoDir()}/build/orders/${side}-${guid}.${fileType}`;
-  fs.writeFile(fileLocation, data, 'base64', (err) => err ? ErrorModule.handle(err, 'XZ9S') : null);
+  fs.writeFile(fileLocation, data, 'base64', (err) => err ? ErrorModule.handle(err, 'B-022') : null);
   return fileName;
 }
 

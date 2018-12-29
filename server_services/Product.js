@@ -1,18 +1,11 @@
-let request = require("request");
-let config = require("../config");
 let ProductModule = require('../server_modules/product');
 
 module.exports = {
 
   get: (req, res) => {
     ProductModule.getProducts()
-    .then((products) => {
-      res.status(200).send(products);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send('A problem occured while getting the products');
-    });
+    .then((products) => res.status(200).send(products))
+    .catch((err) => res.status(500).send(err));
   }
 
 }

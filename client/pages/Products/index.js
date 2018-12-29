@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getAsset, toggle, calculateTotalCost, scrollToTop } from '../../modules';
+import { getAsset, toggle, calculateTotalCost, scrollToTop, handleError } from '../../modules';
 import ProductNav from '../../components/ProductNav';
 import Product from '../../components/Product';
 import ColorUpdater from '../../components/ColorUpdater';
@@ -53,12 +53,8 @@ class Products extends Component {
   componentDidMount() {
     scrollToTop();
     axios.get('/api/products')
-    .then((response) => {
-      this.props.set(response.data);
-    })
-    .catch((err) => {
-      console.error(err);
-    });
+    .then((response) => this.props.set(response.data))
+    .catch((err) => handleError(err, 'F-007'));
   }
 
   render() {

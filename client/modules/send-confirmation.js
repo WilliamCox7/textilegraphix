@@ -1,6 +1,7 @@
 import axios from 'axios';
 import renderEmail from './render-email';
 import prepareAttachments from './prepare-attachments';
+import handleError from './handle-error';
 
 export default function sendConfirmation(form, orders) {
   return axios.get('/api/order-number')
@@ -17,11 +18,7 @@ export default function sendConfirmation(form, orders) {
       this.props.clearCart();
       this.toggle('waiting');
       return Promise.resolve();
-    }).catch((error) => {
-      axios.post('/error', {error: error});
-    });
+    }).catch((err) => handleError(err, 'F-005'));
   })
-  .catch((error) => {
-    axios.post('/error', {error: error});
-  });
+  .catch((err) => handleError(err, 'F-004'));
 }

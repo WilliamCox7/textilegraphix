@@ -4,7 +4,10 @@ const ErrorModule = require('../error');
 const getProducts = require('../product/get-products');
 
 module.exports = function getOrder(guid) {
-  return mysql.createConnection(config.mysql).then((conn) => {
+  let conn;
+  return mysql.createConnection(config.mysql)
+  .then((c) => conn = c)
+  .then(() => {
 
     let details;
 
@@ -13,6 +16,7 @@ module.exports = function getOrder(guid) {
       FROM orders
       WHERE guid = ${conn.escape(guid)}
     `)
+    .catch((err) => ErrorModule.handle(err, 'B-004'))
     .then((results) => {
       details = results[0];
       return conn.query(`
@@ -20,17 +24,19 @@ module.exports = function getOrder(guid) {
         FROM orderItems
         WHERE orderId = ${conn.escape(results[0].id)}
       `)
-      .then((items) => iterate(items.entries(), getItemInfo, conn, []))
+      .catch((err) => ErrorModule.handle(err, 'B-005'))
+      .then((items) => iterate(items.entries(), getItemInfo, conn, []));
     })
     .then((results) => {
-      conn.end();
       return {
         details: details,
         orders: results
       };
-    })
+    });
 
-  });
+  })
+  .then((results) => { conn.end(); return results; })
+  .catch((details) => { conn.end(); return details; });
 }
 
 function iterate(iter, cb, conn, updItems) {
@@ -51,13 +57,15 @@ function getItemInfo(iter, item, updItems, conn) {
       SELECT *
       FROM mockups
       WHERE orderItemsId = ${conn.escape(item.id)}
-    `),
+    `)
+    .catch((err) => ErrorModule.handle(err, 'B-014')),
 
     conn.query(`
       SELECT *
       FROM sizes
       WHERE orderItemsId = ${conn.escape(item.id)}
     `)
+    .catch((err) => ErrorModule.handle(err, 'B-015'))
 
   ])
   .then((results) => {
@@ -74,5 +82,5 @@ function getItemInfo(iter, item, updItems, conn) {
     item.XL5 = results[2][0].XL5;
     updItems.push(item);
     return iterate(iter, getItemInfo, conn, updItems);
-  })
+  });
 }

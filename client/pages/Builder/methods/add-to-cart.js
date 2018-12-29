@@ -1,5 +1,5 @@
 import html2canvas from 'html2canvas';
-import { createGuid } from '../../../modules';
+import { createGuid, handleError } from '../../../modules';
 
 export default function addToCart() {
   if (this.state.quantity >= 30) {
@@ -28,5 +28,5 @@ export default function addToCart() {
 function h2c(element) {
   return html2canvas(element, { useCORS: true, logging: false })
   .then((canvas) => canvas.toDataURL("image/jpeg"))
-  .catch((err) => console.log(err));
+  .catch((err) => handleError(err, 'F-001', true));
 }

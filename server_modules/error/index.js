@@ -1,3 +1,4 @@
 module.exports = {
-  handle: require('./handle')
+  handle: require('./handle'),
+  send: require('./send')
 }
