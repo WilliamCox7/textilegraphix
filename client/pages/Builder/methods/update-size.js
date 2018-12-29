@@ -20,6 +20,8 @@ export default function updateSize(e, form) {
         shippingOffset = this.state.quantity ? Number(groundRate) / this.state.quantity : 0;
       }
       this.calculateCost(this.state, shippingOffset);
+      if (!this.state.showZip) this.getRates();
+      document.getElementById('qty-input').value = this.state.quantity;
     });
   }
 }

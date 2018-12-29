@@ -61,10 +61,10 @@ class Cart extends Component {
             <h1 className="location-header">{locationText}</h1>
             <div className="sizes-price flex">
               <MediaQuery minWidth={690}>
-                <SizeForm edit={true} form={order} updateSize={this.updOrder} size="medium" />
+                <SizeForm form={order} updateSize={this.updOrder} size="medium" />
               </MediaQuery>
               <MediaQuery maxWidth={689}>
-                <SizeForm edit={true} form={order} updateSize={this.updOrder} size="small" />
+                <SizeForm form={order} updateSize={this.updOrder} size="small" />
               </MediaQuery>
               <MediaQuery minWidth={480}>
                 <div id={`price-box-wrapper-${i}`} className="price-box-wrapper" onClick={() => this.extendPrice(i)}>

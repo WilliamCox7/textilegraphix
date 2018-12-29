@@ -18,6 +18,7 @@ class Builder extends Component {
 
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = {
       product: props.builder ? props.builder.product : undefined,
       selectedColor: props.builder ? props.builder.selectedColor : undefined,
@@ -39,7 +40,7 @@ class Builder extends Component {
       front: true,
       guid: props.builder ? props.builder.guid : undefined,
       help: false,
-      zip: '',
+      zip: props.builder ? props.builder.zip : '',
       rates: !!(props.builder && props.builder.rates) ? props.builder.rates : [],
       showZip: !!(props.builder && props.builder.zip) ? false : true,
       edit: props.builder ? props.builder.edit : false,
@@ -93,6 +94,7 @@ class Builder extends Component {
         }
       });
     }
+    if (this.state.zip) this.getRates();
   }
 
   componentWillMount() {
