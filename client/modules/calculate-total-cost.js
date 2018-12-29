@@ -72,9 +72,9 @@ export default function calculateTotalCost(args) {
   // else if (numLocations == 5) setCost = setCostOne + setCostTwo + setCostThree + setCostFour + setCostFive;
 
   // calculate add ons
-  if (order.foldedAndBagged) costOfShirt += .4;
-  if (order.insideTagPrinting) costOfShirt += 1.15;
-  if (order.hemTags) costOfShirt += 2.25;
+  // if (order.foldedAndBagged) costOfShirt += .4;
+  // if (order.insideTagPrinting) costOfShirt += 1.15;
+  // if (order.hemTags) costOfShirt += 2.25;
 
   let sizeOffsets = {
     XL2: 2.50,

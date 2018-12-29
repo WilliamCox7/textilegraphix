@@ -12,7 +12,7 @@ export default function getRates() {
     .then((response) => {
       if (this.state.showZip) this.toggle('waiting2');
       let groundRate, shippingOffset = 0;
-      if (this.state.rates.length) {
+      if (response.data.rates.length) {
         groundRate = response.data.rates.find((rate) => rate.carrier === 'UPS' && rate.service === 'Ground').rate;
         shippingOffset = Number(groundRate) / this.state.quantity;
       }
