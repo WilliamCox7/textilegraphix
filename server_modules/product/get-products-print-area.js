@@ -1,5 +1,5 @@
 const mysql = require('promise-mysql');
-const config = require('../../config');
+const config = require('../../config-sandbox');
 const ErrorModule = require('../error');
 
 module.exports = function getProductsPrintArea(product) {

@@ -1,5 +1,5 @@
 const mysql = require('promise-mysql');
-const config = require('../../config');
+const config = require('../../config-sandbox');
 const ErrorModule = require('../error');
 const fs = require('fs');
 

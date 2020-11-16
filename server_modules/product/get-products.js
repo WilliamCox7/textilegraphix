@@ -1,5 +1,5 @@
 const mysql = require('promise-mysql');
-const config = require('../../config');
+const config = require('../../config-sandbox');
 const getProductsPrintArea = require('./get-products-print-area');
 const getProductsImages = require('./get-products-images');
 const getProductsColors = require('./get-products-colors');

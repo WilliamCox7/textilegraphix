@@ -1,4 +1,4 @@
-const config = require('../../config');
+const config = require('../../config-sandbox');
 const nodemailer = require('nodemailer');
 const handleError = require('./handle');
 // const pretty = require('js-object-pretty-print').pretty;

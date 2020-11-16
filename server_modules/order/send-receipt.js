@@ -1,4 +1,4 @@
-const config = require('../../config');
+const config = require('../../config-sandbox');
 const nodemailer = require('nodemailer');
 
 module.exports = (order, to, attachments) => {

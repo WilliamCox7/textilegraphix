@@ -1,5 +1,5 @@
 const Easypost = require('@easypost/api');
-const config = require('../../config');
+const config = require('../../config-sandbox');
 const api = new Easypost(config.easypost.key);
 const ErrorModule = require('../error');
 
