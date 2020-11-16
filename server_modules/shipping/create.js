@@ -1,6 +1,6 @@
 const Easypost = require('@easypost/api');
 const config = require('../../config-sandbox');
-const api = new Easypost(config.easypost.key);
+// const api = new Easypost(config.easypost.key);
 const ErrorModule = require('../error');
 
 module.exports = function create(postBody) {

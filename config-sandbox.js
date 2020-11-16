@@ -2,22 +2,22 @@
 const GRAPHIX = {
 
   production: {
-    email: 'willcx30@gmail.com',
-    to: 'willcx30@gmail.com',
+    email: '',
+    to: '',
     password: ''
   },
 
   development: {
-    email: 'willcx30@gmail.com',
-    to: 'willcx30@gmail.com',
+    email: '',
+    to: '',
     password: ''
   }
 
 }
 
 const ERROR = {
-  email: 'willcx30@gmail.com',
-  to: 'willcx30@gmail.com',
+  email: '',
+  to: '',
   password: ''
 }
 
@@ -50,14 +50,14 @@ const EASYPOST = {
 const SSL = {
 
   development: {
-    key: '/Users/williamcox/.ssh/key.pem',
-    crt: '/Users/williamcox/.ssh/certificate.pem'
+    key: '',
+    crt: ''
   },
 
   production: {
-    key: '/etc/nginx/ssl/textilegraphix_com/textilegraphix_com.key',
-    crt: '/etc/nginx/ssl/textilegraphix_com/ssl-bundle.crt',
-    passphrase: 'Dell1992'
+    key: '',
+    crt: '',
+    passphrase: ''
   }
 
 }
@@ -91,6 +91,7 @@ module.exports = {
   auth_net: AUTH_NET[ENV],
   easypost: EASYPOST[ENV],
   mysql: MYSQL[ENV],
+  ssl: SSL[ENV],
   env: ENV,
   host: HOST
 }
