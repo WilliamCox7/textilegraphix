@@ -5,8 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack --config webpack.config.js --watch --progress",
-    "build": "webpack --config webpack.config.prod.js --progress && pm2 restart server.js"
+    "heroku-postbuild": "webpack -p --config webpack.config.prod.js --progress"
   },
   "repository": {
     "type": "git",
