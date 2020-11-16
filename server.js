@@ -1,35 +1,22 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const https = require('https');
-const fs = require('fs');
-const config = require('./config');
-const app = module.exports = express();
+const APP = module.exports = express();
 
-app.set('port', (process.env.PORT || 3001));
-app.use(bodyParser.json({limit: '50mb'}));
-app.use(express.static(__dirname + '/build'));
+APP.set('port', (process.env.PORT || 3001));
+APP.use(bodyParser.json({limit: '50mb'}));
+APP.use(express.static(__dirname + '/build'));
 
-require('./routes')(app);
+require('./routes')(APP);
 
-app.get('/src/*', (req, res) => {
+APP.get('/src/*', (req, res) => {
   res.sendFile(path.resolve(__dirname, `.${req.url}`))
-})
+});
 
-app.get('*', (req, res) => {
+APP.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, './build/index.html'));
 });
 
-const options = {
-  key: fs.readFileSync(config.ssl.key, 'utf8'),
-  cert: fs.readFileSync(config.ssl.crt, 'utf8')
-};
-
-if (config.env === 'production') {
-  options.passphrase = config.ssl.passphrase;
-}
-
-https.createServer(options, app)
-.listen(app.get('port'), () => {
-  console.log('localhost:' + app.get('port'));
+APP.listen(APP.get('port'), () => {
+  console.log('localhost:' + APP.get('port'));
 });

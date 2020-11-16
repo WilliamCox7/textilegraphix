@@ -1,4 +1,4 @@
-import axios from 'axios';
+// import axios from 'axios';
 import { handleError } from '../../../modules';
 
 export default function authorizeCreditCard() {
@@ -6,17 +6,23 @@ export default function authorizeCreditCard() {
   let creditCard = Object.assign({}, this.state);
   let form = Object.assign({}, this.props);
   let authObj = buildAuthObject(creditCard, form);
-  axios.post('/authorize', authObj)
-  .then((response) => {
-    // response.data.messages.resultCode [ "Ok" | "Error" ]
-    // response.data.messages.message.text
-    console.log(response);
+  setTimeout(() => {
     this.sendConfirmation(this.props.cart.form, this.props.cart.orders);
     this.props.toggle('waiting', 'paymentModal');
     this.props.clearCart();
     this.props.history.push('/cart');
-  })
-  .catch((err) => handleError(err, 'F-006', true));
+  }, 1000);
+  // axios.post('/authorize', authObj)
+  // .then((response) => {
+  //   // response.data.messages.resultCode [ "Ok" | "Error" ]
+  //   // response.data.messages.message.text
+  //   console.log(response);
+  //   this.sendConfirmation(this.props.cart.form, this.props.cart.orders);
+  //   this.props.toggle('waiting', 'paymentModal');
+  //   this.props.clearCart();
+  //   this.props.history.push('/cart');
+  // })
+  // .catch((err) => handleError(err, 'F-006', true));
 }
 
 function buildAuthObject(creditCard, form) {

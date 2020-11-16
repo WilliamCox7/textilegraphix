@@ -10,7 +10,7 @@ import MediaQuery from 'react-responsive';
 import { initializeBuilder } from '../../reducers/builder';
 import { set } from '../../reducers/inventory';
 import * as methods from './methods';
-import axios from 'axios';
+// import axios from 'axios';
 import './style.scss';
 
 class Products extends Component {
@@ -52,13 +52,13 @@ class Products extends Component {
 
   componentDidMount() {
     scrollToTop();
-    axios.get('/api/products')
-    .then((response) => this.props.set(response.data))
-    .catch((err) => handleError(err, 'F-007'));
+    // axios.get('/api/products')
+    // .then((response) => this.props.set(response.data))
+    // .catch((err) => handleError(err, 'F-007'));
   }
 
   render() {
-
+// console.log(JSON.stringify(this.props.inventory.products[0], null, 2))
     let products = [];
 
     if (this.props.inventory.products.length) {

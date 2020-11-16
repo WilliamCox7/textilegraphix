@@ -9,7 +9,7 @@ import MainFooter from '../../components/MainFooter';
 import SwipeableViews from 'react-swipeable-views';
 import * as methods from './methods';
 import { scrollToTop } from '../../modules';
-import axios from 'axios';
+// import axios from 'axios';
 import './style.scss';
 
 class Cart extends Component {
@@ -33,11 +33,11 @@ class Cart extends Component {
 
   componentDidMount() {
     scrollToTop();
-    axios.get(`/api/order/${this.state.guid}`)
-    .then((response) => {
-      let extended = response.data.orders.map((o) => false);
-      this.setState({orders: response.data.orders, details: response.data.details, extended: extended});
-    })
+    // axios.get(`/api/order/${this.state.guid}`)
+    // .then((response) => {
+    //   let extended = response.data.orders.map((o) => false);
+    //   this.setState({orders: response.data.orders, details: response.data.details, extended: extended});
+    // })
   }
 
   render() {

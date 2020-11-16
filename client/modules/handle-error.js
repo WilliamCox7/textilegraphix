@@ -1,4 +1,4 @@
-import axios from 'axios';
+// import axios from 'axios';
 
 export default function handleError(err, id, send) {
   
@@ -10,8 +10,9 @@ export default function handleError(err, id, send) {
 
   console.error(details);
 
-  if (send) return axios.post('/error', details);
-  else return Promise.resolve();
+  return Promise.resolve();
+  // if (send) return axios.post('/error', details);
+  // else return Promise.resolve();
 }
 
 function getErrorMessage(id) {
