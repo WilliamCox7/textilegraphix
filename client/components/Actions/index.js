@@ -14,7 +14,7 @@ class Actions extends Component {
           <ActionTile asset="chat" h="" button="Live Chat" click />
           <ActionTile asset="location" h="ADDRESS" p="1154 Stocks Ave. Rexburg ID, 83440"
             href="https://maps.google.com/?q=1154 Stocks Ave. Rexburg ID, 83440" target="_blank" />
-          <ActionTile asset="email" h="EMAIL" p="willcx30@gmail.com.com"
+          <ActionTile asset="email" h="EMAIL" p="willcx30@gmail.com"
             href="mailto:willcx30@gmail.com" />
         </div>
       </section>
